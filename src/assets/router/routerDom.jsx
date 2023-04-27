@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Pri } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "../../pages/Home/Home";
 import QuemSomos from "../../pages/QuemSomos/Quemsomos";
 import React from "react";
@@ -14,7 +14,7 @@ export function RouterDOM(){
     return(
     <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
-        <Route index element={<Home/>}/>
+        <Route index element={<Home/>} path="/"/>
         <Route element={<QuemSomos/>} path="/quemsomos"/>
         <Route element={<Login/>} path = "/login"/>
         <Route element={<Cadastro/>} path = "/cadastro"/>

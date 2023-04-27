@@ -4,7 +4,7 @@ import Navigation from "../../components/Navigation/Navigation";
 import { Footer } from "../../components/Footer/Footer";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from "../../services/firebaseConfig";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 
 
@@ -69,7 +69,7 @@ const Login = () => {
                 <button onClick={handleLogin}>Login</button>
                 <div className="sugestaoCadastro">
                     <p href="./">Não tem cadastro?</p>
-                    <a href="./cadastro">Crie sua conta</a>
+                    <Link to="./cadastro">Crie sua conta</Link>
                 </div>
             </form>
         </LoginMain>

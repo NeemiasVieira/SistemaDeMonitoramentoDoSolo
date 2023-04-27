@@ -7,6 +7,7 @@ import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroCo
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useState } from "react";
 import { auth } from "../../services/firebaseConfig";
+import { Link } from "react-router-dom";
 
 
 
@@ -14,7 +15,6 @@ import { auth } from "../../services/firebaseConfig";
 const Cadastro = () => {
 
     const [email, setEmail] = useState("");    
-    const [password, setPassword] = useState("");
     const [senha1, setSenha1] = useState("");
     const [senha2, setSenha2] = useState("");
 
@@ -97,7 +97,7 @@ const Cadastro = () => {
                 <button onClick={(e) => Cadastrar(e)}>Login</button>
                 <div className="sugestaoLogin">
                     <p href="./">Já possui cadastro?</p>
-                    <a href="./login">Faça Login</a>
+                    <Link to="./login">Faça Login</Link>
                 </div>
             </form>
 
