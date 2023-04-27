@@ -1,0 +1,83 @@
+Agriculture is the key source of food and considered as the basis of the human
+
+being's life. Agricultural growth is one of the major factors in the economic growth
+
+of the any developing countries like India, Nepal, Pakistan, Srilanka, etc. The
+
+researcher has found that the agricultural production is not increasing as compared
+
+to the growth of population [1]. The main reason for this hampered production of
+
+agriculture is that most of the farmers are using the traditional method of agriculture
+
+as by planting the same crops for centuries, but over the periods, soil conditions,
+
+weather patterns and epidemics of pests and diseases have changed accordingly.
+
+The forecast of the estimated world population is 9.8 billion by 2050, which is 25%
+
+more than the current population [2]. By keeping in view this figure, we need to
+
+produce more crop, not only for food, but also equally for the industrial crop like
+
+cotton, rubber, etc. The rapid increase in global population and high demand of
+
+quality products intensify the modernization and automation of agricultural prac-
+
+tices which provide high efficiency and precision in the use of water and other
+
+resources like pesticides, fertilizers, etc. Today's farm activity is static and manual,
+
+which need to be more dynamic and intelligent. It is only possible by automatic
+
+farm activities by using information and communication technology, which is
+
+presently a key factor in the human's daily life.
+
+The Internet of things (IoT), artificial intelligence (AI), cloud computing and
+
+edge computing are taking important roles to enhance the productivity of agricul-
+
+tural land in a precise manner. Technologies such as IoT-based monitoring of crops
+
+and soil, analysis of data through artificial intelligence for taking appropriate
+
+decision, automated irrigation system and weather monitoring and forecasting are in
+
+huge demand to improve the crop quality and detect the diseases in pests and plants
+
+resulting in enhancing crop productivity with a considerable decrease in farmers'
+
+dependency on human labours. The crop field can be monitored with the help of
+
+IoT devices and sensors. The edge computing collects sensor data from the crop
+
+field and sends it to the cloud where the data are processed and analysed to take a
+
+correct measure based on the analysis. So, there will be increased in production of
+
+crop, and it will also reduce the usage of water, fertilizer and pesticides in the field
+
+crop.
+
+Agriculture is also a data-intensive industry which needs to collect and evaluate
+
+the information from the huge numbers of devices (e.g. sensors, automatic farm
+
+machineries and smart agribots) to make the production more efficient and keep
+
+appropriate information for future use [3]. This kind of the IoT-based agricultural
+
+system can be used to make farm activities automatic. The main applications,
+
+services delivered and sensors used in IoT-based smart agriculture are given in
+
+Table 1.
+
+In this paper, we have presented a systematic review of advances in IoT-based
+
+technologies for smart agricultural system which consist of reviews on different
+
+submodules of the system, e.g. soil health monitoring, crop health monitoring,
+
+weather forecasting and smart irrigation along with the architecture of the whole
