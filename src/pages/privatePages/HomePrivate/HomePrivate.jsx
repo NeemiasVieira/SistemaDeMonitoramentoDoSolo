@@ -1,5 +1,4 @@
 import React from "react";
-import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../../../services/firebaseConfig";
 import { Link } from "react-router-dom";
@@ -7,12 +6,7 @@ import { NavAutenticada } from "../../../components/NavAutenticada/NavAutenticad
 import { Footer } from "../../../components/Footer/Footer";
 import { HomePrivateMain } from "./HomePrivateStyle";
 
-const login = () => {
-    signInWithEmailAndPassword(auth, 'neemias.vieira@live.com', 'batata');
-  };
-  const logout = () => {
-    signOut(auth);
-  };
+
 
 const HomePrivate = () => {
   
