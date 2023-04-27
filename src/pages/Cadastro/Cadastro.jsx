@@ -72,11 +72,7 @@ const Cadastro = () => {
             type="password"
             placeholder="Digite a sua senha"
             value={senha1}
-            onChange={(e) => {
-              {
-                setSenha1(e.target.value);
-              }
-            }}
+            onChange={(e) => setSenha1(e.target.value)}
           />
 
           <label htmlFor="">Confirmação</label>

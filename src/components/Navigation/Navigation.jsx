@@ -9,11 +9,11 @@ export default function Navigation(){
     return(
     
         <NavigationStyle>
-            <ul class="navegacao">
+            <ul className="navegacao">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/">Aplicação</Link></li>
                 <li><Link to="/faq">FAQ</Link></li>
-                <li class="login"><Link to="/login">Login</Link></li>
+                <li className="login"><Link to="/login">Login</Link></li>
             </ul>
         </NavigationStyle>
         
