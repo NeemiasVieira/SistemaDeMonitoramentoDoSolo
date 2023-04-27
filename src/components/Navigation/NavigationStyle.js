@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const NavigationStyle = styled.nav`
+  * {
+    font-family: "Montserrat", sans-serif;
+  }
 
-*{
-    font-family: 'Montserrat', sans-serif; 
-}
-
-.navegacao{
+  .navegacao {
     display: flex;
     justify-content: initial;
     align-items: center;
@@ -20,28 +19,45 @@ export const NavigationStyle = styled.nav`
     left: 0;
     width: 100%;
     border-bottom: solid black 1px;
+  }
 
-}
-
-li{
+  li {
     list-style: none;
-}
+  }
 
-a{
+  a {
     color: whitesmoke;
     text-decoration: none;
     font-weight: 500;
     transition: all 250ms;
-}
+    :hover {
+      font-weight: 900;
+      color: black;
+    }
+  }
 
-a:hover{
-    font-weight: 900;
-    color: black;
-}
-
-.login{
+  .login {
     position: fixed;
     right: 3%;
-}
+  }
 
+  @media screen and (max-width: 480px) {
+    .navegacao {
+      gap: 6vw;
+    }
+    ul {
+      padding: 0 5vw;
+    }
+
+    a {
+      :hover {
+        color: whitesmoke;
+        font-weight: 500;
+      }
+    }
+
+    .login {
+      right: 7%;
+    }
+  }
 `

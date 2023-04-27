@@ -2,84 +2,81 @@ import React, { useState } from "react";
 import { LoginMain } from "./LoginStyle";
 import Navigation from "../../components/Navigation/Navigation";
 import { Footer } from "../../components/Footer/Footer";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../services/firebaseConfig";
 import { Link, Navigate } from "react-router-dom";
 
-
-
-
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useSignInWithEmailAndPassword(auth);
-      
-    if (error) {
-        return (
-        <div>
-            <p>Usuário ou senha não encontrados</p>
-        </div>
-        );
-    }
-    if (loading) {
-          return <p>Loading...</p>;
-    }
-    if (user) {
-        return (
-        <div>
+  if (error) {
+    return (
+      <div>
+        <p>Usuário ou senha não encontrados</p>
+      </div>
+    );
+  }
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (user) {
+    return (
+      <div>
         <p>Registered User: {user.user.email}</p>
-        <Navigate to="/sistema/home"/>
+        <Navigate to="/sistema/home" />
         {console.log(user)}
-        </div>
-        );
-    }
+      </div>
+    );
+  }
 
-    function handleLogin(e){
-        e.preventDefault();
-        signInWithEmailAndPassword(email, password);
-    }    
+  function handleLogin(e) {
+    e.preventDefault();
+    signInWithEmailAndPassword(email, password);
+  }
 
+  return (
+    <>
+      <LoginMain>
+        <Navigation />
+        <h1>Sistema de Monitoramento de Solo</h1>
 
-    return(
-        <>
-        <LoginMain>
-            <Navigation/>
-            <h1>Sistema de Monitoramento de Solo</h1>
+        <form type="submit">
+          <label htmlFor="">Usuário</label>
 
-            <form type="submit">
-                <label htmlFor="">Usuário</label>
+          <input
+            type="text"
+            placeholder="Digite o seu e-mail"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
 
-                <input type="text"
-                placeholder="Digite o seu e-mail"
-                value = {email}
-                onChange={(e) => {setEmail(e.target.value)}} />
+          <label htmlFor="">Senha</label>
 
-                <label htmlFor="">Senha</label>
-
-                <input type="password"
-                placeholder="Digite a sua senha"
-                value = {password}
-                onChange={(e) => {setPassword(e.target.value)}} />
-                <button onClick={handleLogin}>Login</button>
-                <div className="sugestaoCadastro">
-                    <p>Não tem cadastro?</p>
-                    <Link to="/cadastro">Crie sua conta</Link>
-                </div>
-            </form>
-        </LoginMain>
-        <Footer/>
-        </>
-    )
-}
+          <input
+            type="password"
+            placeholder="Digite a sua senha"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <button onClick={handleLogin}>Login</button>
+          <div className="sugestaoCadastro">
+            <p>Não tem cadastro?</p>
+            <Link to="/cadastro">Crie sua conta</Link>
+          </div>
+        </form>
+      </LoginMain>
+      <Footer />
+    </>
+  );
+};
 
 export default Login;
-
-
 
 //https://www.youtube.com/watch?v=LI0YcHMu9P4

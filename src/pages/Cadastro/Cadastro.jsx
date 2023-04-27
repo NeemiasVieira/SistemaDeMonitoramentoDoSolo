@@ -36,11 +36,7 @@ const Cadastro = () => {
         return <p>Loading...</p>;
         }
 
-        if (user) {
-        return (
-            <CadastroConcluido/>
-        );
-        }
+        if (user) return <CadastroConcluido/>;        
 
         function VerificaSenha(e){
             e.preventDefault();

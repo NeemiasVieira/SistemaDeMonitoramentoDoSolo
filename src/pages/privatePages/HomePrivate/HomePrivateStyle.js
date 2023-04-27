@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HomePrivateMain = styled.main`
 
-    min-height: 70vh;
+    min-height: 93vh;
     overflow-x: hidden;
 
     section{
