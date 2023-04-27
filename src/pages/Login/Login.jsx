@@ -5,6 +5,8 @@ import { Footer } from "../../components/Footer/Footer";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../services/firebaseConfig";
 import { Link, Navigate } from "react-router-dom";
+import { Loading } from "../../components/Loading/Loading";
+import { MensagemDeErro } from "../../components/MensagemDeErro/MensagemDeErro";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,14 +15,10 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
 
   if (error) {
-    return (
-      <div>
-        <p>Usuário ou senha não encontrados</p>
-      </div>
-    );
+    return <MensagemDeErro erro={error.message}/>
   }
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading/>;
   }
   if (user) {
     return (
