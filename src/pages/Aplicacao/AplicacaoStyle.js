@@ -30,7 +30,7 @@ export const AplicacaoMain = styled.main`
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    align-items: center;
+    align-items: initial;
     
   }
 
