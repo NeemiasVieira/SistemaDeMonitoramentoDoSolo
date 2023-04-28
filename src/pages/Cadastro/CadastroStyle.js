@@ -94,7 +94,7 @@ export const CadastroMain = styled.main`
     form {
       width: 75vw;
       max-width: 450px;
-      height: 35vh;
+      height: 40vh;
       max-height: 400px;
     }
 
