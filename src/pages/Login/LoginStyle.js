@@ -94,6 +94,7 @@ export const LoginMain = styled.main`
     input {
       width: 60vw;
       max-width: 400px;
+      font-size: 17px;
     }
     button {
       width: 125px;

@@ -12,7 +12,7 @@ export default function Home(){
             <h1>Sistema de Monitoramento do Solo</h1>
             <div className="introducao">
                 <img src={manjericao} alt="" className="manjericao" />
-                <p className="introducaoTexto">O projeto Sistema de Monitoramento do Solo tem foco no desenvolvimento do manjericão, com o objetivo de monitorar os nutrientes da planta para melhores cuidados. <br></br><br></br>Monitoramentos: <br></br><br></br>Nitrogênio, Fosfóro, Potássio, umidade, temperatura e pH</p>
+                <p className="introducaoTexto">O projeto Sistema de Monitoramento do Solo está em desenvolvimento, com conclusão prevista o 2° Semestres de 2024<br/><br/>O projeto é de nível Trabalho de Conclusão de Curso (TCC) e está integrado ao curso de Engenharia da Computação pela Universidade Santa Cecília.</p>
             </div>            
         </HomeStyle>
         <Footer/>

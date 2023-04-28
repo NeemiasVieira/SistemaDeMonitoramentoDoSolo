@@ -11,7 +11,7 @@ export default function Navigation(){
         <NavigationStyle>
             <ul className="navegacao">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/">Aplicação</Link></li>
+                <li><Link to="/aplicacao">Aplicação</Link></li>
                 <li><Link to="/faq">FAQ</Link></li>
                 <li className="login"><Link to="/login">Login</Link></li>
             </ul>

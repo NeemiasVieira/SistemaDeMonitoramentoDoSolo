@@ -7,6 +7,8 @@ import HomePrivate from "../../pages/privatePages/HomePrivate/HomePrivate";
 import { RotaPrivada } from "./rotaPrivada";
 import Cadastro from "../../pages/Cadastro/Cadastro";
 import Faq from "../../pages/FAQ/Faq";
+import MinhaPlanta from "../../pages/privatePages/MinhaPlanta/MinhaPlanta";
+import Aplicacao from "../../pages/Aplicacao/Aplicacao";
 
 
 
@@ -19,7 +21,10 @@ export function RouterDOM(){
         <Route element={<Login/>} path = "/login"/>
         <Route element={<Cadastro/>} path = "/cadastro"/>
         <Route element={<Faq/>} path = "/faq"/>
+        <Route element={<Aplicacao/>} path ="/aplicacao"/>
 
+        {/* Rotas Privadas */}
+        <Route element={<RotaPrivada><MinhaPlanta/></RotaPrivada>} path = "/sistema/minhaplanta"/>
         <Route element={<RotaPrivada><HomePrivate/></RotaPrivada>} path="/sistema/home"/>
 
     </Routes>

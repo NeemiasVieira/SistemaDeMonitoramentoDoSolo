@@ -20,10 +20,10 @@ export const NavAutenticada = () => {
           <Link to="/sistema/home">Início</Link>
         </li>
         <li>
-          <Link to="/sistema/home">Minha Planta</Link>
+          <Link to="/sistema/minhaplanta">Minha Planta</Link>
         </li>
         <li>
-          <Link to="/sistema/home">Reportar Problema</Link>
+          <Link to="/sistema/home">Ajuda</Link>
         </li>
         <li className="usuario">{user.email}</li>
         <li>

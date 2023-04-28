@@ -14,7 +14,7 @@ export const MensagemDeErro = ({ erro }) => {
         <h3>Resposta do servidor:</h3>
          <p><strong>{erro}</strong></p>
         
-        <Link to="..">Voltar</Link>
+        <Link to="..">Voltar para Home</Link>
       </div>
     </MensagemErroStyle>
   );

@@ -47,6 +47,7 @@ export const CadastroMain = styled.main`
     border: none;
     background: #000;
     color: whitesmoke;
+    font-size: 17px;
   }
 
   button {

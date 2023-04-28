@@ -19,6 +19,7 @@ export const NavAutenticadaStyle = styled.nav`
     left: 0;
     width: 100%;
     border-bottom: solid black 1px;
+    z-index: 1;
   }
 
   li {
@@ -33,8 +34,7 @@ export const NavAutenticadaStyle = styled.nav`
   }
 
   a:hover {
-    font-weight: 900;
-    color: black;
+    font-size: 1.05em;
   }
 
   .logout {
@@ -74,8 +74,7 @@ export const NavAutenticadaStyle = styled.nav`
     a {
       font-size: 0.8em;
       :hover {
-        font-weight: 500;
-        color: whitesmoke;
+        font-size: 0.8em;
       }
     }
 

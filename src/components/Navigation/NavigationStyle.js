@@ -31,8 +31,7 @@ export const NavigationStyle = styled.nav`
     font-weight: 500;
     transition: all 250ms;
     :hover {
-      font-weight: 900;
-      color: black;
+      font-size: 1.05em;
     }
   }
 
@@ -51,8 +50,7 @@ export const NavigationStyle = styled.nav`
 
     a {
       :hover {
-        color: whitesmoke;
-        font-weight: 500;
+        font-size: 1em;
       }
     }
 
