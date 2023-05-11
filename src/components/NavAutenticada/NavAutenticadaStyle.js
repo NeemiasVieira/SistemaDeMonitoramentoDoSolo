@@ -11,7 +11,7 @@ export const NavAutenticadaStyle = styled.nav`
     align-items: center;
     gap: 4vw;
     flex-flow: row;
-    background-color: #107740;
+    background-color: #10bb70;
     margin: 0;
     height: 9vh;
     position: fixed;
