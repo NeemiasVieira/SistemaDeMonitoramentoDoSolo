@@ -57,14 +57,17 @@ export const HomeStyle = styled.main`
   }
 
   @media screen and (max-width: 480px) {
+
+    min-height: 60vh;
+
     h1 {
-      margin-top: 15vh;
+      margin-top: 12.5vh;
       font-size: 1.3em;
     }
 
     .manjericao {
-      width: 250px;
-      height: 250px;
+      width: 150px;
+      height: 150px;
     }
 
     .introducao {

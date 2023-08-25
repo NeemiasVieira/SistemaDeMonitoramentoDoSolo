@@ -65,7 +65,6 @@ export const LoginMain = styled.main`
     text-decoration: none;
     color: whitesmoke;
     font-size: 1rem;
-    font-weight: 600;
   }
 
   .sugestaoCadastro {
@@ -76,6 +75,7 @@ export const LoginMain = styled.main`
     justify-content: center;
     align-items: center;
     gap: 10px;
+    font-size: 1rem;
 
     p {
       font-size: 0.9em;
@@ -83,9 +83,18 @@ export const LoginMain = styled.main`
     }
   }
 
+  .crieSuaConta{
+    font-weight: 600;
+  }
+
   @media screen and (max-width: 480px) {
     h1 {
-      font-size: 1.4em;
+      font-size: 1.3em;
+    }
+
+    h2{
+      margin-top: 5px;
+      font-size: 1rem;
     }
     form {
       width: 70vw;
@@ -99,7 +108,8 @@ export const LoginMain = styled.main`
       font-size: 17px;
     }
     button {
-      width: 125px;
+      width: 150px;
+      height: 34px;
       font-size: 1.1em;
 
       :hover {

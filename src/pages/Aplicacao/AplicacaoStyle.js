@@ -37,6 +37,8 @@ export const AplicacaoMain = styled.main`
   }
 
   @media screen and (max-width: 480px){
+
+    min-height: 80vh;
     
 
     .SecaoIntroducao{

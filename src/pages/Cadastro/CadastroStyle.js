@@ -72,13 +72,13 @@ export const CadastroMain = styled.main`
     text-decoration: none;
     color: whitesmoke;
     font-size: 1rem;
-    font-weight: 600;
   }
 
   .sugestaoLogin {
     margin-top: 20px;
     color: whitesmoke;
     display: flex;
+    font-size: 1rem;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
@@ -88,13 +88,22 @@ export const CadastroMain = styled.main`
       font-size: 0.9em;
       font-weight: 300;
     }
+
+    .jaPossuiCadastro{
+    font-weight: 600;
+  }
   }
   @media screen and (max-width: 480px) {
     h1 {
-      font-size: 1.4em;
+      font-size: 1.3em;
+    }
+
+    h2{
+      margin-top: 5px;
+      font-size: 1rem;
     }
     form {
-      width: 75vw;
+      width: 70vw;
       max-width: 450px;
       height: 40vh;
       max-height: 400px;
@@ -105,7 +114,8 @@ export const CadastroMain = styled.main`
       max-width: 400px;
     }
     button {
-      width: 125px;
+      width: 150px;
+      height: 34px;
       font-size: 1.1em;
 
       :hover {

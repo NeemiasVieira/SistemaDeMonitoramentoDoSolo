@@ -66,7 +66,7 @@ const Login = () => {
           <button onClick={handleLogin}>Login</button>
           <div className="sugestaoCadastro">
             <p>Não tem cadastro?</p>
-            <Link to="/cadastro">Crie sua conta</Link>
+            <Link to="/cadastro" className="crieSuaConta">Crie sua conta</Link>
           </div>
         </form>
       </LoginMain>

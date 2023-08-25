@@ -86,10 +86,10 @@ const Cadastro = () => {
             }}
           />
 
-          <button onClick={(e) => Cadastrar(e)}>Login</button>
+          <button onClick={(e) => Cadastrar(e)}>Cadastrar</button>
           <div className="sugestaoLogin">
             <p>Já possui cadastro?</p>
-            <Link to="/login">Faça Login</Link>
+            <Link to="/login" className="jaPossuiCadastro">Faça Login</Link>
           </div>
         </form>
       </CadastroMain>
