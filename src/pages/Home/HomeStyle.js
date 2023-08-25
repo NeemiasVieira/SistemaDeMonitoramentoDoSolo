@@ -5,7 +5,7 @@ export const HomeStyle = styled.main`
 
   h1 {
     font-size: 50px;
-    margin-top: 20vh;
+    margin-top: 65px;
     text-align: center;
     color: black;
   }
@@ -40,6 +40,7 @@ export const HomeStyle = styled.main`
   }
 
   .saibaMais{
+    margin: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;

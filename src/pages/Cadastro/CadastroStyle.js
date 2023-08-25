@@ -25,7 +25,7 @@ export const CadastroMain = styled.main`
     flex-flow: column wrap;
     width: 50vw;
     max-width: 600px;
-    height: 45vh;
+    height: 52vh;
     max-height: 400px;
     border: solid #ccc 3px;
     border-radius: 10px;
