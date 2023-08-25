@@ -24,6 +24,7 @@ export const LoginMain = styled.main`
     border: solid #ccc 3px;
     border-radius: 10px;
     padding: 20px;
+    overflow-x: hidden;
   }
 
   label {
@@ -99,7 +100,7 @@ export const LoginMain = styled.main`
     form {
       width: 70vw;
       max-width: 450px;
-      height: 30vh;
+      height: 35vh;
     }
 
     input {

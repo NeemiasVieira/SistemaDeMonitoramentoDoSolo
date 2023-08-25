@@ -30,6 +30,7 @@ export const CadastroMain = styled.main`
     border: solid #ccc 3px;
     border-radius: 10px;
     padding: 20px;
+    overflow-x: hidden;
   }
 
   label {
@@ -74,7 +75,7 @@ export const CadastroMain = styled.main`
     font-size: 1rem;
   }
 
-  .sugestaoLogin {
+  .sugestaoCadastro {
     margin-top: 20px;
     color: whitesmoke;
     display: flex;
@@ -105,7 +106,7 @@ export const CadastroMain = styled.main`
     form {
       width: 70vw;
       max-width: 450px;
-      height: 40vh;
+      height: 42vh;
       max-height: 400px;
     }
 
@@ -124,6 +125,8 @@ export const CadastroMain = styled.main`
     }
 
     .sugestaoCadastro {
+      
+      color: #fff;
       overflow-x: hidden;
       max-width: 55vw;
       margin-top: 5px;
