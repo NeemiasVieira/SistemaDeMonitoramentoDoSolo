@@ -79,7 +79,7 @@ export const LoginMain = styled.main`
     font-size: 1rem;
 
     p {
-      font-size: 0.9em;
+      font-size: 0.9rem;
       font-weight: 300;
     }
   }
@@ -122,6 +122,7 @@ export const LoginMain = styled.main`
       overflow-x: hidden;
       margin-top: 5px;
       max-width: 55vw;
+      font-size: .9rem;
     }
   }
 `;
