@@ -11,8 +11,8 @@ export const HomeStyle = styled.main`
   }
 
   .manjericao {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
     border-radius: 2px;
   }
 
@@ -22,15 +22,38 @@ export const HomeStyle = styled.main`
     align-items: center;
     gap: 2vw;
     justify-content: center;
-    margin-bottom: 19vh;
   }
 
   .introducaoTexto {
     height: 30vh;
     width: 60vh;
-    color: #006400;
+    color: rgb(16, 187, 64);
     font-weight: 700;
-    font-size: 1.2em;
+    font-size: 1.3em;
+  }
+
+  .IntroducaoContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+  }
+
+  .saibaMais{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #111;
+    width: 200px;
+    height: 50px;
+    border-radius: 15px 5px 15px 5px;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 200ms;
+    :hover{
+      transform: scale(1.1);
+    }
   }
 
   @media screen and (max-width: 480px) {
@@ -40,21 +63,26 @@ export const HomeStyle = styled.main`
     }
 
     .manjericao {
-      width: 300px;
-      height: 300px;
+      width: 250px;
+      height: 250px;
     }
 
     .introducao {
       flex-flow: column wrap;
       gap: 0;
-      margin-bottom: 4.2vh;
+      margin-bottom: 0;
       overflow: hidden;
+    }
+
+    .saibaMais{
+      margin-bottom: 50px;
     }
 
     .introducaoTexto {
       font-size: 1em;
       max-width: 85vw;
       padding: 10px;
+      height: 22vh;
     }
   }
 `;

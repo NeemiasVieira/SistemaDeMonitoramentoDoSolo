@@ -31,6 +31,8 @@ export const AplicacaoMain = styled.main`
     flex-flow: column wrap;
     justify-content: center;
     align-items: initial;
+    font-size: 1.1rem;
+    max-width: 600px;
     
   }
 

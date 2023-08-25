@@ -35,7 +35,8 @@ export const LoginMain = styled.main`
   input {
     margin: 10px 0;
     text-align: center;
-    width: 50vw;
+    width: 30vw;
+    height: 25px;
     max-width: 460px;
     border-radius: 5px;
     border: none;
@@ -47,7 +48,8 @@ export const LoginMain = styled.main`
     margin-top: 20px;
     cursor: pointer;
     width: 150px;
-    border-radius: 5px;
+    height: 40px;
+    border-radius: 10px;
     border: none;
     font-size: 1.2em;
     transition: all 300ms;
@@ -62,7 +64,7 @@ export const LoginMain = styled.main`
   a {
     text-decoration: none;
     color: whitesmoke;
-    font-size: 0.9em;
+    font-size: 1rem;
     font-weight: 600;
   }
 
