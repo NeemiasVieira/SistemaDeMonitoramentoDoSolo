@@ -118,8 +118,9 @@ export const LoginMain = styled.main`
     }
 
     .sugestaoCadastro {
+      overflow-x: hidden;
       margin-top: 5px;
-      width: 55vw;
+      max-width: 55vw;
     }
   }
 `;

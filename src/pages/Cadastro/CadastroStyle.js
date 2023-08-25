@@ -124,6 +124,8 @@ export const CadastroMain = styled.main`
     }
 
     .sugestaoCadastro {
+      overflow-x: hidden;
+      max-width: 55vw;
       margin-top: 5px;
     }
   }
