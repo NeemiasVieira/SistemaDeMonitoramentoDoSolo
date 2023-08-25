@@ -88,7 +88,7 @@ export const LoginMain = styled.main`
       font-size: 1.4em;
     }
     form {
-      width: 75vw;
+      width: 70vw;
       max-width: 450px;
       height: 30vh;
     }
@@ -109,6 +109,7 @@ export const LoginMain = styled.main`
 
     .sugestaoCadastro {
       margin-top: 5px;
+      width: 55vw;
     }
   }
 `;
