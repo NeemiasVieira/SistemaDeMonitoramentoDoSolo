@@ -1,6 +1,4 @@
 import React from "react";
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from "../../../services/firebaseConfig";
 import { Link } from "react-router-dom";
 import { NavAutenticada } from "../../../components/NavAutenticada/NavAutenticada";
 import { Footer } from "../../../components/Footer/Footer";
@@ -10,24 +8,9 @@ import { HomePrivateMain } from "./HomePrivateStyle";
 
 const HomePrivate = () => {
   
-  const [user, loading, error] = useAuthState(auth);
-
-  if (loading) {
-    return (
-      <div>
-        <p>Carregando Usuário</p>
-      </div>
-    );
-  }
-  if (error) {
-    return (
-      <div>
-        <p>Aconteceu um erro inesperado.</p>
-      </div>
-    );
-  }
+  const token = localStorage.getItem("token");
   
-  if (user) {
+  if (token) {
     return (
       <>
         <HomePrivateMain>

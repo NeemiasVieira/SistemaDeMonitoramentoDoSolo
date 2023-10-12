@@ -1,40 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LoginMain } from "./LoginStyle";
 import Navigation from "../../components/Navigation/Navigation";
 import { Footer } from "../../components/Footer/Footer";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "../../services/firebaseConfig";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
 import { MensagemDeErro } from "../../components/MensagemDeErro/MensagemDeErro";
+import { UserService } from "../../assets/API/use-cases/usuarios/UserSerivice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [response, setResponse] = useState();
+  const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const userService = new UserService(setResponse, setError);
+  const navigate = useNavigate();
 
-  if (error) {
-    return <MensagemDeErro erro={error.message}/>
-  }
-  if (loading) {
-    return <Loading/>;
-  }
-  if (user) {
-    return (
-      <div>
-        <p>Registered User: {user.user.email}</p>
-        <Navigate to="/sistema/home" />
-        {console.log(user)}
-      </div>
-    );
-  }
-
-  function handleLogin(e) {
+  const Login = async(e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(email, password);
+    setIsLoading(true);
+    await userService.login(email, password);
+    setIsLoading(false);  
   }
 
+  useEffect(() => {
+  }, [response, error]);
+
+  if (error) return <MensagemDeErro error={error.response?.data.mensagem} mensagemBotao="Voltar" setError={setError}/>
+
+  if(isLoading){
+    return <Loading/>
+  } 
+
+  if (response?.status === 200){
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("nome", response.data.usuario.nome);
+    navigate("/sistema/home");
+  }  
+    
   return (
     <>
       <LoginMain>
@@ -63,7 +66,7 @@ const Login = () => {
               setPassword(e.target.value);
             }}
           />
-          <button onClick={handleLogin}>Login</button>
+          <button onClick={Login}>Login</button>
           <div className="sugestaoCadastro">
             <p>Não tem cadastro?</p>
             <Link to="/cadastro" className="crieSuaConta">Crie sua conta</Link>

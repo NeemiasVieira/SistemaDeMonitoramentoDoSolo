@@ -21,6 +21,10 @@ const Faq = () => {
         <PerguntaFAQ
           pergunta="Qual a tecnologia utilizada para este projeto?"
           resposta="ReactJs - Vantajoso por ser SinglePageAplication (SPA), além de oferecer softwares com alto desempenho, o React é flexível e permite que todos os códigos sejam separados e utilizados como componentes reutilizáveis."
+        />
+        <PerguntaFAQ
+        pergunta="O Felipe é gay?"
+        resposta="sim"        
         />   
       </FaqMain>
       <Footer />

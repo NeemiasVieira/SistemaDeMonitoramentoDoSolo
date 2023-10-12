@@ -41,11 +41,15 @@ export const MensagemErroStyle = styled.section`
   }
 
   p {
-    color: #c00;
-    font-size: 0.8em;
+    color: #f33;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 10px;
+
   }
 
-  a {
+  button {
     margin: 0;
     max-width: 35vw;
     text-decoration: none;
@@ -54,6 +58,9 @@ export const MensagemErroStyle = styled.section`
     font-weight: 900;
     margin: 20px 0 30px 0;
     transition: transform 300ms;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
     :hover {
       transform: scale(1.1);
     }

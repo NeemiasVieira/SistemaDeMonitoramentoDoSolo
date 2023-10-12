@@ -1,16 +1,16 @@
 import React from "react";
 import { NavAutenticadaStyle } from "./NavAutenticadaStyle";
-import { Link } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../../services/firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 export const NavAutenticada = () => {
-  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  const nome = localStorage.getItem("nome");
 
   const Logout = () => {
-    signOut(auth);
-    <useNavigate to="/" />;
+    localStorage.removeItem("nome");
+    localStorage.removeItem("token");
+    navigate("/");
+
   };
 
   return (
@@ -25,7 +25,7 @@ export const NavAutenticada = () => {
         <li>
           <Link to="/sistema/home">Ajuda</Link>
         </li>
-        <li className="usuario">{user.email}</li>
+        <li className="usuario">{nome}</li>
         <li>
           <Link to="/" className="logout">
             <button onClick={Logout}>Sair</button>
