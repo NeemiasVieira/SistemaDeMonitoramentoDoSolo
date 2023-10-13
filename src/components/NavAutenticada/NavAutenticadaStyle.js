@@ -1,25 +1,61 @@
 import styled from "styled-components";
 
 export const NavAutenticadaStyle = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 100%;
+  background-color: #10bb70;
+  height: 9vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border-bottom: solid #ccc 2px;
+
   * {
     font-family: "Montserrat", sans-serif;
   }
 
   .navegacao {
+    width: 60%;
     display: flex;
     justify-content: initial;
     align-items: center;
     gap: 4vw;
     flex-flow: row;
-    background-color: #10bb70;
     margin: 0;
     height: 9vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: solid black 1px;
-    z-index: 1;
+  }
+
+  .logoutDiv {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 125px;
+    color: #fff;
+  }
+
+  .logoutButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #10bb70;
+    color: #fff;
+    width: 70px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    height: 35px;
+    cursor: pointer;
+    border: solid #fff 2px;
+    transition: transform 300ms;
+    :hover {
+      transform: scale(1.1);
+    }
   }
 
   li {
@@ -36,35 +72,7 @@ export const NavAutenticadaStyle = styled.nav`
   a:hover {
     font-size: 1.05em;
   }
-
-  .logout {
-    position: absolute;
-    right: 8%;
-    top: 25%;
-    margin: 0;
-
-    button {
-      width: 50px;
-      border-radius: 5px;
-      font-size: 1em;
-      font-weight: 700;
-      height: 30px;
-      cursor: pointer;
-      border: solid rgb(16, 119, 64) 1px;
-      transition: transform 300ms;
-
-      :hover {
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  .usuario {
-    position: absolute;
-    right: 17.5%;
-    color: whitesmoke;
-    font-weight: 500;
-  }
+  
 
   @media screen and (max-width: 480px) {
     .navegacao {

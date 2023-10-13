@@ -5,8 +5,8 @@ export const SecaoPerguntaFaq = styled.div`
   flex-flow: column wrap;
   justify-content: space-between;
   width: 900px;
-  max-width: 70vw;
-  margin: 2vh 2vw;
+  margin: 5px;
+  max-width: 75vw;
   background: #222;
   border: solid #ddd 2px;
   border-radius: 10px;
@@ -19,7 +19,7 @@ export const SecaoPerguntaFaq = styled.div`
     align-items: center;
     justify-content: center;
     width: 900px;
-    max-width: 70vw;
+    max-width: 75vw;
     cursor: pointer;
   }
 

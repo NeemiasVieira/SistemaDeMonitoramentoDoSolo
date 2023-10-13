@@ -12,19 +12,18 @@ export const CadastroMain = styled.main`
   }
 
   h2 {
-    margin-top: 0;
-    margin-bottom: 50px;
-    font-size: 1.4em;
+    margin: 25px 0;
+    font-size: 1.6rem;
   }
 
   form {
-    background: #222;
+    background: #111;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
     width: 50vw;
-    max-width: 600px;
+    max-width: 450px;
     border: solid #ccc 3px;
     border-radius: 10px;
     padding: 20px;
@@ -33,21 +32,53 @@ export const CadastroMain = styled.main`
 
   label {
     text-align: center;
-    color: whitesmoke;
+    color: #fff;
     font-weight: 600;
+    margin: 5px 0;
+    font-size: 1rem;
+  }
+
+  .divIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-right: solid #000 2px;
+    width: 60px;
+  }
+
+  svg {
+    font-size: 1.8rem;
+    height: 35px;
+    color: #000;
+    padding-right: 15px;
+  }
+
+  .divInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    padding: 0 10px;
+    border-radius: 5px;
+    max-height: 50px;
   }
 
   input {
     margin: 10px 0;
-    text-align: center;
-    height: 25px;
     width: 30vw;
-    max-width: 460px;
-    border-radius: 5px;
+    height: 39px;
+    padding: 3px;
+    max-width: 300px;
     border: none;
-    background: #000;
-    color: whitesmoke;
-    font-size: 17px;
+    background: #fff;
+    color: #000;
+    font-size: 1rem;
+  }
+
+  input:focus{
+    outline: none;
   }
 
   .botaoCadastrar {
@@ -59,8 +90,8 @@ export const CadastroMain = styled.main`
     border: none;
     font-size: 1.2em;
     transition: all 300ms;
-    background: #000;
-    color: whitesmoke;
+    background: #fff;
+    color: #000;
 
     :hover {
       transform: scale(1.1);
@@ -69,13 +100,12 @@ export const CadastroMain = styled.main`
 
   a {
     text-decoration: none;
-    color: whitesmoke;
     font-size: 1rem;
   }
 
   .sugestaoCadastro {
     margin-top: 20px;
-    color: whitesmoke;
+    color: #fff;
     display: flex;
     font-size: 1rem;
     flex-flow: row nowrap;
@@ -88,29 +118,31 @@ export const CadastroMain = styled.main`
       font-weight: 300;
     }
 
-    .jaPossuiCadastro{
-    font-weight: 600;
-  }
+    .jaPossuiCadastro {
+      color: #fff;
+      font-weight: 600;
+    }
   }
   @media screen and (max-width: 480px) {
     h1 {
       font-size: 1.3em;
     }
 
-    h2{
+    h2 {
       margin-top: 5px;
       font-size: 1rem;
     }
     form {
-      width: 70vw;
+      width: 80vw;
       max-width: 450px;
-      height: 42vh;
-      max-height: 400px;
+      height: 55vh;
+      max-height: 550px;
     }
 
     input {
-      width: 60vw;
+      width: 50vw;
       max-width: 400px;
+      color: #000;
     }
     button {
       width: 150px;
@@ -123,7 +155,6 @@ export const CadastroMain = styled.main`
     }
 
     .sugestaoCadastro {
-      
       color: #fff;
       overflow-x: hidden;
       max-width: 55vw;

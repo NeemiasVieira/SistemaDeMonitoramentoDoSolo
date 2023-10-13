@@ -8,17 +8,22 @@ export const LoginMain = styled.main`
   min-height: 93vh;
 
   h1 {
-    margin-bottom: 50px;
+    margin: 0;
+  }
+
+  h2{
+    margin: 25px 0;
+    font-size: 1.6rem;
   }
 
   form {
-    background: #222;
+    background: #111;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
     width: 50vw;
-    max-width: 500px;
+    max-width: 450px;
     height: 41vh;
     max-height: 400px;
     border: solid #ccc 3px;
@@ -29,20 +34,51 @@ export const LoginMain = styled.main`
 
   label {
     text-align: center;
-    color: whitesmoke;
+    color: #fff;
     font-weight: 600;
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+
+  .divIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-right: solid #000 2px;
+  }
+
+  svg{
+    font-size: 1.8rem;
+    height: 45px;
+    color: #000;
+    padding-right: 15px;    
+  }
+
+  .divInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    padding: 0 10px;
+    border-radius: 5px;
   }
 
   input {
     margin: 10px 0;
-    text-align: center;
+    font-size: 1rem;
     width: 30vw;
     height: 25px;
-    max-width: 460px;
-    border-radius: 5px;
-    border: none;
-    background: #000;
-    color: whitesmoke;
+    padding: 10px;
+    max-width: 300px;
+    border: none;    
+    background: #fff;
+    color: #000;
+  }
+
+  input:focus{
+    outline: none;
   }
 
   button {
@@ -54,8 +90,8 @@ export const LoginMain = styled.main`
     border: none;
     font-size: 1.2em;
     transition: all 300ms;
-    background: #000;
-    color: whitesmoke;
+    background: #fff;
+    color: #000;
 
     :hover {
       transform: scale(1.1);
@@ -64,13 +100,13 @@ export const LoginMain = styled.main`
 
   a {
     text-decoration: none;
-    color: whitesmoke;
+    color: #fff;
     font-size: 1rem;
   }
 
   .sugestaoCadastro {
     margin-top: 20px;
-    color: whitesmoke;
+    color: #000;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -81,11 +117,13 @@ export const LoginMain = styled.main`
     p {
       font-size: 0.9rem;
       font-weight: 300;
+      color: #fff;
     }
   }
 
   .crieSuaConta{
     font-weight: 600;
+    color: #fff;
   }
 
   @media screen and (max-width: 480px) {
@@ -98,15 +136,24 @@ export const LoginMain = styled.main`
       font-size: 1rem;
     }
     form {
-      width: 70vw;
+      width: 80vw;
       max-width: 450px;
-      height: 35vh;
+      height: 45vh;
+    }
+
+    .divIcon{
+      height: 45px;
+
+      svg{
+        height: 30px;
+      }
     }
 
     input {
-      width: 60vw;
+      width: 50vw;
       max-width: 400px;
-      font-size: 17px;
+      font-size: 1rem;
+      height: 5px;
     }
     button {
       width: 150px;

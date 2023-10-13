@@ -1,45 +1,60 @@
 import styled from "styled-components";
 
 export const HomeStyle = styled.main`
-  min-height: 73.05vh;
+  min-height: 93vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
 
   h1 {
     font-size: 50px;
-    margin-top: 65px;
+    margin: 25px 0 25px 0;
     text-align: center;
     color: black;
   }
 
-  .manjericao {
-    width: 350px;
-    height: 350px;
-    border-radius: 2px;
-  }
-
   .introducao {
     display: flex;
-    flex-flow: row;
+    flex-flow: column wrap;
     align-items: center;
     gap: 2vw;
+    border-radius: 10px;
+    padding: 20px;
     justify-content: center;
+    margin: 0 0 25px 0;
   }
 
   .introducaoTexto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 30vh;
     width: 60vh;
-    color: rgb(16, 187, 64);
     font-weight: 700;
     font-size: 1.3em;
   }
 
-  .IntroducaoContent{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
+  .IntroducaoLadoDireito {
+    width: 42vw;
+    padding: 3vh 3vw;
   }
 
-  .saibaMais{
+  .IntroducaoContent {
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    width: 100vw;
+
+    img {
+      width: 55vw;
+      height: 93vh;
+      border-right: solid #ccc 3px;
+    }
+  }
+
+  .saibaMais {
     margin: 20px 0;
     display: flex;
     justify-content: center;
@@ -48,22 +63,22 @@ export const HomeStyle = styled.main`
     background-color: #111;
     width: 200px;
     height: 50px;
-    border-radius: 15px 5px 15px 5px;
+    border-radius: 10px;
     color: #fff;
     font-size: 1.1rem;
     transition: all 200ms;
-    :hover{
+    :hover {
       transform: scale(1.1);
     }
   }
 
   @media screen and (max-width: 480px) {
-
     min-height: 60vh;
 
     h1 {
-      margin-top: 12.5vh;
-      font-size: 1.3em;
+      margin: 25px 0 0 0;
+      font-size: 1.5rem;
+      padding: 0 5vw;
     }
 
     .manjericao {
@@ -75,10 +90,16 @@ export const HomeStyle = styled.main`
       flex-flow: column wrap;
       gap: 0;
       margin-bottom: 0;
+      padding: 0;
       overflow: hidden;
     }
 
-    .saibaMais{
+    .IntroducaoLadoDireito {
+      width: 100%;
+      padding: 0;
+    }
+
+    .saibaMais {
       margin-bottom: 50px;
     }
 
@@ -87,6 +108,15 @@ export const HomeStyle = styled.main`
       max-width: 85vw;
       padding: 10px;
       height: 22vh;
+    }
+
+    .IntroducaoContent {
+      margin: 50px 0 0 0;
+      flex-flow: column wrap;
+      img {
+        width: 100vw;
+        height: 200px;
+      }
     }
   }
 `;

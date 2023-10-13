@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
 import { MensagemDeErro } from "../../components/MensagemDeErro/MensagemDeErro";
 import { UserService } from "../../assets/API/use-cases/usuarios/UserSerivice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAt } from "@fortawesome/free-solid-svg-icons";
+import { faKey } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,60 +19,77 @@ const Login = () => {
   const userService = new UserService(setResponse, setError);
   const navigate = useNavigate();
 
-  const Login = async(e) => {
+  const Login = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     await userService.login(email, password);
-    setIsLoading(false);  
+    setIsLoading(false);
+  };
+
+  useEffect(() => {}, [response, error]);
+
+  if (error)
+    return (
+      <MensagemDeErro
+        error={error.response?.data.mensagem}
+        mensagemBotao="Voltar"
+        setError={setError}
+      />
+    );
+
+  if (isLoading) {
+    return <Loading />;
   }
 
-  useEffect(() => {
-  }, [response, error]);
-
-  if (error) return <MensagemDeErro error={error.response?.data.mensagem} mensagemBotao="Voltar" setError={setError}/>
-
-  if(isLoading){
-    return <Loading/>
-  } 
-
-  if (response?.status === 200){
+  if (response?.status === 200) {
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("nome", response.data.usuario.nome);
     navigate("/sistema/home");
-  }  
-    
+  }
+
   return (
     <>
       <LoginMain>
         <Navigation />
         <h1>Sistema de Monitoramento de Solo</h1>
+        <h2>Login</h2>
 
         <form type="submit">
           <label htmlFor="">Usuário</label>
-
-          <input
-            type="text"
-            placeholder="Digite o seu e-mail"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
+          <div className="divInput">
+            <div className="divIcon">
+              <FontAwesomeIcon icon={faAt} />
+            </div>
+            <input
+              type="text"
+              placeholder="Digite o seu e-mail"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </div>
 
           <label htmlFor="">Senha</label>
-
-          <input
-            type="password"
-            placeholder="Digite a sua senha"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
+          <div className="divInput">
+            <div className="divIcon">
+              <FontAwesomeIcon icon={faKey} />
+            </div>
+            <input
+              type="password"
+              placeholder="Digite a sua senha"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
           <button onClick={Login}>Login</button>
           <div className="sugestaoCadastro">
             <p>Não tem cadastro?</p>
-            <Link to="/cadastro" className="crieSuaConta">Crie sua conta</Link>
+            <Link to="/cadastro" className="crieSuaConta">
+              Crie sua conta
+            </Link>
           </div>
         </form>
       </LoginMain>

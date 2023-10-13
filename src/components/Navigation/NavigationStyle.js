@@ -18,7 +18,7 @@ export const NavigationStyle = styled.nav`
     top: 0;
     left: 0;
     width: 100%;
-    border-bottom: solid black 1px;
+    border-bottom: solid #ccc 3px;
   }
 
   li {
@@ -41,21 +41,24 @@ export const NavigationStyle = styled.nav`
   }
 
   @media screen and (max-width: 480px) {
+    overflow-x: hidden;
+
     .navegacao {
+      max-width: 100vw;
       gap: 6vw;
     }
     ul {
       padding: 0 5vw;
     }
-
     a {
       :hover {
         font-size: 1em;
       }
     }
 
-    .login {
-      right: 7%;
+    .login{
+      right: 10%;
     }
+
   }
 `

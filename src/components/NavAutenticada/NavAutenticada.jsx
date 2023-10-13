@@ -10,7 +10,6 @@ export const NavAutenticada = () => {
     localStorage.removeItem("nome");
     localStorage.removeItem("token");
     navigate("/");
-
   };
 
   return (
@@ -25,13 +24,13 @@ export const NavAutenticada = () => {
         <li>
           <Link to="/sistema/home">Ajuda</Link>
         </li>
-        <li className="usuario">{nome}</li>
-        <li>
-          <Link to="/" className="logout">
-            <button onClick={Logout}>Sair</button>
-          </Link>
-        </li>
       </ul>
+      <div className="logoutDiv">
+        <p className="usuario">{nome}</p>
+        <button className="logoutButton" onClick={Logout}>
+          Sair
+        </button>
+      </div>
     </NavAutenticadaStyle>
   );
 };
