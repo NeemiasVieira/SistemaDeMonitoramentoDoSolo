@@ -65,6 +65,19 @@ export const MinhaPlantaMain = styled.main`
   }
 
 
+select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto; 
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #bbb; 
+  border-radius: 5px;
+  background-color: #fff; 
+  color: #333;
+}
+
   @media screen and (max-width: 480px){
     .DadosAtuais{
       flex-flow: column wrap;

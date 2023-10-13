@@ -9,6 +9,7 @@ export const NavAutenticada = () => {
   const Logout = () => {
     localStorage.removeItem("nome");
     localStorage.removeItem("token");
+    localStorage.removeItem("userID");
     navigate("/");
   };
 

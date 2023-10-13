@@ -44,6 +44,7 @@ const Login = () => {
   if (response?.status === 200) {
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("nome", response.data.usuario.nome);
+    localStorage.setItem("userID", response.data.usuario.id);
     navigate("/sistema/home");
   }
 
