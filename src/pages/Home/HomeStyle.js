@@ -37,7 +37,7 @@ export const HomeStyle = styled.main`
   }
 
   .IntroducaoLadoDireito {
-    width: 42vw;
+    width: 100%;
     padding: 3vh 3vw;
   }
 
@@ -49,6 +49,7 @@ export const HomeStyle = styled.main`
 
     img {
       width: 55vw;
+      max-width: 900px;
       height: 93vh;
       border-right: solid #ccc 3px;
     }
