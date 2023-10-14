@@ -12,7 +12,7 @@ export class UserService {
     }
 
     async login(email, senha){
-        await SMS_API.post("/login", {email, senha}).then((response) => this.setResponse(response))
+        await SMS_API.post("/usuarios/login", {email, senha}).then((response) => this.setResponse(response))
         .catch((error) => this.setError(error));
     }
 

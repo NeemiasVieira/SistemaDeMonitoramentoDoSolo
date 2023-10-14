@@ -17,7 +17,7 @@ export class PlantsService {
     }
 
     async getRelatorioDeSaude(idPlanta){
-        await SMS_API.get(`/saude/${idPlanta}`).then(response => this.setResponse(response))
+        await SMS_API.get(`/plantas/saude/${idPlanta}`).then(response => this.setResponse(response))
         .catch(error => this.setError(error));
     }
 
