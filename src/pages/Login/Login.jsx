@@ -5,7 +5,7 @@ import { Footer } from "../../components/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
 import { MensagemDeErro } from "../../components/MensagemDeErro/MensagemDeErro";
-import { UserService } from "../../assets/API/use-cases/usuarios/UserSerivice";
+import { UserService } from "../../services/API/use-cases/usuarios/UserSerivice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
@@ -37,9 +37,7 @@ const Login = () => {
       />
     );
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isLoading) return <Loading/>
 
   if (response?.status === 200) {
     localStorage.setItem("token", response.data.token);

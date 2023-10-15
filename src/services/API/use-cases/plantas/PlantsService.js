@@ -21,4 +21,9 @@ export class PlantsService {
         .catch(error => this.setError(error));
     }
 
+    async getUltimoRegistro(idPlanta){
+        await SMS_API.get(`/plantas/registro/${idPlanta}`).then(response => this.setResponse(response))
+        .catch(error => this.setError(error));
+    }
+
 }

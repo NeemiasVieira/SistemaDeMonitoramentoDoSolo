@@ -6,7 +6,7 @@ import { Loading } from "../../components/Loading/Loading";
 import { MensagemDeErro } from "../../components/MensagemDeErro/MensagemDeErro";
 import { Footer } from "../../components/Footer/Footer";
 import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroConcluido";
-import { UserService } from "../../assets/API/use-cases/usuarios/UserSerivice";
+import { UserService } from "../../services/API/use-cases/usuarios/UserSerivice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faAt, faA } from "@fortawesome/free-solid-svg-icons";
 

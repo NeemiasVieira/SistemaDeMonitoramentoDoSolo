@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { NavAutenticada } from "../../../components/NavAutenticada/NavAutenticada";
 import { Footer } from "../../../components/Footer/Footer";
 import { HomePrivateMain } from "./HomePrivateStyle";
-import { PlantsService } from "../../../assets/API/use-cases/usuarios/PlantsService";
+import { PlantsService } from "../../../services/API/use-cases/plantas/PlantsService";
 import { Planta } from "../../../components/Planta/Planta";
+import { Loading } from "../../../components/Loading/Loading";
+import { MensagemDeErro } from "../../../components/MensagemDeErro/MensagemDeErro";
 
 const HomePrivate = () => {
   const [response, setResponse] = useState();
   const [plants, setPlants] = useState([]);
-  const plantsService = new PlantsService(setResponse);
+  const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const plantsService = new PlantsService(setResponse, setError);
   const ownerID = localStorage.getItem("userID");
-  const token = localStorage.getItem("token");
+
+  const getPlantas = async() => {
+    setIsLoading(true);
+    await plantsService.getPlantsByOwnerID(ownerID);
+    setIsLoading(false);
+  }
 
   useEffect(() => {
-    plantsService.getPlantsByOwnerID(ownerID);
+    getPlantas();
   }, [ownerID]);
 
   useEffect(() => {
@@ -23,7 +31,25 @@ const HomePrivate = () => {
     }
   }, [response]);
 
-  if (token) {
+  if(isLoading) return (    
+      <>
+      <HomePrivateMain>
+          <NavAutenticada />
+          <main>
+            <h1>Seja bem vindo ao Sistema de Controle</h1>
+            <h2>
+              Por aqui você pode cuidar da sua plantinha, reportar problemas e
+              aproveitar o uso da nossa aplicação
+            </h2>
+            <Loading minHeight="70vh"/>
+          </main>
+        </HomePrivateMain>
+        <Footer />
+        </>
+  )
+
+  if(error) return <MensagemDeErro  error={error.response?.data.mensagem}  mensagemBotao="Voltar"  setError={setError} /> 
+  
     return (
       <>
         <HomePrivateMain>
@@ -50,13 +76,5 @@ const HomePrivate = () => {
       </>
     );
   }
-
-  return (
-    <>
-      <p>Você não está mais logado</p>
-      <Link to="/login">Logar</Link>
-    </>
-  );
-};
 
 export default HomePrivate;

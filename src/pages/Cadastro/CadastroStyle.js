@@ -161,4 +161,8 @@ export const CadastroMain = styled.main`
       margin-top: 5px;
     }
   }
+
+  @media screen and (min-width: 500px) and (max-width: 1370px) {
+    min-height: 120vh;
+  }
 `;

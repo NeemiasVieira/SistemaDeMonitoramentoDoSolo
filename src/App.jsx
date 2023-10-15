@@ -1,4 +1,4 @@
-import { RouterDOM } from './assets/router/routerDom'
+import { RouterDOM } from './services/router/routerDom';
 import './App.css';
 
 function App() {

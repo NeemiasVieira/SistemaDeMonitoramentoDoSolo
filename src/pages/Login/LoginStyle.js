@@ -172,4 +172,11 @@ export const LoginMain = styled.main`
       font-size: .9rem;
     }
   }
+
+  @media screen and (min-width: 500px) and (max-width: 1370px) {
+    min-height: 110vh;
+    form{
+      height: 60vh;
+    }
+  }
 `;

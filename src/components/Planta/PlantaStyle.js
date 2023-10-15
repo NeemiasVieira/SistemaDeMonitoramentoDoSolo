@@ -65,5 +65,8 @@ export const PlantaStyle = styled.div`
 
     }
 
+    @media screen and (max-width: 480px){
+        max-width: 80vw;
+    }
 
 `

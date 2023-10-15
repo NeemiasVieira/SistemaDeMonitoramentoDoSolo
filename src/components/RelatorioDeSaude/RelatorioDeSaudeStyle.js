@@ -114,4 +114,9 @@ export const RelatorioDeSaudeStyle = styled.section`
     }
   }
 
+  @media screen and (max-width: 480px){
+        max-width: 80vw;
+        padding: 25px;
+    }
+
 `;
