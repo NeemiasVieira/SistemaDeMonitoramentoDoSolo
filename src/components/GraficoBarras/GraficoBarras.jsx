@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Chart } from "react-google-charts";
 import { SecaoGraficoBarras } from "./GraficoBarrasStyle";
 
@@ -9,68 +9,54 @@ export const formatRelativeTime = (dateStr) => {
 
   const minutes = Math.floor(timeDiff / 60000);
   if (minutes < 60) {
-    return `Atualizado há ${minutes} minuto${minutes !== 1 ? 's' : ''}`;
+    return `Atualizado há ${minutes} minuto${minutes !== 1 ? "s" : ""}`;
   }
 
   const hours = Math.floor(timeDiff / 3600000);
   if (hours < 24) {
-    return `Atualizado há ${hours} hora${hours !== 1 ? 's' : ''}`;
+    return `Atualizado há ${hours} hora${hours !== 1 ? "s" : ""}`;
   }
 
   const days = Math.floor(timeDiff / 86400000);
   if (days < 7) {
-    return `Atualizado há ${days} dia${days !== 1 ? 's' : ''}`;
+    return `Atualizado há ${days} dia${days !== 1 ? "s" : ""}`;
   }
 
   const weeks = Math.floor(days / 7);
   if (weeks < 4) {
-    return `Atualizado há ${weeks} semana${weeks !== 1 ? 's' : ''}`;
+    return `Atualizado há ${weeks} semana${weeks !== 1 ? "s" : ""}`;
   }
 
   const months = Math.floor(days / 30);
-  return `Atualizado há ${months} mês${months !== 1 ? 'es' : ''}`;
-}
+  return `Atualizado há ${months} mês${months !== 1 ? "es" : ""}`;
+};
 
-const GraficoBarras = ({registro}) => {
-  
-
+const GraficoBarras = ({ registro }) => {
   let data = [];
-  
-  useEffect(() => {
-  }, [registro])
 
-  if(registro){
-    const { nitrogenio, fosforo, potassio, dataDeRegistro} = registro;
+  useEffect(() => {}, [registro]);
+
+  if (registro) {
+    const { nitrogenio, fosforo, potassio, dataDeRegistro } = registro;
     data = [
       ["", "Nitrogênio", "Fósforo", "Potássio"],
-      [formatRelativeTime(dataDeRegistro), nitrogenio +"mg/Kg", fosforo +"mg/Kg", potassio +"mg/Kg"]
-      
+      [formatRelativeTime(dataDeRegistro), nitrogenio, fosforo, potassio],
     ];
   }
-  
-  const options = {
-    chart: {
-      title: "Nutrientes da Planta",
-      subtitle: "Dados Atuais",
-    },
-  };
 
-
-  if(registro) {
-    return(
+  if (registro) {
+    return (
       <SecaoGraficoBarras>
         <Chart
-        chartType="Bar"
-        width="350px"
-        height="400px"
-        data={data}
-        options={options}
-        className="GraficoNPKAtual"
-      />
+          chartType="Bar"
+          width="350px"
+          height="400px"
+          data={data}
+          className="GraficoNPKAtual"
+        />
       </SecaoGraficoBarras>
-    )
+    );
   }
-  
-}
+};
 
 export default GraficoBarras;

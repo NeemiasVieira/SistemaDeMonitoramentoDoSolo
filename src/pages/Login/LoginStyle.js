@@ -24,7 +24,7 @@ export const LoginMain = styled.main`
     flex-flow: column wrap;
     width: 50vw;
     max-width: 450px;
-    height: 41vh;
+    height: 50vh;
     max-height: 400px;
     border: solid #ccc 3px;
     border-radius: 10px;

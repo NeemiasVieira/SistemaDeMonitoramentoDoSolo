@@ -2,35 +2,39 @@ import React, { useState, useEffect } from "react";
 import { MinhaPlantaMain } from "./MinhaPlantaStyle";
 import { NavAutenticada } from "../../../components/NavAutenticada/NavAutenticada";
 import { Footer } from "../../../components/Footer/Footer";
-import GraficoBarras from "../../../components/GraficoBarras/GraficoBarras";
-import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
 import { PlantsService } from "../../../services/API/use-cases/plantas/PlantsService";
 import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
-import { formatRelativeTime } from "../../../components/GraficoBarras/GraficoBarras";
+import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
+import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
 
 const MinhaPlanta = () => {
+
+  //States
   const [response, setResponse] = useState();
   const [error, setError] = useState();
   const [responseRelatorio, setResponseRelatorio] = useState();
   const [registroResponse, setRegistroResponse] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const [plants, setPlants] = useState([]);
   const [plantaSelecionada, setPlantaSelecionada] = useState();
+
+  //Services
   const plantsService = new PlantsService(setResponse, setError);
   const relatorioService = new PlantsService(setResponseRelatorio, setError);
   const registroService = new PlantsService(setRegistroResponse, setError);
+
+  //Others
   const ownerID = localStorage.getItem("userID");
 
-
+  //useEffects
   useEffect(() => {
     plantsService.getPlantsByOwnerID(ownerID);
   }, []);
 
   useEffect(() => {
-    if(responseRelatorio?.data.length > 0){
+    if (responseRelatorio?.data.length > 0) {
       setError(null);
     }
-  }, [error])
+  }, [error]);
 
   useEffect(() => {
     if (plantaSelecionada) {
@@ -54,7 +58,7 @@ const MinhaPlanta = () => {
   }, [response]);
 
   return (
-    <div>
+    <>
       <NavAutenticada />
       <MinhaPlantaMain>
         <h1>Painel de Controle</h1>
@@ -73,46 +77,17 @@ const MinhaPlanta = () => {
               </option>
             ))}
         </select>
-        <br />
-        <br />
-        <br />
-        {plantaSelecionada && !error && (
-          <RelatorioDeSaude relatorio={responseRelatorio?.data} />
-        )}
-        {error && plantaSelecionada !== "1" && (
-          <p>{`A Planta não possui nenhum registro`}</p>
-        )}
-        <br />
-        <br />
-        <br />
-        {plantaSelecionada && !error && (
-          <div className="DadosAtuais">
-            <GraficoBarras registro={registroResponse?.data} />
-            <div className="DivTempUmidPH">
-              <h3>Outras informações</h3>
-              <h4>Dados Atuais</h4>
-              <div className="dados">
-                {registroResponse?.data && (
-                  <>
-                    <p>{`Temperatura: ${registroResponse.data.temperatura}°C`}</p>
-                    <p>{`Umidade: ${registroResponse.data.umidade}%`}</p>
-                    <p>{`pH: ${registroResponse.data.pH}`}</p>
-                  </>
-                )}
-              </div>
-              {registroResponse?.data && (
-                <p className="UltimaAtualizacao">
-                  {formatRelativeTime(registroResponse.data.dataDeRegistro)}
-                </p>
-              )}
-            </div>
-          </div>
-        )}
+
+        {plantaSelecionada && !error && <UltimaAtualizacao registro={registroResponse} /> }          
+        
+        {plantaSelecionada && !error &&  <RelatorioDeSaude relatorio={responseRelatorio?.data} /> }
+         
+        {error && plantaSelecionada !== "1" && <p>A Planta não possui nenhum registro</p> }
 
         <GraficoLinhas className="GraficoLinhas" />
       </MinhaPlantaMain>
       <Footer />
-    </div>
+    </>
   );
 };
 
