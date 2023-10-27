@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavAutenticada } from "../../../components/NavAutenticada/NavAutenticada";
 import { Footer } from "../../../components/Footer/Footer";
 import { HomePrivateMain } from "./HomePrivateStyle";
-import { PlantsService } from "../../../services/API/use-cases/plantas/PlantsService";
+import { PlantsService } from "../../../services/API/PlantsService";
 import { Planta } from "../../../components/Planta/Planta";
 import { Loading } from "../../../components/Loading/Loading";
 import { MensagemDeErro } from "../../../components/MensagemDeErro/MensagemDeErro";

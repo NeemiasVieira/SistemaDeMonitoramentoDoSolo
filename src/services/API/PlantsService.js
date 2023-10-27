@@ -1,4 +1,4 @@
-import SMS_API from "../../sms-api";
+import SMS_API from "./sms-api";
 
 export class PlantsService {
     SMS_API;

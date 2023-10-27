@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MinhaPlantaMain } from "./MinhaPlantaStyle";
 import { NavAutenticada } from "../../../components/NavAutenticada/NavAutenticada";
 import { Footer } from "../../../components/Footer/Footer";
-import { PlantsService } from "../../../services/API/use-cases/plantas/PlantsService";
+import { PlantsService } from "../../../services/API/PlantsService";
 import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
 import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
 import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
@@ -81,10 +81,11 @@ const MinhaPlanta = () => {
         {plantaSelecionada && !error && <UltimaAtualizacao registro={registroResponse} /> }          
         
         {plantaSelecionada && !error &&  <RelatorioDeSaude relatorio={responseRelatorio?.data} /> }
+
+        {plantaSelecionada && !error &&  <GraficoLinhas className="GraficoLinhas" idPlanta={plantaSelecionada} />}
          
         {error && plantaSelecionada !== "1" && <p>A Planta não possui nenhum registro</p> }
-
-        <GraficoLinhas className="GraficoLinhas" />
+        
       </MinhaPlantaMain>
       <Footer />
     </>
