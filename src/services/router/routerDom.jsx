@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { HashRouter, Routes, Route} from "react-router-dom";
 import Home from "../../pages/Home/Home";
 import QuemSomos from "../../pages/QuemSomos/Quemsomos";
 import React from "react";
@@ -9,17 +9,18 @@ import Cadastro from "../../pages/Cadastro/Cadastro";
 import Faq from "../../pages/FAQ/Faq";
 import MinhaPlanta from "../../pages/privatePages/MinhaPlanta/MinhaPlanta";
 import Aplicacao from "../../pages/Aplicacao/Aplicacao";
+import { Redirect } from "./redirecionamento";
 
 
 
 export function RouterDOM(){
     return(
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
     <Routes>
         <Route index element={<Home/>} path="/"/>
         <Route element={<QuemSomos/>} path="/quemsomos"/>
-        <Route element={<Login/>} path = "/login"/>
-        <Route element={<Cadastro/>} path = "/cadastro"/>
+        <Route element={<Redirect><Login/></Redirect>} path = "/login"/>
+        <Route element={<Redirect><Cadastro/></Redirect>} path = "/cadastro"/>
         <Route element={<Faq/>} path = "/faq"/>
         <Route element={<Aplicacao/>} path ="/aplicacao"/>
 
@@ -28,6 +29,6 @@ export function RouterDOM(){
         <Route element={<RotaPrivada><HomePrivate/></RotaPrivada>} path="/sistema/home"/>
 
     </Routes>
-    </BrowserRouter>
+    </HashRouter>
     )
 }
