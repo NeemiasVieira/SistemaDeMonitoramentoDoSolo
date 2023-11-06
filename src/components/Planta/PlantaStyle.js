@@ -66,7 +66,12 @@ export const PlantaStyle = styled.div`
     }
 
     @media screen and (max-width: 480px){
-        max-width: 80vw;
+        max-width: 85vw;
+
+        .imagemPlanta{
+            width: 100px;
+            height: 100px;
+        }
     }
 
 `

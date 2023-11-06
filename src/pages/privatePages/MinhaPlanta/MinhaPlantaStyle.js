@@ -5,15 +5,13 @@ export const MinhaPlantaMain = styled.main`
   margin: 10vh 0;
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
   align-items: center;
   gap: 20px;
 
   h1 {
     font-size: 20px;
-    margin-bottom: 50px;
+    margin: 60px 0 15px 0;
   }
-
   select {
     display: flex;
     justify-content: center;
@@ -25,9 +23,10 @@ export const MinhaPlantaMain = styled.main`
     border-radius: 5px;
     background-color: #fff;
     color: #333;
-    margin: 0 0 40px 0;
+    margin: 0 0 20px 0;
   }
 
   @media screen and (max-width: 480px) {
+    overflow-x: hidden;
   }
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Chart } from "react-google-charts";
 import { SecaoGraficoBarras } from "./GraficoBarrasStyle";
 
@@ -34,17 +34,26 @@ export const formatRelativeTime = (dateStr) => {
 const GraficoBarras = ({ registro }) => {
   let data = [];
 
-  useEffect(() => {}, [registro]);
-
   if (registro) {
     const { nitrogenio, fosforo, potassio, dataDeRegistro } = registro;
-    data = [
-      ["", "Nitrogênio", "Fósforo", "Potássio"],
-      [formatRelativeTime(dataDeRegistro), nitrogenio, fosforo, potassio],
-    ];
-  }
 
-  if (registro) {
+    const valores = [
+      { nome: "Nitrogênio", valor: nitrogenio },
+      { nome: "Fósforo", valor: fosforo },
+      { nome: "Potássio", valor: potassio },
+    ];
+
+    valores.sort((a, b) => a.valor - b.valor);
+
+    data = [
+      ["", valores[0].nome, valores[1].nome, valores[2].nome],
+      [
+        formatRelativeTime(dataDeRegistro),
+        valores[0].valor,
+        valores[1].valor,
+        valores[2].valor,
+      ],
+    ];
     return (
       <SecaoGraficoBarras>
         <Chart

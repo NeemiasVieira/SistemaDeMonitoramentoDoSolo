@@ -6,10 +6,19 @@ export const SecaoGraficoLinhas = styled.section`
 
   .selects{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+
+  .Select{
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: row nowrap;
-    gap: 15px;
+    gap: 10px;
 
     select{
       margin: 0;
@@ -21,8 +30,23 @@ export const SecaoGraficoLinhas = styled.section`
     text-align: center;
   }
 
+  .Aviso{
+    text-align: center;
+  }
+
   @media screen and (max-width: 480px) {
-    width: 90vw;
-    max-width: 420px;
+    width: 100vw;
+    max-width: 470px;
+
+    .selects{
+      flex-flow: column wrap;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding: 0 15px;
+    }
+
+    .Select{
+      flex-flow: row nowrap;
+    }
   }
 `

@@ -14,6 +14,8 @@ export const HomePrivateMain = styled.main`
         }
         h2{
             font-size: 1em;
+            font-weight: 600;
+            margin: 10px 0;
         }
 
         h1,h2{
@@ -41,6 +43,13 @@ export const HomePrivateMain = styled.main`
 
     .suasPlantas{
         font-size: 1.6rem;
+    }
+
+    @media screen and (max-width: 480px){
+        .Plantas{
+            margin-top: 25px;
+            gap: 25px;
+        }
     }
 
 `

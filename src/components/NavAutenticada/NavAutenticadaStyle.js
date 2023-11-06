@@ -72,17 +72,19 @@ export const NavAutenticadaStyle = styled.nav`
   a:hover {
     font-size: 1.05em;
   }
-  
 
   @media screen and (max-width: 480px) {
+
+    overflow-x: hidden;
+
     .navegacao {
       gap: 5vw;
     }
 
     a {
-      font-size: 0.8em;
+      font-size: .9rem;
       :hover {
-        font-size: 0.8em;
+        font-size: .9rem;
       }
     }
 
@@ -104,16 +106,7 @@ export const NavAutenticadaStyle = styled.nav`
     }
 
     .usuario {
-      width: 90vw;
-      padding: 0 3px;
-      display: flex;
-      justify-content: flex-end;
-      position: absolute;
-      right: 10%;
-      top: 10%;
-      font-size: 0.7em;
-      color: whitesmoke;
-      font-weight: 500;
+      display: none;
     }
   }
 `;

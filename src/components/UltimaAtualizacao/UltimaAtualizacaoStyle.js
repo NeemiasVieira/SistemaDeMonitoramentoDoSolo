@@ -5,9 +5,10 @@ export const UltimaAtualizacaoStyle = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
-  border: solid #000 1px;
-  padding: 40px 80px;
-  border-radius: 15px;
+
+  .titulo{
+    margin: 10px 0;
+  }
 
   .DadosAtuais {
     display: flex;

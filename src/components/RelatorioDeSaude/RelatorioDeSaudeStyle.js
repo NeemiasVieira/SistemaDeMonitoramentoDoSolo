@@ -6,9 +6,7 @@ export const RelatorioDeSaudeStyle = styled.section`
   flex-flow: column wrap;
   align-items: center;
   gap: 50px;
-  border: solid #000 1px;
-  border-radius: 10px;
-  padding: 35px;
+
 
   .triste {
     color: #f22;

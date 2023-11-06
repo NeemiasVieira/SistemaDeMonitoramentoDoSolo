@@ -8,7 +8,7 @@ import GraficoBarras from "../GraficoBarras/GraficoBarras";
 export const UltimaAtualizacao = ({ registro }) => {
   return (
     <UltimaAtualizacaoStyle>
-      <h1>Última Atualização</h1>
+      <h1 className="titulo">Última Atualização</h1>
       <div className="DadosAtuais">
         <div className="GraficoDeBarras">
           <h4>Nutrientes da Planta (mg/Kg)</h4>

@@ -32,6 +32,7 @@ const GraficoLinhas = ({ idPlanta }) => {
   }, [idPlanta, intervaloDeBusca, intervaloDeDias]);
 
   useEffect(() => {
+    setData(null)
     // Atualize o estado do data sempre que records for alterado
     const newData = [
       ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
@@ -43,34 +44,38 @@ const GraficoLinhas = ({ idPlanta }) => {
       ]),
     ];
     setData(newData);
+    console.log(data)
   }, [records]);
 
   const options = {
     chart: {
       title: "Medidas em mg/Kg",
     },
+    width: "100%",
+    curveType: 'function',
+    legend: { position: 'bottom' }
   };
 
   return (
     <SecaoGraficoLinhas>
       <h2>Histórico de Nutrientes da Planta</h2>
       <div className="selects">
-        <div className="selects">
-          <p>Intervalo de dias</p>
+        <div className="Select">
+          <p>Exibir um registro a cada</p>
           <select
             name=""
             id=""
             onChange={(e) => setIntervaloDeDias(e.target.value)}
           >
             <option value={null}>Selecione</option>
-            <option value={1}>1</option>
-            <option value={3}>3</option>
-            <option value={5}>5</option>
-            <option value={7}>7</option>
-            <option value={10}>10</option>
+            <option value={1}>1 dia</option>
+            <option value={3}>3 dias</option>
+            <option value={5}>5 dias</option>
+            <option value={7}>7 dias</option>
+            <option value={10}>10 dias</option>
           </select>
         </div>
-        <div className="selects">
+        <div className="Select">
           <p>Intervalo de busca</p>
           <select
             name=""
@@ -87,13 +92,15 @@ const GraficoLinhas = ({ idPlanta }) => {
           </select>
         </div>
       </div>
-      <Chart
+      {data.length <= 2 && <p className="Aviso">Não há registros necessários para formar um histórico</p>}
+      {data.length > 2 && <Chart
         chartType="Line"
         width="100%"
         height="400px"
         data={data}
         options={options}
-      />
+      />}
+      
     </SecaoGraficoLinhas>
   );
 };

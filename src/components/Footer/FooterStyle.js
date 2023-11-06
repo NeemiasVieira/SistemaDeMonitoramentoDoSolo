@@ -125,4 +125,16 @@ export const FooterStyle = styled.footer`
       max-width: 90vw;
     }
   }
+
+  @media screen and (max-width: 480px){
+    .Intro p {
+      width: 380px;
+      max-width: 400px;
+    }
+
+    img{
+      width: 350px;
+      height: 85px;
+    }
+  }
 `;
