@@ -3,6 +3,72 @@ import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
 import Chart from "react-google-charts";
 import { RecordsService } from "../../services/API/RecordsService";
 
+const selecionaGrafico = (tipoGrafico, records) => {
+  let newData = [];
+
+  switch (tipoGrafico) {
+    case "NPK":
+      newData = [
+        ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
+        ...records.map((record) => [
+          formatDate(record.dataDeRegistro),
+          Number(record.nitrogenio),
+          Number(record.fosforo),
+          Number(record.potassio),
+        ]),
+      ];
+      break;
+    case "temperatura":
+      newData = [
+        ["Dia", "Temperatura"],
+        ...records.map((record) => [
+          formatDate(record.dataDeRegistro),
+          Number(record.temperatura),
+        ]),
+      ];
+      break;
+    case "pH":
+      newData = [
+        ["Dia", "pH"],
+        ...records.map((record) => [
+          formatDate(record.dataDeRegistro),
+          Number(record.pH),
+        ]),
+      ];
+      break;
+    case "umidade":
+      newData = [
+        ["Dia", "Umidade"],
+        ...records.map((record) => [
+          formatDate(record.dataDeRegistro),
+          Number(record.umidade),
+        ]),
+      ];
+      break;
+  }
+  return newData;
+};
+
+const unidadeMedida = (tipoGrafico) => {
+  let unidadeMedida;
+  switch(tipoGrafico){
+    case "NPK":
+      unidadeMedida = "Unidade de medida: mg/Kg";
+      break;
+    case "temperatura":
+      unidadeMedida = "Unidade de medida: ºC"
+      break;
+    case "pH":
+      unidadeMedida = ""
+      break;
+    case "umidade":
+      unidadeMedida = "Unidade de medida: %"
+      break;
+  }
+  return unidadeMedida
+}
+
+
 const formatDate = (inputDate) => {
   const date = new Date(inputDate);
   const day = date.getDate().toString().padStart(2, "0");
@@ -14,6 +80,7 @@ const GraficoLinhas = ({ idPlanta }) => {
   const [records, setRecords] = useState([]);
   const [intervaloDeDias, setIntervaloDeDias] = useState(null);
   const [intervaloDeBusca, setIntervaloDeBusca] = useState(null);
+  const [tipoGrafico, setTipoGrafico] = useState("NPK");
   const [data, setData] = useState([
     ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
   ]);
@@ -29,39 +96,45 @@ const GraficoLinhas = ({ idPlanta }) => {
       intervaloDeDias,
       intervaloDeBusca
     );
-  }, [idPlanta, intervaloDeBusca, intervaloDeDias]);
+  }, [idPlanta, intervaloDeBusca, intervaloDeDias, tipoGrafico]);
 
   useEffect(() => {
-    setData(null)
+    setData(null);
     // Atualize o estado do data sempre que records for alterado
-    const newData = [
-      ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
-      ...records.map((record) => [
-        formatDate(record.dataDeRegistro),
-        Number(record.nitrogenio),
-        Number(record.fosforo),
-        Number(record.potassio),
-      ]),
-    ];
+    const newData = selecionaGrafico(tipoGrafico, records);
     setData(newData);
-    console.log(data)
+    console.log(data);
   }, [records]);
 
   const options = {
     chart: {
-      title: "Medidas em mg/Kg",
+      title: unidadeMedida(tipoGrafico),
     },
     width: "100%",
-    curveType: 'function',
-    legend: { position: 'bottom' }
+    curveType: "function",
+    legend: { position: "bottom" },
   };
 
   return (
     <SecaoGraficoLinhas>
-      <h2>Histórico de Nutrientes da Planta</h2>
+      <h2>Histórico da Planta</h2>
       <div className="selects">
         <div className="Select">
-          <p>Exibir um registro a cada</p>
+          <p className="tituloSelect">Gráfico</p>
+          <select
+            value={tipoGrafico}
+            onChange={(e) => {
+              setTipoGrafico(e.target.value);
+            }}
+          >
+            <option value="NPK">Nutrientes</option>
+            <option value="temperatura">Temperatura</option>
+            <option value="umidade">Umidade</option>
+            <option value="pH">pH</option>
+          </select>
+        </div>
+        <div className="Select">
+          <p className="tituloSelect">Exibir um registro a cada</p>
           <select
             name=""
             id=""
@@ -76,7 +149,7 @@ const GraficoLinhas = ({ idPlanta }) => {
           </select>
         </div>
         <div className="Select">
-          <p>Intervalo de busca</p>
+          <p className="tituloSelect">Intervalo de busca</p>
           <select
             name=""
             id=""
@@ -92,15 +165,20 @@ const GraficoLinhas = ({ idPlanta }) => {
           </select>
         </div>
       </div>
-      {data.length <= 2 && <p className="Aviso">Não há registros necessários para formar um histórico</p>}
-      {data.length > 2 && <Chart
-        chartType="Line"
-        width="100%"
-        height="400px"
-        data={data}
-        options={options}
-      />}
-      
+      {data.length <= 2 && (
+        <p className="Aviso">
+          Não há registros necessários para formar um histórico
+        </p>
+      )}
+      {data.length > 2 && (
+        <Chart
+          chartType="Line"
+          width="100%"
+          height="400px"
+          data={data}
+          options={options}
+        />
+      )}
     </SecaoGraficoLinhas>
   );
 };

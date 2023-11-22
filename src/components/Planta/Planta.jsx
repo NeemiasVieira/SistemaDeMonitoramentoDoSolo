@@ -7,8 +7,6 @@ import plantagenerica from "../../assets/img/plantagenerica.png";
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const year = date.getFullYear();
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
 
   const formattedString = `${day}/${month}/${year}`;
 
@@ -21,10 +19,10 @@ export const Planta = ({ planta }) => {
       <h2 className="nomeDaPlanta">{planta?.nome}</h2>
       <div className="Planta">
         {planta?.especie === "Manjericão" && (
-          <img src={manjericao} className="imagemPlanta"></img>
+          <img src={manjericao} className="imagemPlanta" alt="Imagem representativa do Manjericão"></img>
         )}
-        {planta?.especie != "Manjericão" && (
-          <img src={plantagenerica} className="imagemPlanta"></img>
+        {planta?.especie !== "Manjericão" && (
+          <img src={plantagenerica} className="imagemPlanta" alt="Imagem representativa de uma planta genérica"></img>
         )}
         <div className="infoPlanta">
           <h3>Informações da Planta</h3>

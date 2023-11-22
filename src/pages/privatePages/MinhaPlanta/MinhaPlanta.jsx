@@ -8,7 +8,6 @@ import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
 import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
 
 const MinhaPlanta = () => {
-
   //States
   const [response, setResponse] = useState();
   const [error, setError] = useState();
@@ -76,16 +75,26 @@ const MinhaPlanta = () => {
                 {`${planta.nome} - (${planta.especie})`}
               </option>
             ))}
-        </select>
+        </select>     
 
-        {plantaSelecionada && !error && <UltimaAtualizacao registro={registroResponse} /> }          
-        
-        {plantaSelecionada && !error &&  <RelatorioDeSaude relatorio={responseRelatorio?.data} /> }
+        {plantaSelecionada && !error && (
+          <UltimaAtualizacao registro={registroResponse} />
+        )}
 
-        {plantaSelecionada && !error &&  <GraficoLinhas className="GraficoLinhas" idPlanta={plantaSelecionada} />}
-         
-        {error && plantaSelecionada !== "1" && <p>A Planta não possui nenhum registro</p> }
-        
+        {plantaSelecionada && !error && (
+          <RelatorioDeSaude relatorio={responseRelatorio?.data} />
+        )}
+
+        {plantaSelecionada && !error && (
+          <GraficoLinhas
+            className="GraficoLinhas"
+            idPlanta={plantaSelecionada}
+          />
+        )}
+
+        {error && plantaSelecionada !== "1" && (
+          <p>A Planta não possui nenhum registro</p>
+        )}
       </MinhaPlantaMain>
       <Footer />
     </>

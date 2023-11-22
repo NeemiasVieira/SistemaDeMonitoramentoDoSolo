@@ -1,5 +1,6 @@
 import { FooterStyle } from "./FooterStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import {
   faFacebook,
   faInstagram,
@@ -34,41 +35,44 @@ export const Footer = () => {
             <h3>Serviços</h3>
             <ul>
               <li>
-                <a href="">Monitoramento de Plantas</a>
+                <a href="./">Monitoramento de Plantas</a>
               </li>
               <li>
-                <a href="">Documentação da API</a>
+                <a href="https://sms-api-oe8t.onrender.com/api/">Documentação da API</a>
               </li>
               <li>
-                <a href="/faq">FAQ</a>
+                <Link to="/faq">FAQ</Link>
               </li>
             </ul>
           </div>
           <div className="footer-section">
             <h3>Redes Sociais</h3>
             <div className="social-media-icons">
-              <a href="#">
+              <a href="./">
                 <FontAwesomeIcon icon={faFacebook} />
               </a>
               <a
                 href="https://www.instagram.com/neemiasvieira/"
                 target="_blank"
+                rel="noreferrer"
               >
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
               <a
                 href="https://api.whatsapp.com/send/?phone=5513996020483&text&type=phone_number&app_absent=0"
                 target="_blank"
+                rel="noreferrer"
               >
                 <FontAwesomeIcon icon={faWhatsapp} />
               </a>
               <a
                 href="https://www.linkedin.com/in/neemiasvieira/"
                 target="_blank"
+                rel="noreferrer"
               >
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
-              <a href="https://github.com/NeemiasVieira" target="_blank">
+              <a href="https://github.com/NeemiasVieira" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faGithub} />
               </a>
             </div>

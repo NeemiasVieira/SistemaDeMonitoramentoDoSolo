@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SecaoGraficoLinhas = styled.section`
   width: 70vw;
-  max-width: 800px;
+  max-width: 900px;
 
   .selects{
     display: flex;
@@ -32,6 +32,9 @@ export const SecaoGraficoLinhas = styled.section`
 
   .Aviso{
     text-align: center;
+  }
+  .tituloSelect{
+    max-width: 185px;
   }
 
   @media screen and (max-width: 480px) {
