@@ -71,7 +71,7 @@ const MinhaPlanta = () => {
           <option value="1">Selecione uma planta</option>
           {plants.length > 0 &&
             plants.map((planta) => (
-              <option key={planta.id} value={planta.id}>
+              <option key={planta._id} value={planta._id}>
                 {`${planta.nome} - (${planta.especie})`}
               </option>
             ))}
