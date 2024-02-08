@@ -1,9 +1,14 @@
+import React from "react";
 import { AlertaStyle } from "./AlertaStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation, faSquareCheck} from "@fortawesome/free-solid-svg-icons";
 import { SemAlertaStyle } from "./AlertaStyle";
 
-export const Alerta = ({alerta}) => {
+interface AlertaProps{
+    alerta?: string
+}
+
+export const Alerta: React.FC<AlertaProps> = ({alerta}) => {
     return(
         <>
         {alerta && <AlertaStyle>          

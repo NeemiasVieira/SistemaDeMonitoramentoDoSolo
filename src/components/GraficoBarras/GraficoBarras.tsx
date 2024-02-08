@@ -1,11 +1,12 @@
 import React from "react";
 import { Chart } from "react-google-charts";
 import { SecaoGraficoBarras } from "./GraficoBarrasStyle";
+import { IRegistro } from "../../interfaces/RecordsModule/registro.interface";
 
-export const formatRelativeTime = (dateStr) => {
+export const formatRelativeTime = (dateStr: string) => {
   const currentDate = new Date();
   const updatedDate = new Date(dateStr);
-  const timeDiff = currentDate - updatedDate;
+  const timeDiff:number = currentDate.getTime() - updatedDate.getTime();
 
   const minutes = Math.floor(timeDiff / 60000);
   if (minutes < 60) {
@@ -31,19 +32,23 @@ export const formatRelativeTime = (dateStr) => {
   return `Atualizado há ${months} mês${months !== 1 ? "es" : ""}`;
 };
 
-const GraficoBarras = ({ registro }) => {
+interface GraficoBarrasProps{
+  registro: IRegistro
+}
+
+const GraficoBarras: React.FC<GraficoBarrasProps> = ({registro}) => {
   let data = [];
 
   if (registro) {
     const { nitrogenio, fosforo, potassio, dataDeRegistro } = registro;
 
-    const valores = [
+    const valores: { nome: string, valor: string}[] = [
       { nome: "Nitrogênio", valor: nitrogenio },
       { nome: "Fósforo", valor: fosforo },
       { nome: "Potássio", valor: potassio },
     ];
 
-    valores.sort((a, b) => a.valor - b.valor);
+    valores.sort((a, b) => Number(a.valor) - Number(b.valor));
 
     data = [
       ["", valores[0].nome, valores[1].nome, valores[2].nome],

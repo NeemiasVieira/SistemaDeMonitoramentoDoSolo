@@ -8,9 +8,9 @@ import { Loading } from "../../../components/Loading/Loading";
 import { MensagemDeErro } from "../../../components/MensagemDeErro/MensagemDeErro";
 
 const HomePrivate = () => {
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState<any>();
   const [plants, setPlants] = useState([]);
-  const [error, setError] = useState();
+  const [error, setError] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
   const plantsService = new PlantsService(setResponse, setError);
   const ownerID = localStorage.getItem("userID");

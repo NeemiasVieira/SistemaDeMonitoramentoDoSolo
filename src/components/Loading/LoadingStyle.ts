@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const LoadingStyle = styled.div`
+interface LoadingStyleProps {
+  minHeight?: any;
+}
+
+export const LoadingStyle = styled.div<LoadingStyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;

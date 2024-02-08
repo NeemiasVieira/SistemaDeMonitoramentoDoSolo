@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
-import Chart from "react-google-charts";
+import Chart, { ReactGoogleChartProps } from "react-google-charts";
 import { RecordsService } from "../../services/API/RecordsService";
+import { IRegistro } from "../../interfaces/RecordsModule/registro.interface";
 
-const selecionaGrafico = (tipoGrafico, records) => {
-  let newData = [];
+const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
+  let newData: any = [];
 
   switch (tipoGrafico) {
     case "NPK":
@@ -49,7 +50,7 @@ const selecionaGrafico = (tipoGrafico, records) => {
   return newData;
 };
 
-const unidadeMedida = (tipoGrafico) => {
+const unidadeMedida = (tipoGrafico: string) => {
   let unidadeMedida;
   switch(tipoGrafico){
     case "NPK":
@@ -69,14 +70,19 @@ const unidadeMedida = (tipoGrafico) => {
 }
 
 
-const formatDate = (inputDate) => {
+const formatDate = (inputDate: string) => {
   const date = new Date(inputDate);
   const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Adicionamos 1 porque os meses em JavaScript começam em 0 (janeiro) e terminam em 11 (dezembro).
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); 
   return `${day}/${month}`;
 };
 
-const GraficoLinhas = ({ idPlanta }) => {
+interface GraficoLinhasProps{
+  idPlanta: string
+  className?: string
+}
+
+const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
   const [records, setRecords] = useState([]);
   const [intervaloDeDias, setIntervaloDeDias] = useState(null);
   const [intervaloDeBusca, setIntervaloDeBusca] = useState(null);
@@ -106,7 +112,7 @@ const GraficoLinhas = ({ idPlanta }) => {
     console.log(data);
   }, [records]);
 
-  const options = {
+  const options: any = {
     chart: {
       title: unidadeMedida(tipoGrafico),
     },

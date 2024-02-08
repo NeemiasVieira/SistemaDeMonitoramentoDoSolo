@@ -1,7 +1,11 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-export const Redirect = ({children}) => {
+interface RedirectProps{
+    children: any
+}
+
+export const Redirect: React.FC<RedirectProps> = ({children}) => {
     const token = localStorage.getItem("token");
     return token ? <Navigate to="/sistema/home"/> : children
 }

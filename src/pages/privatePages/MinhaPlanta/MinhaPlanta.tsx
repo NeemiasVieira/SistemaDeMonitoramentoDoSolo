@@ -9,12 +9,12 @@ import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaA
 
 const MinhaPlanta = () => {
   //States
-  const [response, setResponse] = useState();
-  const [error, setError] = useState();
-  const [responseRelatorio, setResponseRelatorio] = useState();
-  const [registroResponse, setRegistroResponse] = useState();
+  const [response, setResponse] = useState<any>();
+  const [error, setError] = useState<any>();
+  const [responseRelatorio, setResponseRelatorio] = useState<any>();
+  const [registroResponse, setRegistroResponse] = useState<any>();
   const [plants, setPlants] = useState([]);
-  const [plantaSelecionada, setPlantaSelecionada] = useState();
+  const [plantaSelecionada, setPlantaSelecionada] = useState<any>();
 
   //Services
   const plantsService = new PlantsService(setResponse, setError);
@@ -78,7 +78,7 @@ const MinhaPlanta = () => {
         </select>     
 
         {plantaSelecionada && !error && (
-          <UltimaAtualizacao registro={registroResponse} />
+          <UltimaAtualizacao registro={registroResponse?.data} />
         )}
 
         {plantaSelecionada && !error && (

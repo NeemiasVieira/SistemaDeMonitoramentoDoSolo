@@ -15,9 +15,9 @@ const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [senha1, setSenha1] = useState("");
   const [senha2, setSenha2] = useState("");
-  const [response, setResponse] = useState();
-  const [error, setError] = useState();
-  const [isLoading, setIsLoading] = useState();
+  const [response, setResponse] = useState<any>();
+  const [error, setError] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>();
   const userService = new UserService(setResponse, setError);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Cadastro = () => {
     }
   };
 
-  const Cadastrar = async (e) => {
+  const Cadastrar = async (e: any) => {
     e.preventDefault();
     if (!VerificaSenha()) {
       setError({
@@ -70,7 +70,7 @@ const Cadastro = () => {
         <h1>Sistema de Monitoramento de Solo</h1>
         <h2>Cadastro</h2>
 
-        <form type="submit" onSubmit={(e) => Cadastrar(e)}>
+        <form onSubmit={(e) => Cadastrar(e)}>
           <label htmlFor="">Nome</label>
           <div className="divInput">
             <div className="divIcon"><FontAwesomeIcon icon={faA} /></div>

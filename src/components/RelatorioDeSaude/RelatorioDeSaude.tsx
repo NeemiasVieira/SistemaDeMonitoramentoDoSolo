@@ -1,9 +1,11 @@
+import React from "react";
 import { RelatorioDeSaudeStyle } from "./RelatorioDeSaudeStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceGrinWide as feliz2, faFaceSmile as feliz1, faFaceMeh as neutro, faFaceFrownOpen as triste} from "@fortawesome/free-solid-svg-icons"; 
 import { Alerta } from "../Alerta/Alerta";
+import { IRelatorioSaudePlanta } from "../../interfaces/PlantsModule/planta.interface";
 
-const getPropertyColorClass = (value) => {
+const getPropertyColorClass = (value: string) => {
     if (value === "Deficiência") {
       return "bolinha-vermelha";
     } else if (value === "Excesso") {
@@ -13,7 +15,7 @@ const getPropertyColorClass = (value) => {
     }
   }
 
-export const formatoDateBR = (inputDateString) => {
+export const formatoDateBR = (inputDateString: string) => {
     const date = new Date(inputDateString);
     const day = String(date.getDate()).padStart(2, "0");
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -24,7 +26,11 @@ export const formatoDateBR = (inputDateString) => {
     return formattedString;
   };
 
-export const RelatorioDeSaude = ({ relatorio }) => {    
+interface RelatorioDeSaudeProps{
+  relatorio: IRelatorioSaudePlanta
+}
+
+export const RelatorioDeSaude: React.FC<RelatorioDeSaudeProps> = ({ relatorio }) => {    
 
   return (
     <RelatorioDeSaudeStyle>

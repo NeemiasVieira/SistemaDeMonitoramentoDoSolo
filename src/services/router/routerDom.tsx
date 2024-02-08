@@ -13,7 +13,7 @@ import { Redirect } from "./redirecionamento";
 
 
 
-export function RouterDOM(){
+const RouterDOM = () => {
     return(
     <HashRouter>
     <Routes>
@@ -32,3 +32,5 @@ export function RouterDOM(){
     </HashRouter>
     )
 }
+
+export default RouterDOM;

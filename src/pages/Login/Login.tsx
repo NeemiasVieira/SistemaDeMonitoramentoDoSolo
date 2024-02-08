@@ -13,13 +13,13 @@ import { faKey } from "@fortawesome/free-solid-svg-icons";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [response, setResponse] = useState();
-  const [error, setError] = useState();
+  const [response, setResponse] = useState<any>();
+  const [error, setError] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
   const userService = new UserService(setResponse, setError);
   const navigate = useNavigate();
 
-  const Login = async (e) => {
+  const Login = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
     await userService.login(email, password);
@@ -53,7 +53,7 @@ const Login = () => {
         <h1>Sistema de Monitoramento de Solo</h1>
         <h2>Login</h2>
 
-        <form type="submit">
+        <form>
           <label htmlFor="">Usuário</label>
           <div className="divInput">
             <div className="divIcon">

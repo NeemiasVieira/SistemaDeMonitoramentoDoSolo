@@ -1,8 +1,10 @@
+import React from "react";
 import { PlantaStyle } from "./PlantaStyle";
+import { IPlanta } from "../../interfaces/PlantsModule/planta.interface"; 
 import manjericao from "../../assets/img/manjericao2.png";
 import plantagenerica from "../../assets/img/plantagenerica.png";
 
-  const formatoDateBR = (inputDateString) => {
+  const formatoDateBR = (inputDateString: string) => {
   const date = new Date(inputDateString);
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -13,7 +15,11 @@ import plantagenerica from "../../assets/img/plantagenerica.png";
   return formattedString;
 };
 
-export const Planta = ({ planta }) => {
+interface PlantaProps{
+  planta: IPlanta
+}
+
+export const Planta: React.FC<PlantaProps> = ({ planta }) => {
   return (
     <PlantaStyle>
       <h2 className="nomeDaPlanta">{planta?.nome}</h2>

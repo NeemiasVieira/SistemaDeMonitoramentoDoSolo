@@ -3,16 +3,20 @@ import { SecaoPerguntaFaq } from "./PerguntaFAQStyle";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const PerguntaFAQ = ({ pergunta, resposta }) => {
-  function togglePergunta(e) {
+interface PerguntaFAQProps{
+  pergunta: string,
+  resposta: string
+}
+
+export const PerguntaFAQ: React.FC<PerguntaFAQProps> = ({ pergunta, resposta }) => {
+  const togglePergunta = (e: any) => {
     var questao = e.target.parentNode;
     var elemento = questao.parentNode;
     if (elemento.classList.contains("pergunta")) {
-      //Garante que o elemento será a div Faq (correção de bug)
+
       elemento = elemento.parentNode;
     }
     if (elemento.classList.contains("secaoPergunta")) {
-      //Garante que o elemento será a div Faq (correção de bug)
       elemento = elemento.children[0];
     }
 

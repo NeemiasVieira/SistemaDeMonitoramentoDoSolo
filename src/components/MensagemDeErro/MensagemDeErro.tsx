@@ -3,7 +3,13 @@ import { MensagemErroStyle } from "./MensagemDeErroStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
-export const MensagemDeErro = ({ error, mensagemBotao, setError }) => {
+interface MensagemDeErroProps{
+  error: string,
+  mensagemBotao: string
+  setError: any
+}
+
+export const MensagemDeErro: React.FC<MensagemDeErroProps> = ({ error, mensagemBotao, setError }) => {
 
   const voltar = () => {
     setError(null);

@@ -1,7 +1,11 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-export const RotaPrivada = ({children}) => {
+interface RotaPrivadaProps{
+    children: any
+}
+
+export const RotaPrivada: React.FC<RotaPrivadaProps> = ({children}) => {
     const token = localStorage.getItem("token");
     return token ? children : <Navigate to="/login"/>
 
