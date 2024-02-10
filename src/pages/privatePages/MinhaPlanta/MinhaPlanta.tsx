@@ -6,13 +6,15 @@ import { PlantsService } from "../../../services/API/PlantsService";
 import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
 import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
 import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
+import { Saude } from "./minha-planta.types";
+import { IRegistro } from "../../../interfaces/RecordsModule/registro.interface";
 
 const MinhaPlanta = () => {
   //States
   const [response, setResponse] = useState<any>();
   const [error, setError] = useState<any>();
-  const [responseRelatorio, setResponseRelatorio] = useState<any>();
-  const [registroResponse, setRegistroResponse] = useState<any>();
+  const [responseRelatorio, setResponseRelatorio] = useState<Saude>();
+  const [registroResponse, setRegistroResponse] = useState<IRegistro>();
   const [plants, setPlants] = useState([]);
   const [plantaSelecionada, setPlantaSelecionada] = useState<any>();
 
@@ -30,7 +32,7 @@ const MinhaPlanta = () => {
   }, []);
 
   useEffect(() => {
-    if (responseRelatorio?.data.length > 0) {
+    if (responseRelatorio) {
       setError(null);
     }
   }, [error]);
@@ -44,15 +46,15 @@ const MinhaPlanta = () => {
   }, [plantaSelecionada]);
 
   useEffect(() => {
-    if (responseRelatorio && responseRelatorio.data.length === 0) {
+    if (responseRelatorio && responseRelatorio?.ultimaAtualizacao) {
     } else {
       setError(null);
     }
   }, [responseRelatorio]);
 
   useEffect(() => {
-    if (response) {
-      setPlants(response.data);
+    if (response?.length > 0) {
+      setPlants(response);
     }
   }, [response]);
 
@@ -69,7 +71,8 @@ const MinhaPlanta = () => {
           }}
         >
           <option value="1">Selecione uma planta</option>
-          {plants.length > 0 &&
+          
+          {plants?.length > 0 &&
             plants.map((planta) => (
               <option key={planta.id} value={planta.id}>
                 {`${planta.nome} - (${planta.especie})`}
@@ -78,11 +81,11 @@ const MinhaPlanta = () => {
         </select>     
 
         {plantaSelecionada && !error && (
-          <UltimaAtualizacao registro={registroResponse?.data} />
+          <UltimaAtualizacao registro={registroResponse} />
         )}
 
         {plantaSelecionada && !error && (
-          <RelatorioDeSaude relatorio={responseRelatorio?.data} />
+          <RelatorioDeSaude relatorio={responseRelatorio} />
         )}
 
         {plantaSelecionada && !error && (

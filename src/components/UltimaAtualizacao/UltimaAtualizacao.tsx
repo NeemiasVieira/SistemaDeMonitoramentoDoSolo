@@ -12,7 +12,6 @@ interface UltimaAtualizacaoProps{
 }
 
 export const UltimaAtualizacao: React.FC<UltimaAtualizacaoProps> = ({ registro }) => {
-  console.log(registro)
   return (
     <UltimaAtualizacaoStyle>
       <h1 className="titulo">Última Atualização</h1>

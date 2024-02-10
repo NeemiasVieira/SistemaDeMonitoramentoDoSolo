@@ -26,25 +26,27 @@ const Login = () => {
     setIsLoading(false);
   };
 
-  useEffect(() => {}, [response, error]);
+  useEffect(() => {
+
+    if (response?.token) {
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("nome", response.usuario.nome);
+      localStorage.setItem("userID", response.usuario.id);
+      navigate("/sistema/home");
+    }
+
+  }, [response, error]);
 
   if (error)
     return (
       <MensagemDeErro
-        error={error.response?.data.mensagem}
+        error={error}
         mensagemBotao="Voltar"
         setError={setError}
       />
     );
 
   if (isLoading) return <Loading/>
-
-  if (response?.status === 200) {
-    localStorage.setItem("token", response.data.token);
-    localStorage.setItem("nome", response.data.usuario.nome);
-    localStorage.setItem("userID", response.data.usuario.id);
-    navigate("/sistema/home");
-  }
 
   return (
     <>
@@ -62,6 +64,8 @@ const Login = () => {
             <input
               type="text"
               placeholder="Digite o seu e-mail"
+              autoComplete="email"
+              required
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -76,6 +80,8 @@ const Login = () => {
             </div>
             <input
               type="password"
+              autoComplete="password"
+              required
               placeholder="Digite a sua senha"
               value={password}
               onChange={(e) => {

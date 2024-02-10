@@ -11,17 +11,21 @@ export class RecordsService{
         this.setError = setError;
     }
 
-    async getRecordsByPlantID(id: string, intervaloDeDias?: string | null, intervaloDeBusca?: string | null){
+    async getRecordsByPlantID(idPlanta: string, intervaloDeDias?: any, intervaloDeBusca?: any){
 
-        if(intervaloDeBusca === "Selecione") intervaloDeBusca = null;
-        if(intervaloDeDias === "Selecione") intervaloDeDias = null;
+        intervaloDeBusca = intervaloDeBusca === "Selecione" ? null : Number(intervaloDeBusca);
+        intervaloDeDias = intervaloDeDias === "Selecione" ? null : Number(intervaloDeDias);
 
-        let url = `/registros/${id}`
-        if(intervaloDeDias && !intervaloDeBusca) url += `?intervaloDeDias=${Number(intervaloDeDias)}`
-        if(intervaloDeBusca && !intervaloDeDias) url += `?intervaloDeBusca=${Number(intervaloDeBusca)}`
-        if(intervaloDeBusca && intervaloDeDias) url += `?intervaloDeDias=${Number(intervaloDeDias)}&intervaloDeBusca=${Number(intervaloDeBusca)}`
 
-        await SMS_API.get(url).then(response => this.setResponse(response.data))
-        .catch(error => this.setError(error));
+        const Query = `query GetAllRecordsByPlant($idPlanta: String!, $intervaloDeDias: Float, $intervaloDeBusca: Float ) {
+            getAllRecordsByPlant( idPlanta: $idPlanta, intervaloDeDias: $intervaloDeDias, intervaloDeBusca: $intervaloDeBusca )   
+            { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro } }`
+        
+        const options = {query: Query, variables: {idPlanta, intervaloDeDias, intervaloDeBusca}}
+        await SMS_API.post('', options).then((response) => {
+            if(response.data && response.data.data && response.data.data.getAllRecordsByPlant) this.setResponse(response.data.data.getAllRecordsByPlant);
+            else if (response.data && response.data.errors) this.setError(response.data.errors[0].message);
+        })
+        .catch(error => this.setError(error.message));
     }
 }
