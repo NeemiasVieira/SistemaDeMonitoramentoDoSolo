@@ -29,7 +29,9 @@ export const formatRelativeTime = (dateStr: string) => {
   }
 
   const months = Math.floor(days / 30);
-  return `Atualizado há ${months} mês${months !== 1 ? "es" : ""}`;
+  if(months !== 1) return `Atualizado há ${months} meses`;
+  return `Atualizado há ${months} mês`;
+  
 };
 
 interface GraficoBarrasProps{

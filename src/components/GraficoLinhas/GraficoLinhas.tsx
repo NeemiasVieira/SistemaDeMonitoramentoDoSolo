@@ -109,7 +109,6 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
     // Atualize o estado do data sempre que records for alterado
     const newData = selecionaGrafico(tipoGrafico, records);
     setData(newData);
-    console.log(data);
   }, [records]);
 
   const options: any = {

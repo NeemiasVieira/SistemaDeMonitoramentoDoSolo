@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceGrinWide as feliz2, faFaceSmile as feliz1, faFaceMeh as neutro, faFaceFrownOpen as triste} from "@fortawesome/free-solid-svg-icons"; 
 import { Alerta } from "../Alerta/Alerta";
 import { IRelatorioSaudePlanta } from "../../interfaces/PlantsModule/planta.interface";
+import { Saude } from "../../pages/privatePages/MinhaPlanta/minha-planta.types";
 
 const getPropertyColorClass = (value: string) => {
     if (value === "Deficiência") {
@@ -27,7 +28,7 @@ export const formatoDateBR = (inputDateString: string) => {
   };
 
 interface RelatorioDeSaudeProps{
-  relatorio: IRelatorioSaudePlanta
+  relatorio: Saude
 }
 
 export const RelatorioDeSaude: React.FC<RelatorioDeSaudeProps> = ({ relatorio }) => {    
@@ -82,7 +83,7 @@ export const RelatorioDeSaude: React.FC<RelatorioDeSaudeProps> = ({ relatorio })
       <div className="alertas">
         <h1>Alertas</h1>
         {relatorio?.alertas.length > 0 &&
-        relatorio?.alertas.map((alerta) => <Alerta alerta={alerta}/>)}
+        relatorio?.alertas.map((alerta) => <Alerta key={Math.random()} alerta={alerta}/>)}
         {relatorio?.alertas.length === 0 && <Alerta/>}
       </div>
       </div>

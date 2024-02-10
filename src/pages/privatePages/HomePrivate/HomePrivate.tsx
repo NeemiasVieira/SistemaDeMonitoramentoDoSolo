@@ -7,8 +7,15 @@ import { Planta } from "../../../components/Planta/Planta";
 import { Loading } from "../../../components/Loading/Loading";
 import { MensagemDeErro } from "../../../components/MensagemDeErro/MensagemDeErro";
 
+interface Plant {
+  id: string;
+  nome: string;
+  especie: string;
+  dataDaPlantacao: string; 
+}
+
 const HomePrivate = () => {
-  const [response, setResponse] = useState<any>();
+  const [response, setResponse] = useState<Plant[]>();
   const [plants, setPlants] = useState([]);
   const [error, setError] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
@@ -26,10 +33,10 @@ const HomePrivate = () => {
   }, [ownerID]);
 
   useEffect(() => {
-    if (response?.data) {
-      setPlants(response.data);
+    if (response?.length > 0) {
+      setPlants(response);
     }
-  }, [response]);
+  }, [response, error]);
 
   if(isLoading) return (    
       <>
@@ -48,7 +55,7 @@ const HomePrivate = () => {
         </>
   )
 
-  if(error) return <MensagemDeErro  error={error.response?.data.mensagem}  mensagemBotao="Voltar"  setError={setError} /> 
+  if(error) return <MensagemDeErro  error={error}  mensagemBotao="Voltar"  setError={setError} /> 
   
     return (
       <>

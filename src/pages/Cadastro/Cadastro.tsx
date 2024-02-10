@@ -21,14 +21,12 @@ const Cadastro = () => {
   const userService = new UserService(setResponse, setError);
 
   useEffect(() => {
-    console.log(response);
   }, [response, error]);
 
   if (error) {
-    console.log(error);
     return (
       <MensagemDeErro
-        error={error.response.data.mensagem}
+        error={error}
         mensagemBotao="Voltar"
         setError={setError}
       />
@@ -39,7 +37,7 @@ const Cadastro = () => {
     return <Loading />;
   }
 
-  if (response?.status === 201) return <CadastroConcluido />;
+  if (response?.id) return <CadastroConcluido />;
 
   const VerificaSenha = () => {
     if (senha1 === senha2) {
@@ -52,9 +50,7 @@ const Cadastro = () => {
   const Cadastrar = async (e: any) => {
     e.preventDefault();
     if (!VerificaSenha()) {
-      setError({
-        response: { data: { mensagem: "As senhas não correspondem" } },
-      });
+      setError("As senhas não correspondem");
       return;
     }
 
