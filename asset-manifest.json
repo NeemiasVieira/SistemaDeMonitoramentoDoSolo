@@ -1,17 +1,16 @@
 {
   "files": {
-    "main.css": "/SistemaDeMonitoramentoDoSolo/static/css/main.e6c13ad2.css",
-    "main.js": "/SistemaDeMonitoramentoDoSolo/static/js/main.45a46ebc.js",
+    "main.css": "/SistemaDeMonitoramentoDoSolo/static/css/main.af9e4799.css",
+    "main.js": "/SistemaDeMonitoramentoDoSolo/static/js/main.19e1f5c0.js",
     "static/media/Manjericao2.jpg": "/SistemaDeMonitoramentoDoSolo/static/media/Manjericao2.c969ed5c6a020639ba80.jpg",
-    "static/media/iconeUmidade.png": "/SistemaDeMonitoramentoDoSolo/static/media/iconeUmidade.ae42d00332e7247fc8ca.png",
-    "static/media/iconeTemperatura.png": "/SistemaDeMonitoramentoDoSolo/static/media/iconeTemperatura.b66904850476d9d0a4ca.png",
-    "static/media/iconePH.png": "/SistemaDeMonitoramentoDoSolo/static/media/iconePH.08e848c1c526121a4c31.png",
+    "static/media/smslogo.png": "/SistemaDeMonitoramentoDoSolo/static/media/smslogo.e854c96a2b592f80b7bc.png",
+    "static/media/unisantalogo.png": "/SistemaDeMonitoramentoDoSolo/static/media/unisantalogo.2111fef08f23a3520fce.png",
     "index.html": "/SistemaDeMonitoramentoDoSolo/index.html",
-    "main.e6c13ad2.css.map": "/SistemaDeMonitoramentoDoSolo/static/css/main.e6c13ad2.css.map",
-    "main.45a46ebc.js.map": "/SistemaDeMonitoramentoDoSolo/static/js/main.45a46ebc.js.map"
+    "main.af9e4799.css.map": "/SistemaDeMonitoramentoDoSolo/static/css/main.af9e4799.css.map",
+    "main.19e1f5c0.js.map": "/SistemaDeMonitoramentoDoSolo/static/js/main.19e1f5c0.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.45a46ebc.js"
+    "static/css/main.af9e4799.css",
+    "static/js/main.19e1f5c0.js"
   ]
 }
