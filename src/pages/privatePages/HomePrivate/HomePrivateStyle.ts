@@ -4,6 +4,7 @@ export const HomePrivateMain = styled.main`
 
     min-height: 93vh;
     overflow-x: hidden;    
+    background-color: var(--bg-primary);
 
     main{
         margin-top: 100px;

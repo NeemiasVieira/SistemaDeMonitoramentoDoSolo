@@ -51,6 +51,24 @@ const InfoStyle = styled.div`
     border: solid var(--light-green) 10px;
     border-radius: 150px;
   }
+
+  @media screen and (max-width: 480px) {
+    div{
+      width: 70px;
+      height: 70px;
+    }
+
+    .unidadeMedida{
+      font-size: 12px;
+    } 
+    .valorInfo, .valorInfo2{
+      font-size: 25px;
+    }
+
+    .valorInfo{
+      margin: 0px;
+    }
+  }
 `
 
 interface InfoProps{

@@ -25,6 +25,9 @@ export const UltimaAtualizacaoStyle = styled.div`
  
 
   @media screen and (max-width: 480px) {
-
+    .Infos{
+      width: 95vw;
+      flex-flow: row wrap;
+    }
   }
 `;
