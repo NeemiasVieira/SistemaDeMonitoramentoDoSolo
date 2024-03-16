@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/SistemaDeMonitoramentoDoSolo/static/css/main.af9e4799.css",
-    "main.js": "/SistemaDeMonitoramentoDoSolo/static/js/main.19e1f5c0.js",
+    "main.js": "/SistemaDeMonitoramentoDoSolo/static/js/main.ed70ff2b.js",
     "static/media/Manjericao2.jpg": "/SistemaDeMonitoramentoDoSolo/static/media/Manjericao2.c969ed5c6a020639ba80.jpg",
     "static/media/smslogo.png": "/SistemaDeMonitoramentoDoSolo/static/media/smslogo.e854c96a2b592f80b7bc.png",
     "static/media/unisantalogo.png": "/SistemaDeMonitoramentoDoSolo/static/media/unisantalogo.2111fef08f23a3520fce.png",
     "index.html": "/SistemaDeMonitoramentoDoSolo/index.html",
     "main.af9e4799.css.map": "/SistemaDeMonitoramentoDoSolo/static/css/main.af9e4799.css.map",
-    "main.19e1f5c0.js.map": "/SistemaDeMonitoramentoDoSolo/static/js/main.19e1f5c0.js.map"
+    "main.ed70ff2b.js.map": "/SistemaDeMonitoramentoDoSolo/static/js/main.ed70ff2b.js.map"
   },
   "entrypoints": [
     "static/css/main.af9e4799.css",
-    "static/js/main.19e1f5c0.js"
+    "static/js/main.ed70ff2b.js"
   ]
 }
