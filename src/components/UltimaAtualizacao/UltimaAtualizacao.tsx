@@ -45,8 +45,8 @@ const InfoStyle = styled.div`
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-    width: 125px;
-    height: 125px;
+    width: 100px;
+    height: 100px;
     padding: 20px;
     border: solid var(--light-green) 10px;
     border-radius: 150px;
