@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faFacebook, faInstagram, faWhatsapp, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
+import logoUnisanta from "../../assets/img/unisantalogo.png"
 
 export const Footer = () => {
   return (
@@ -16,7 +17,7 @@ export const Footer = () => {
               plantinha.
             </p>
             <img
-              src="https://www.unisanta.br/images/logos/logo-vertical-branco-outubro.png?v=QhvaqXKBZ7CuFjpv6TEn7AHb_W6edJeMo3Vfgs4WdyA"
+              src={logoUnisanta}
               alt="Logo Unisanta"
             ></img>
           </div>
