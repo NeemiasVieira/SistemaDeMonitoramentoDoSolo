@@ -16,7 +16,6 @@ export const NavAutenticada = () => {
   const [mostrarOpcoesMovimentacoes, setMostrarOpcoesMovimentacoes] = useState<boolean>(false);
   const urlCompleta = window.location.href;
   const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
-  console.log(caminhoAtual)
 
   const toggleOpcoesMovimentacoes = () => {
     setMostrarOpcoesMovimentacoes(!mostrarOpcoesMovimentacoes);
@@ -30,8 +29,6 @@ export const NavAutenticada = () => {
     localStorage.removeItem("userID");
     navigate("/");
   };
-
-  console.log(formarIniciais(nome));
 
   return (
     <NavAutenticadaStyle>

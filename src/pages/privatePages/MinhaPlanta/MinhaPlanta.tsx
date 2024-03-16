@@ -6,8 +6,9 @@ import { PlantsService } from "../../../services/API/PlantsService";
 import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
 import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
 import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
-import { Saude } from "./minha-planta.types";
+import { Planta, Saude } from "./minha-planta.types";
 import { IRegistro } from "../../../interfaces/RecordsModule/registro.interface";
+import { Loading } from "../../../components/Loading/Loading";
 
 const MinhaPlanta = () => {
   //States
@@ -16,8 +17,8 @@ const MinhaPlanta = () => {
   const [responseRelatorio, setResponseRelatorio] = useState<Saude>();
   const [registroResponse, setRegistroResponse] = useState<IRegistro>();
   const [plants, setPlants] = useState([]);
-  const [plantaSelecionada, setPlantaSelecionada] = useState<any>();
-
+  const [plantaSelecionada, setPlantaSelecionada] = useState<Planta>();
+  
   //Services
   const plantsService = new PlantsService(setResponse, setError);
   const relatorioService = new PlantsService(setResponseRelatorio, setError);
@@ -39,8 +40,8 @@ const MinhaPlanta = () => {
 
   useEffect(() => {
     if (plantaSelecionada) {
-      relatorioService.getRelatorioDeSaude(plantaSelecionada);
-      registroService.getUltimoRegistro(plantaSelecionada);
+      relatorioService.getRelatorioDeSaude(plantaSelecionada?.id);
+      registroService.getUltimoRegistro(plantaSelecionada?.id);
       setError(null);
     }
   }, [plantaSelecionada]);
@@ -62,12 +63,17 @@ const MinhaPlanta = () => {
     <>
       <NavAutenticada />
       <MinhaPlantaMain>
-        <h1>Painel de Controle</h1>
-        <select
-          value={plantaSelecionada}
+        {plants.length === 0 && <Loading minHeight={"80vh"}/>}
+        {plants.length > 0 && <select
+          value={plantaSelecionada?.id}
           onChange={(e) => {
             if (e.target.value && e.target.value !== "1") setError(null);
-            setPlantaSelecionada(e.target.value);
+            const plantaEscolhida = plants.find((planta) => planta.id === e.target.value);
+            setRegistroResponse(null);
+            setResponseRelatorio(null);
+            setPlantaSelecionada(plantaEscolhida);
+            
+            
           }}
         >
           <option value="1">Selecione uma planta</option>
@@ -78,24 +84,28 @@ const MinhaPlanta = () => {
                 {`${planta.nome} - (${planta.especie})`}
               </option>
             ))}
-        </select>     
+        </select> }  
 
-        {plantaSelecionada && !error && (
+       {plantaSelecionada && !registroResponse && !responseRelatorio && <Loading minHeight={"70vh"}/>}  
+
+       {registroResponse && !error && <h2 className="nomeDaPlanta">{plantaSelecionada?.nome}</h2>}
+
+        {registroResponse && !error && (
           <UltimaAtualizacao registro={registroResponse} />
         )}
 
-        {plantaSelecionada && !error && (
+        {responseRelatorio && !error && (
           <RelatorioDeSaude relatorio={responseRelatorio} />
         )}
 
-        {plantaSelecionada && !error && (
+        {responseRelatorio && !error && (
           <GraficoLinhas
             className="GraficoLinhas"
-            idPlanta={plantaSelecionada}
+            idPlanta={plantaSelecionada?.id}
           />
         )}
 
-        {error && plantaSelecionada !== "1" && (
+        {error && plantaSelecionada?.id !== "1" && (
           <p>A Planta não possui nenhum registro</p>
         )}
       </MinhaPlantaMain>

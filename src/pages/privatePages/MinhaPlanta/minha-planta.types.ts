@@ -9,3 +9,11 @@ export interface Saude{
     ultimaAtualizacao: string;
     alertas: string[];
 }
+
+export interface Planta{
+    id: string;
+    idDono: string;
+    nome: string;
+    especie: string;
+    dataDaPlantacao: Date; 
+}
