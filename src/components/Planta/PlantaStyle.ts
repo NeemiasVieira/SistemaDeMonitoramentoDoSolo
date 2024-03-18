@@ -8,8 +8,12 @@ export const PlantaStyle = styled.div`
     flex-flow: column wrap;
     padding: 20px;
     border-radius: 5px;
-    border: solid #000 1px;    
+    border: solid #ddd 1px;    
     gap: 15px;
+    background-color: var(--white);
+    -webkit-box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
+    box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
 
     .Planta{
     display: flex;
@@ -57,6 +61,7 @@ export const PlantaStyle = styled.div`
     transition: all 300ms ease 0s;
     border: solid #000 1px;
     color: #000;
+    background-color: var(--white);
 
     :hover{
         transform: scale(1.1);;
