@@ -2,8 +2,8 @@ import React from "react";
 import { Footer } from "../../components/Footer/Footer";
 import { HomeStyle } from "./HomeStyle";
 import { Link } from "react-router-dom";
-import homeImage from "../../assets/img/homeImage4.jpeg"
 import { Navigation } from "../../components/Navigation/Navigation";
+import homeImage from "../../assets/img/homeImage4.jpg"
 
 export default function Home() {
   return (
