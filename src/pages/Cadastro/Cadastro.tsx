@@ -23,20 +23,6 @@ const Cadastro = () => {
   useEffect(() => {
   }, [response, error]);
 
-  if (error) {
-    return (
-      <MensagemDeErro
-        error={error}
-        mensagemBotao="Voltar"
-        setError={setError}
-      />
-    );
-  }
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
   if (response?.id) return <CadastroConcluido />;
 
   const VerificaSenha = () => {
@@ -63,9 +49,12 @@ const Cadastro = () => {
     <>
       <CadastroMain>
         <Navigation/>
+        {error && <MensagemDeErro error={error} mensagemBotao="Voltar" setError={setError} />}
         <h2>Cadastro</h2>
 
-        <form onSubmit={(e) => Cadastrar(e)}>
+        {isLoading && <Loading minHeight={"60vh"}/>}
+
+        {!isLoading && (<form onSubmit={(e) => Cadastrar(e)}>
           <label htmlFor="">Nome</label>
           <div className="divInput">
             <div className="divIcon"><FontAwesomeIcon icon={faA} /></div>
@@ -121,7 +110,7 @@ const Cadastro = () => {
               Faça Login
             </Link>
           </div>
-        </form>
+        </form>)}
       </CadastroMain>
       <Footer />
     </>
