@@ -32,7 +32,7 @@ export class PlantsService {
         const options = { headers: { Authorization: token }}
         const variables = { idPlanta };
         const query = `query GetSaudeByPlantId($idPlanta: String!) {
-            getSaudeByPlantId(idPlanta: $idPlanta) { nitrogenio fosforo potassio umidade temperatura
+            getSaudeByPlantId(idPlanta: $idPlanta) { nitrogenio fosforo potassio luz umidade temperatura
                 pH estadoGeral ultimaAtualizacao alertas }}`;                
 
         await SMS_API.post('', {query, variables}, options).then((response) => {

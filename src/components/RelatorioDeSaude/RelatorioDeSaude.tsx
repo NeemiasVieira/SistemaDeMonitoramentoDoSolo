@@ -1,9 +1,8 @@
 import React from "react";
 import { RelatorioDeSaudeStyle } from "./RelatorioDeSaudeStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceGrinWide as feliz2, faFaceSmile as feliz1, faFaceMeh as neutro, faFaceFrownOpen as triste} from "@fortawesome/free-solid-svg-icons"; 
+import { faFaceGrinWide as feliz2, faFaceSmile as feliz1, faFaceMeh as neutro, faFaceFrownOpen as triste, faCircleQuestion} from "@fortawesome/free-solid-svg-icons"; 
 import { Alerta } from "../Alerta/Alerta";
-import { IRelatorioSaudePlanta } from "../../interfaces/PlantsModule/planta.interface";
 import { Saude } from "../../pages/privatePages/MinhaPlanta/minha-planta.types";
 
 const getPropertyColorClass = (value: string) => {
@@ -35,60 +34,80 @@ export const RelatorioDeSaude: React.FC<RelatorioDeSaudeProps> = ({ relatorio })
 
   return (
     <RelatorioDeSaudeStyle>
-        <div className="SaudeEAlertas">
+      <h2 className="titulo">Relatorio de Saúde</h2>
+
+      <div className="legenda">
+        <h3>Legenda</h3>
+        <ul className="valoresLegenda">
+        <li>
+        <span className="bolinha bolinha-verde"></span>
+        <p>Saudável</p>
+        </li>
+        <li>
+        <span className="bolinha bolinha-amarela"></span>
+        <p>Excesso</p>
+        </li>
+        <li>
+        <span className="bolinha bolinha-vermelha"></span>
+        <p>Deficiência</p>
+        </li>
+      </ul>
+      </div>
+  
+      <div className="SaudeEAlertas">
       <div className="Saude">
-      <h1>Relatório de Saúde</h1>
-      <div className="RelatorioCore">
-        <div className="estadoGeral">        
+      <h3>Estado Geral</h3>
         {relatorio?.estadoGeral === "Excelente!" && <span className="feliz2"><FontAwesomeIcon icon={feliz2} /></span>}
         {relatorio?.estadoGeral === "Bom" && <span className="feliz1"><FontAwesomeIcon icon={feliz1} /></span>}
         {relatorio?.estadoGeral === "Regular" && <span className="neutro"><FontAwesomeIcon icon={neutro} /></span>}
         {relatorio?.estadoGeral === "Ruim" && <span className="triste"><FontAwesomeIcon icon={triste} /></span>}
-        <p><strong>Estado Geral: </strong>{relatorio?.estadoGeral}</p>
-        </div>
-        <div className="Dados">
-        <p>
+      <p>
         <span className={`bolinha ${getPropertyColorClass(relatorio?.nitrogenio)}`}></span>
-        <strong>Nitrogênio: </strong>
-        {relatorio?.nitrogenio}
+        Nitrogênio
       </p>
       <p>
         <span className={`bolinha ${getPropertyColorClass(relatorio?.fosforo)}`}></span>
-        <strong>Fósforo: </strong>
-        {relatorio?.fosforo}
+        Fósforo
       </p>
       <p>
         <span className={`bolinha ${getPropertyColorClass(relatorio?.potassio)}`}></span>
-        <strong>Potássio: </strong>
-        {relatorio?.potassio}
+        Potássio
+      </p>
+      <p>
+      <span className={`bolinha ${getPropertyColorClass(relatorio?.luz)}`}></span>
+      Luz
       </p>
       <p>
         <span className={`bolinha ${getPropertyColorClass(relatorio?.umidade)}`}></span>
-        <strong>Umidade: </strong>
-        {relatorio?.umidade}
+        Umidade
       </p>
       <p>
         <span className={`bolinha ${getPropertyColorClass(relatorio?.temperatura)}`}></span>
-        <strong>Temperatura: </strong>
-        {relatorio?.temperatura}
+        Temperatura
       </p>
       <p>
         <span className={`bolinha ${getPropertyColorClass(relatorio?.pH)}`}></span>
-        <strong>pH: </strong>
-        {relatorio?.pH}
+        pH
       </p>
-        </div>
-      </div>          
       </div>
       <div className="alertas">
-        <h1>Alertas</h1>
+        <h3>Alertas</h3>
         {relatorio?.alertas.length > 0 &&
         relatorio?.alertas.map((alerta) => <Alerta key={Math.random()} alerta={alerta}/>)}
         {relatorio?.alertas.length === 0 && <Alerta/>}
+
       </div>
-      </div>
-      <p><strong>Última atualização: </strong>{formatoDateBR(relatorio?.ultimaAtualizacao)}</p> 
       
+      </div>
+      {/* <p><strong>Última atualização: </strong>{formatoDateBR(relatorio?.ultimaAtualizacao)}</p>  */}
+      
+
+       
+       <button>
+        <FontAwesomeIcon icon={faCircleQuestion}/>
+          Saiba mais sobre as faixas saudáveis
+        </button>
+
     </RelatorioDeSaudeStyle>
   );
 };

@@ -46,6 +46,15 @@ const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
         ]),
       ];
       break;
+    case "luz":
+      newData = [
+        ["Dia", "Luz"],
+        ...records.map((record) => [
+          formatDate(record.dataDeRegistro),
+          Number(record.luz),
+        ]),
+      ];
+      break;
   }
   return newData;
 };
@@ -122,12 +131,15 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
 
   return (
     <SecaoGraficoLinhas>
-      <h2>Histórico da Planta</h2>
-      <div className="selects">
+      <h2 className="titulo">Gráfico do Histórico da Planta</h2>
+      <div className="filtros">
+        <h3>Filtros</h3>
+        <div className="selects">
         <div className="Select">
           <p className="tituloSelect">Gráfico</p>
           <select
             value={tipoGrafico}
+            className="selectFiltro"
             onChange={(e) => {
               setTipoGrafico(e.target.value);
             }}
@@ -136,11 +148,13 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
             <option value="temperatura">Temperatura</option>
             <option value="umidade">Umidade</option>
             <option value="pH">pH</option>
+            <option value="luz">Luz</option>
           </select>
         </div>
         <div className="Select">
           <p className="tituloSelect">Exibir um registro a cada</p>
           <select
+            className="selectFiltro"
             name=""
             id=""
             onChange={(e) => setIntervaloDeDias(e.target.value)}
@@ -156,6 +170,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
         <div className="Select">
           <p className="tituloSelect">Intervalo de busca</p>
           <select
+            className="selectFiltro"
             name=""
             id=""
             onChange={(e) => setIntervaloDeBusca(e.target.value)}
@@ -169,6 +184,8 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
             <option value={365}>Último Ano</option>
           </select>
         </div>
+        </div>
+        
       </div>
       {data.length <= 2 && (
         <p className="Aviso">
@@ -176,6 +193,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
         </p>
       )}
       {data.length > 2 && (
+        <div className="graficoContainer">
         <Chart
           chartType="Line"
           width="100%"
@@ -183,6 +201,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
           data={data}
           options={options}
         />
+        </div>
       )}
     </SecaoGraficoLinhas>
   );

@@ -12,14 +12,15 @@ export const AlertaStyle = styled.div`
   p {
     margin: 0;
     width: 40vw;
-    max-width: 500px;
-    font-weight: 700;
+    max-width: 700px;
+    font-weight: 600;
+    font-size: 16px;
   }
 
   svg {
     margin-left: 10px;
     color: #ffc222;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   @media screen and (max-width: 480px){

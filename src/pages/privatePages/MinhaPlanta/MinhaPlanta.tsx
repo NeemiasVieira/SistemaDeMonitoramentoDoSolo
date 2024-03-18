@@ -86,7 +86,7 @@ const MinhaPlanta = () => {
             ))}
         </select> }  
 
-       {plantaSelecionada && !registroResponse && !responseRelatorio && <Loading minHeight={"70vh"}/>}  
+       {plantaSelecionada && !registroResponse && !responseRelatorio && <Loading minHeight={"50vh"}/>}  
 
        {registroResponse && !error && <h2 className="nomeDaPlanta">{plantaSelecionada?.nome}</h2>}
 
