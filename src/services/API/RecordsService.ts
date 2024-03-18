@@ -21,7 +21,7 @@ export class RecordsService{
 
         const query = `query GetAllRecordsByPlant($idPlanta: String!, $intervaloDeDias: Float, $intervaloDeBusca: Float ) {
             getAllRecordsByPlant( idPlanta: $idPlanta, intervaloDeDias: $intervaloDeDias, intervaloDeBusca: $intervaloDeBusca )   
-            { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro } }`
+            { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz } }`
         
         const options = { headers: { Authorization: token }}
         const variables = {idPlanta, intervaloDeDias, intervaloDeBusca};

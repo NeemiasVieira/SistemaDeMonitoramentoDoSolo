@@ -5,6 +5,7 @@ export interface Saude{
     umidade: string;
     temperatura: string;
     pH: string;
+    luz: string
     estadoGeral: string;
     ultimaAtualizacao: string;
     alertas: string[];

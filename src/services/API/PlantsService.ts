@@ -47,7 +47,7 @@ export class PlantsService {
         const options = { headers: {  Authorization: token, }};
         const variables = { idPlanta }
         const query = `query GetLastRecordByPlant($idPlanta: String!) {
-            getLastRecordByPlant(idPlanta: $idPlanta) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro}}`; 
+            getLastRecordByPlant(idPlanta: $idPlanta) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz}}`; 
 
         await SMS_API.post('', {query, variables}, options).then((response) => {
             if(response.data && response.data.data && response.data.data.getLastRecordByPlant) this.setResponse(response.data.data.getLastRecordByPlant);

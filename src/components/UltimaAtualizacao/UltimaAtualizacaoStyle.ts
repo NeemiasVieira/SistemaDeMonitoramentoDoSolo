@@ -5,6 +5,7 @@ export const UltimaAtualizacaoStyle = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
+  margin-top: 25px;
 
   .Infos{
     display: flex;
@@ -15,14 +16,12 @@ export const UltimaAtualizacaoStyle = styled.div`
   }
 
   .InfoUltimaAtualizacao{
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
     letter-spacing: 1.5px;
     margin-top: 50px;
     color: var(--light-gray)
   }
-
- 
 
   @media screen and (max-width: 480px) {
     .Infos{

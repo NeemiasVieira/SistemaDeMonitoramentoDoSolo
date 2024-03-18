@@ -19,15 +19,16 @@ const InfoStyle = styled.div`
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 10%;
+    margin: 2px;
   }
 
   .valorInfo, .valorInfo2{
-    font-size: 40px;
+    font-size: 32px;
     font-weight: 700;
   }
 
   .valorInfo{
-    margin: 22px 0 0 0;
+    margin: 18px 0 0 0;
   }
 
   .valorInfo2{
@@ -36,7 +37,7 @@ const InfoStyle = styled.div`
 
   .unidadeMedida{
     color: var(--gray-primary);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
   }
 
@@ -45,9 +46,9 @@ const InfoStyle = styled.div`
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-    width: 100px;
-    height: 100px;
-    padding: 20px;
+    width: 80px;
+    height: 80px;
+    padding: 15px;
     border: solid var(--light-green) 10px;
     border-radius: 150px;
   }
@@ -101,7 +102,7 @@ export const UltimaAtualizacao: React.FC<UltimaAtualizacaoProps> = ({ registro }
               <Info nomeInfo="Nitrogenio" valorInfo={registro.nitrogenio} unidadeMedida="mg/Kg"/>
               <Info nomeInfo="Fósforo" valorInfo={registro.fosforo} unidadeMedida="mg/Kg"/>
               <Info nomeInfo="Potássio" valorInfo={registro.potassio} unidadeMedida="mg/Kg"/>
-              <Info nomeInfo="Luz" valorInfo="50" unidadeMedida="%"/>
+              <Info nomeInfo="Luz" valorInfo={registro.luz} unidadeMedida="%"/>
               <Info nomeInfo="Temperatura" valorInfo={registro.temperatura} unidadeMedida="°C"/>
               <Info nomeInfo="Umidade" valorInfo={registro.umidade} unidadeMedida="%"/>
               <Info nomeInfo="pH" valorInfo={registro.pH} />

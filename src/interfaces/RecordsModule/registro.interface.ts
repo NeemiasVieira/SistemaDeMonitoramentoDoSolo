@@ -7,5 +7,6 @@ export interface IRegistro{
   umidade: string;
   temperatura: string;
   pH: string;
+  luz: string;
   dataDeRegistro: string;
 }

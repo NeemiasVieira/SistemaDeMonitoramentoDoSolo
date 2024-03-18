@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const MinhaPlantaMain = styled.main`
-  min-height: 91vh;
-  margin: 70px 0;
+  min-height: 80vh;
+  margin: 70px 0 0 0;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
