@@ -6,6 +6,7 @@ export const AplicacaoMain = styled.main`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  background-color: var(--bg-primary);
 
   .SecaoIntroducao{
     display: flex;

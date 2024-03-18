@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
 export const HomeStyle = styled.main`
-  min-height: 93vh;
+  /* min-height: calc(100vh - 70px); */
   overflow-x: hidden;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+  background-color: var(--bg-primary);
 
   h1 {
-    font-size: 50px;
-    margin: 25px 0 25px 0;
+    font-size: 40px;
+    margin: 70px 0 25px 0;
     text-align: center;
     color: black;
   }
@@ -38,14 +39,17 @@ export const HomeStyle = styled.main`
 
   .IntroducaoLadoDireito {
     width: 100%;
-    padding: 3vh 3vw;
+    padding: 0 20px;
   }
 
   .IntroducaoContent {
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
+    margin-top: 45px;
     width: 100vw;
+    overflow: hidden;
+    max-height: 93vh;
 
     img {
       width: 55vw;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavAutenticada } from "../../../components/NavAutenticada/NavAutenticada";
+import { Navigation } from "../../../components/Navigation/Navigation";
 import { Footer } from "../../../components/Footer/Footer";
 import { HomePrivateMain } from "./HomePrivateStyle";
 import { PlantsService } from "../../../services/API/PlantsService";
@@ -41,7 +41,7 @@ const HomePrivate = () => {
   if(isLoading) return (    
       <>
       <HomePrivateMain>
-          <NavAutenticada />
+          <Navigation auth={true} />
           <main>
             <h1>Seja bem vindo ao Sistema de Controle</h1>
             <h2>
@@ -60,7 +60,7 @@ const HomePrivate = () => {
     return (
       <>
         <HomePrivateMain>
-          <NavAutenticada />
+          <Navigation auth={true} />
           <main>
             <h1>Seja bem vindo ao Sistema de Controle</h1>
             <h2>

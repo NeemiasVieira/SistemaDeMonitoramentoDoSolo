@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navigation from "../../components/Navigation/Navigation";
 import { CadastroMain } from "./CadastroStyle";
 import { Link } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
@@ -9,6 +8,7 @@ import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroCo
 import { UserService } from "../../services/API/UserSerivice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faAt, faA } from "@fortawesome/free-solid-svg-icons";
+import { Navigation } from "../../components/Navigation/Navigation";
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");
@@ -62,8 +62,7 @@ const Cadastro = () => {
   return (
     <>
       <CadastroMain>
-        <Navigation />
-        <h1>Sistema de Monitoramento de Solo</h1>
+        <Navigation/>
         <h2>Cadastro</h2>
 
         <form onSubmit={(e) => Cadastrar(e)}>

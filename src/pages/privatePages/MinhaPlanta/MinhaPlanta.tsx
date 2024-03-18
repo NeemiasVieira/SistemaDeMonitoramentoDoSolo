@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MinhaPlantaMain } from "./MinhaPlantaStyle";
-import { NavAutenticada } from "../../../components/NavAutenticada/NavAutenticada";
+import { Navigation } from "../../../components/Navigation/Navigation";
 import { Footer } from "../../../components/Footer/Footer";
 import { PlantsService } from "../../../services/API/PlantsService";
 import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
@@ -61,7 +61,7 @@ const MinhaPlanta = () => {
 
   return (
     <>
-      <NavAutenticada />
+      <Navigation auth={true} />
       <MinhaPlantaMain>
         {plants.length === 0 && <Loading minHeight={"80vh"}/>}
         {plants.length > 0 && <select

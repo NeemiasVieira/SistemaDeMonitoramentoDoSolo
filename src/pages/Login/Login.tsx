@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { LoginMain } from "./LoginStyle";
-import Navigation from "../../components/Navigation/Navigation";
 import { Footer } from "../../components/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
@@ -9,6 +8,7 @@ import { UserService } from "../../services/API/UserSerivice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
+import { Navigation } from "../../components/Navigation/Navigation";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -37,25 +37,15 @@ const Login = () => {
 
   }, [response, error]);
 
-  if (error)
-    return (
-      <MensagemDeErro
-        error={error}
-        mensagemBotao="Voltar"
-        setError={setError}
-      />
-    );
-
-  if (isLoading) return <Loading/>
-
   return (
     <>
       <LoginMain>
         <Navigation />
-        <h1>Sistema de Monitoramento de Solo</h1>
+        {error && <MensagemDeErro error={error} mensagemBotao="Voltar" setError={setError}/>}
         <h2>Login</h2>
 
-        <form>
+        {isLoading && <Loading minHeight={'400px'} />}
+        {!isLoading && <form>
           <label htmlFor="">Usuário</label>
           <div className="divInput">
             <div className="divIcon">
@@ -96,7 +86,7 @@ const Login = () => {
               Crie sua conta
             </Link>
           </div>
-        </form>
+        </form>}
       </LoginMain>
       <Footer />
     </>

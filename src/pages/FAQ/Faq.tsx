@@ -1,8 +1,8 @@
 import React from "react";
 import { FaqMain } from "./FaqStyle";
 import { PerguntaFAQ } from "../../components/PerguntaFAQ/PerguntaFAQ";
-import Navigation from "../../components/Navigation/Navigation";
 import { Footer } from "../../components/Footer/Footer";
+import { Navigation } from "../../components/Navigation/Navigation";
 
 const Faq = () => {
   return (

@@ -3,9 +3,11 @@ import styled from "styled-components";
 export const LoginMain = styled.main`
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+  margin-top: 70px;    
   align-items: center;
-  min-height: 93vh;
+  justify-content: center;
+  min-height: 70vh;
+  background-color: var(--bg-primary);
 
   h1 {
     margin: 0;
@@ -20,12 +22,12 @@ export const LoginMain = styled.main`
     background: #111;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     flex-flow: column wrap;
     width: 50vw;
     max-width: 450px;
-    height: 50vh;
-    max-height: 400px;
+    height: 20vh;
+    min-height: 360px;
     border: solid #ccc 3px;
     border-radius: 10px;
     padding: 20px;
@@ -98,7 +100,7 @@ export const LoginMain = styled.main`
     }
   }
 
-  a {
+  .crieSuaConta {
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
@@ -173,10 +175,4 @@ export const LoginMain = styled.main`
     }
   }
 
-  @media screen and (min-width: 500px) and (max-width: 1370px) {
-    min-height: 110vh;
-    form{
-      height: 60vh;
-    }
-  }
 `;

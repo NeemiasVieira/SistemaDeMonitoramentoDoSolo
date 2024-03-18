@@ -1,9 +1,9 @@
 import React from "react";
-import Navigation from "../../components/Navigation/Navigation";
 import { Footer } from "../../components/Footer/Footer";
 import { AplicacaoMain } from "./AplicacaoStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
+import { Navigation } from "../../components/Navigation/Navigation";
 
 const Aplicacao = () => {
   return (

@@ -1,9 +1,9 @@
 import React from "react";
-import Navigation from "../../components/Navigation/Navigation";
 import { Footer } from "../../components/Footer/Footer";
 import { HomeStyle } from "./HomeStyle";
 import { Link } from "react-router-dom";
-import manjericao2 from "../../assets/img/Manjericao2.jpg";
+import homeImage from "../../assets/img/homeImage4.jpeg"
+import { Navigation } from "../../components/Navigation/Navigation";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <HomeStyle>
         <Navigation />
         <div className="IntroducaoContent">
-          <img src={manjericao2} alt="Manjericão" />
+          <img src={homeImage} alt="Manjericão" />
           <div className="IntroducaoLadoDireito">
             <h1>Sistema de Monitoramento do Solo</h1>
             <div className="introducao">

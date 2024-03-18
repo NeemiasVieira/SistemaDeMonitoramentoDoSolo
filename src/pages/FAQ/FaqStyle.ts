@@ -8,6 +8,7 @@ export const FaqMain = styled.main`
     justify-content: flex-start;
     gap: 2px;
     margin-bottom: 50px;
+    background-color: var(--bg-primary);
 
     h1{
         margin: 100px 0 40px 0;

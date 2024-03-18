@@ -5,7 +5,9 @@ export const CadastroMain = styled.main`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  min-height: 93vh;
+  margin-top: 40px;
+  min-height: 80vh;
+  background-color: var(--bg-primary);
 
   h1 {
     margin-bottom: 0;
@@ -164,5 +166,6 @@ export const CadastroMain = styled.main`
 
   @media screen and (min-width: 500px) and (max-width: 1370px) {
     min-height: 120vh;
+    margin-top: 0;
   }
 `;

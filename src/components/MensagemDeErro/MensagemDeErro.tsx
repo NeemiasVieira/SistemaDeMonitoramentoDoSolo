@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MensagemErroStyle } from "./MensagemDeErroStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
@@ -15,16 +15,22 @@ export const MensagemDeErro: React.FC<MensagemDeErroProps> = ({ error, mensagemB
     setError(null);
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setError(null)
+    }, 4000)
+  })
+
+
   return (
     <MensagemErroStyle>
-      <div>
-        <h1>Oops!</h1>
-        <FontAwesomeIcon icon={faTriangleExclamation} className="icone" />
-        <h2>Algo deu errado</h2>
-         <p><strong>{error}</strong></p>
+        <div className="mensagemErroDiv">
+         <FontAwesomeIcon icon={faTriangleExclamation} className="icone" />
+         <p>{error}</p>
+        </div>
         
-        <button onClick={voltar}>{mensagemBotao}</button>
-      </div>
+        {/* <button onClick={voltar}>{mensagemBotao}</button> */}
+
     </MensagemErroStyle>
   );
 };

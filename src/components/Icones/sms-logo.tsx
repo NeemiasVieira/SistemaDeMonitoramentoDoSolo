@@ -10,10 +10,14 @@ const ImagemLogo = styled.img`
   margin-top: 5px;
 `;
 
-export const IconeLogoSms = () => {
+interface IconeLogoProps{
+  path: string;
+}
+
+export const IconeLogoSms: React.FC<IconeLogoProps> = ({path}) => {
   return (
     <>
-      <Link to='/sistema/home'>
+      <Link to={path}>
         <ImagemLogo src={SMSLogo} alt="Logo do sistema de monitoramento do solo"></ImagemLogo>
       </Link>
     </>
