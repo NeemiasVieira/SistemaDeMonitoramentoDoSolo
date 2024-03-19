@@ -147,7 +147,6 @@ export const CadastroMain = styled.main`
       color: #000;
     }
     button {
-      width: 150px;
       height: 34px;
       font-size: 1.1em;
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const LoginMain = styled.main`
   display: flex;
   flex-flow: column wrap;
-  margin-top: 70px;    
+  margin-top: 70px;
   align-items: center;
   justify-content: center;
   min-height: 70vh;
@@ -13,7 +13,7 @@ export const LoginMain = styled.main`
     margin: 0;
   }
 
-  h2{
+  h2 {
     margin: 25px 0;
     font-size: 1.6rem;
   }
@@ -22,7 +22,7 @@ export const LoginMain = styled.main`
     background: #111;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     flex-flow: column wrap;
     width: 50vw;
     max-width: 450px;
@@ -42,22 +42,22 @@ export const LoginMain = styled.main`
     font-size: 1.2rem;
   }
 
-  .divIcon{
+  .divIcon {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     border-right: solid #000 2px;
+
+    svg {
+      font-size: 1.8rem;
+      height: 45px;
+      color: #000;
+      padding-right: 15px;
+    }
   }
 
-  svg{
-    font-size: 1.8rem;
-    height: 45px;
-    color: #000;
-    padding-right: 15px;    
-  }
-
-  .divInput{
+  .divInput {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,16 +74,16 @@ export const LoginMain = styled.main`
     height: 25px;
     padding: 10px;
     max-width: 300px;
-    border: none;    
+    border: none;
     background: #fff;
     color: #000;
   }
 
-  input:focus{
+  input:focus {
     outline: none;
   }
 
-  button {
+  .botaofazerLogin {
     margin-top: 20px;
     cursor: pointer;
     width: 150px;
@@ -104,6 +104,7 @@ export const LoginMain = styled.main`
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
+    font-weight: 600;
   }
 
   .sugestaoCadastro {
@@ -123,17 +124,12 @@ export const LoginMain = styled.main`
     }
   }
 
-  .crieSuaConta{
-    font-weight: 600;
-    color: #fff;
-  }
-
   @media screen and (max-width: 480px) {
     h1 {
       font-size: 1.3em;
     }
 
-    h2{
+    h2 {
       margin-top: 5px;
       font-size: 1rem;
     }
@@ -143,10 +139,10 @@ export const LoginMain = styled.main`
       height: 45vh;
     }
 
-    .divIcon{
+    .divIcon {
       height: 45px;
 
-      svg{
+      svg {
         height: 30px;
       }
     }
@@ -157,7 +153,7 @@ export const LoginMain = styled.main`
       font-size: 1rem;
       height: 5px;
     }
-    button {
+    .botaofazerLogin {
       width: 150px;
       height: 34px;
       font-size: 1.1em;
@@ -170,9 +166,8 @@ export const LoginMain = styled.main`
     .sugestaoCadastro {
       overflow-x: hidden;
       margin-top: 5px;
-      max-width: 55vw;
-      font-size: .9rem;
+      max-width: 250px;
+      font-size: 0.9rem;
     }
   }
-
 `;

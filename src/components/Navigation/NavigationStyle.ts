@@ -127,27 +127,8 @@ export const NavAutenticadaStyle = styled.nav`
 
   @media screen and (max-width: 480px) {
 
-    overflow-x: hidden;
+    display: none;
 
-    .navegacao {
-      gap: 5vw;
-    }
-
-    a {
-      font-size: .9rem;
-      :hover {
-        font-size: .9rem;
-      }
-    }
-
-    ul {
-      padding: 0 20px;
-    }
-
-
-    .usuario {
-      display: none;
-    }
   }
 `;
 
@@ -190,7 +171,7 @@ export const NavStyle = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;  
+    height: 100%;
     padding: 0 0px;
   }
 
@@ -213,4 +194,43 @@ export const NavStyle = styled.nav`
     position: fixed;
     right: 50px;
   }
+
+  @media screen and (max-width: 480px){
+    display: none;
+  }
+
+  `
+
+  export const NavStyleMobile = styled.nav`
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--white);
+    border-bottom: solid #ccc 2px;
+
+    img{
+      margin-left: 20px;
+    }
+
+    .botaoToggleDropDown{
+      background-color: transparent;
+      border: none;
+      cursor: pointer;  
+      margin: 0 25px 0 0;
+     
+      svg{
+        font-size: 1.8rem;
+        padding: 0; 
+      }
+    }
+  
+  @media screen and (min-width: 481px){
+    display: none;
+  }
+  
+  
   `

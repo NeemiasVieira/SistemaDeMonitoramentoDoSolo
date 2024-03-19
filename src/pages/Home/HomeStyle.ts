@@ -120,7 +120,7 @@ export const HomeStyle = styled.main`
       flex-flow: column wrap;
       img {
         width: 100vw;
-        height: 200px;
+        height: 300px;
       }
     }
   }
