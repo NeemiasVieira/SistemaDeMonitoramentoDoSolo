@@ -72,10 +72,38 @@ export const PlantaStyle = styled.div`
 
     @media screen and (max-width: 480px){
         max-width: 85vw;
+        padding: 15px 0;
+        gap: 0;
+        border-radius: 10px;
+
+        h2{
+            padding-bottom: 10px;
+            border-bottom: solid #ccc 1px;
+            width: 100%;
+        }
+
+        .Planta{
+            padding-top: 10px;
+            max-width: 75vw;
+            gap: 10px;
+        }
+
+        .infoPlanta{
+            h3{
+                display: none;
+            }
+        }
+
+        .buttonDetalhes{
+            margin-top: 5px;
+            width: 125px;
+            font-size: 1.1rem;
+            height: 35px;
+        }
 
         .imagemPlanta{
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
         }
     }
 

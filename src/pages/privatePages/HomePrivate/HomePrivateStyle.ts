@@ -47,6 +47,10 @@ export const HomePrivateMain = styled.main`
     }
 
     @media screen and (max-width: 480px){
+
+        margin-top: 50px;
+        min-height: 200px;
+
         .Plantas{
             margin-top: 25px;
             gap: 25px;

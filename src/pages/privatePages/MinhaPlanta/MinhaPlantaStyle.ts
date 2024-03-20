@@ -38,6 +38,8 @@ export const MinhaPlantaMain = styled.main`
   }
 
   @media screen and (max-width: 480px) {
+    padding-top: 50px;
+    max-width: 100vw;
     overflow-x: hidden;
   }
 `;

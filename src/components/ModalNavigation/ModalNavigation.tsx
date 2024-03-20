@@ -18,8 +18,9 @@ const customStyles = {
     border: "solid #000 1px",
     width: "100vw",
     height: "100vh",
-    backgroundColor: "#222",
+    backgroundColor: "#111",
     opacity: "0.7",
+    paddingTop: "90px"
   },
 };
 

@@ -43,7 +43,7 @@ export const ListaNavegacaoAutenticada = () => {
         <Link to="/sistema/home">Ajuda</Link>
       </li>
       <li>
-         <Link to="/" onClick={Logout}>Logout</Link>
+         <Link to="/" onClick={Logout} className="logoutMobileButton">Logout</Link>
       </li>
     </ul>
   );

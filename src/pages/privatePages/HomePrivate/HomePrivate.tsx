@@ -54,14 +54,13 @@ const HomePrivate = () => {
         <Footer />
         </>
   )
-
-  if(error) return <MensagemDeErro  error={error}  mensagemBotao="Voltar"  setError={setError} /> 
   
     return (
       <>
         <HomePrivateMain>
           <Navigation auth={true} />
           <main>
+            {error && <MensagemDeErro  error={error}  mensagemBotao="Voltar"  setError={setError} />}
             <h1>Seja bem vindo ao Sistema de Controle</h1>
             <h2>
               Por aqui você pode cuidar da sua plantinha, reportar problemas e

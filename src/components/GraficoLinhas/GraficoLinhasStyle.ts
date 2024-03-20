@@ -79,11 +79,17 @@ export const SecaoGraficoLinhas = styled.section`
     width: 100vw;
     max-width: 470px;
 
+    .titulo{
+      font-size: 25px;
+    }
+
     .selects{
+      margin-top: 20px;
       flex-flow: column wrap;
-      align-items: flex-start;
+      align-items: center;
       margin-bottom: 20px;
       padding: 0 15px;
+      background-color: transparent;
     }
 
     .Select{

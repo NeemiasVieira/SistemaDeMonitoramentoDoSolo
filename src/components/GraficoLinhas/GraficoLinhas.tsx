@@ -125,8 +125,9 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
       title: unidadeMedida(tipoGrafico),
     },
     width: "100%",
+    height: "auto",
     curveType: "function",
-    legend: { position: "bottom" },
+    legend: { position: "none" },
   };
 
   return (
@@ -197,7 +198,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
         <Chart
           chartType="Line"
           width="100%"
-          height="400px"
+          height="450px"
           data={data}
           options={options}
         />

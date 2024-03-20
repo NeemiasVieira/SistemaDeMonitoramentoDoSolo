@@ -25,8 +25,12 @@ export const AlertaStyle = styled.div`
 
   @media screen and (max-width: 480px){
     p{
-        font-size: 15px;
-        width: 60vw;
+        font-size: 13px;
+        width: 100%;
+    }
+
+    svg{
+      font-size: 1.2rem;
     }
 
   }
@@ -55,8 +59,9 @@ export const SemAlertaStyle = styled.div`
   }
 
   @media screen and (max-width: 480px){
+
     p{
-        font-size: 15px;
+        font-size: 13px;
         width: 60vw;
     }
 

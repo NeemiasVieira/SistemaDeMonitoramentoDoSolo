@@ -18,6 +18,10 @@ export const NavAutenticadaStyle = styled.nav`
     font-family: "Montserrat", sans-serif;
   }
 
+  .logoutMobileButton{
+    display: none;
+  }
+
   .navegacao .selecionado{
     padding: 4px 10px -1px 10px;
     border-bottom: solid var(--light-green) 4px;

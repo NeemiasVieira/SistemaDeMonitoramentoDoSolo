@@ -110,6 +110,15 @@ export const FooterStyle = styled.footer`
 
   @media screen and (max-width: 480px){
 
+    padding: 40px 10px;
+
+    .Intro{
+      display: flex;
+      justify-content: center;
+      flex-flow: column wrap;
+      margin: 0 0 20px 0;
+    }
+
     .footer-content{
       flex-flow: column wrap;
       padding: 0;
@@ -117,7 +126,7 @@ export const FooterStyle = styled.footer`
     }
 
     p{
-      max-width: 75vw;
+      max-width: 90vw;
       padding: 0;
     }
 
@@ -133,8 +142,9 @@ export const FooterStyle = styled.footer`
     }
 
     img{
-      width: 350px;
-      height: 85px;
+      width: 80%;
+      height: auto;
+      align-self: center;
     }
   }
 `;

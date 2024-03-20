@@ -35,7 +35,7 @@ export const RelatorioDeSaudeStyle = styled.section`
   }
 
   .neutro {
-    color: #ff3;
+    color: #ffd700;
   }
 
   .bolinha {
@@ -51,7 +51,7 @@ export const RelatorioDeSaudeStyle = styled.section`
   }
 
   .bolinha-amarela {
-    background-color: yellow;
+    background-color: #ffd520;
   }
 
   .bolinha-vermelha {
@@ -159,6 +159,32 @@ export const RelatorioDeSaudeStyle = styled.section`
 
   @media screen and (max-width: 480px) {
     gap: 10px;
+    max-width: 95vw;
+
+    .SaudeEAlertas{
+      align-items: center;
+      width: 95%;
+    }
+
+    .Saude{
+      width: 90%;
+      border: none;
+      align-content: center;
+      padding: 20px;
+
+      h3{
+        margin: 10px 0;
+      }
+    }
+
+    .legenda{
+      width: 90%;
+    }
+
+    .alertas{
+      padding: 0 20px;
+      margin-bottom: 20px;
+    }
 
     .SaudeEAlertas {
       flex-flow: column wrap;
@@ -168,10 +194,5 @@ export const RelatorioDeSaudeStyle = styled.section`
     h1 {
       margin: 5px;
     }
-  }
-
-  @media screen and (max-width: 480px) {
-    max-width: 80vw;
-    padding: 25px;
   }
 `;

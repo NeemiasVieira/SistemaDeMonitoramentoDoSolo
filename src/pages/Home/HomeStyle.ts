@@ -112,15 +112,16 @@ export const HomeStyle = styled.main`
       font-size: 1em;
       max-width: 85vw;
       padding: 10px;
-      height: 22vh;
+      height: auto;
     }
 
     .IntroducaoContent {
       margin: 50px 0 0 0;
       flex-flow: column wrap;
+      max-height: 150vh;
       img {
         width: 100vw;
-        height: 300px;
+        height: 350px;
       }
     }
   }

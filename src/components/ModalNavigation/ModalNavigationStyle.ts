@@ -32,8 +32,8 @@ ul li a{
 
 .closeButton{
     position: absolute;
-    top: 5%;
-    right: 12%;
+    top: 10%;
+    right: 15%;
     background-color: transparent;
     border: none;
 

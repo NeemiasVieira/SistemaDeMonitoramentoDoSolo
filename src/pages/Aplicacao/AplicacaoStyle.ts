@@ -39,8 +39,10 @@ export const AplicacaoMain = styled.main`
 
   @media screen and (max-width: 480px){
 
-    min-height: 80vh;
-    
+    justify-content: flex-start;
+    margin-top: 75px;
+    padding: 50px 10px;
+    min-height: 30vh;
 
     .SecaoIntroducao{
       width: 90vw;
