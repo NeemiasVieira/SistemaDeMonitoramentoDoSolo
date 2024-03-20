@@ -96,8 +96,8 @@ export const PlantaStyle = styled.div`
 
         .buttonDetalhes{
             margin-top: 5px;
-            width: 125px;
-            font-size: 1.1rem;
+            width: 150px;
+            font-size: 1rem;
             height: 35px;
         }
 
