@@ -8,6 +8,7 @@ import { UserService } from "../../services/API/UserSerivice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faAt, faA } from "@fortawesome/free-solid-svg-icons";
 import { Navigation } from "../../components/Navigation/Navigation";
+import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");
@@ -18,8 +19,18 @@ const Cadastro = () => {
   const [error, setError] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>();
   const userService = new UserService(setResponse, setError);
+  const { notificacao } = useNotificacoes();
 
   useEffect(() => {
+
+    if(error){
+      notificacao.exibirNotificacao({
+        tipo: "ERRO",
+        mensagem: error,
+        tempoEmSeg: 3
+      })
+    }
+
   }, [response, error]);
 
   if (response?.id) return <CadastroConcluido />;
@@ -34,6 +45,7 @@ const Cadastro = () => {
 
   const Cadastrar = async (e: any) => {
     e.preventDefault();
+    setError(null);
     if (!VerificaSenha()) {
       setError("As senhas não correspondem");
       return;

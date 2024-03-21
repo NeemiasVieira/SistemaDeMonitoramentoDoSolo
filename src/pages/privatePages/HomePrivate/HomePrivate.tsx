@@ -5,6 +5,7 @@ import { HomePrivateMain } from "./HomePrivateStyle";
 import { PlantsService } from "../../../services/API/PlantsService";
 import { Planta } from "../../../components/Planta/Planta";
 import { Loading } from "../../../components/Loading/Loading";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 interface Plant {
   id: string;
@@ -20,8 +21,8 @@ const HomePrivate = () => {
   const [isLoading, setIsLoading] = useState(false);
   const plantsService = new PlantsService(setResponse, setError);
   const ownerID = localStorage.getItem("userID");
-  const [mensagemSucessoLogin, setMensagemSucessoLogin] = useState<string>(`Bem vindo ${localStorage.getItem("nome")}`)
-  let sucessoLogin = localStorage.getItem("sucessoLogin");
+  const { notificacao } = useNotificacoes();
+
 
   const getPlantas = async() => {
     setIsLoading(true);
@@ -31,18 +32,27 @@ const HomePrivate = () => {
 
   useEffect(() => {
     getPlantas();
-    setTimeout(() => {
-      if(sucessoLogin) {
-        localStorage.removeItem("sucessoLogin");
-        sucessoLogin = null;
-      }}, 500)
   }, [ownerID]);
 
   useEffect(() => {
     if (response?.length > 0) {
       setPlants(response);
     }
-  }, [response, error]);
+  }, [response]);
+
+  useEffect(() => {
+
+    if(error){
+      notificacao.exibirNotificacao({
+        tipo: "ERRO",
+        mensagem: error,
+        tempoEmSeg: 3
+  
+      })
+      setError(null);
+    }
+    
+  },[error])
 
   if(isLoading) return (    
       <>

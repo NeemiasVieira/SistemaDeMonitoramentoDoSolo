@@ -33,12 +33,7 @@ export const ListaNavegacaoAutenticada = () => {
       <li className="logo">
         <IconeLogoSms path={"/"} />
       </li>
-      <li className={caminhoAtual === "/sistema/minhasplantas" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/sistema/minhasplantas">Minhas Plantas</Link>
-      </li>
-      <li className={caminhoAtual === "/sistema/controle" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/sistema/controle">Controle</Link>
-      </li>
+     
       <li className={caminhoAtual === "/aplicacao" ? "selecionado" : "naoSelecionado"}>
         <Link to="/aplicacao">Aplicação</Link>
       </li>

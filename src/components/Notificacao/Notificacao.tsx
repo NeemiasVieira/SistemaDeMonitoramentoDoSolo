@@ -6,11 +6,12 @@ import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 
 export const Notificacao = () => {
 
-  const { notificacao, setMensagem } = useNotificacoes();
+  const { notificacao } = useNotificacoes();
 
   useEffect(() => {
+    console.log(notificacao);
     setTimeout(() => {
-      setMensagem(null)
+      notificacao.matarNotificacao();
     }, notificacao.tempoEmSeg*1000)
   }, [notificacao]);
 
