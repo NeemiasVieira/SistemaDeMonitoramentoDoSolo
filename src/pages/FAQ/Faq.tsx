@@ -5,10 +5,13 @@ import { Footer } from "../../components/Footer/Footer";
 import { Navigation } from "../../components/Navigation/Navigation";
 
 const Faq = () => {
+
+  const auth = localStorage.getItem("token") ? true : false;
+
   return (
     <>
       <FaqMain>
-        <Navigation />
+        <Navigation auth={auth} />
         <h1>FAQ - Perguntas Frequentes</h1>
         <h2>Perguntas Relacionadas ao Sistema</h2>
         <PerguntaFAQ

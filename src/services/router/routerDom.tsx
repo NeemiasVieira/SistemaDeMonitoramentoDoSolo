@@ -10,25 +10,27 @@ import Faq from "../../pages/FAQ/Faq";
 import MinhaPlanta from "../../pages/privatePages/MinhaPlanta/MinhaPlanta";
 import Aplicacao from "../../pages/Aplicacao/Aplicacao";
 import { Redirect } from "./redirecionamento";
+import { NotificacoesProvider } from "../../contexts/NotificacoesProvider";
 
 
 
 const RouterDOM = () => {
     return(
     <HashRouter>
-    <Routes>
-        <Route index element={<Home/>} path="/"/>
-        <Route element={<QuemSomos/>} path="/quemsomos"/>
-        <Route element={<Redirect><Login/></Redirect>} path = "/login"/>
-        <Route element={<Redirect><Cadastro/></Redirect>} path = "/cadastro"/>
-        <Route element={<Faq/>} path = "/faq"/>
-        <Route element={<Aplicacao/>} path ="/aplicacao"/>
+        <NotificacoesProvider>
+            <Routes>
+                <Route index element={<Home/>} path="/"/>
+                <Route element={<QuemSomos/>} path="/quemsomos"/>
+                <Route element={<Redirect><Login/></Redirect>} path = "/login"/>
+                <Route element={<Redirect><Cadastro/></Redirect>} path = "/cadastro"/>
+                <Route element={<Faq/>} path = "/faq"/>
+                <Route element={<Aplicacao/>} path ="/aplicacao"/>
 
-        {/* Rotas Privadas */}
-        <Route element={<RotaPrivada><MinhaPlanta/></RotaPrivada>} path = "/sistema/minhaplanta"/>
-        <Route element={<RotaPrivada><HomePrivate/></RotaPrivada>} path="/sistema/home"/>
-
-    </Routes>
+                {/* Rotas Privadas */}
+                <Route element={<RotaPrivada><MinhaPlanta/></RotaPrivada>} path = "/sistema/controle"/>
+                <Route element={<RotaPrivada><HomePrivate/></RotaPrivada>} path="/sistema/minhasplantas"/>
+            </Routes>
+        </NotificacoesProvider>
     </HashRouter>
     )
 }

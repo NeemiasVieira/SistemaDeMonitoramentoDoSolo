@@ -6,10 +6,13 @@ import { Navigation } from "../../components/Navigation/Navigation";
 import homeImage from "../../assets/img/homeImage4.jpg"
 
 export default function Home() {
+
+  const auth = localStorage.getItem("token") ? true : false;
+
   return (
     <>
       <HomeStyle>
-        <Navigation />
+        <Navigation auth={auth}/>
         <div className="IntroducaoContent">
           <img src={homeImage} alt="Manjericão" />
           <div className="IntroducaoLadoDireito">

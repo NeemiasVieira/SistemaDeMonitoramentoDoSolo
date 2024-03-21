@@ -3,12 +3,12 @@ import { LoginMain } from "./LoginStyle";
 import { Footer } from "../../components/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
-import { MensagemDeErro } from "../../components/MensagemDeErro/MensagemDeErro";
 import { UserService } from "../../services/API/UserSerivice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
 import { Navigation } from "../../components/Navigation/Navigation";
+import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +18,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const userService = new UserService(setResponse, setError);
   const navigate = useNavigate();
+  // const { notificacao } = useNotificacoes();
 
   const Login = async (e: any) => {
     e.preventDefault();
@@ -28,11 +29,20 @@ const Login = () => {
 
   useEffect(() => {
 
+    // console.log(notificacao)
+
+    if(error){
+    }
+
     if (response?.token) {
       localStorage.setItem("token", response.token);
       localStorage.setItem("nome", response.usuario.nome);
       localStorage.setItem("userID", response.usuario.id);
-      navigate("/sistema/home");
+      localStorage.setItem("sucessoLogin", "true");
+      // notificacao.setMensagem(`Bem vindo ${localStorage.getItem("nome")}`)
+      // notificacao.setTempoEmSeg(4);
+      // notificacao.setTipoMensagem("SUCESSO");
+      navigate("/sistema/minhasplantas");
     }
 
   }, [response, error]);
@@ -41,7 +51,6 @@ const Login = () => {
     <>
       <LoginMain>
         <Navigation />
-        {error && <MensagemDeErro error={error} mensagemBotao="Voltar" setError={setError}/>}
         <h2>Login</h2>
 
         {isLoading && <Loading minHeight={'400px'} />}

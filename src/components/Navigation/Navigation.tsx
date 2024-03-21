@@ -31,17 +31,23 @@ export const ListaNavegacaoAutenticada = () => {
   return (
     <ul className="navegacao">
       <li className="logo">
-        <IconeLogoSms path={"/sistema/home"} />
+        <IconeLogoSms path={"/"} />
       </li>
-      <li className={caminhoAtual === "/sistema/home" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/sistema/home">Início</Link>
+      <li className={caminhoAtual === "/sistema/minhasplantas" ? "selecionado" : "naoSelecionado"}>
+        <Link to="/sistema/minhasplantas">Minhas Plantas</Link>
       </li>
-      <li className={caminhoAtual === "/sistema/minhaplanta" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/sistema/minhaplanta">Minha Planta</Link>
+      <li className={caminhoAtual === "/sistema/controle" ? "selecionado" : "naoSelecionado"}>
+        <Link to="/sistema/controle">Controle</Link>
       </li>
-      <li>
-        <Link to="/sistema/home">Ajuda</Link>
+      <li className={caminhoAtual === "/aplicacao" ? "selecionado" : "naoSelecionado"}>
+        <Link to="/aplicacao">Aplicação</Link>
       </li>
+      <li className={caminhoAtual === "/faq" ? "selecionado" : "naoSelecionado"}>
+        <Link to="/faq">FAQ</Link>
+      </li>
+      {/* <li>
+        <Link to="/sistema/minhasplantas">Ajuda</Link>
+      </li> */}
       <li>
          <Link to="/" onClick={Logout} className="logoutMobileButton">Logout</Link>
       </li>
@@ -57,9 +63,6 @@ export const ListaNavegacaoNaoAutenticada = () => {
     <ul className="navegacao">
       <li className="logo">
         <IconeLogoSms path={"/"} />
-      </li>
-      <li className={caminhoAtual === "/" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/">Home</Link>
       </li>
       <li className={caminhoAtual === "/aplicacao" ? "selecionado" : "naoSelecionado"}>
         <Link to="/aplicacao">Aplicação</Link>

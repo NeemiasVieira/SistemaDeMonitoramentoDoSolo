@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { CadastroMain } from "./CadastroStyle";
 import { Link } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
-import { MensagemDeErro } from "../../components/MensagemDeErro/MensagemDeErro";
 import { Footer } from "../../components/Footer/Footer";
 import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroConcluido";
 import { UserService } from "../../services/API/UserSerivice";
@@ -49,7 +48,6 @@ const Cadastro = () => {
     <>
       <CadastroMain>
         <Navigation/>
-        {error && <MensagemDeErro error={error} mensagemBotao="Voltar" setError={setError} />}
         <h2>Cadastro</h2>
 
         {isLoading && <Loading minHeight={"60vh"}/>}

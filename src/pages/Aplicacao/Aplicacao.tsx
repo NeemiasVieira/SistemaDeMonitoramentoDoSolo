@@ -6,10 +6,13 @@ import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { Navigation } from "../../components/Navigation/Navigation";
 
 const Aplicacao = () => {
+
+  const auth = localStorage.getItem("token") ? true : false;
+  
   return (
     <>
       <AplicacaoMain>
-        <Navigation />
+        <Navigation auth={auth}/>
         <h1>Introdução</h1>
         <section className="SecaoIntroducao">
           <FontAwesomeIcon icon={faSeedling} />

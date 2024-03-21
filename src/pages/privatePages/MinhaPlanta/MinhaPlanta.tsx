@@ -56,6 +56,7 @@ const MinhaPlanta = () => {
   useEffect(() => {
     if (response?.length > 0) {
       setPlants(response);
+      setPlantaSelecionada(response[0]);
     }
   }, [response]);
 

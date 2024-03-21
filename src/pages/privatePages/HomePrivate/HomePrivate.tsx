@@ -5,7 +5,6 @@ import { HomePrivateMain } from "./HomePrivateStyle";
 import { PlantsService } from "../../../services/API/PlantsService";
 import { Planta } from "../../../components/Planta/Planta";
 import { Loading } from "../../../components/Loading/Loading";
-import { MensagemDeErro } from "../../../components/MensagemDeErro/MensagemDeErro";
 
 interface Plant {
   id: string;
@@ -21,6 +20,8 @@ const HomePrivate = () => {
   const [isLoading, setIsLoading] = useState(false);
   const plantsService = new PlantsService(setResponse, setError);
   const ownerID = localStorage.getItem("userID");
+  const [mensagemSucessoLogin, setMensagemSucessoLogin] = useState<string>(`Bem vindo ${localStorage.getItem("nome")}`)
+  let sucessoLogin = localStorage.getItem("sucessoLogin");
 
   const getPlantas = async() => {
     setIsLoading(true);
@@ -30,6 +31,11 @@ const HomePrivate = () => {
 
   useEffect(() => {
     getPlantas();
+    setTimeout(() => {
+      if(sucessoLogin) {
+        localStorage.removeItem("sucessoLogin");
+        sucessoLogin = null;
+      }}, 500)
   }, [ownerID]);
 
   useEffect(() => {
@@ -60,8 +66,7 @@ const HomePrivate = () => {
         <HomePrivateMain>
           <Navigation auth={true} />
           <main>
-            {error && <MensagemDeErro  error={error}  mensagemBotao="Voltar"  setError={setError} />}
-            <h1>Seja bem vindo ao Sistema de Controle</h1>
+            <h1>Seja bem vindo ao Sistema de Controle</h1> 
             <h2>
               Por aqui você pode cuidar da sua plantinha, reportar problemas e
               aproveitar o uso da nossa aplicação
