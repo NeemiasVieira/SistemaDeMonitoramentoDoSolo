@@ -46,7 +46,7 @@ const Login = () => {
       notificar({
         tipo: "SUCESSO",
         mensagem: `Bem vindo ${localStorage.getItem("nome")}`,
-        tempoEmSeg: 4 
+        tempoEmSeg: 4
       })
       navigate("/sistema/minhasplantas");
     }

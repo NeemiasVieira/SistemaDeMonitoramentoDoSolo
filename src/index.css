@@ -7,8 +7,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #222;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--dark-green);
+  border: solid #53AF30 1.5px;
+  border-radius: 5px;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: "Montserrat", sans-serif, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 

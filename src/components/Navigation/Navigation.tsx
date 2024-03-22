@@ -40,6 +40,12 @@ export const ListaNavegacaoAutenticada = () => {
       <li className={caminhoAtual === "/faq" ? "selecionado" : "naoSelecionado"}>
         <Link to="/faq">FAQ</Link>
       </li>
+      <li className={caminhoAtual === "/sistema/minhasplantas" ? "selecionado" : "naoSelecionado"}>
+        <Link to="/sistema/minhasplantas">Minhas Plantas</Link>
+      </li>
+      <li className={caminhoAtual === "/sistema/controle" ? "selecionado" : "naoSelecionado"}>
+        <Link to="/sistema/controle">Controle</Link>
+      </li>
       {/* <li>
         <Link to="/sistema/minhasplantas">Ajuda</Link>
       </li> */}
