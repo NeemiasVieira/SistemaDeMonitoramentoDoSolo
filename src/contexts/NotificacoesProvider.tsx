@@ -1,126 +1,85 @@
-// Em um novo arquivo, por exemplo, StateContext.js
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { Notificacao } from "../components/Notificacao/Notificacao";
+import React, { createContext, useContext, useState } from "react";
+import { Notificacoes } from "../components/Notificacao/Notificacao";
+import { v4 as uuidv4 } from 'uuid';
 
-interface IExibirNotificaoProps {
+interface NotificacaoConstructor {
   tipo: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO" | null;
   mensagem?: string;
   tempoEmSeg?: number;
 }
-
-interface INotificacao {
-  exibirNotificacao?: (params: IExibirNotificaoProps) => void;
-  matarNotificacao?: () => void;
-  visivel: boolean;
-  tipo?: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO" | null;
-  mensagem?: string;
-  tempoEmSeg?: number;
-}
-
-const notificacaoInicial: INotificacao = {
-  visivel: false,
-  exibirNotificacao: () => {},
-  matarNotificacao: () => {},
-};
-
-const NotificacoesContext = createContext<{
-  notificacao: INotificacao;
-  matarNotificacao: () => void;
-}>({
-  notificacao: notificacaoInicial,
-  matarNotificacao: () => {},
-});
-
 interface NotificacoesProviderProps {
   children: React.ReactNode;
 }
+interface INotificacoesContext{
+    notificacoes: INotificacao[];
+    notificar: (notificacao: NotificacaoConstructor) => void;
+}
+
+export class INotificacao {
+  public mensagem: string;
+  public tipo: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO";
+  public visivel: boolean;
+  public tempoEmSeg: number;
+  public id: string
+
+  constructor(params: NotificacaoConstructor) {
+    this.mensagem = params.mensagem;
+    this.tipo = params.tipo
+    this.tempoEmSeg = params.tempoEmSeg;
+    this.visivel = true;
+    this.id = uuidv4()
+
+    setTimeout(() => {
+      this.matarNotificacao()
+    }, this.tempoEmSeg*1000);
+  }
+
+  matarNotificacao(){
+    this.visivel = false;
+  }
+}
+
+const NotificacoesContext = createContext<INotificacoesContext>({
+  notificacoes: [],
+  notificar: () => {},
+});
 
 export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ children }) => {
-  const [notificacao, setNotificacao] = useState<INotificacao>(notificacaoInicial);
 
-  useEffect(() => {
-    setNotificacao({ visivel: false, exibirNotificacao, matarNotificacao });
-  }, []);
+  const [notificacoes, setNotificacoes] = useState<INotificacao[]>([]);
 
-  useEffect(() => {
-    console.log(notificacao);
-  }, [notificacao]);
-
-  const exibirNotificacao = (params: IExibirNotificaoProps) => {
-    setNotificacao({
-      visivel: true,
-      ...params,
-      exibirNotificacao,
-      matarNotificacao,
-    });
+  const notificar = async(params: NotificacaoConstructor) => {
+    const notificacao = new INotificacao(params);
+    setNotificacoes(valoresAnteriores => {
+      return [...valoresAnteriores, notificacao]
+    })
   };
 
-  const matarNotificacao = () => {
-    setNotificacao((estadoAnterior) => {
-      return { ...estadoAnterior, visivel: false };
-    });
-  };
+//   const notificar2 = () => notificar({tipo: "NOTIFICACAO", tempoEmSeg: 5, mensagem: "Mensagem de notificacao"});
+//   const alertar = () => notificar({tipo: "ALERTA", tempoEmSeg: 5, mensagem: "Mensagem de alerta"});
+//   const criarErro = () => notificar({tipo: "ERRO", tempoEmSeg: 5, mensagem: "Mensagem de erro"});
+//   const sucesso = () => notificar({tipo: "SUCESSO", tempoEmSeg: 5, mensagem: "Mensagem de sucesso"});
 
   return (
-    <NotificacoesContext.Provider value={{ notificacao, matarNotificacao }}>
-      {notificacao.visivel && <Notificacao />}
+    <NotificacoesContext.Provider value={{ notificacoes, notificar }}>
+      
+      {/* <h1>Teste do sistema de notificacoes</h1>
+      <button onClick={notificar2}>NOTIFICACAO</button>
+      <button onClick={alertar}>ALERTA</button>
+      <button onClick={criarErro}>ERRO</button>
+      <button onClick={sucesso}>SUCESSO</button> */}
+
+      {notificacoes.length > 0 && <Notificacoes />}
       {children}
+      
     </NotificacoesContext.Provider>
   );
 };
 
 export const useNotificacoes = () => {
-    const context = useContext(NotificacoesContext);
-    if (!context) {
-        throw new Error("useNotificacoes deve ser usado dentro de um NotificacoesProvider");
+  const context = useContext(NotificacoesContext);
+  if (!context) {
+      throw new Error("useNotificacoes deve ser usado dentro de um NotificacoesProvider");
     }
     return context;
 };
-
-// Descomentar para habilitar testes de notificacoes
-{/* <h1>opaaaa</h1>
-<button
-  onClick={() => {
-    console.log();
-    notificacao.exibirNotificacao({
-      tipo: "SUCESSO",
-      mensagem: "Mensagem de sucesso",
-      tempoEmSeg: 3,
-    });
-  }}
->
-  SUCESSO
-</button>
-<button
-  onClick={() => {
-    notificacao.exibirNotificacao({
-      tipo: "ALERTA",
-      mensagem: "Mensagem de alerta",
-      tempoEmSeg: 3,
-    });
-  }}
->
-  ALERTA
-</button>
-<button
-  onClick={() => {
-    notificacao.exibirNotificacao({
-      tipo: "NOTIFICACAO",
-      mensagem: "Mensagem de Notificacao",
-      tempoEmSeg: 3,
-    });
-  }}
->
-  NOTIFICACAO
-</button>
-<button
-  onClick={() => {
-    notificacao.exibirNotificacao({
-      tipo: "ERRO",
-      mensagem: "Mensagem de erro",
-      tempoEmSeg: 3,
-    });
-  }}
->
-  ERRO
-</button> */}

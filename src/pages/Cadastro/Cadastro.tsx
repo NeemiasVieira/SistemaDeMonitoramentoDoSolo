@@ -19,12 +19,12 @@ const Cadastro = () => {
   const [error, setError] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>();
   const userService = new UserService(setResponse, setError);
-  const { notificacao } = useNotificacoes();
+  const { notificar } = useNotificacoes();
 
   useEffect(() => {
 
     if(error){
-      notificacao.exibirNotificacao({
+      notificar({
         tipo: "ERRO",
         mensagem: error,
         tempoEmSeg: 3

@@ -1,31 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NotificacaoStyle } from "./NotificacaoStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faCircleExclamation, faSquareCheck, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import {faBell, faCircleExclamation, faCircleXmark, faSquareCheck, faTriangleExclamation,} from "@fortawesome/free-solid-svg-icons";
+import { INotificacao, useNotificacoes } from "../../contexts/NotificacoesProvider";
 
-export const Notificacao = () => {
+interface NotificacaoProps {
+  notificacao: INotificacao;
+}
 
-  const { notificacao } = useNotificacoes();
+export const Notificacoes = () => {
+  const { notificacoes } = useNotificacoes();
+  const [notificacoesFiltradas, setNotificacoesFiltradas] = useState(notificacoes);
 
   useEffect(() => {
-    console.log(notificacao);
-    setTimeout(() => {
-      notificacao.matarNotificacao();
-    }, notificacao.tempoEmSeg*1000)
-  }, [notificacao]);
-
+    setNotificacoesFiltradas(notificacoes.filter((notificacao) => notificacao.visivel));
+    console.log(notificacoesFiltradas);
+  }, [notificacoes]);
 
   return (
     <NotificacaoStyle>
-        <div className={`${notificacao.tipo} mensagemNotificacaoDiv`}>
-         {notificacao.tipo === "ERRO" && <FontAwesomeIcon icon={faTriangleExclamation} className="icone" />}
-         {notificacao.tipo === "SUCESSO" && <FontAwesomeIcon icon={faSquareCheck} className="icone" />}
-         {notificacao.tipo === "ALERTA" && <FontAwesomeIcon icon={faCircleExclamation} className="icone" />}
-         {notificacao.tipo === "NOTIFICACAO" && <FontAwesomeIcon icon={faBell} className="icone" />}
-         <p>{notificacao.mensagem}</p>
-        </div>
-        {/* <button onClick={fecharNotificacao}>{mensagemBotao}</button> */}
+      {notificacoesFiltradas.map((notificacao) => (
+        <Notificacao notificacao={notificacao} key={notificacao.id} />
+      ))}
     </NotificacaoStyle>
+  );
+};
+
+const Notificacao: React.FC<NotificacaoProps> = ({ notificacao }) => {
+  const [visivel, setVisivel] = useState<boolean>(true);
+
+  const destruirNotificacao = () => {
+    notificacao.matarNotificacao();
+    setVisivel(false);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      destruirNotificacao();
+    }, notificacao.tempoEmSeg * 1000);
+  }, []);
+
+  return (
+    <>
+      {visivel && (
+        <div className={`${notificacao.tipo} mensagemNotificacaoDiv`}>
+          {notificacao.tipo === "ERRO" && <FontAwesomeIcon icon={faTriangleExclamation} className="icone" />}
+          {notificacao.tipo === "SUCESSO" && <FontAwesomeIcon icon={faSquareCheck} className="icone" />}
+          {notificacao.tipo === "ALERTA" && <FontAwesomeIcon icon={faCircleExclamation} className="icone" />}
+          {notificacao.tipo === "NOTIFICACAO" && <FontAwesomeIcon icon={faBell} className="icone" />}
+          <p>{notificacao.mensagem}</p>
+          <button onClick={destruirNotificacao}>
+            <FontAwesomeIcon icon={faCircleXmark} />
+          </button>
+        </div>
+      )}
+    </>
   );
 };

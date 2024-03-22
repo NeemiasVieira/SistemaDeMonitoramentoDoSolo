@@ -21,7 +21,7 @@ const HomePrivate = () => {
   const [isLoading, setIsLoading] = useState(false);
   const plantsService = new PlantsService(setResponse, setError);
   const ownerID = localStorage.getItem("userID");
-  const { notificacao } = useNotificacoes();
+  const { notificar } = useNotificacoes();
 
 
   const getPlantas = async() => {
@@ -43,12 +43,12 @@ const HomePrivate = () => {
   useEffect(() => {
 
     if(error){
-      notificacao.exibirNotificacao({
+      notificar({
         tipo: "ERRO",
         mensagem: error,
         tempoEmSeg: 3
-  
       })
+      
       setError(null);
     }
     

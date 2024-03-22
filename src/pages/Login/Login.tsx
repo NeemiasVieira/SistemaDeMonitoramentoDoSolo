@@ -18,7 +18,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const userService = new UserService(setResponse, setError);
   const navigate = useNavigate();
-  const { notificacao } = useNotificacoes();
+  const { notificar } = useNotificacoes();
 
   const Login = async (e: any) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const Login = () => {
   useEffect(() => {
 
     if(error){
-      notificacao.exibirNotificacao({
+      notificar({
         tipo: "ERRO",
         mensagem: error,
         tempoEmSeg: 3
@@ -43,11 +43,10 @@ const Login = () => {
       localStorage.setItem("nome", response.usuario.nome);
       localStorage.setItem("userID", response.usuario.id);
       localStorage.setItem("sucessoLogin", "true");
-      notificacao.exibirNotificacao({
+      notificar({
         tipo: "SUCESSO",
-        tempoEmSeg: 4,
-        mensagem: `Bem vindo ${localStorage.getItem("nome")}`
-
+        mensagem: `Bem vindo ${localStorage.getItem("nome")}`,
+        tempoEmSeg: 4 
       })
       navigate("/sistema/minhasplantas");
     }

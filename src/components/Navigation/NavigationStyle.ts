@@ -89,8 +89,8 @@ export const NavAutenticadaStyle = styled.nav`
   }
 
   .dropdown-content {
-    margin-top: 150px;
-    margin-right: 150px;
+    margin-top: 125px;
+    margin-right: 155px;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -98,9 +98,11 @@ export const NavAutenticadaStyle = styled.nav`
     z-index: 1;
     box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
     color: black;
-    border-radius: 10px 0 10px 10px;
+    border-radius: 15px 0 15px 15px;
+    border: solid #ddd 1px;
   ul {
-      padding: 3px;
+      padding: 10px;
+      margin: 0px;
     }
 
   li{
@@ -115,11 +117,16 @@ export const NavAutenticadaStyle = styled.nav`
 
   }
   .dropdown-content a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     float: none;
     color: black;
+    width: 100%;
     padding: 12px 16px;
     display: block;
-    text-align: left;
+    text-align: center;
+    border-radius: 5px;
   }
   .dropdown-content a:hover {
     background-color: #ddd;
