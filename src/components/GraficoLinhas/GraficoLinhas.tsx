@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
 import Chart, { ReactGoogleChartProps } from "react-google-charts";
-import { RecordsService } from "../../services/API/RecordsService";
 import { IRegistro } from "../../interfaces/RecordsModule/registro.interface";
+import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
+import { Loading } from "../Loading/Loading";
 
 const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
   let newData: any = [];
@@ -11,7 +12,7 @@ const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
     case "NPK":
       newData = [
         ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
-        ...records.map((record) => [
+        ...records?.map((record) => [
           formatDate(record.dataDeRegistro),
           Number(record.nitrogenio),
           Number(record.fosforo),
@@ -22,7 +23,7 @@ const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
     case "temperatura":
       newData = [
         ["Dia", "Temperatura"],
-        ...records.map((record) => [
+        ...records?.map((record) => [
           formatDate(record.dataDeRegistro),
           Number(record.temperatura),
         ]),
@@ -31,7 +32,7 @@ const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
     case "pH":
       newData = [
         ["Dia", "pH"],
-        ...records.map((record) => [
+        ...records?.map((record) => [
           formatDate(record.dataDeRegistro),
           Number(record.pH),
         ]),
@@ -40,7 +41,7 @@ const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
     case "umidade":
       newData = [
         ["Dia", "Umidade"],
-        ...records.map((record) => [
+        ...records?.map((record) => [
           formatDate(record.dataDeRegistro),
           Number(record.umidade),
         ]),
@@ -49,7 +50,7 @@ const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
     case "luz":
       newData = [
         ["Dia", "Luz"],
-        ...records.map((record) => [
+        ...records?.map((record) => [
           formatDate(record.dataDeRegistro),
           Number(record.luz),
         ]),
@@ -86,39 +87,46 @@ const formatDate = (inputDate: string) => {
   return `${day}/${month}`;
 };
 
-interface GraficoLinhasProps{
-  idPlanta: string
-  className?: string
+interface StatesParams{
+  setIntervaloDeDias: React.Dispatch<number | string>;
+  setIntervaloDeBusca: React.Dispatch<number | string>;
+  intervaloDeDias: number | string,
+  intervaloDeBusca: number | string;
+  allRecordsIsLoading: boolean;
 }
 
-const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
-  const [records, setRecords] = useState([]);
-  const [intervaloDeDias, setIntervaloDeDias] = useState(null);
-  const [intervaloDeBusca, setIntervaloDeBusca] = useState(null);
+interface GraficoLinhasProps{
+  records: RecordQuery[];
+  params: StatesParams;
+
+  className?: string;
+}
+
+const GraficoLinhas: React.FC<GraficoLinhasProps> = ({records, params}) => {
+
+  const { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading } = params
+
   const [tipoGrafico, setTipoGrafico] = useState("NPK");
   const [data, setData] = useState([
     ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
   ]);
-  const [error, setError] = useState();
-  const recordsService = new RecordsService(setRecords, setError);
 
   useEffect(() => {
     if (intervaloDeBusca === "Selecione") setIntervaloDeBusca(null);
     if (intervaloDeDias === "Selecione") setIntervaloDeDias(null);
 
-    recordsService.getRecordsByPlantID(
-      idPlanta,
-      intervaloDeDias,
-      intervaloDeBusca
-    );
-  }, [idPlanta, intervaloDeBusca, intervaloDeDias, tipoGrafico]);
+  }, [intervaloDeBusca, intervaloDeDias]);
 
   useEffect(() => {
-    setData(null);
+    setData([]);
     // Atualize o estado do data sempre que records for alterado
-    const newData = selecionaGrafico(tipoGrafico, records);
+    let newData = [];
+    if(records){
+      newData = selecionaGrafico(tipoGrafico, records);
+    }
+    
     setData(newData);
-  }, [records]);
+  }, [records, tipoGrafico]);
 
   const options: any = {
     chart: {
@@ -156,6 +164,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
           <p className="tituloSelect">Exibir um registro a cada</p>
           <select
             className="selectFiltro"
+            value={intervaloDeDias}
             name=""
             id=""
             onChange={(e) => setIntervaloDeDias(e.target.value)}
@@ -174,6 +183,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
             className="selectFiltro"
             name=""
             id=""
+            value={intervaloDeBusca}
             onChange={(e) => setIntervaloDeBusca(e.target.value)}
           >
             <option value={null}>Selecione</option>
@@ -188,12 +198,15 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({idPlanta}) => {
         </div>
         
       </div>
-      {data.length <= 2 && (
+
+      {allRecordsIsLoading && <Loading minHeight={"55vh"}/>}
+
+      {data.length <= 2 && !allRecordsIsLoading && (
         <p className="Aviso">
           Não há registros necessários para formar um histórico
         </p>
       )}
-      {data.length > 2 && (
+      {data.length > 2 && !allRecordsIsLoading &&  (
         <div className="graficoContainer">
         <Chart
           chartType="Line"

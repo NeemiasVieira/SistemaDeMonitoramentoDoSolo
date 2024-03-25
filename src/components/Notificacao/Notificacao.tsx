@@ -14,7 +14,6 @@ export const Notificacoes = () => {
 
   useEffect(() => {
     setNotificacoesFiltradas(notificacoes.filter((notificacao) => notificacao.visivel));
-    console.log(notificacoesFiltradas);
   }, [notificacoes]);
 
   return (

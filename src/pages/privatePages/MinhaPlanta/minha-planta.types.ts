@@ -13,8 +13,8 @@ export interface Saude{
 
 export interface Planta{
     id: string;
-    idDono: string;
+    idDono?: string;
     nome: string;
     especie: string;
-    dataDaPlantacao: Date; 
+    dataDaPlantacao: string; 
 }

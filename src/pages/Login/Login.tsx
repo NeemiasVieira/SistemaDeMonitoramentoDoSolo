@@ -3,55 +3,50 @@ import { LoginMain } from "./LoginStyle";
 import { Footer } from "../../components/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
-import { UserService } from "../../services/API/UserSerivice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { useLogin } from "../../services/API/Users/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [response, setResponse] = useState<any>();
-  const [error, setError] = useState<any>();
-  const [isLoading, setIsLoading] = useState(false);
-  const userService = new UserService(setResponse, setError);
   const navigate = useNavigate();
-  const { notificar } = useNotificacoes();
+  const { notificar } = useNotificacoes()
+  
+  let { loginResponse, error, isLoading, refetch } = useLogin(email, password);
 
-  const Login = async (e: any) => {
+  const notificarErro = () => notificar({ tipo: "ERRO", mensagem: error, tempoEmSeg: 3 });
+
+  const login = async (e: any) => {
     e.preventDefault();
-    setIsLoading(true);
-    await userService.login(email, password);
-    setIsLoading(false);
+    await refetch();
+    if(error) notificarErro();
   };
 
   useEffect(() => {
+    error = null;
+    loginResponse = null;
+  }, [])
 
-    if(error){
-      notificar({
-        tipo: "ERRO",
-        mensagem: error,
-        tempoEmSeg: 3
-      })
-      setError(null);
-    } 
+  useEffect(() => {
+    if (error) notificarErro();
 
-    if (response?.token) {
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("nome", response.usuario.nome);
-      localStorage.setItem("userID", response.usuario.id);
+    if (loginResponse?.token) {
+      localStorage.setItem("token", loginResponse.token);
+      localStorage.setItem("nome", loginResponse.usuario.nome);
+      localStorage.setItem("userID", loginResponse.usuario.id);
       localStorage.setItem("sucessoLogin", "true");
       notificar({
         tipo: "SUCESSO",
-        mensagem: `Bem vindo ${localStorage.getItem("nome")}`,
+        mensagem: `Bem vindo ${loginResponse.usuario.nome}`,
         tempoEmSeg: 4
-      })
+      });
       navigate("/sistema/minhasplantas");
     }
-
-  }, [response, error]);
+  }, [loginResponse, error]);
 
   return (
     <>
@@ -60,48 +55,50 @@ const Login = () => {
         <h2>Login</h2>
 
         {isLoading && <Loading minHeight={'400px'} />}
-        {!isLoading && <form>
-          <label htmlFor="">Usuário</label>
-          <div className="divInput">
-            <div className="divIcon">
-              <FontAwesomeIcon icon={faAt} />
+        {!isLoading && (
+          <form>
+            <label htmlFor="">Usuário</label>
+            <div className="divInput">
+              <div className="divIcon">
+                <FontAwesomeIcon icon={faAt} />
+              </div>
+              <input
+                type="text"
+                placeholder="Digite o seu e-mail"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
             </div>
-            <input
-              type="text"
-              placeholder="Digite o seu e-mail"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </div>
 
-          <label htmlFor="">Senha</label>
-          <div className="divInput">
-            <div className="divIcon">
-              <FontAwesomeIcon icon={faKey} />
+            <label htmlFor="">Senha</label>
+            <div className="divInput">
+              <div className="divIcon">
+                <FontAwesomeIcon icon={faKey} />
+              </div>
+              <input
+                type="password"
+                autoComplete="password"
+                required
+                placeholder="Digite a sua senha"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
             </div>
-            <input
-              type="password"
-              autoComplete="password"
-              required
-              placeholder="Digite a sua senha"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-          </div>
-          <button onClick={Login} className="botaofazerLogin">Login</button>
-          <div className="sugestaoCadastro">
-            <p>Não tem cadastro?</p>
-            <Link to="/cadastro" className="crieSuaConta">
-              Crie sua conta
-            </Link>
-          </div>
-        </form>}
+            <button onClick={login} className="botaofazerLogin">Login</button>
+            <div className="sugestaoCadastro">
+              <p>Não tem cadastro?</p>
+              <Link to="/cadastro" className="crieSuaConta">
+                Crie sua conta
+              </Link>
+            </div>
+          </form>
+        )}
       </LoginMain>
       <Footer />
     </>
@@ -109,5 +106,3 @@ const Login = () => {
 };
 
 export default Login;
-
-//https://www.youtube.com/watch?v=LI0YcHMu9P4

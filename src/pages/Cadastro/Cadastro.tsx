@@ -4,56 +4,41 @@ import { Link } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
 import { Footer } from "../../components/Footer/Footer";
 import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroConcluido";
-import { UserService } from "../../services/API/UserSerivice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faAt, faA } from "@fortawesome/free-solid-svg-icons";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { useSignUp } from "../../services/API/Users/useSignup";
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha1, setSenha1] = useState("");
   const [senha2, setSenha2] = useState("");
-  const [response, setResponse] = useState<any>();
-  const [error, setError] = useState<any>();
-  const [isLoading, setIsLoading] = useState<boolean>();
-  const userService = new UserService(setResponse, setError);
   const { notificar } = useNotificacoes();
+  let { signupResponse, isLoading, error, refetch } = useSignUp({email, nome, senha: senha1})
+
+  const notificarErro = () => notificar({tipo: "ERRO", mensagem: error, tempoEmSeg: 3});
 
   useEffect(() => {
+    if(error) notificarErro();
+  }, [error]);
 
-    if(error){
-      notificar({
-        tipo: "ERRO",
-        mensagem: error,
-        tempoEmSeg: 3
-      })
-    }
+  if (signupResponse?.id) return <CadastroConcluido />;
 
-  }, [response, error]);
-
-  if (response?.id) return <CadastroConcluido />;
-
-  const VerificaSenha = () => {
-    if (senha1 === senha2) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const VerificaSenha = () => {return senha1 === senha2 ? true : false;}
 
   const Cadastrar = async (e: any) => {
     e.preventDefault();
-    setError(null);
+
     if (!VerificaSenha()) {
-      setError("As senhas não correspondem");
+      error = "As senhas não correspondem";
+      notificarErro();
       return;
     }
-
-    setIsLoading(true);
-    await userService.cadastrarNovoUsuario(nome, email, senha1);
-    setIsLoading(false);
+    await refetch();
+    
+    if(error) notificarErro();
   };
 
   return (

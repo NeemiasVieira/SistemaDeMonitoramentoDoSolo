@@ -164,7 +164,7 @@ export const CadastroMain = styled.main`
   }
 
   @media screen and (min-width: 500px) and (max-width: 1370px) {
-    min-height: 120vh;
+    min-height: 80vh;
     margin-top: 0;
   }
 `;

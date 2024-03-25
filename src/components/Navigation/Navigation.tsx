@@ -5,6 +5,7 @@ import { IconeLogoSms } from "../Icones/sms-logo";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ModalNavigation } from "../ModalNavigation/ModalNavigation";
+import { useQueryClient } from 'react-query';
 
 const formarIniciais = (nome: string): string => {
   nome = nome.toUpperCase();
@@ -21,10 +22,16 @@ export const ListaNavegacaoAutenticada = () => {
   const urlCompleta = window.location.href;
   const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  
   const Logout = () => {
     localStorage.removeItem("nome");
     localStorage.removeItem("token");
     localStorage.removeItem("userID");
+    localStorage.removeItem("sucessoLogin");
+    queryClient.removeQueries('login');
+    queryClient.invalidateQueries('login');
+    queryClient.clear();
     navigate("/");
   };
 

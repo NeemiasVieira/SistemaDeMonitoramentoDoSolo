@@ -55,19 +55,19 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
     })
   };
 
-//   const notificar2 = () => notificar({tipo: "NOTIFICACAO", tempoEmSeg: 5, mensagem: "Mensagem de notificacao"});
-//   const alertar = () => notificar({tipo: "ALERTA", tempoEmSeg: 5, mensagem: "Mensagem de alerta"});
-//   const criarErro = () => notificar({tipo: "ERRO", tempoEmSeg: 5, mensagem: "Mensagem de erro"});
-//   const sucesso = () => notificar({tipo: "SUCESSO", tempoEmSeg: 5, mensagem: "Mensagem de sucesso"});
+  //  const notificar2 = () => notificar({tipo: "NOTIFICACAO", tempoEmSeg: 5, mensagem: "Mensagem de notificacao"});
+  //  const alertar = () => notificar({tipo: "ALERTA", tempoEmSeg: 5, mensagem: "Mensagem de alerta"});
+  //  const criarErro = () => notificar({tipo: "ERRO", tempoEmSeg: 5, mensagem: "Mensagem de erro"});
+  //  const sucesso = () => notificar({tipo: "SUCESSO", tempoEmSeg: 5, mensagem: "Mensagem de sucesso"});
 
   return (
     <NotificacoesContext.Provider value={{ notificacoes, notificar }}>
       
-      {/* <h1>Teste do sistema de notificacoes</h1>
+     {/* <h1>Teste do sistema de notificacoes</h1>
       <button onClick={notificar2}>NOTIFICACAO</button>
       <button onClick={alertar}>ALERTA</button>
       <button onClick={criarErro}>ERRO</button>
-      <button onClick={sucesso}>SUCESSO</button> */}
+      <button onClick={sucesso}>SUCESSO</button>  */}
 
       {notificacoes.length > 0 && <Notificacoes />}
       {children}

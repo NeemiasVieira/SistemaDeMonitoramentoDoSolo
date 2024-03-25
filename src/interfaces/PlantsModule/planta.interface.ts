@@ -1,6 +1,5 @@
 export interface IPlanta {
   id: string;
-  idDono: string;
   nome: string;
   especie: string;
   dataDaPlantacao: string;
