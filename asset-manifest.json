@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/SistemaDeMonitoramentoDoSolo/static/css/main.530f5c52.css",
-    "main.js": "/SistemaDeMonitoramentoDoSolo/static/js/main.cf496092.js",
+    "main.js": "/SistemaDeMonitoramentoDoSolo/static/js/main.38262b2f.js",
     "static/media/homeImage4.jpg": "/SistemaDeMonitoramentoDoSolo/static/media/homeImage4.cbc2836c0d9b17336618.jpg",
     "static/media/manjericao2.png": "/SistemaDeMonitoramentoDoSolo/static/media/manjericao2.dd1a3fe793f1b96e2fa6.png",
     "static/media/plantagenerica.png": "/SistemaDeMonitoramentoDoSolo/static/media/plantagenerica.5f09745668cb42a7ca8b.png",
@@ -9,10 +9,10 @@
     "static/media/unisantalogo.png": "/SistemaDeMonitoramentoDoSolo/static/media/unisantalogo.2111fef08f23a3520fce.png",
     "index.html": "/SistemaDeMonitoramentoDoSolo/index.html",
     "main.530f5c52.css.map": "/SistemaDeMonitoramentoDoSolo/static/css/main.530f5c52.css.map",
-    "main.cf496092.js.map": "/SistemaDeMonitoramentoDoSolo/static/js/main.cf496092.js.map"
+    "main.38262b2f.js.map": "/SistemaDeMonitoramentoDoSolo/static/js/main.38262b2f.js.map"
   },
   "entrypoints": [
     "static/css/main.530f5c52.css",
-    "static/js/main.cf496092.js"
+    "static/js/main.38262b2f.js"
   ]
 }
