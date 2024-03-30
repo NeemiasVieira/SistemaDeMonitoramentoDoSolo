@@ -141,22 +141,6 @@ export const RelatorioDeSaudeStyle = styled.section`
     }
   }
 
-  button{
-    background-color: transparent;
-    cursor: pointer;
-    border: solid var(--gray-primary) 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px; 
-    letter-spacing: 1px;
-    background-color: var(--white);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 1.1rem;
-
-  }
-
   @media screen and (max-width: 480px) {
     gap: 10px;
     max-width: 95vw;

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { ModalNavigationStyle } from "./ModalNavigationStyle";
-import { ListaNavegacaoAutenticada, ListaNavegacaoNaoAutenticada } from "../Navigation/Navigation";
+import { ListaNavegacaoAutenticada, ListaNavegacaoNaoAutenticada } from "../../Navigation/Navigation";
 Modal.setAppElement("#root");
 
 const customStyles = {

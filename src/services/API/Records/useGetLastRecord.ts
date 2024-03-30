@@ -37,7 +37,7 @@ const getUltimoRegistro = async(idPlanta: string): Promise<AxiosResponse<LastRec
     const response = await SMS_API.post<LastRecordResponse>('', {query, variables}, options);
 
     return response;
-}
+} 
 
 export const useGetLastRecord = (idPlanta: string) => {
     
@@ -45,7 +45,7 @@ export const useGetLastRecord = (idPlanta: string) => {
         queryFn: () => getUltimoRegistro(idPlanta),
         queryKey: ["getLastRecord", idPlanta],
         cacheTime: 10 * 60 * 1000,
-        refetchInterval: false,
+        refetchInterval: 10 * 60 * 1000,
         staleTime: 10 * 60 * 1000,
         enabled: false,
       });

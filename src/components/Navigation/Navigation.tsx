@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IconeLogoSms } from "../Icones/sms-logo";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ModalNavigation } from "../ModalNavigation/ModalNavigation";
+import { ModalNavigation } from "../PopUps/ModalNavigation/ModalNavigation";
 import { useQueryClient } from 'react-query';
 
 const formarIniciais = (nome: string): string => {

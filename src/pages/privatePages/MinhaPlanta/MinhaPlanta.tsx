@@ -41,7 +41,6 @@ const MinhaPlanta = () => {
     }
   }, [intervaloDeBusca, intervaloDeDias]);
 
-  
   useEffect(() => {
     if (relatorioSaude) {
       erroRelatorioSaude = null;
@@ -90,19 +89,19 @@ const MinhaPlanta = () => {
             ))}
         </select> }  
 
-       {plantaSelecionada && !lastRecord && !relatorioSaude && <Loading minHeight={"50vh"}/>}  
+       {plantaSelecionada && lastRecordIsLoading && <Loading minHeight={"50vh"}/>}  
 
        {lastRecord && !errorLastRecord && <h2 className="nomeDaPlanta">{plantaSelecionada?.nome}</h2>}
 
-        {lastRecord && !errorLastRecord && (
+        {allRecords && relatorioSaude && lastRecord && !errorLastRecord && (
           <UltimaAtualizacao registro={lastRecord} />
         )}
 
-        {relatorioSaude && !erroRelatorioSaude && (
+        {lastRecord && relatorioSaude && allRecords && !erroRelatorioSaude && (
           <RelatorioDeSaude relatorio={relatorioSaude} />
         )}
 
-        {!errorAllRecords && relatorioSaude && lastRecord && (
+        {!errorAllRecords && relatorioSaude && allRecords && lastRecord && (
           <GraficoLinhas
             className="GraficoLinhas"
             records={allRecords}
@@ -110,7 +109,7 @@ const MinhaPlanta = () => {
           />
         )}
 
-        {!lastRecord && !lastRecordIsLoading && plantaSelecionada?.id !== "1" && (
+        {!lastRecord && !lastRecordIsLoading && plantaSelecionada?.id && (
           <p>A Planta não possui nenhum registro</p>
         )}
       </MinhaPlantaMain>
