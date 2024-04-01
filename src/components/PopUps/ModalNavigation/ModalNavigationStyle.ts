@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const ModalNavigationStyle = styled.div`
 
+margin-top: 40px;
+
 color: #fff;
 
 h2{
@@ -32,7 +34,7 @@ ul li a{
 
 .closeButton{
     position: absolute;
-    top: 10%;
+    top: 13%;
     right: 15%;
     background-color: transparent;
     border: none;

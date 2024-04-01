@@ -11,10 +11,16 @@ import MinhaPlanta from "../../pages/privatePages/MinhaPlanta/MinhaPlanta";
 import Aplicacao from "../../pages/Aplicacao/Aplicacao";
 import { Redirect } from "./redirecionamento";
 import { NotificacoesProvider } from "../../contexts/NotificacoesProvider";
+import PainelAdm from "../../pages/PainelAdm/PainelAdm";
+import { RotaC } from "./rotaCondicionada";
+import Especies from "../../pages/PainelAdm/Especies/Especies";
 
 
 
 const RouterDOM = () => {
+
+    const profileIsAdmin = localStorage.getItem("profile") === "admin";
+
     return(
     <HashRouter>
         <NotificacoesProvider>
@@ -29,6 +35,9 @@ const RouterDOM = () => {
                 {/* Rotas Privadas */}
                 <Route element={<RotaPrivada><MinhaPlanta/></RotaPrivada>} path = "/sistema/controle"/>
                 <Route element={<RotaPrivada><HomePrivate/></RotaPrivada>} path="/sistema/minhasplantas"/>
+
+                <Route element={<RotaC condicao={profileIsAdmin}><PainelAdm/></RotaC>} path="/adm/painel"/>
+                <Route element={<RotaC condicao={profileIsAdmin}><Especies/></RotaC>} path="/adm/especies"/>
             </Routes>
         </NotificacoesProvider>
     </HashRouter>

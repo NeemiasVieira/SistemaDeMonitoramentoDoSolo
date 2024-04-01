@@ -18,7 +18,7 @@ export const NavAutenticadaStyle = styled.nav`
     font-family: "Montserrat", sans-serif;
   }
 
-  .logoutMobileButton{
+  .logoutMobileButton, .mobileOnly{
     display: none;
   }
 
@@ -54,12 +54,9 @@ export const NavAutenticadaStyle = styled.nav`
     color: var(--gray-primary);
     text-decoration: none;
     font-weight: 700;
-    transition: all 250ms;
+    transition: all 100ms;
   }
 
-  a:hover {
-    font-size: 1.05em;
-  }
 
   .botaoPerfil .dropdown {
     font-size: 17px;
@@ -89,8 +86,8 @@ export const NavAutenticadaStyle = styled.nav`
   }
 
   .dropdown-content {
-    margin-top: 125px;
-    margin-right: 155px;
+    top: 63px;
+    right: 5%;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -99,7 +96,7 @@ export const NavAutenticadaStyle = styled.nav`
     box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
     color: black;
     border-radius: 15px 0 15px 15px;
-    border: solid #ddd 1px;
+    border: solid #ccc 1px;
   ul {
       padding: 10px;
       margin: 0px;
@@ -125,15 +122,27 @@ export const NavAutenticadaStyle = styled.nav`
     width: 100%;
     padding: 12px 16px;
     display: block;
-    text-align: center;
+    text-align: initial;
     border-radius: 5px;
   }
   .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #ccc;
     color: black;
   }
   .dropdown:hover .dropdown-content {
     display: block;
+  }
+
+  @media screen and (min-width: 482px) and (max-width: 850px){
+    .dropdown-content{
+      right: 9%;
+    }
+  }
+
+  @media screen and (min-width: 851px) and (max-width: 1100px){
+    .dropdown-content{
+      right: 7%;
+    }
   }
 
   @media screen and (max-width: 480px) {
@@ -194,11 +203,7 @@ export const NavStyle = styled.nav`
     color: var(--gray-primary);
     text-decoration: none;
     font-weight: 700;
-    transition: all 250ms;
-  }
-
-  a:hover {
-    font-size: 1.05em;
+    transition: all 100ms;
   }
 
   .navegacao .botaoLogin{
@@ -242,6 +247,5 @@ export const NavStyle = styled.nav`
   @media screen and (min-width: 481px){
     display: none;
   }
-  
   
   `

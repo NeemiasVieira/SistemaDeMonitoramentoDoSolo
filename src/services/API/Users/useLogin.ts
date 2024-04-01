@@ -17,13 +17,14 @@ interface userLoginResponse {
   usuario: {
     id: string;
     nome: string;
+    profile: string;
   };
   token: string;
 }
 
 const login = async (email: string, senha: string): Promise<AxiosResponse<userLoginQueryResponse, any>> => {
   const mutation = `mutation LoginUser($email: String!, $senha: String!) {
-    loginUser(email: $email, senha: $senha) { usuario { nome id } token }   }`;
+    loginUser(email: $email, senha: $senha) { usuario { nome id profile } token }   }`;
 
   const variables = { email, senha };
 

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavAutenticadaStyle, NavStyle, NavStyleMobile } from "./NavigationStyle";
 import { Link, useNavigate } from "react-router-dom";
 import { IconeLogoSms } from "../Icones/sms-logo";
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightFromBracket, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ModalNavigation } from "../PopUps/ModalNavigation/ModalNavigation";
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from "react-query";
 
 const formarIniciais = (nome: string): string => {
   nome = nome.toUpperCase();
@@ -23,14 +23,17 @@ export const ListaNavegacaoAutenticada = () => {
   const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  
+
+  const profile = localStorage.getItem("profile");
+
   const Logout = () => {
     localStorage.removeItem("nome");
     localStorage.removeItem("token");
     localStorage.removeItem("userID");
     localStorage.removeItem("sucessoLogin");
-    queryClient.removeQueries('login');
-    queryClient.invalidateQueries('login');
+    localStorage.removeItem("profile");
+    queryClient.removeQueries("login");
+    queryClient.invalidateQueries("login");
     queryClient.clear();
     navigate("/");
   };
@@ -40,7 +43,6 @@ export const ListaNavegacaoAutenticada = () => {
       <li className="logo">
         <IconeLogoSms path={"/"} />
       </li>
-     
       <li className={caminhoAtual === "/aplicacao" ? "selecionado" : "naoSelecionado"}>
         <Link to="/aplicacao">Aplicação</Link>
       </li>
@@ -56,8 +58,17 @@ export const ListaNavegacaoAutenticada = () => {
       {/* <li>
         <Link to="/sistema/minhasplantas">Ajuda</Link>
       </li> */}
+      {profile === "admin" && (
+        <li>
+          <Link to="/adm/painel" className="mobileOnly">
+            Painel Administrativo
+          </Link>
+        </li>
+      )}
       <li>
-         <Link to="/" onClick={Logout} className="logoutMobileButton">Logout</Link>
+        <Link to="/" onClick={Logout} className="logoutMobileButton">
+          Logout
+        </Link>
       </li>
     </ul>
   );
@@ -89,6 +100,10 @@ export const Navigation: React.FC<NavigationProps> = ({ auth }) => {
   const [mostrarOpcoesMovimentacoes, setMostrarOpcoesMovimentacoes] = useState<boolean>(false);
   const navigate = useNavigate();
   const nome = localStorage.getItem("nome");
+  const profile = localStorage.getItem("profile");
+
+  useEffect(() => {}, [profile]);
+
   const Logout = () => {
     localStorage.removeItem("nome");
     localStorage.removeItem("token");
@@ -104,39 +119,43 @@ export const Navigation: React.FC<NavigationProps> = ({ auth }) => {
     <>
       {auth && (
         <>
-        <NavAutenticadaStyle>
-          <ListaNavegacaoAutenticada />
-          <div className="botaoPerfil" onClick={toggleOpcoesMovimentacoes}>
-            <span>{formarIniciais(nome)}</span>
-            {mostrarOpcoesMovimentacoes && (
-              <div
-                className="dropdown-content"
-                onClick={(e) => e.stopPropagation()}
-                style={{ display: mostrarOpcoesMovimentacoes ? "block" : "none" }}
-              >
-                <ul>
-                  <li>
-                    <Link to="/login" onClick={Logout}>
-                      <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                      Sair
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
-        </NavAutenticadaStyle>
+          <NavAutenticadaStyle>
+            <ListaNavegacaoAutenticada />
+            <div className="botaoPerfil" onClick={toggleOpcoesMovimentacoes}>
+              <span>{formarIniciais(nome)}</span>
+              {mostrarOpcoesMovimentacoes && (
+                <div
+                  className="dropdown-content"
+                  onClick={(e) => e.stopPropagation()}
+                  style={{ display: mostrarOpcoesMovimentacoes ? "block" : "none" }}
+                >
+                  <ul>
+                    {profile === "admin" && (
+                      <li>
+                        <Link to="/adm/painel">
+                          <FontAwesomeIcon icon={faUserTie} />
+                          Painel Administrativo
+                        </Link>
+                      </li>
+                    )}
 
-      <NavStyleMobile>
-        
-        <IconeLogoSms path={"/"} />
-      <ModalNavigation auth={auth}/>
+                    <li>
+                      <Link to="/login" onClick={Logout}>
+                        <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                        Sair
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          </NavAutenticadaStyle>
 
-
-      </NavStyleMobile>
-      </>
-
-        
+          <NavStyleMobile>
+            <IconeLogoSms path={"/"} />
+            <ModalNavigation auth={auth} />
+          </NavStyleMobile>
+        </>
       )}
 
       {!auth && (

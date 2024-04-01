@@ -39,6 +39,7 @@ const Login = () => {
       localStorage.setItem("nome", loginResponse.usuario.nome);
       localStorage.setItem("userID", loginResponse.usuario.id);
       localStorage.setItem("sucessoLogin", "true");
+      localStorage.setItem("profile", loginResponse.usuario.profile);;
       notificar({
         tipo: "SUCESSO",
         mensagem: `Bem vindo ${loginResponse.usuario.nome}`,
