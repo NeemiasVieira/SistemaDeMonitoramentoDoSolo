@@ -34,8 +34,6 @@ const deleteSpecieRequest = async(id: string): AxiosPromise<DeleteSpecieResponse
 
 export const useDeleteSpecie = (id: string) => {
 
-  console.log("chamado uma vez");
-
   const queryClient = useQueryClient();
   const { notificar } = useNotificacoes()
 
