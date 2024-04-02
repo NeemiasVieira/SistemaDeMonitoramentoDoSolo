@@ -26,18 +26,26 @@ export const PainelAdmStyle = styled.main`
   }
 
   .botaoMenu{
-    width: 500px;
+    width: 350px;
     height: 150px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--bg-primary);
+    border: solid #c4c4c4 1px;
+    border-radius: 8px;
+    background-color: var(--white);
     cursor: pointer;
-    -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
 
     svg{
-      font-size: 2.5rem;
+      font-size: 2rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    h3{
+      margin: 5px;
+    }
+
+    p{
+      margin: 0;
+      color: #888;
     }
   }
 
@@ -45,10 +53,5 @@ export const PainelAdmStyle = styled.main`
     border: solid #222 1px;
   }
 
-  .especies{
-    svg{
-      color: var(--dark-green);
-    }
-  }
 
 `

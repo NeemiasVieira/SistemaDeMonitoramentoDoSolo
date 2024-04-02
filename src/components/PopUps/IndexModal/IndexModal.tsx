@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ModalIndexStyle } from "./IndexModalStyle";
-import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 interface ModalIndexProps{

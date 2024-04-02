@@ -3,17 +3,19 @@ import { LoadingStyle } from "./LoadingStyle";
 
 interface LoadingProps {
   minHeight?: any;
+  logoWidth?: string;
+  logoHeight?: string;
 }
 
-export const Loading: React.FC<LoadingProps> = ({ minHeight }) => {
+export const Loading: React.FC<LoadingProps> = ({ minHeight, logoHeight, logoWidth }) => {
   return (
     <LoadingStyle minHeight={minHeight}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         style={{ margin: 'auto', background: 'transparent', display: 'block', shapeRendering: 'auto' }}
-        width="200px"
-        height="200px"
+        width={logoWidth ?? "200px"}
+        height={logoHeight ?? "200px"}
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
       >

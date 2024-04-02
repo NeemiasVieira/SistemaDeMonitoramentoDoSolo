@@ -17,20 +17,24 @@ const PainelAdm = () => {
         <h2>Painel Administrativo</h2>
         <section className="menu">
           <button className="botaoMenu especies" onClick={() => navigate("/adm/especies")}>
-            <h3>Espécies</h3>
             <FontAwesomeIcon icon={faSpa} />
+            <h3>Espécies</h3>
+            <p>Gerenciamento de espécies ativas</p>
           </button>
           <button className="botaoMenu">
-            <h3>Em breve</h3>
             <FontAwesomeIcon icon={faFolder} />
+            <h3>Em breve</h3>
+            <p></p>
           </button>
           <button className="botaoMenu">
-            <h3>Em breve</h3>
             <FontAwesomeIcon icon={faFolder} />
+            <h3>Em breve</h3>
+            <p></p>
           </button>
           <button className="botaoMenu">
-            <h3>Em breve</h3>
             <FontAwesomeIcon icon={faFolder} />
+            <h3>Em breve</h3>
+            <p></p>
           </button>
         </section>
       </PainelAdmStyle>
