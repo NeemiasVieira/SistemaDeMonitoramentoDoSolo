@@ -209,11 +209,12 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
       display: "flex",
       alignItems: "center",
       flexFlow: "column wrap",
-      width: "30vw",
-      height: "70vh",
+      width: "40vw",
+      height: "75vh",
       backgroundColor: "#fff",
       opacity: "1",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
+      marginTop: "25px"
     },
   };
 
@@ -240,6 +241,7 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
               onChange={(event) => setDescricao(event.target.value)}
               cols={25}
               rows={4}
+              maxLength={400}
             />
           </div>
           {Object.entries(especieI.parametros).map(([parametro, valor]) => (

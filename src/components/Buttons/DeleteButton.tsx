@@ -52,7 +52,9 @@ const ModalStyle = styled.div`
   h2{
     font-size: 1.1rem;
     color: #111;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 1rem;
   }
 
   .DivYesOrNo{
@@ -95,10 +97,11 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({ onDelete }) => {
       border: "solid #aaa 1px",
       borderRadius: "15px",
       display: "flex",
+      justifyContent: "center",
       alignItems: "center",
       flexFlow: "column wrap",
       width: "350px",
-      height: "130px",
+      height: "140px",
       backgroundColor: "#fff",
       opacity: "1",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",

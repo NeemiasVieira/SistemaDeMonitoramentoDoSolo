@@ -20,7 +20,7 @@ export const PainelAdmStyle = styled.main`
     grid-template-rows: 1fr 1fr;
     width: auto;
     height: auto;
-    gap: 40px;
+    gap: 25px;
     margin-bottom: 50px;
     border-radius: 20px;
   }

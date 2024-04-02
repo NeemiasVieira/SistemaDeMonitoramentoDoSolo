@@ -31,7 +31,7 @@ export const SpecieUCModalStyleIndex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   flex-flow: row nowrap;
   font-size: .8rem;
   padding: 5px 20px;

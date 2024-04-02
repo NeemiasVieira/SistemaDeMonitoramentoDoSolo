@@ -4,6 +4,8 @@ import { HomeStyle } from "./HomeStyle";
 import { Link } from "react-router-dom";
 import { Navigation } from "../../components/Navigation/Navigation";
 import homeImage from "../../assets/img/homeImage4.jpg"
+import { faLeaf } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Home() {
 
@@ -28,6 +30,7 @@ export default function Home() {
                 Universidade Santa Cecília.
               </p>
               <Link to="/aplicacao" className="saibaMais">
+              <FontAwesomeIcon icon={faLeaf} />
                 Saiba mais
               </Link>
             </div>

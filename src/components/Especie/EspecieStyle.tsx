@@ -9,6 +9,7 @@ export const EspecieStyle = styled.div`
   border: solid #ccc 1px;
   border-radius: 10px;
   padding: 10px 20px 0 20px;
+  overflow-x: hidden;
 
   h3 {
     margin: 15px 0 0 0;
@@ -18,10 +19,11 @@ export const EspecieStyle = styled.div`
     color: #444;
     height: 70px;
     max-height: 70px;
-    overflow: scroll;
+    overflow: hiddren ;
     font-size: .9rem;
-    padding-bottom: 5px;
+    padding: 0;
     margin-bottom: 5px;
+    background-color: #fff;
   }
 
   .buttonActions {

@@ -10,10 +10,11 @@ export const HomeStyle = styled.main`
   background-color: var(--bg-primary);
 
   h1 {
-    font-size: 40px;
+    font-size: 2.5rem;
     margin: 70px 0 25px 0;
     text-align: center;
-    color: black;
+    color: #222;
+    padding: 0 80px;
   }
 
   .introducao {
@@ -34,7 +35,9 @@ export const HomeStyle = styled.main`
     height: 30vh;
     width: 60vh;
     font-weight: 700;
-    font-size: 1.3em;
+    font-size: 1.3rem;
+    color: #444;
+    letter-spacing: 1px;
   }
 
   .IntroducaoLadoDireito {
@@ -60,21 +63,29 @@ export const HomeStyle = styled.main`
   }
 
   .saibaMais {
-    margin: 20px 0;
+    margin-top: 40px;
+    /* margin-right: 80vw; */
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+    background-color: var(--white);
     text-decoration: none;
-    background-color: #111;
     width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 1.1rem;
-    transition: all 200ms;
-    :hover {
-      transform: scale(1.1);
-    }
+    padding: 10px 15px;
+    border-radius: 7px;
+    border: solid #aaa 1px;
+    color: #000;
+    font-size: 1.2rem;
+    transition: all 200ms; 
+
+    svg{
+    font-size: 1.2rem;
+  }
+  }
+
+  .saibaMais:hover{
+    transform: scale(1.1);
   }
 
   @media screen and (max-width: 480px) {

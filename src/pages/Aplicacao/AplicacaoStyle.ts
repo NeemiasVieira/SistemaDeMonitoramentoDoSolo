@@ -34,6 +34,8 @@ export const AplicacaoMain = styled.main`
     align-items: initial;
     font-size: 1.1rem;
     max-width: 600px;
+    color: #444;
+    letter-spacing: 1px;
     
   }
 

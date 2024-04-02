@@ -3,7 +3,7 @@ import { PainelAdmStyle } from "./PainelAdmStyle";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { Footer } from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolder, faSpa } from "@fortawesome/free-solid-svg-icons";
+import { faFolder, faSpa, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 const PainelAdm = () => {
@@ -22,9 +22,9 @@ const PainelAdm = () => {
             <p>Gerenciamento de espécies ativas</p>
           </button>
           <button className="botaoMenu">
-            <FontAwesomeIcon icon={faFolder} />
-            <h3>Em breve</h3>
-            <p></p>
+            <FontAwesomeIcon icon={faUsers} />
+            <h3>Usuários</h3>
+            <p>Em desenvolvimento</p>
           </button>
           <button className="botaoMenu">
             <FontAwesomeIcon icon={faFolder} />
