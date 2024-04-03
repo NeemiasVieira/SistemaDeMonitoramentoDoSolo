@@ -20,6 +20,14 @@ const ButtonOpenModal = styled.button`
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 1.1rem;
+
+    @media screen and (max-width: 480px) {
+      span{
+        font-size: .9rem;
+        letter-spacing: normal;
+      }
+    }
+
 `
 
 interface BotaoOpenModalProps{
@@ -29,7 +37,7 @@ const BotaoOpenModal: React.FC<BotaoOpenModalProps> = ({ onClick }) => {
   return(
     <ButtonOpenModal onClick={onClick}>
       <FontAwesomeIcon icon={faCircleQuestion} />
-      Saiba mais sobre as faixas saudáveis
+      <span>Saiba mais sobre as faixas saudáveis</span>
     </ButtonOpenModal>
   )
 }
@@ -38,6 +46,10 @@ const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   border: solid #111 1px;
+
+  @media screen and (max-width: 480px) {
+    width: 80%;
+  }
 `;
 
 const StyledHeaderCell = styled.th`
@@ -49,16 +61,18 @@ const StyledHeaderCell = styled.th`
   width: 150px;
 
   @media screen and (max-width: 480px){
-    width: 75px;
+    width: 55px;
+    padding: 5px;
   }
 `;
 
 const StyledBodyCell = styled.td`
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   border-right: 1px solid black;
   border-bottom: solid 1px #111;
   background-color: #fff;
+
 `;
 
 interface SaudeParamsModalProps{
@@ -95,7 +109,7 @@ export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) =
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
 
   return(
-    <IndexModal botaoOpenModal={BotaoOpenModal} height="55vh" width="80vw" minHeight="35vh" minWidth="35vw" maxHeight="500px" maxWidth="600px">
+    <IndexModal botaoOpenModal={BotaoOpenModal} height="43vh" width="80vw" minHeight="35vh" minWidth="35vw" maxHeight="500px" maxWidth="600px">
     <SaudeParamsModalStyle>
       <h2>Faixas saudáveis </h2>
       <StyledTable {...getTableProps()}>

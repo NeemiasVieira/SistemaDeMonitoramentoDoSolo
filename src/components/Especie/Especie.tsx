@@ -78,8 +78,8 @@ export const Especie: React.FC<EspecieProps> = ({ especie, openModalUpdate, setE
         </tbody>
       </table>
       <div className="buttonActions">
-        <DeleteButton onDelete={handleDelete} />
         <UpdateButton openModal={handleUpdate} />
+        <DeleteButton onDelete={handleDelete} />
       </div>
     </EspecieStyle>
   );

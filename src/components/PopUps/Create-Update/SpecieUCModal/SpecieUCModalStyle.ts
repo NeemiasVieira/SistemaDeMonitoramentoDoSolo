@@ -100,5 +100,8 @@ export const SpecieUCModalStyleIndex = styled.div`
   transform: scale(1.1);
 }
 
+@media screen and (max-width: 480px){
+  
+}
 
 `

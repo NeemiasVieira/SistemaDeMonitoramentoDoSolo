@@ -59,7 +59,7 @@ const Especies = () => {
     <>
       <EspeciesStyle>
         <Navigation auth={auth} />
-        <Link to="/adm/painel" className="buttonVoltar"><FontAwesomeIcon icon={faCircleLeft} />Voltar</Link>
+        <Link to="/adm/painel" className="buttonVoltar"><FontAwesomeIcon icon={faCircleLeft} /><span>Voltar</span></Link>
         
         <h2 className="tituloDaPagina">Todas as Espécies ativas</h2>
         <button className="createSpecieButton" onClick={openModalCreate}>

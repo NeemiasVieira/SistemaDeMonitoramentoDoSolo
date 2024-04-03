@@ -19,7 +19,7 @@ export const EspecieStyle = styled.div`
     color: #444;
     height: 70px;
     max-height: 70px;
-    overflow: hiddren ;
+    overflow: hidden;
     font-size: .9rem;
     padding: 0;
     margin-bottom: 5px;
@@ -56,4 +56,27 @@ export const EspecieStyle = styled.div`
   /* tr:nth-child(even) {
     background-color: #ddd;
   } */
+
+  @media screen and (max-width: 480px) {
+  width: 85vw;
+  height: auto;
+  border-radius: 8px;
+  padding: 10px 15px 0 15px;
+
+  h3 {
+    margin: 15px 0 0 10px;
+  }
+
+  .descricao {
+    font-size: .8rem;
+    margin: 15px 0 15px 10px;
+    height: 75px;
+    max-height: 75px;
+  }
+
+  .buttonActions {
+    top: -330px;
+    right: -76%;
+  }
+  }
 `;

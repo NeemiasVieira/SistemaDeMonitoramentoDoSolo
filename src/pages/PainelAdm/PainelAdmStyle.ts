@@ -53,5 +53,24 @@ export const PainelAdmStyle = styled.main`
     border: solid #222 1px;
   }
 
+  @media screen and (max-width: 480px){
+    .botaoMenu{
+      width: 170px;
+      height: 85px
+
+      svg{
+      font-size: 2rem;
+    }
+
+    h3{
+      font-size: .8rem;
+    }
+    p{
+      font-size: .7rem;
+    }
+    }
+
+    
+  }
 
 `

@@ -32,6 +32,19 @@ const ButtonStyle = styled.div`
     font-size: 1.2rem;
     color: #fff;
   }
+
+@media screen and (max-width: 480px){
+    button{
+      width: 28px;  
+      height: 28px;
+      padding: 18px;
+    }
+
+    svg{
+      font-size: 1rem;
+    }
+  }
+
 `;
 
 export const UpdateButton: React.FC<UpdateButtonProps> = ({ openModal }) => {
