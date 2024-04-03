@@ -11,6 +11,7 @@ import { useGetAllPlants } from "../../../services/API/Plants/useGetAllPlants";
 import { useGetLastRecord } from "../../../services/API/Records/useGetLastRecord";
 import { useGetRelatorioSaude } from "../../../services/API/Plants/useGetRelatorioSaude";
 import { useGetAllRecords } from "../../../services/API/Records/useGetAllRecords";
+import { useGetSpecie } from "../../../services/API/Species/useGetSpecie";
 
 const MinhaPlanta = () => {
   //States
@@ -23,7 +24,7 @@ const MinhaPlanta = () => {
   let { lastRecord,  lastRecordIsLoading, errorLastRecord, refetchLastRecord } = useGetLastRecord(plantaSelecionada?.id);
   let { relatorioSaude, isLoadingSaude, erroRelatorioSaude, refetchRelatorioSaude } = useGetRelatorioSaude(plantaSelecionada?.id);
   let { allRecords, errorAllRecords, refetchAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta: plantaSelecionada?.id, intervaloDeBusca, intervaloDeDias});
-
+  const { getSpecie, specieData, specieError } = useGetSpecie({nome: plantaSelecionada?.especie});
   const params = { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading};
 
   //useEffects
@@ -52,6 +53,7 @@ const MinhaPlanta = () => {
       refetchRelatorioSaude();
       refetchLastRecord();
       refetchAllRecords();
+      getSpecie();
     }
   }, [plantaSelecionada]);
 
@@ -84,7 +86,7 @@ const MinhaPlanta = () => {
           {plantas?.length > 0 &&
             plantas?.map((planta) => (
               <option key={planta.id} value={planta.id}>
-                {`${planta.nome} - (${planta.especie})`}
+                {`${planta.especie} => ${planta.nome}`}
               </option>
             ))}
         </select> }  
@@ -98,7 +100,7 @@ const MinhaPlanta = () => {
         )}
 
         {lastRecord && relatorioSaude && allRecords && !erroRelatorioSaude && (
-          <RelatorioDeSaude relatorio={relatorioSaude} />
+          <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />
         )}
 
         {!errorAllRecords && relatorioSaude && allRecords && lastRecord && (

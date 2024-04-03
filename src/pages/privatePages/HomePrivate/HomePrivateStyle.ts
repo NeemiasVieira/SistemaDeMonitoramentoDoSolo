@@ -19,6 +19,10 @@ export const HomePrivateMain = styled.main`
             margin: 10px 0;
         }
 
+        .subTitulo{
+            color: #444;
+        }
+
         h1,h2{
             text-align: center;
         }

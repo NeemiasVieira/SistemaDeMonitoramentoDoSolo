@@ -39,6 +39,13 @@ export class INotificacao {
   }
 }
 
+const mapearNotificacao = (mensagem: string): string => {
+  switch(mensagem){
+    case "jwt expired":
+      return "Sessão expirada, por favor faça login novamente";
+  }
+}
+
 const NotificacoesContext = createContext<INotificacoesContext>({
   notificacoes: [],
   notificar: () => {},
@@ -51,6 +58,12 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
   const notificar = async(params: NotificacaoConstructor) => {
     const notificacao = new INotificacao(params);
     setNotificacoes(valoresAnteriores => {
+
+      const mensagemMapeada = mapearNotificacao(notificacao.mensagem);
+
+      if(!notificacao.mensagem || notificacao.mensagem?.length === 0) notificacao.tempoEmSeg = 0;
+
+      if(mensagemMapeada && mensagemMapeada.length > 0) notificacao.mensagem = mensagemMapeada;
       return [...valoresAnteriores, notificacao]
     })
   };

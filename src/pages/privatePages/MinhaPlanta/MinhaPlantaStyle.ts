@@ -26,14 +26,14 @@ export const MinhaPlantaMain = styled.main`
     align-items: center;
     text-align: center;
     width: auto;
-    padding: 5px 0;
+    padding: 10px 10px;
     font-size: 16px;
     border: 1px solid #bbb;
     border-radius: 5px;
     background-color: #fff;
     color: #333;
     margin: 0 0 20px 0;
-    height: 30px;
+    height: 40px;
     margin-top: 4%;
   }
 

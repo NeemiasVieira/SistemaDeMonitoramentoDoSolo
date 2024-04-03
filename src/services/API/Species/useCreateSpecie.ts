@@ -87,11 +87,14 @@ export const useCreateSpecie = (args: { nome: string; descricao: string; paramet
     queryFn: () => createSpecie(args),
     onSuccess: () => {
       queryClient.invalidateQueries("getAllSpecies");
-      notificar({
-        tipo: "SUCESSO",
-        mensagem: "Espécie criada com sucesso",
-        tempoEmSeg: 4,
-      });
+      queryClient.invalidateQueries("getSpecie");
+      if(createSpecieData?.data?.errors?.length < 1){
+        notificar({
+          tipo: "SUCESSO",
+          mensagem: "Espécie criada com sucesso",
+          tempoEmSeg: 4,
+        });
+      }
     },
     queryKey: ["createSpecie"],
     retry: false,

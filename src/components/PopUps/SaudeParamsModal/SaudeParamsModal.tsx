@@ -5,6 +5,7 @@ import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SaudeParamsModalStyle } from "./SaudeParamsModalStyle";
 import { Column, useTable } from "react-table";
+import { Specie } from "../../Especie/Types";
 
 const ButtonOpenModal = styled.button`
     background-color: transparent;
@@ -24,7 +25,7 @@ const ButtonOpenModal = styled.button`
 interface BotaoOpenModalProps{
   onClick: () => void;
 }
-const BotaoOpenModal: React.FC<BotaoOpenModalProps> = ({onClick}) => {
+const BotaoOpenModal: React.FC<BotaoOpenModalProps> = ({ onClick }) => {
   return(
     <ButtonOpenModal onClick={onClick}>
       <FontAwesomeIcon icon={faCircleQuestion} />
@@ -60,26 +61,31 @@ const StyledBodyCell = styled.td`
   background-color: #fff;
 `;
 
+interface SaudeParamsModalProps{
+  especie: Specie;
+}
 
-export const SaudeParamsModal = () => {
+export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) => {
+
+  const { nitrogenio, fosforo, potassio, luz, umidade, temperatura, pH } = especie?.parametros;
 
   const data = useMemo(
     () => [
-      { propriedade: "Nitrogênio", valorMinimo: 0, valorMaximo: 100 },
-      { propriedade: "Fósforo", valorMinimo: 0, valorMaximo: 100 },
-      { propriedade: "Potássio", valorMinimo: 0, valorMaximo: 100 },
-      { propriedade: "Luz", valorMinimo: 0, valorMaximo: 100 },
-      { propriedade: "Umidade", valorMinimo: 0, valorMaximo: 100 },
-      { propriedade: "Temperatura", valorMinimo: 0, valorMaximo: 100 },
-      { propriedade: "pH", valorMinimo: 0, valorMaximo: 100 },
+      { propriedade: "Nitrogênio", unidade: "mg/Kg", valorMinimo: nitrogenio?.min, valorMaximo: nitrogenio?.max },
+      { propriedade: "Fósforo", unidade: "mg/Kg", valorMinimo: fosforo?.min, valorMaximo: fosforo?.max },
+      { propriedade: "Potássio", unidade: "mg/Kg", valorMinimo: potassio?.min, valorMaximo: potassio?.max },
+      { propriedade: "Luz", unidade: "%", valorMinimo: luz?.min, valorMaximo: luz?.max },
+      { propriedade: "Umidade", unidade: "%", valorMinimo: umidade?.min, valorMaximo: umidade?.max },
+      { propriedade: "Temperatura", unidade: "ºC", valorMinimo: temperatura?.min, valorMaximo: temperatura?.max },
+      { propriedade: "pH", unidade: "", valorMinimo: pH?.min, valorMaximo: pH?.max },
     ],
-    []
+    [especie]
   );
 
-  // Definição das colunas
-  const columns: Column<{ propriedade: string; valorMinimo: number; valorMaximo: number; }>[] = useMemo(
+  const columns: Column<{ propriedade: string; unidade: string, valorMinimo: string; valorMaximo: string; }>[] = useMemo(
     () => [
       { Header: "Propriedade", accessor: "propriedade" },
+      { Header: "Unidade", accessor: "unidade" },
       { Header: "Valor Mínimo", accessor: "valorMinimo" },
       { Header: "Valor Máximo", accessor: "valorMaximo" },
     ],

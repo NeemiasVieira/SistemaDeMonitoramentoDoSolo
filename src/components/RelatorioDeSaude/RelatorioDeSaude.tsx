@@ -7,6 +7,7 @@ import { Saude } from "../../pages/privatePages/MinhaPlanta/minha-planta.types";
 import { IndexModal } from "../PopUps/IndexModal/IndexModal";
 import styled from "styled-components";
 import { SaudeParamsModal } from "../PopUps/SaudeParamsModal/SaudeParamsModal";
+import { Specie } from "../Especie/Types";
 
 const getPropertyColorClass = (value: string) => {
     if (value === "Deficiência") {
@@ -30,10 +31,11 @@ export const formatoDateBR = (inputDateString: string) => {
   };
 
 interface RelatorioDeSaudeProps{
+  especie: Specie;
   relatorio: Saude
 }
 
-export const RelatorioDeSaude: React.FC<RelatorioDeSaudeProps> = ({ relatorio }) => {    
+export const RelatorioDeSaude: React.FC<RelatorioDeSaudeProps> = ({ relatorio, especie}) => {    
 
   return (
     <RelatorioDeSaudeStyle>
@@ -101,7 +103,7 @@ export const RelatorioDeSaude: React.FC<RelatorioDeSaudeProps> = ({ relatorio })
 
       </div>
       </div>
-      <SaudeParamsModal/>
+      <SaudeParamsModal especie={especie}/>
       {/* <p><strong>Última atualização: </strong>{formatoDateBR(relatorio?.ultimaAtualizacao)}</p>  */}
 
     </RelatorioDeSaudeStyle>

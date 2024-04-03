@@ -5,10 +5,16 @@ import { Footer } from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder, faSpa, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 
 const PainelAdm = () => {
   const auth = localStorage.getItem("token") ? true : false;
   const navigate = useNavigate();
+  const { notificar } = useNotificacoes();
+
+  const notificarIndisponibilidade = () => {
+    notificar({tipo: "NOTIFICACAO", mensagem: "Funcionalidade indisponível no momento", tempoEmSeg: 4});
+  }
 
   return (
     <>
@@ -21,17 +27,17 @@ const PainelAdm = () => {
             <h3>Espécies</h3>
             <p>Gerenciamento de espécies ativas</p>
           </button>
-          <button className="botaoMenu">
+          <button className="botaoMenu" onClick={notificarIndisponibilidade}>
             <FontAwesomeIcon icon={faUsers} />
             <h3>Usuários</h3>
             <p>Em desenvolvimento</p>
           </button>
-          <button className="botaoMenu">
+          <button className="botaoMenu" onClick={notificarIndisponibilidade}>
             <FontAwesomeIcon icon={faFolder} />
             <h3>Em breve</h3>
             <p></p>
           </button>
-          <button className="botaoMenu">
+          <button className="botaoMenu" onClick={notificarIndisponibilidade}>
             <FontAwesomeIcon icon={faFolder} />
             <h3>Em breve</h3>
             <p></p>

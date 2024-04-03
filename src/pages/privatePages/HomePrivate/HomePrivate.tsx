@@ -16,14 +16,7 @@ const HomePrivate = () => {
   }, [plantas]);
 
   useEffect(() => {
-
-    if (erro) {
-      notificar({
-        tipo: "ERRO",
-        mensagem: "Erro inesperado",
-        tempoEmSeg: 3,
-      });
-    }
+    if (erro) notificar({ tipo: "ERRO", mensagem: erro, tempoEmSeg: 3});
   }, [erro]);
 
   if (isLoading)
@@ -49,7 +42,7 @@ const HomePrivate = () => {
         <Navigation auth={true} />
         <main>
           <h1>Seja bem vindo ao Sistema de Controle</h1>
-          <h2>
+          <h2 className="subTitulo">
             Por aqui você pode cuidar da sua plantinha, reportar problemas e aproveitar o uso da nossa aplicação
           </h2>
           <section className="Plantas">

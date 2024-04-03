@@ -65,11 +65,14 @@ export const useUpdateSpecie = (args: {id: string, nome: string, descricao: stri
     queryFn: () => updateSpecie(args),
     onSuccess: () => {
       queryClient.invalidateQueries('getAllSpecies');
-      notificar({
-        tipo: "SUCESSO",
-        mensagem: "Espécie atualizada com sucesso",
-        tempoEmSeg: 4,
-      });
+      queryClient.invalidateQueries("getSpecie");
+      if(updateSpecieData?.data?.errors?.length < 1){
+        notificar({
+          tipo: "SUCESSO",
+          mensagem: "Espécie atualizada com sucesso",
+          tempoEmSeg: 4,
+        });
+      }
     },
     queryKey: ["updateSpecie"],
     retry: false,
@@ -94,7 +97,7 @@ export const useUpdateSpecie = (args: {id: string, nome: string, descricao: stri
 
   return {
     updateSpecieData: updateSpecieData?.data?.data?.updateSpecie ?? null,
-    updateSpecieError: updateSpecieData?.data?.errors?.length > 0 ? updateSpecieData.data.errors[0].message : null,
+    updateSpecieError: updateSpecieData?.data?.errors?.length > 0 ? updateSpecieData?.data?.errors[0]?.message : null,
     updateSpecieIsLoading: updateSpecieIsLoading || isSubmitting,
     confirmUpdateSpecie: () => setIsSubmitting(true)
   };
