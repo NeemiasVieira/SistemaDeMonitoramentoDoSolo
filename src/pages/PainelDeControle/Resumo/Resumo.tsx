@@ -81,8 +81,6 @@ const Resumo = () => {
           />
         )}
 
-        {allRecordsIsLoading && <Loading minHeight={"100px"}/>}
-
         {!lastRecord && !lastRecordIsLoading && plantaSelecionada?.id && (
           <p>A Planta não possui nenhum registro</p>
         )}
