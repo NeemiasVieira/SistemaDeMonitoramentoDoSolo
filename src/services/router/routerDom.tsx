@@ -9,11 +9,13 @@ import Login from "../../pages/Login/Login";
 import PainelDeControle from "../../pages/PainelDeControle/PainelDeControle";
 import Cadastro from "../../pages/Cadastro/Cadastro";
 import Faq from "../../pages/FAQ/Faq";
-import MinhaPlanta from "../../pages/MinhaPlanta/MinhaPlanta";
 import Aplicacao from "../../pages/Aplicacao/Aplicacao";
 import PainelAdm from "../../pages/PainelAdm/PainelAdm";
 import Especies from "../../pages/PainelAdm/Especies/Especies";
 import PainelMenu from "../../pages/PainelDeControle/Menu/Menu";
+import Resumo from "../../pages/PainelDeControle/Resumo/Resumo";
+import PagRelatorioSaude from "../../pages/PainelDeControle/RelatorioDeSaude/RelatorioSaude";
+import PagGraficoHistorico from "../../pages/PainelDeControle/HistoricoEmGrafico/GraficoHistorico";
 
 
 
@@ -34,8 +36,10 @@ const RouterDOM = () => {
                 {/* Rotas Privadas */}
                 <Route element={<RotaPrivada><PainelDeControle/></RotaPrivada>} path="painel" />
                 <Route element={<PainelMenu/>} path = "/painel/plantas/:idPlanta"/>
-                <Route element={<RotaPrivada><MinhaPlanta/></RotaPrivada>} path = "/painel/plantas/:idPlanta/resumo"/>
-
+                <Route element={<RotaPrivada><Resumo/></RotaPrivada>} path = "/painel/plantas/:idPlanta/resumo"/>
+                <Route element={<RotaPrivada><PagRelatorioSaude/></RotaPrivada>} path = "/painel/plantas/:idPlanta/relatorio-saude"/>
+                <Route element={<RotaPrivada><PagGraficoHistorico/></RotaPrivada>} path = "/painel/plantas/:idPlanta/grafico-historico"/>
+                
                 <Route element={<RotaC condicao={profileIsAdmin}><PainelAdm/></RotaC>} path="/adm/painel"/>
                 <Route element={<RotaC condicao={profileIsAdmin}><Especies/></RotaC>} path="/adm/especies"/>
             </Routes>

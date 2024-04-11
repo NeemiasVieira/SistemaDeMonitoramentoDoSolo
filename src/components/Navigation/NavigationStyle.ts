@@ -11,7 +11,7 @@ export const NavAutenticadaStyle = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 9999;
   border-bottom: solid #ccc 2px;
 
   * {
@@ -164,8 +164,8 @@ export const NavStyle = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
   border-bottom: solid #ccc 2px;
+  z-index: 9999;
 
   * {
     font-family: "Montserrat", sans-serif;
@@ -227,6 +227,7 @@ export const NavStyle = styled.nav`
     overflow: hidden;
     background-color: var(--white);
     border-bottom: solid #ccc 2px;
+    z-index: 9999;
 
     img{
       margin-left: 20px;

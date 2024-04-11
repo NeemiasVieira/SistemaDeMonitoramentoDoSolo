@@ -54,6 +54,12 @@ export const PainelMenuStyle = styled.main`
   }
 
   @media screen and (max-width: 480px){
+
+    h2{
+      margin-top: 130px;
+      margin-bottom: 30px;
+    }
+
     .botaoMenu{
       width: 170px;
       height: 85px

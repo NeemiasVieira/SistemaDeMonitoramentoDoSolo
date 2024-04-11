@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { MinhaPlantaMain } from "./MinhaPlantaStyle";
-import { RelatorioDeSaude } from "../../components/RelatorioDeSaude/RelatorioDeSaude";
-import GraficoLinhas from "../../components/GraficoLinhas/GraficoLinhas";
-import { UltimaAtualizacao } from "../../components/UltimaAtualizacao/UltimaAtualizacao";
-import { Planta } from "./minha-planta.types";
-import { Loading } from "../../components/Loading/Loading";
-import { useGetAllPlants } from "../../services/API/Plants/useGetAllPlants";
-import { useGetLastRecord } from "../../services/API/Records/useGetLastRecord";
-import { useGetRelatorioSaude } from "../../services/API/Plants/useGetRelatorioSaude";
-import { useGetAllRecords } from "../../services/API/Records/useGetAllRecords";
-import { useGetSpecie } from "../../services/API/Species/useGetSpecie";
+import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
+import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
+import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
+import { Planta } from "./Resumo.types";
+import { Loading } from "../../../components/Loading/Loading";
+import { useGetAllPlants } from "../../../services/API/Plants/useGetAllPlants";
+import { useGetLastRecord } from "../../../services/API/Records/useGetLastRecord";
+import { useGetRelatorioSaude } from "../../../services/API/Plants/useGetRelatorioSaude";
+import { useGetAllRecords } from "../../../services/API/Records/useGetAllRecords";
+import { useGetSpecie } from "../../../services/API/Species/useGetSpecie";
+import { useParams } from "react-router-dom";
+import { BotaoVoltar } from "../../../components/BotaoVoltar/BotaoVoltar";
+import { ResumoStyle } from "./ResumoStyle";
 
-const MinhaPlanta = () => {
+const Resumo = () => {
   //States
   const [plantaSelecionada, setPlantaSelecionada] = useState<Planta>();
   const [intervaloDeDias, setIntervaloDeDias] = useState(null);
@@ -24,10 +26,11 @@ const MinhaPlanta = () => {
   let { allRecords, errorAllRecords, refetchAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta: plantaSelecionada?.id, intervaloDeBusca, intervaloDeDias});
   const { getSpecie, specieData, specieError } = useGetSpecie({nome: plantaSelecionada?.especie});
   const params = { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading};
+  const { idPlanta } = useParams();
 
   //useEffects
   useEffect(() => {
-    if(plantas) setPlantaSelecionada(plantas[0]);
+    if(plantas) setPlantaSelecionada(plantas.find((planta) => planta.id === idPlanta));
   }, [plantas])
 
   useEffect(() => {
@@ -66,30 +69,14 @@ const MinhaPlanta = () => {
   }, [allRecords])
 
   return (
-      <MinhaPlantaMain>
+      <ResumoStyle>
+        <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
         {plantasLoading && <Loading minHeight={"80vh"}/>}
-        {plantas?.length > 0 && <select
-          value={plantaSelecionada?.id}
-          onChange={(e) => {
-            const plantaEscolhida = plantas?.find((planta) => planta.id === e.target.value);
-            lastRecord = null;
-            relatorioSaude = null;
-            setPlantaSelecionada(plantaEscolhida);
-          }}
-        >
-          <option value="1">Selecione uma planta</option>
           
-          {plantas?.length > 0 &&
-            plantas?.map((planta) => (
-              <option key={planta.id} value={planta.id}>
-                {`${planta.especie} => ${planta.nome}`}
-              </option>
-            ))}
-        </select> }  
-
        {plantaSelecionada && lastRecordIsLoading && <Loading minHeight={"50vh"}/>}  
 
        {lastRecord && !errorLastRecord && <h2 className="nomeDaPlanta">{plantaSelecionada?.nome}</h2>}
+       {lastRecord && !errorLastRecord && <h3 className="especieDaPlanta">{plantaSelecionada?.especie}</h3>}
 
         {allRecords && relatorioSaude && lastRecord && !errorLastRecord && (
           <UltimaAtualizacao registro={lastRecord} />
@@ -110,8 +97,8 @@ const MinhaPlanta = () => {
         {!lastRecord && !lastRecordIsLoading && plantaSelecionada?.id && (
           <p>A Planta não possui nenhum registro</p>
         )}
-      </MinhaPlantaMain>
+      </ResumoStyle>
   );
 };
 
-export default MinhaPlanta;
+export default Resumo;

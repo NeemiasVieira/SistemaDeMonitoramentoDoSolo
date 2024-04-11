@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder, faSpa, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { BotaoVoltar } from "../../components/BotaoVoltar/BotaoVoltar";
 
 const PainelAdm = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const PainelAdm = () => {
 
   return (
       <PainelAdmStyle>
+        <BotaoVoltar path="/painel"/>
         <h2>Painel Administrativo</h2>
         <section className="menu">
           <button className="botaoMenu especies" onClick={() => navigate("/adm/especies")}>

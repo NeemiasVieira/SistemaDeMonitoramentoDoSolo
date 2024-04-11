@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const MinhaPlantaMain = styled.main`
+export const ResumoStyle = styled.main`
   min-height: 80vh;
-  margin: 70px 0 0 0;
+  margin: 0;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -16,10 +16,20 @@ export const MinhaPlantaMain = styled.main`
     margin: 0;
   }
 
+  .especieDaPlanta{
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+
   h1 {
     font-size: 20px;
     margin: 60px 0 15px 0;
   }
+
+
   select {
     display: flex;
     justify-content: center;

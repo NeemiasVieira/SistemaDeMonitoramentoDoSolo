@@ -1,4 +1,4 @@
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import Modal from "react-modal";
@@ -18,9 +18,10 @@ const customStyles = {
     border: "solid #000 1px",
     width: "100vw",
     height: "100vh",
-    backgroundColor: "#111",
-    opacity: "0.7",
-    paddingTop: "90px"
+    backgroundColor: "#aaa",
+    opacity: ".9",
+    paddingTop: "90px",
+    zIndex: '1000'
   },
 };
 
@@ -32,7 +33,7 @@ export const ModalNavigation: React.FC<ModalNavigationProps> = ({auth}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
   };
 
   const closeModal = () => {
@@ -47,10 +48,8 @@ export const ModalNavigation: React.FC<ModalNavigationProps> = ({auth}) => {
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
         <ModalNavigationStyle>
           <h2>Menu</h2>
-          {auth && <ListaNavegacaoAutenticada/>}
-          {!auth && <ListaNavegacaoNaoAutenticada/>}
-
-          <button onClick={closeModal} className="closeButton"><FontAwesomeIcon icon={faXmark} /></button>
+          {auth && <ListaNavegacaoAutenticada closeModal={closeModal}/>}
+          {!auth && <ListaNavegacaoNaoAutenticada closeModal={closeModal}/>}
 
         </ModalNavigationStyle>
       </Modal>

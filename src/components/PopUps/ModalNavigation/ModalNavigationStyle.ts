@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 export const ModalNavigationStyle = styled.div`
 
-margin-top: 40px;
-
-color: #fff;
+    display: flex;
+    flex-flow: column wrap;
+    margin-top: 70px;
+    color: #000;
 
 h2{
     margin: 40px 0;
+    text-align: center;
 }
 
 .logo{
@@ -19,31 +21,17 @@ h2{
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
     flex-flow: column wrap;
-    gap: 30px;
+    gap: 15px;
 }
 
 ul li a{
-    color: var(--white);
+    display: flex;
+    justify-content: center;
+    color: #000;
     text-decoration: none;
-    background-color: #111;
-    padding: 10px;
-    border-radius: 10px;
+    background-color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
 }
-
-.closeButton{
-    position: absolute;
-    top: 13%;
-    right: 15%;
-    background-color: transparent;
-    border: none;
-
-    svg{
-        color: #fff;
-        font-size: 1.5rem;
-    }
-}
-
-
 `

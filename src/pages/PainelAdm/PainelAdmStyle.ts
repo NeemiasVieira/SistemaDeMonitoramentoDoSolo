@@ -10,7 +10,7 @@ export const PainelAdmStyle = styled.main`
   background-color: var(--bg-primary);
 
   h2{
-    margin: 120px 0 80px 0;
+    margin: 0 0 80px 0;
     text-align: center;
   }
 
@@ -54,6 +54,11 @@ export const PainelAdmStyle = styled.main`
   }
 
   @media screen and (max-width: 480px){
+
+    h2{
+      margin-top: 100px;
+      margin-bottom: 30px;
+    }
     .botaoMenu{
       width: 170px;
       height: 85px

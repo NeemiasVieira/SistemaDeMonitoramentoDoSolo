@@ -18,7 +18,11 @@ interface NavigationProps {
   auth?: boolean;
 }
 
-export const ListaNavegacaoAutenticada = () => {
+interface ListaNavegacaoProps{
+  closeModal?: () => void
+}
+
+export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({closeModal}) => {
   const urlCompleta = window.location.href;
   const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
   const navigate = useNavigate();
@@ -44,23 +48,17 @@ export const ListaNavegacaoAutenticada = () => {
         <IconeLogoSms path={"/"} />
       </li>
       <li className={caminhoAtual === "/aplicacao" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/aplicacao">Aplicação</Link>
+        <Link to="/aplicacao" onClick={closeModal}>Aplicação</Link>
       </li>
       <li className={caminhoAtual === "/faq" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/faq">FAQ</Link>
+        <Link to="/faq" onClick={closeModal}>FAQ</Link>
       </li>
       <li className={caminhoAtual === "/painel" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/painel">Painel de Controle</Link>
+        <Link to="/painel" onClick={closeModal}>Painel de Controle</Link>
       </li>
-      <li className={caminhoAtual === "/sistema/controle" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/sistema/controle">Controle</Link>
-      </li>
-      {/* <li>
-        <Link to="/painel">Ajuda</Link>
-      </li> */}
       {profile === "admin" && (
         <li>
-          <Link to="/adm/painel" className="mobileOnly">
+          <Link to="/adm/painel" className="mobileOnly" onClick={closeModal}>
             Painel Administrativo
           </Link>
         </li>
@@ -74,7 +72,7 @@ export const ListaNavegacaoAutenticada = () => {
   );
 };
 
-export const ListaNavegacaoNaoAutenticada = () => {
+export const ListaNavegacaoNaoAutenticada:React.FC<ListaNavegacaoProps> = ({closeModal}) => {
   const urlCompleta = window.location.href;
   const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
 
@@ -84,13 +82,13 @@ export const ListaNavegacaoNaoAutenticada = () => {
         <IconeLogoSms path={"/"} />
       </li>
       <li className={caminhoAtual === "/aplicacao" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/aplicacao">Aplicação</Link>
+        <Link to="/aplicacao" onClick={closeModal}>Aplicação</Link>
       </li>
       <li className={caminhoAtual === "/faq" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/faq">FAQ</Link>
+        <Link to="/faq" onClick={closeModal}>FAQ</Link>
       </li>
       <li className="botaoLogin">
-        <Link to="/login">Login</Link>
+        <Link to="/login" onClick={closeModal}>Login</Link>
       </li>
     </ul>
   );
@@ -132,7 +130,7 @@ export const Navigation: React.FC<NavigationProps> = ({ auth }) => {
                   <ul>
                     {profile === "admin" && (
                       <li>
-                        <Link to="/adm/painel">
+                        <Link to="/adm/painel" onClick={toggleOpcoesMovimentacoes}>
                           <FontAwesomeIcon icon={faUserTie} />
                           Painel Administrativo
                         </Link>
@@ -140,7 +138,7 @@ export const Navigation: React.FC<NavigationProps> = ({ auth }) => {
                     )}
 
                     <li>
-                      <Link to="/login" onClick={Logout}>
+                      <Link to="/login" onClick={() => {Logout(); toggleOpcoesMovimentacoes();}}>
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />
                         Sair
                       </Link>
