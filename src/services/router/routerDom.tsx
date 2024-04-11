@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route} from "react-router-dom";
+import { Router, Routes, Route, BrowserRouter} from "react-router-dom";
 import { RotaPrivada } from "./rotaPrivada";
 import { Redirect } from "./redirecionamento";
 import { NotificacoesProvider } from "../../contexts/NotificacoesProvider";
@@ -24,7 +24,7 @@ const RouterDOM = () => {
     const profileIsAdmin = localStorage.getItem("profile") === "admin";
 
     return(
-    <HashRouter>
+    <BrowserRouter>
         <NotificacoesProvider>
             <Routes>
                 <Route index element={<Home/>} path="/"/>
@@ -44,7 +44,7 @@ const RouterDOM = () => {
                 <Route element={<RotaC condicao={profileIsAdmin}><Especies/></RotaC>} path="/adm/especies"/>
             </Routes>
         </NotificacoesProvider>
-    </HashRouter>
+    </BrowserRouter>
     )
 }
 

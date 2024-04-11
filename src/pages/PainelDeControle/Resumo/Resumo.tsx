@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
-import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
 import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
 import { Planta } from "./Resumo.types";
 import { Loading } from "../../../components/Loading/Loading";
@@ -12,6 +11,8 @@ import { useGetSpecie } from "../../../services/API/Species/useGetSpecie";
 import { useParams } from "react-router-dom";
 import { BotaoVoltar } from "../../../components/BotaoVoltar/BotaoVoltar";
 import { ResumoStyle } from "./ResumoStyle";
+import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
+
 
 const Resumo = () => {
   //States
@@ -20,34 +21,26 @@ const Resumo = () => {
   const [intervaloDeBusca, setIntervaloDeBusca] = useState(null);
   
   //Hooks
-  const { plantas, isLoading: plantasLoading, erro: erroAllPlants, refetch: refetchAllPlants} = useGetAllPlants();
+  const { plantas, isLoading: plantasLoading} = useGetAllPlants();
   let { lastRecord,  lastRecordIsLoading, errorLastRecord, refetchLastRecord } = useGetLastRecord(plantaSelecionada?.id);
-  let { relatorioSaude, isLoadingSaude, erroRelatorioSaude, refetchRelatorioSaude } = useGetRelatorioSaude(plantaSelecionada?.id);
+  let { relatorioSaude, erroRelatorioSaude, refetchRelatorioSaude } = useGetRelatorioSaude(plantaSelecionada?.id);
   let { allRecords, errorAllRecords, refetchAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta: plantaSelecionada?.id, intervaloDeBusca, intervaloDeDias});
-  const { getSpecie, specieData, specieError } = useGetSpecie({nome: plantaSelecionada?.especie});
+  const { getSpecie, specieData } = useGetSpecie({nome: plantaSelecionada?.especie});
   const params = { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading};
   const { idPlanta } = useParams();
 
   //useEffects
   useEffect(() => {
     if(plantas) setPlantaSelecionada(plantas.find((planta) => planta.id === idPlanta));
+    // eslint-disable-next-line
   }, [plantas])
-
-  useEffect(() => {
-    if(allRecordsIsLoading === null) allRecordsIsLoading = true;
-  }, [allRecordsIsLoading])
 
   useEffect(() => {
     if(plantaSelecionada){
       refetchAllRecords();
     }
+    // eslint-disable-next-line
   }, [intervaloDeBusca, intervaloDeDias]);
-
-  useEffect(() => {
-    if (relatorioSaude) {
-      erroRelatorioSaude = null;
-    }
-  }, [erroRelatorioSaude]);
 
   useEffect(() => {
     if (plantaSelecionada) {
@@ -56,14 +49,8 @@ const Resumo = () => {
       refetchAllRecords();
       getSpecie();
     }
+    // eslint-disable-next-line
   }, [plantaSelecionada]);
-
-  useEffect(() => {
-    if (relatorioSaude && relatorioSaude?.ultimaAtualizacao) {
-    } else {
-      erroRelatorioSaude = null;
-    }
-  }, [relatorioSaude]);
 
   useEffect(() => {
   }, [allRecords])
@@ -93,6 +80,8 @@ const Resumo = () => {
             params={params}
           />
         )}
+
+        {allRecordsIsLoading && <Loading minHeight={"100px"}/>}
 
         {!lastRecord && !lastRecordIsLoading && plantaSelecionada?.id && (
           <p>A Planta não possui nenhum registro</p>

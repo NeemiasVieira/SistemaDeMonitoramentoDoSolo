@@ -12,7 +12,7 @@ export const NotificacaoStyle = styled.section`
   position: fixed;
   top: 1.5%;
   right: 0%;
-  z-index: 2;
+  z-index: 99999;
   transition: all 200ms;
   background-color: transparent;
   border-radius: 20px;

@@ -12,17 +12,19 @@ import { Loading } from "../../../components/Loading/Loading";
 const PagRelatorioSaude = () => {
   const { idPlanta } = useParams();
   const [plantaSelecionada, setPlantaSelecionada] = useState<Planta>();
-  const { getSpecie, specieData, specieError, specieIsLoading } = useGetSpecie({
+  const { getSpecie, specieData } = useGetSpecie({
     nome: plantaSelecionada?.especie,
   });
-  let { relatorioSaude, isLoadingSaude, erroRelatorioSaude, refetchRelatorioSaude } =
+  let { relatorioSaude, erroRelatorioSaude, refetchRelatorioSaude } =
     useGetRelatorioSaude(idPlanta);
-  const { plantas, isLoading: plantasLoading, erro: erroAllPlants, refetch: refetchAllPlants } = useGetAllPlants();
+  const { plantas } = useGetAllPlants();
+
 
   useEffect(() => {
     if (plantas) {
       setPlantaSelecionada(plantas.find((planta) => planta.id === idPlanta));
     }
+  // eslint-disable-next-line
   }, [plantas]);
 
   useEffect(() => {
@@ -30,6 +32,7 @@ const PagRelatorioSaude = () => {
       getSpecie();
       refetchRelatorioSaude();
     }
+    // eslint-disable-next-line
   }, [plantaSelecionada]);
 
   return (

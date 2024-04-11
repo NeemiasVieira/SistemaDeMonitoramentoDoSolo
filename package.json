@@ -1,7 +1,6 @@
 {
   "name": "tcc",
-  "version": "1.4.0",
-  "homepage": "http://neemiasvieira.github.io/SistemaDeMonitoramentoDoSolo/#",
+  "version": "1.5.0",
   "private": true,
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
