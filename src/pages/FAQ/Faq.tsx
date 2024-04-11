@@ -1,17 +1,12 @@
 import React from "react";
 import { FaqMain } from "./FaqStyle";
 import { PerguntaFAQ } from "../../components/PerguntaFAQ/PerguntaFAQ";
-import { Footer } from "../../components/Footer/Footer";
-import { Navigation } from "../../components/Navigation/Navigation";
 
 const Faq = () => {
-
-  const auth = localStorage.getItem("token") ? true : false;
-
+  
   return (
-    <>
+
       <FaqMain>
-        <Navigation auth={auth} />
         <h1>FAQ - Perguntas Frequentes</h1>
         <h2>Perguntas Relacionadas ao Sistema</h2>
         <PerguntaFAQ
@@ -44,8 +39,6 @@ const Faq = () => {
         resposta="MongoDB, utilizando a ORM Prisma para integração com a API."
         />
       </FaqMain>
-      <Footer />
-    </>
   );
 };
 

@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { MinhaPlantaMain } from "./MinhaPlantaStyle";
-import { Navigation } from "../../../components/Navigation/Navigation";
-import { Footer } from "../../../components/Footer/Footer";
-import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
-import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
-import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
+import { RelatorioDeSaude } from "../../components/RelatorioDeSaude/RelatorioDeSaude";
+import GraficoLinhas from "../../components/GraficoLinhas/GraficoLinhas";
+import { UltimaAtualizacao } from "../../components/UltimaAtualizacao/UltimaAtualizacao";
 import { Planta } from "./minha-planta.types";
-import { Loading } from "../../../components/Loading/Loading";
-import { useGetAllPlants } from "../../../services/API/Plants/useGetAllPlants";
-import { useGetLastRecord } from "../../../services/API/Records/useGetLastRecord";
-import { useGetRelatorioSaude } from "../../../services/API/Plants/useGetRelatorioSaude";
-import { useGetAllRecords } from "../../../services/API/Records/useGetAllRecords";
-import { useGetSpecie } from "../../../services/API/Species/useGetSpecie";
+import { Loading } from "../../components/Loading/Loading";
+import { useGetAllPlants } from "../../services/API/Plants/useGetAllPlants";
+import { useGetLastRecord } from "../../services/API/Records/useGetLastRecord";
+import { useGetRelatorioSaude } from "../../services/API/Plants/useGetRelatorioSaude";
+import { useGetAllRecords } from "../../services/API/Records/useGetAllRecords";
+import { useGetSpecie } from "../../services/API/Species/useGetSpecie";
 
 const MinhaPlanta = () => {
   //States
@@ -68,8 +66,6 @@ const MinhaPlanta = () => {
   }, [allRecords])
 
   return (
-    <>
-      <Navigation auth={true} />
       <MinhaPlantaMain>
         {plantasLoading && <Loading minHeight={"80vh"}/>}
         {plantas?.length > 0 && <select
@@ -115,8 +111,6 @@ const MinhaPlanta = () => {
           <p>A Planta não possui nenhum registro</p>
         )}
       </MinhaPlantaMain>
-      <Footer />
-    </>
   );
 };
 

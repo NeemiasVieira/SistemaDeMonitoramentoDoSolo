@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { LoginMain } from "./LoginStyle";
-import { Footer } from "../../components/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
-import { Navigation } from "../../components/Navigation/Navigation";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 import { useLogin } from "../../services/API/Users/useLogin";
 
@@ -45,14 +43,12 @@ const Login = () => {
         mensagem: `Bem vindo ${loginResponse.usuario.nome}`,
         tempoEmSeg: 4
       });
-      navigate("/sistema/minhasplantas");
+      navigate("/painel");
     }
   }, [loginResponse, error]);
 
   return (
-    <>
       <LoginMain>
-        <Navigation />
         <h2>Login</h2>
 
         {isLoading && <Loading minHeight={'400px'} />}
@@ -101,8 +97,6 @@ const Login = () => {
           </form>
         )}
       </LoginMain>
-      <Footer />
-    </>
   );
 };
 

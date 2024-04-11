@@ -3,7 +3,7 @@ import { RelatorioDeSaudeStyle } from "./RelatorioDeSaudeStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceGrinWide as feliz2, faFaceSmile as feliz1, faFaceMeh as neutro, faFaceFrownOpen as triste, faCircleQuestion} from "@fortawesome/free-solid-svg-icons"; 
 import { Alerta } from "../Alerta/Alerta";
-import { Saude } from "../../pages/privatePages/MinhaPlanta/minha-planta.types";
+import { Saude } from "../../pages/MinhaPlanta/minha-planta.types";
 import { IndexModal } from "../PopUps/IndexModal/IndexModal";
 import styled from "styled-components";
 import { SaudeParamsModal } from "../PopUps/SaudeParamsModal/SaudeParamsModal";

@@ -1,14 +1,11 @@
 import React from "react";
 import { PainelAdmStyle } from "./PainelAdmStyle";
-import { Navigation } from "../../components/Navigation/Navigation";
-import { Footer } from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder, faSpa, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 
 const PainelAdm = () => {
-  const auth = localStorage.getItem("token") ? true : false;
   const navigate = useNavigate();
   const { notificar } = useNotificacoes();
 
@@ -17,9 +14,7 @@ const PainelAdm = () => {
   }
 
   return (
-    <>
       <PainelAdmStyle>
-        <Navigation auth={auth} />
         <h2>Painel Administrativo</h2>
         <section className="menu">
           <button className="botaoMenu especies" onClick={() => navigate("/adm/especies")}>
@@ -44,8 +39,6 @@ const PainelAdm = () => {
           </button>
         </section>
       </PainelAdmStyle>
-      <Footer />
-    </>
   );
 };
 

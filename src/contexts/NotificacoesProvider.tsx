@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 import { Notificacoes } from "../components/Notificacao/Notificacao";
 import { v4 as uuidv4 } from 'uuid';
+import { Navigation } from "../components/Navigation/Navigation";
+import { Footer } from "../components/Footer/Footer";
 
 interface NotificacaoConstructor {
   tipo: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO" | null;
@@ -68,6 +70,8 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
     })
   };
 
+  const auth = localStorage.getItem("token") ? true : false;
+
   //  const notificar2 = () => notificar({tipo: "NOTIFICACAO", tempoEmSeg: 5, mensagem: "Mensagem de notificacao"});
   //  const alertar = () => notificar({tipo: "ALERTA", tempoEmSeg: 5, mensagem: "Mensagem de alerta"});
   //  const criarErro = () => notificar({tipo: "ERRO", tempoEmSeg: 5, mensagem: "Mensagem de erro"});
@@ -81,9 +85,10 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
       <button onClick={alertar}>ALERTA</button>
       <button onClick={criarErro}>ERRO</button>
       <button onClick={sucesso}>SUCESSO</button>  */}
-
+      <Navigation auth={auth}/>
       {notificacoes.length > 0 && <Notificacoes />}
       {children}
+      <Footer/>
       
     </NotificacoesContext.Provider>
   );

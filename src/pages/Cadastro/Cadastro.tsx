@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { CadastroMain } from "./CadastroStyle";
 import { Link } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
-import { Footer } from "../../components/Footer/Footer";
 import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroConcluido";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faAt, faA } from "@fortawesome/free-solid-svg-icons";
-import { Navigation } from "../../components/Navigation/Navigation";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 import { useSignUp } from "../../services/API/Users/useSignup";
 
@@ -42,9 +40,7 @@ const Cadastro = () => {
   };
 
   return (
-    <>
       <CadastroMain>
-        <Navigation/>
         <h2>Cadastro</h2>
 
         {isLoading && <Loading minHeight={"60vh"}/>}
@@ -107,8 +103,6 @@ const Cadastro = () => {
           </div>
         </form>)}
       </CadastroMain>
-      <Footer />
-    </>
   );
 };
 

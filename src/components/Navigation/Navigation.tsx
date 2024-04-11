@@ -49,14 +49,14 @@ export const ListaNavegacaoAutenticada = () => {
       <li className={caminhoAtual === "/faq" ? "selecionado" : "naoSelecionado"}>
         <Link to="/faq">FAQ</Link>
       </li>
-      <li className={caminhoAtual === "/sistema/minhasplantas" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/sistema/minhasplantas">Minhas Plantas</Link>
+      <li className={caminhoAtual === "/painel" ? "selecionado" : "naoSelecionado"}>
+        <Link to="/painel">Painel de Controle</Link>
       </li>
       <li className={caminhoAtual === "/sistema/controle" ? "selecionado" : "naoSelecionado"}>
         <Link to="/sistema/controle">Controle</Link>
       </li>
       {/* <li>
-        <Link to="/sistema/minhasplantas">Ajuda</Link>
+        <Link to="/painel">Ajuda</Link>
       </li> */}
       {profile === "admin" && (
         <li>

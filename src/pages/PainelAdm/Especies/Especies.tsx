@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { EspeciesStyle } from "./EspeciesStyle";
-import { Footer } from "../../../components/Footer/Footer";
-import { Navigation } from "../../../components/Navigation/Navigation";
 import { useGetAllSpecies } from "../../../services/API/Species/useGetAllSpecies";
 import { Especie } from "../../../components/Especie/Especie";
 import { Loading } from "../../../components/Loading/Loading";
@@ -12,9 +10,9 @@ import { Specie } from "../../../components/Especie/Types";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 import { useDeleteSpecie } from "../../../services/API/Species/useDeleteSpecie";
 import { Link } from "react-router-dom";
+import { BotaoVoltar } from "../../../components/BotaoVoltar/BotaoVoltar";
 
 const Especies = () => {
-  const auth = localStorage.getItem("token") ? true : false;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [type, setType] = useState<string>("Create");
   const [especieEscolhidaParaAtualizacao, setEspecieEscolhidaParaAtualizacao] = useState<Specie>();
@@ -56,11 +54,9 @@ const Especies = () => {
   const { allSpeciesData, allSpeciesError, allSpeciesIsLoading, refetchAllSpecies } = useGetAllSpecies();
 
   return (
-    <>
       <EspeciesStyle>
-        <Navigation auth={auth} />
-        <Link to="/adm/painel" className="buttonVoltar"><FontAwesomeIcon icon={faCircleLeft} /><span>Voltar</span></Link>
         
+        <BotaoVoltar path="/adm/painel"/>
         <h2 className="tituloDaPagina">Todas as Espécies ativas</h2>
         <button className="createSpecieButton" onClick={openModalCreate}>
           <FontAwesomeIcon icon={faSquarePlus} /> Nova Espécie
@@ -81,8 +77,6 @@ const Especies = () => {
 
         <SpecieUCModal type={type} closeModal={closeModal} isModalOpen={isModalOpen} especie={especieEscolhidaParaAtualizacao} />
       </EspeciesStyle>
-      <Footer />
-    </>
   );
 };
 export default Especies;

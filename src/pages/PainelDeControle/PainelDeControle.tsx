@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { Navigation } from "../../../components/Navigation/Navigation";
-import { Footer } from "../../../components/Footer/Footer";
-import { HomePrivateMain } from "./HomePrivateStyle";
-import { Planta } from "../../../components/Planta/Planta";
-import { Loading } from "../../../components/Loading/Loading";
-import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import { useGetAllPlants } from "../../../services/API/Plants/useGetAllPlants";
+import { Planta } from "../../components/Planta/Planta";
+import { Loading } from "../../components/Loading/Loading";
+import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { useGetAllPlants } from "../../services/API/Plants/useGetAllPlants";
+import { PainelDeControleStyle } from "./PainelDeControleStyle";
 
-const HomePrivate = () => {
+const PainelDeControle = () => {
   const { notificar } = useNotificacoes();
   const { plantas, refetch, erro, isLoading } = useGetAllPlants();
 
@@ -21,25 +19,17 @@ const HomePrivate = () => {
 
   if (isLoading)
     return (
-      <>
-        <HomePrivateMain>
-          <Navigation auth={true} />
-          <main>
+        <PainelDeControleStyle>
             <h1>Seja bem vindo ao Sistema de Controle</h1>
             <h2>
               Por aqui você pode cuidar da sua plantinha, reportar problemas e aproveitar o uso da nossa aplicação
             </h2>
             <Loading minHeight="70vh" />
-          </main>
-        </HomePrivateMain>
-        <Footer />
-      </>
+        </PainelDeControleStyle>
     );
 
   return (
-    <>
-      <HomePrivateMain>
-        <Navigation auth={true} />
+      <PainelDeControleStyle>
         <main>
           <h1>Seja bem vindo ao Sistema de Controle</h1>
           <h2 className="subTitulo">
@@ -59,10 +49,8 @@ const HomePrivate = () => {
             </div>
           </section>
         </main>
-      </HomePrivateMain>
-      <Footer />
-    </>
+      </PainelDeControleStyle>
   );
 };
 
-export default HomePrivate;
+export default PainelDeControle;

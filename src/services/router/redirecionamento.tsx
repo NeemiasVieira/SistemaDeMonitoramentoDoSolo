@@ -7,5 +7,5 @@ interface RedirectProps{
 
 export const Redirect: React.FC<RedirectProps> = ({children}) => {
     const token = localStorage.getItem("token");
-    return token ? <Navigate to="/sistema/minhasplantas"/> : children
+    return token ? <Navigate to="/painel"/> : children
 }
