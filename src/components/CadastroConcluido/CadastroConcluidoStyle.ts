@@ -50,4 +50,17 @@ export const CadastroConcluidoMain = styled.main`
   .link:hover {
     transform: scale(1.1);
   }
+
+  @media screen and (max-width: 480px){
+
+    h2{
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    section{
+      max-width: 70vw;
+      padding: 20px;
+    }
+  }
 `;
