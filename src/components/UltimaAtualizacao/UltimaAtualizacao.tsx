@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 interface UltimaAtualizacaoProps{
   registro: IRegistro
+  ultimaAtualizacao: boolean;
 }
 
 const InfoStyle = styled.div`
@@ -92,7 +93,70 @@ const Info: React.FC<InfoProps> = ({nomeInfo, valorInfo, unidadeMedida}) => {
   )
 }
 
-export const UltimaAtualizacao: React.FC<UltimaAtualizacaoProps> = ({ registro }) => {
+const mapearDia = (dia: number) => {
+  switch (dia) {
+    case 0:
+      return "Domingo";
+    case 1:
+      return "Segunda-feira";
+    case 2:
+      return "Terça-feira";
+    case 3:
+      return "Quarta-feira";
+    case 4:
+      return "Quinta-feira";
+    case 5:
+      return "Sexta-feira";
+    case 6:
+      return "Sábado";
+  }
+}
+
+const mapearMes = (mes: string) => {
+  switch (Number(mes)) {
+    case 0:
+      return "Janeiro";
+    case 1:
+      return "Fevereiro";
+    case 2:
+      return "Março";
+    case 3:
+      return "Abril";
+    case 4:
+      return "Maio";
+    case 5:
+      return "Junho";
+    case 6:
+      return "Julho";
+    case 7:
+      return "Agosto";
+    case 8:
+      return "Setembro";
+    case 9:
+      return "Outubro";
+    case 10:
+      return "Novembro";
+    case 11:
+      return "Dezembro";
+    default:
+      return "";
+  }
+}
+
+
+const formatarData = (data: string) => {
+  const novaData = new Date(data);
+  const dia = novaData.getDate().toString().padStart(2, '0');
+  const mes = (novaData.getMonth() + 1).toString().padStart(2, '0'); 
+  const ano = novaData.getFullYear();
+  const hora = novaData.getHours().toString().padStart(2, '0');
+  const minuto = novaData.getMinutes().toString().padStart(2, '0');
+  const day = novaData.getDay();
+  
+  return `${mapearDia(day)}, ${dia} de ${mapearMes(mes)} de ${ano} as ${hora}:${minuto}h`;
+}
+
+export const UltimaAtualizacao: React.FC<UltimaAtualizacaoProps> = ({ registro, ultimaAtualizacao }) => {
   return (
     <UltimaAtualizacaoStyle>
 
@@ -111,7 +175,7 @@ export const UltimaAtualizacao: React.FC<UltimaAtualizacaoProps> = ({ registro }
 
       {registro && (
         <p className="InfoUltimaAtualizacao">
-          {formatRelativeTime(registro.dataDeRegistro)}
+          {ultimaAtualizacao ? formatRelativeTime(registro.dataDeRegistro) : formatarData(registro.dataDeRegistro)}
         </p>
       )}
     </UltimaAtualizacaoStyle>

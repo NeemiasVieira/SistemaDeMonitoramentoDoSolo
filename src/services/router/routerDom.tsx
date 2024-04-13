@@ -17,7 +17,9 @@ import Resumo from "../../pages/PainelDeControle/Resumo/Resumo";
 import PagRelatorioSaude from "../../pages/PainelDeControle/RelatorioDeSaude/RelatorioSaude";
 import PagGraficoHistorico from "../../pages/PainelDeControle/HistoricoEmGrafico/GraficoHistorico";
 import NotFound from "../../pages/404NotFound/NotFound";
-import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroConcluido";
+import TodosOsRegistros from "../../pages/PainelDeControle/TodosOsRegistros/TodosOsRegistros";
+import { RegistrosProvider } from "../../contexts/RegistrosContext";
+import PagRegistro from "../../pages/Registro/PagRegistro";
 
 const RouterDOM = () => {
 
@@ -32,6 +34,7 @@ const RouterDOM = () => {
                 <Route element={<Redirect><Cadastro/></Redirect>} path = "/cadastro"/>
                 <Route element={<Faq/>} path = "/faq"/>
                 <Route element={<Aplicacao/>} path ="/aplicacao"/>
+                <Route element={<NotFound/>} path="*"/>
 
                 {/* Rotas Privadas */}
                 <Route element={<RotaPrivada><PainelDeControle/></RotaPrivada>} path="painel" />
@@ -39,7 +42,11 @@ const RouterDOM = () => {
                 <Route element={<RotaPrivada><Resumo/></RotaPrivada>} path = "/painel/plantas/:idPlanta/resumo"/>
                 <Route element={<RotaPrivada><PagRelatorioSaude/></RotaPrivada>} path = "/painel/plantas/:idPlanta/relatorio-saude"/>
                 <Route element={<RotaPrivada><PagGraficoHistorico/></RotaPrivada>} path = "/painel/plantas/:idPlanta/grafico-historico"/>
-                <Route element={<NotFound/>} path="*"/>
+
+                <Route element={<RegistrosProvider><TodosOsRegistros/></RegistrosProvider>} path="/painel/plantas/:idPlanta/registros"/>
+                <Route element={<RegistrosProvider><PagRegistro/></RegistrosProvider>} path="/painel/registros/:idRegistro" />
+                
+                
                 
                 <Route element={<RotaC condicao={profileIsAdmin}><PainelAdm/></RotaC>} path="/adm/painel"/>
                 <Route element={<RotaC condicao={profileIsAdmin}><Especies/></RotaC>} path="/adm/especies"/>

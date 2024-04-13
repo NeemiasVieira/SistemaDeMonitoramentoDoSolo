@@ -92,16 +92,16 @@ export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) =
       { propriedade: "Umidade", unidade: "%", valorMinimo: umidade?.min, valorMaximo: umidade?.max },
       { propriedade: "Temperatura", unidade: "ºC", valorMinimo: temperatura?.min, valorMaximo: temperatura?.max },
       { propriedade: "pH", unidade: "", valorMinimo: pH?.min, valorMaximo: pH?.max },
-    ],// eslint-disable-next-line react-hooks/exhaustive-deps
+    ],// eslint-disable-next-line
     [especie]
   );
 
-  const columns: Column<{ propriedade: string; unidade: string, valorMinimo: string; valorMaximo: string; }>[] = useMemo(
+  const columns: Column<{ propriedade: string, valorMinimo: string; valorMaximo: string;  unidade: string }>[] = useMemo(
     () => [
       { Header: "Propriedade", accessor: "propriedade" },
-      { Header: "Unidade", accessor: "unidade" },
       { Header: "Valor Mínimo", accessor: "valorMinimo" },
       { Header: "Valor Máximo", accessor: "valorMaximo" },
+      { Header: "Unidade", accessor: "unidade" },
     ],
     []
   );

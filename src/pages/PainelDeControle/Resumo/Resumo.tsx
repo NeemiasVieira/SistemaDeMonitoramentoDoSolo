@@ -70,7 +70,7 @@ const Resumo = () => {
  
 
         {allRecords && relatorioSaude && lastRecord && !errorLastRecord && (
-          <UltimaAtualizacao registro={lastRecord} />
+          <UltimaAtualizacao registro={lastRecord} ultimaAtualizacao />
         )}
 
         {lastRecord && relatorioSaude && allRecords && !erroRelatorioSaude && (

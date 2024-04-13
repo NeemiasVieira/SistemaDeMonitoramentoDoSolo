@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { Notificacoes } from "../components/Notificacao/Notificacao";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { Navigation } from "../components/Navigation/Navigation";
 import { Footer } from "../components/Footer/Footer";
 import styled from "styled-components";
 
 const ApplicationBackgroundStyle = styled.div`
-
   display: flex;
   justify-content: space-between;
   flex-flow: column wrap;
@@ -15,11 +14,10 @@ const ApplicationBackgroundStyle = styled.div`
   max-width: 100vw;
   overflow-x: hidden;
 
-  @media screen and (max-width: 480px){
+  @media screen and (max-width: 480px) {
     min-height: 1650px;
   }
-
-`
+`;
 
 interface NotificacaoConstructor {
   tipo: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO" | null;
@@ -29,10 +27,10 @@ interface NotificacaoConstructor {
 interface NotificacoesProviderProps {
   children: React.ReactNode;
 }
-interface INotificacoesContext{
-    notificacoes: INotificacao[];
-    notificar: (notificacao: NotificacaoConstructor) => void;
-    setAuth: any
+interface INotificacoesContext {
+  notificacoes: INotificacao[];
+  notificar: (notificacao: NotificacaoConstructor) => void;
+  setAuth: any;
 }
 
 export class INotificacao {
@@ -40,60 +38,56 @@ export class INotificacao {
   public tipo: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO";
   public visivel: boolean;
   public tempoEmSeg: number;
-  public id: string
+  public id: string;
 
   constructor(params: NotificacaoConstructor) {
     this.mensagem = params.mensagem;
-    this.tipo = params.tipo
+    this.tipo = params.tipo;
     this.tempoEmSeg = params.tempoEmSeg;
     this.visivel = true;
-    this.id = uuidv4()
+    this.id = uuidv4();
 
     setTimeout(() => {
-      this.matarNotificacao()
-    }, this.tempoEmSeg*1000);
+      this.matarNotificacao();
+    }, this.tempoEmSeg * 1000);
   }
 
-  matarNotificacao(){
+  matarNotificacao() {
     this.visivel = false;
   }
 }
 
 const mapearNotificacao = (mensagem: string): string => {
-  switch(mensagem){
+  switch (mensagem) {
     case "jwt expired":
       return "Sessão expirada, por favor faça login novamente";
   }
-}
+};
 
 const NotificacoesContext = createContext<INotificacoesContext>({
   notificacoes: [],
   notificar: () => {},
-  setAuth: () => {}
+  setAuth: () => {},
 });
 
 export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ children }) => {
-
   const [notificacoes, setNotificacoes] = useState<INotificacao[]>([]);
 
-  const notificar = async(params: NotificacaoConstructor) => {
+  const notificar = async (params: NotificacaoConstructor) => {
     const notificacao = new INotificacao(params);
-    setNotificacoes(valoresAnteriores => {
-
+    setNotificacoes((valoresAnteriores) => {
       const mensagemMapeada = mapearNotificacao(notificacao.mensagem);
 
-      if(!notificacao.mensagem || notificacao.mensagem?.length === 0) notificacao.tempoEmSeg = 0;
+      if (!notificacao.mensagem || notificacao.mensagem?.length === 0) notificacao.tempoEmSeg = 0;
 
-      if(mensagemMapeada && mensagemMapeada.length > 0) notificacao.mensagem = mensagemMapeada;
-      return [...valoresAnteriores, notificacao]
-    })
+      if (mensagemMapeada && mensagemMapeada.length > 0) notificacao.mensagem = mensagemMapeada;
+      return [...valoresAnteriores, notificacao];
+    });
   };
 
   const [auth, setAuth] = useState<boolean>(localStorage.getItem("token") ? true : false);
 
-  useEffect(() => {
-
-  }, [auth]);
+  useEffect(() => {}, [auth]);
 
   //  const notificar2 = () => notificar({tipo: "NOTIFICACAO", tempoEmSeg: 5, mensagem: "Mensagem de notificacao"});
   //  const alertar = () => notificar({tipo: "ALERTA", tempoEmSeg: 5, mensagem: "Mensagem de alerta"});
@@ -102,19 +96,17 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
 
   return (
     <NotificacoesContext.Provider value={{ notificacoes, notificar, setAuth }}>
-      
-     {/* <h1>Teste do sistema de notificacoes</h1>
+      {/* <h1>Teste do sistema de notificacoes</h1>
       <button onClick={notificar2}>NOTIFICACAO</button>
       <button onClick={alertar}>ALERTA</button>
       <button onClick={criarErro}>ERRO</button>
       <button onClick={sucesso}>SUCESSO</button>  */}
       <ApplicationBackgroundStyle>
-      <Navigation auth={auth}/>
-      {notificacoes.length > 0 && <Notificacoes />}
-      {children}
-      <Footer/>
+        <Navigation auth={auth} />
+        {notificacoes.length > 0 && <Notificacoes />}
+        {children}
+        <Footer />
       </ApplicationBackgroundStyle>
-      
     </NotificacoesContext.Provider>
   );
 };
@@ -122,7 +114,7 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
 export const useNotificacoes = () => {
   const context = useContext(NotificacoesContext);
   if (!context) {
-      throw new Error("useNotificacoes deve ser usado dentro de um NotificacoesProvider");
-    }
-    return context;
+    throw new Error("useNotificacoes deve ser usado dentro de um NotificacoesProvider");
+  }
+  return context;
 };
