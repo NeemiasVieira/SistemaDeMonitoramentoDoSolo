@@ -52,7 +52,7 @@ export const PainelDeControleStyle = styled.main`
   }
 
   @media screen and (max-width: 480px) {
-    margin-top: 100px;
+    margin-top: 40px;
     min-height: 200px;
 
     .Plantas {

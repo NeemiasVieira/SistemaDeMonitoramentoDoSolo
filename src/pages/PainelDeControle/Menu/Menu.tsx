@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBorderAll, faChartLine, faFileWaveform, faImage } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { PainelMenuStyle } from "./MenuStyle";
-import { BotaoVoltar } from "../../../components/BotaoVoltar/BotaoVoltar";
+import { BotaoVoltar } from "../../../components/Buttons/BotaoVoltar";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 const PainelMenu = () => {

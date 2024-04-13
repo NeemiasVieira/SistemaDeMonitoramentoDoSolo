@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const SpecieUCModalStyle = styled.div`
 
-`
 
 export const SpecieUCModalStyleIndex = styled.div`
 
@@ -101,7 +99,9 @@ export const SpecieUCModalStyleIndex = styled.div`
 }
 
 @media screen and (max-width: 480px){
-  
+  .closeButton{
+    font-size: .7rem;
+  }
 }
 
 `

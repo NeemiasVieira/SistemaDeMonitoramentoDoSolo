@@ -34,6 +34,7 @@ const ButtonStyle = styled.div`
   }
 
   @media screen and (max-width: 480px){
+
     button{
       width: 28px;  
       height: 28px;
@@ -88,6 +89,13 @@ const ModalStyle = styled.div`
     border: solid #222 1px;
     transform: scale(1.1);
   }
+
+  @media screen and (max-width: 480px){
+    .closeButton{
+      font-size: .7rem;;
+      top: 7%;
+    }
+  }
 `;
 
 export const DeleteButton: React.FC<DeleteButtonProps> = ({ onDelete }) => {
@@ -112,7 +120,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({ onDelete }) => {
       justifyContent: "center",
       alignItems: "center",
       flexFlow: "column wrap",
-      width: "350px",
+      maxWidth: "350px",
+      width: "70vw",
       height: "140px",
       backgroundColor: "#fff",
       opacity: "1",

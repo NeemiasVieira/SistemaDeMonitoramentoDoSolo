@@ -1,8 +1,25 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Notificacoes } from "../components/Notificacao/Notificacao";
 import { v4 as uuidv4 } from 'uuid';
 import { Navigation } from "../components/Navigation/Navigation";
 import { Footer } from "../components/Footer/Footer";
+import styled from "styled-components";
+
+const ApplicationBackgroundStyle = styled.div`
+
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
+  min-height: 130vh;
+  margin-top: 70px;
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  @media screen and (max-width: 480px){
+    min-height: 1650px;
+  }
+
+`
 
 interface NotificacaoConstructor {
   tipo: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO" | null;
@@ -15,6 +32,7 @@ interface NotificacoesProviderProps {
 interface INotificacoesContext{
     notificacoes: INotificacao[];
     notificar: (notificacao: NotificacaoConstructor) => void;
+    setAuth: any
 }
 
 export class INotificacao {
@@ -51,6 +69,7 @@ const mapearNotificacao = (mensagem: string): string => {
 const NotificacoesContext = createContext<INotificacoesContext>({
   notificacoes: [],
   notificar: () => {},
+  setAuth: () => {}
 });
 
 export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ children }) => {
@@ -70,7 +89,11 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
     })
   };
 
-  const auth = localStorage.getItem("token") ? true : false;
+  const [auth, setAuth] = useState<boolean>(localStorage.getItem("token") ? true : false);
+
+  useEffect(() => {
+
+  }, [auth]);
 
   //  const notificar2 = () => notificar({tipo: "NOTIFICACAO", tempoEmSeg: 5, mensagem: "Mensagem de notificacao"});
   //  const alertar = () => notificar({tipo: "ALERTA", tempoEmSeg: 5, mensagem: "Mensagem de alerta"});
@@ -78,17 +101,19 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
   //  const sucesso = () => notificar({tipo: "SUCESSO", tempoEmSeg: 5, mensagem: "Mensagem de sucesso"});
 
   return (
-    <NotificacoesContext.Provider value={{ notificacoes, notificar }}>
+    <NotificacoesContext.Provider value={{ notificacoes, notificar, setAuth }}>
       
      {/* <h1>Teste do sistema de notificacoes</h1>
       <button onClick={notificar2}>NOTIFICACAO</button>
       <button onClick={alertar}>ALERTA</button>
       <button onClick={criarErro}>ERRO</button>
       <button onClick={sucesso}>SUCESSO</button>  */}
+      <ApplicationBackgroundStyle>
       <Navigation auth={auth}/>
       {notificacoes.length > 0 && <Notificacoes />}
       {children}
       <Footer/>
+      </ApplicationBackgroundStyle>
       
     </NotificacoesContext.Provider>
   );

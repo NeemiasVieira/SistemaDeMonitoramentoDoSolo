@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PagGraficoHistoricoStyle = styled.main`
-  min-height: 50vh;
+  margin-top: 50px;
   padding: 0 0 50px 0;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@ export const PagGraficoHistoricoStyle = styled.main`
 
   @media screen and (max-width: 480px){
     .GraficoDiv{
-      margin-top: 90px;
+      margin-top: 40px;
     }
   }
 

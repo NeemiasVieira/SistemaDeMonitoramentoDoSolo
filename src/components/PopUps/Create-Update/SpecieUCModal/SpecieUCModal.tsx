@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SpecieUCModalStyle, SpecieUCModalStyleIndex } from "./SpecieUCModalStyle";
+import { SpecieUCModalStyleIndex } from "./SpecieUCModalStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
@@ -81,7 +81,7 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
         mensagem: createSpecieError,
         tempoEmSeg: 4
       })
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createSpecieError])
 
   useEffect(() =>{
@@ -91,7 +91,7 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
         mensagem: updateSpecieError,
         tempoEmSeg: 4
       })
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateSpecieError])
 
 
@@ -116,7 +116,7 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
     }
     else{
       setEspecieI(defaultSpecie);
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [especie])
 
   const setNome = (nome: string) => {
@@ -162,7 +162,7 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
   useEffect(() => {
     if (!updateSpecieIsLoading && !createSpecieIsLoading) {
       closeModal();
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateSpecieIsLoading, createSpecieIsLoading]);
   
 
@@ -215,12 +215,14 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
       backgroundColor: "#fff",
       opacity: "1",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
-      marginTop: "25px"
+      marginTop: "25px",
+      zIndex: "3",
+      overflow: "hidden"
     },
   };
 
   return (
-    <SpecieUCModalStyle>
+ 
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
         <SpecieUCModalStyleIndex>
 
@@ -268,6 +270,5 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
           {createSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="50px" logoWidth="50px"/>}
         </SpecieUCModalStyleIndex>
       </Modal>
-    </SpecieUCModalStyle>
   );
 };

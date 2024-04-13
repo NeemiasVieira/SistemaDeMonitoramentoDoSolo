@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder, faSpa, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-import { BotaoVoltar } from "../../components/BotaoVoltar/BotaoVoltar";
+import { BotaoVoltar } from "../../components/Buttons/BotaoVoltar";
 
 const PainelAdm = () => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { Router, Routes, Route, BrowserRouter} from "react-router-dom";
+import { Routes, Route, BrowserRouter} from "react-router-dom";
 import { RotaPrivada } from "./rotaPrivada";
 import { Redirect } from "./redirecionamento";
 import { NotificacoesProvider } from "../../contexts/NotificacoesProvider";
@@ -16,8 +16,8 @@ import PainelMenu from "../../pages/PainelDeControle/Menu/Menu";
 import Resumo from "../../pages/PainelDeControle/Resumo/Resumo";
 import PagRelatorioSaude from "../../pages/PainelDeControle/RelatorioDeSaude/RelatorioSaude";
 import PagGraficoHistorico from "../../pages/PainelDeControle/HistoricoEmGrafico/GraficoHistorico";
-
-
+import NotFound from "../../pages/404NotFound/NotFound";
+import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroConcluido";
 
 const RouterDOM = () => {
 
@@ -39,6 +39,7 @@ const RouterDOM = () => {
                 <Route element={<RotaPrivada><Resumo/></RotaPrivada>} path = "/painel/plantas/:idPlanta/resumo"/>
                 <Route element={<RotaPrivada><PagRelatorioSaude/></RotaPrivada>} path = "/painel/plantas/:idPlanta/relatorio-saude"/>
                 <Route element={<RotaPrivada><PagGraficoHistorico/></RotaPrivada>} path = "/painel/plantas/:idPlanta/grafico-historico"/>
+                <Route element={<NotFound/>} path="*"/>
                 
                 <Route element={<RotaC condicao={profileIsAdmin}><PainelAdm/></RotaC>} path="/adm/painel"/>
                 <Route element={<RotaC condicao={profileIsAdmin}><Especies/></RotaC>} path="/adm/especies"/>

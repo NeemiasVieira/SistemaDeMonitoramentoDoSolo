@@ -46,6 +46,7 @@ export const IndexModal: React.FC<ModalIndexProps> = ({botaoOpenModal: OpenButto
       backgroundColor: "#fff",
       opacity: ".9",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
+      overflow: "hidden"
     },
   };
 

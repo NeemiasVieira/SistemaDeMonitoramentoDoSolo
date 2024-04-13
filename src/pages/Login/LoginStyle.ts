@@ -6,7 +6,7 @@ export const LoginMain = styled.main`
   margin-top: 70px;
   align-items: center;
   justify-content: center;
-  min-height: 70vh;
+  min-height: 50vh;
   background-color: var(--bg-primary);
 
   h1 {
@@ -32,6 +32,7 @@ export const LoginMain = styled.main`
     border-radius: 10px;
     padding: 20px;
     overflow-x: hidden;
+    margin-bottom: 20px;
   }
 
   label {
@@ -125,13 +126,10 @@ export const LoginMain = styled.main`
   }
 
   @media screen and (max-width: 480px) {
-    h1 {
-      font-size: 1.3em;
-    }
 
     h2 {
       margin-top: 5px;
-      font-size: 1rem;
+      font-size: 1.4rem;
     }
     form {
       width: 80vw;

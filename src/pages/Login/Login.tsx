@@ -12,7 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { notificar } = useNotificacoes()
+  const { notificar, setAuth } = useNotificacoes()
   
   let { loginResponse, error, isLoading, refetch } = useLogin(email, password);
 
@@ -25,11 +25,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    error = null;
-    loginResponse = null;
-  }, [])
-
-  useEffect(() => {
     if (error) notificarErro();
 
     if (loginResponse?.token) {
@@ -37,14 +32,15 @@ const Login = () => {
       localStorage.setItem("nome", loginResponse.usuario.nome);
       localStorage.setItem("userID", loginResponse.usuario.id);
       localStorage.setItem("sucessoLogin", "true");
-      localStorage.setItem("profile", loginResponse.usuario.profile);;
+      localStorage.setItem("profile", loginResponse.usuario.profile);
+      setAuth(true);
       notificar({
         tipo: "SUCESSO",
         mensagem: `Bem vindo ${loginResponse.usuario.nome}`,
         tempoEmSeg: 4
       });
       navigate("/painel");
-    }
+    }// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loginResponse, error]);
 
   return (

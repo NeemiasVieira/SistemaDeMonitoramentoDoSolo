@@ -7,8 +7,8 @@ const Faq = () => {
   return (
 
       <FaqMain>
-        <h1>FAQ - Perguntas Frequentes</h1>
-        <h2>Perguntas Relacionadas ao Sistema</h2>
+        <h1>FAQ</h1>
+        <h2 className="subtitulo">Perguntas Relacionadas ao Sistema</h2>
         <PerguntaFAQ
           pergunta="Quais serão as vantagens de utilizar o Sistema de Monitoramento?"
           resposta="Utilizando o sistema, você será capaz de monitorar a saúde da sua plantinha e acompanhar também seu histórico, auxiliando nas tomadas de decisões para o seu melhor desenvolvimento."

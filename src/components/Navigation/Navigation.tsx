@@ -6,12 +6,17 @@ import { faArrowRightFromBracket, faUserTie } from "@fortawesome/free-solid-svg-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ModalNavigation } from "../PopUps/ModalNavigation/ModalNavigation";
 import { useQueryClient } from "react-query";
+import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 
 const formarIniciais = (nome: string): string => {
-  nome = nome.toUpperCase();
-  const nomes = nome.split(" ");
-  if (nomes.length >= 2) return nomes[0][0] + nomes[1][0];
-  return nomes[0][0];
+  let nomes: string[];
+  if(nome){
+    nome = nome.toUpperCase();
+    nomes = nome.split(" ");
+  }
+  if (nomes?.length >= 2) return nomes[0][0] + nomes[1][0];
+  if (nomes) return nomes[0][0];
+  return "";
 };
 
 interface NavigationProps {
@@ -27,6 +32,7 @@ export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({closeM
   const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { setAuth } = useNotificacoes();
 
   const profile = localStorage.getItem("profile");
 
@@ -36,6 +42,7 @@ export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({closeM
     localStorage.removeItem("userID");
     localStorage.removeItem("sucessoLogin");
     localStorage.removeItem("profile");
+    setAuth(false);
     queryClient.removeQueries("login");
     queryClient.invalidateQueries("login");
     queryClient.clear();
@@ -96,16 +103,25 @@ export const ListaNavegacaoNaoAutenticada:React.FC<ListaNavegacaoProps> = ({clos
 
 export const Navigation: React.FC<NavigationProps> = ({ auth }) => {
   const [mostrarOpcoesMovimentacoes, setMostrarOpcoesMovimentacoes] = useState<boolean>(false);
+  const { setAuth } = useNotificacoes();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const nome = localStorage.getItem("nome");
   const profile = localStorage.getItem("profile");
 
   useEffect(() => {}, [profile]);
 
+
   const Logout = () => {
     localStorage.removeItem("nome");
     localStorage.removeItem("token");
     localStorage.removeItem("userID");
+    localStorage.removeItem("sucessoLogin");
+    localStorage.removeItem("profile");
+    setAuth(false);
+    queryClient.removeQueries("login");
+    queryClient.invalidateQueries("login");
+    queryClient.clear();
     navigate("/");
   };
 

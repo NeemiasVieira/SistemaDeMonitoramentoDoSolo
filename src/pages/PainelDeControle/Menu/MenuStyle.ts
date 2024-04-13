@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PainelMenuStyle = styled.main`
 
-  min-height: 551px;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,8 +55,10 @@ export const PainelMenuStyle = styled.main`
 
   @media screen and (max-width: 480px){
 
+    margin-top: 30px;
+
     h2{
-      margin-top: 130px;
+      margin-top: 60px;
       margin-bottom: 30px;
     }
 

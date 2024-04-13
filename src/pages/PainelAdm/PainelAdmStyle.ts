@@ -1,20 +1,19 @@
 import styled from "styled-components";
 
 export const PainelAdmStyle = styled.main`
-
-  min-height: 551px;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
   background-color: var(--bg-primary);
 
-  h2{
+  h2 {
     margin: 0 0 80px 0;
     text-align: center;
   }
 
-  .menu{
+  .menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -25,7 +24,7 @@ export const PainelAdmStyle = styled.main`
     border-radius: 20px;
   }
 
-  .botaoMenu{
+  .botaoMenu {
     width: 350px;
     height: 150px;
     border: solid #c4c4c4 1px;
@@ -33,49 +32,45 @@ export const PainelAdmStyle = styled.main`
     background-color: var(--white);
     cursor: pointer;
 
-    svg{
+    svg {
       font-size: 2rem;
       color: #555;
       margin-bottom: 10px;
     }
 
-    h3{
+    h3 {
       margin: 5px;
     }
 
-    p{
+    p {
       margin: 0;
       color: #888;
     }
   }
 
-  .botaoMenu:hover{
+  .botaoMenu:hover {
     border: solid #222 1px;
   }
 
-  @media screen and (max-width: 480px){
+  @media screen and (max-width: 480px) {
+    margin-top: 30px;
 
-    h2{
+    h2 {
       margin-top: 100px;
       margin-bottom: 30px;
     }
-    .botaoMenu{
+    .botaoMenu {
       width: 170px;
-      height: 85px
+      height: 85px svg {
+        font-size: 2rem;
+      }
 
-      svg{
-      font-size: 2rem;
+      h3 {
+        font-size: 0.8rem;
+      }
+      p {
+        font-size: 0.7rem;
+      }
     }
-
-    h3{
-      font-size: .8rem;
-    }
-    p{
-      font-size: .7rem;
-    }
-    }
-
-    
   }
-
-`
+`;

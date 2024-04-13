@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { EspecieStyle } from "./EspecieStyle";
 import { Specie } from "./Types";
 import { DeleteButton } from "../Buttons/DeleteButton";

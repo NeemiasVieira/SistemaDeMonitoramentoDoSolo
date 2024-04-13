@@ -10,11 +10,11 @@ const PainelDeControle = () => {
   const { plantas, refetch, erro, isLoading } = useGetAllPlants();
 
   useEffect(() => {
-    if (!plantas) refetch();
+    if (!plantas) refetch(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plantas]);
 
   useEffect(() => {
-    if (erro) notificar({ tipo: "ERRO", mensagem: erro, tempoEmSeg: 3});
+    if (erro) notificar({ tipo: "ERRO", mensagem: erro, tempoEmSeg: 3}); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erro]);
 
   if (isLoading)
@@ -24,7 +24,7 @@ const PainelDeControle = () => {
             <h2>
               Por aqui você pode cuidar da sua plantinha, reportar problemas e aproveitar o uso da nossa aplicação
             </h2>
-            <Loading minHeight="70vh" />
+            <Loading minHeight="50vh" />
         </PainelDeControleStyle>
     );
 

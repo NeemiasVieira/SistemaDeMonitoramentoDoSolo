@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGetAllPlants } from "../../../services/API/Plants/useGetAllPlants";
 import { useNavigate, useParams } from "react-router-dom";
 import { Planta } from "../Resumo/Resumo.types";
-import { BotaoVoltar } from "../../../components/BotaoVoltar/BotaoVoltar";
+import { BotaoVoltar } from "../../../components/Buttons/BotaoVoltar";
 import { Loading } from "../../../components/Loading/Loading";
 import { PagGraficoHistoricoStyle } from "./GraficoHistoricoStyle";
 import { useGetAllRecords } from "../../../services/API/Records/useGetAllRecords";
@@ -21,7 +21,7 @@ const PagGraficoHistorico = () => {
 
   const { idPlanta } = useParams();
   const [plantaSelecionada, setPlantaSelecionada] = useState<Planta>();
-  const { plantas, isLoading: plantasLoading, erro: erroAllPlants, refetch: refetchAllPlants } = useGetAllPlants();
+  const { plantas } = useGetAllPlants();
   const { allRecords, errorAllRecords, refetchAllRecords, allRecordsIsLoading } = useGetAllRecords({
     idPlanta: plantaSelecionada?.id,
     intervaloDeBusca,
@@ -38,7 +38,7 @@ const PagGraficoHistorico = () => {
   useEffect(() => {
     if (plantas) {
       setPlantaSelecionada(plantas.find((planta) => planta.id === idPlanta));
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plantas]);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const PagGraficoHistorico = () => {
     }
     if (intervaloDeBusca || intervaloDeDias) {
       navigate(`${location.pathname}?intBusca=${intervaloDeBusca ?? 0}&intDias=${intervaloDeDias ?? 0}`);
-    } else navigate(location.pathname);
+    } else navigate(location.pathname); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plantaSelecionada, intervaloDeBusca, intervaloDeDias, intBusca, intDias]);
 
   return (
@@ -55,7 +55,7 @@ const PagGraficoHistorico = () => {
       <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
       <div className="GraficoDiv">
         {allRecords && !errorAllRecords && <GraficoLinhas params={params} records={allRecords} />}
-        {!allRecords && <Loading minHeight={"400px"} />}
+        {!allRecords && <Loading minHeight={"70vh"} />}
       </div>
     </PagGraficoHistoricoStyle>
   );

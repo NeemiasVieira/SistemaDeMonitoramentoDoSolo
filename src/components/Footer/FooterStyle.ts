@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const FooterStyle = styled.footer`
-  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,6 +9,8 @@ export const FooterStyle = styled.footer`
   background-color: #222;
   height: auto;
   padding: 40px 20px;
+  max-width: 100vw;
+
 
   h1,
   h2,
@@ -37,6 +38,7 @@ export const FooterStyle = styled.footer`
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 30px;
+    padding: 0 0 0 15px;
   }
 
   .footerServices {
@@ -91,7 +93,7 @@ export const FooterStyle = styled.footer`
   .footer-bottom {
     width: 100%;
     padding: 0 20px;
-    width: 100vw;
+    max-width: calc(100vw - 40px);
     text-align: center;
     padding: 10px 0;
   }
@@ -110,7 +112,8 @@ export const FooterStyle = styled.footer`
 
   @media screen and (max-width: 480px){
 
-    padding: 40px 10px;
+    padding: 40px 10px 40px 0;
+    max-width: calc(100vw - 10px);
 
     .Intro{
       display: flex;
@@ -123,6 +126,7 @@ export const FooterStyle = styled.footer`
       flex-flow: column wrap;
       padding: 0;
       gap: 5px;
+      padding: 0 0 0 15px;
     }
 
     p{
@@ -133,9 +137,7 @@ export const FooterStyle = styled.footer`
     .copyrights{
       max-width: 90vw;
     }
-  }
 
-  @media screen and (max-width: 480px){
     .Intro p {
       width: 380px;
       max-width: 400px;

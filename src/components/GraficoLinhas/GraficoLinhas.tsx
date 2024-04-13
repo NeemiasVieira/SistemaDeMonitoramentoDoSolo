@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
-import Chart, { ReactGoogleChartProps } from "react-google-charts";
+import Chart from "react-google-charts";
 import { IRegistro } from "../../interfaces/RecordsModule/registro.interface";
 import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
 import { Loading } from "../Loading/Loading";
@@ -114,7 +114,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({records, params}) => {
   useEffect(() => {
     if (intervaloDeBusca === "Selecione") setIntervaloDeBusca(null);
     if (intervaloDeDias === "Selecione") setIntervaloDeDias(null);
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [intervaloDeBusca, intervaloDeDias]);
 
   useEffect(() => {

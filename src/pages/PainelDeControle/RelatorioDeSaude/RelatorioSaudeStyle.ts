@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PagRelatorioDeSaudeStyle = styled.main`
-  min-height: 50vh;
+  margin-top: 50px;
   padding: 0 0 50px 0;
   display: flex;
   justify-content: center;
@@ -9,9 +9,7 @@ export const PagRelatorioDeSaudeStyle = styled.main`
   flex-flow: column wrap;
 
   @media screen and (max-width: 480px){
-    .relatorioSaudeDiv{
-      margin-top: 130px;
-    }
+    margin-top: 90px;
 
   }
 `

@@ -9,7 +9,7 @@ import { useGetRelatorioSaude } from "../../../services/API/Plants/useGetRelator
 import { useGetAllRecords } from "../../../services/API/Records/useGetAllRecords";
 import { useGetSpecie } from "../../../services/API/Species/useGetSpecie";
 import { useParams } from "react-router-dom";
-import { BotaoVoltar } from "../../../components/BotaoVoltar/BotaoVoltar";
+import { BotaoVoltar } from "../../../components/Buttons/BotaoVoltar";
 import { ResumoStyle } from "./ResumoStyle";
 import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
 
@@ -53,17 +53,21 @@ const Resumo = () => {
   }, [plantaSelecionada]);
 
   useEffect(() => {
-  }, [allRecords])
+  }, [allRecords]);
 
   return (
       <ResumoStyle>
         <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
-        {plantasLoading && <Loading minHeight={"80vh"}/>}
-          
-       {plantaSelecionada && lastRecordIsLoading && <Loading minHeight={"50vh"}/>}  
+        {plantaSelecionada && lastRecordIsLoading && <Loading minHeight={"70vh"}/>}
+        {plantasLoading  && <Loading minHeight={"70vh"}/>}
 
-       {lastRecord && !errorLastRecord && <h2 className="nomeDaPlanta">{plantaSelecionada?.nome}</h2>}
-       {lastRecord && !errorLastRecord && <h3 className="especieDaPlanta">{plantaSelecionada?.especie}</h3>}
+        {lastRecord && !errorLastRecord && (
+          <div className="identificacaoDaPlanta">
+            <h2 className="nomeDaPlanta">{plantaSelecionada?.nome}</h2>
+            <h3 className="especieDaPlanta">{plantaSelecionada?.especie}</h3>
+          </div>
+        )}
+ 
 
         {allRecords && relatorioSaude && lastRecord && !errorLastRecord && (
           <UltimaAtualizacao registro={lastRecord} />

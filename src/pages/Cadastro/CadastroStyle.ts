@@ -5,7 +5,7 @@ export const CadastroMain = styled.main`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 0px;
   min-height: 80vh;
   background-color: var(--bg-primary);
 
@@ -131,14 +131,15 @@ export const CadastroMain = styled.main`
     }
 
     h2 {
-      margin-top: 5px;
-      font-size: 1rem;
+      margin-top: 50px;
+      font-size: 1.4rem;
     }
     form {
       width: 80vw;
       max-width: 450px;
-      height: 55vh;
+      height: 60vh;
       max-height: 550px;
+      justify-content: center;
     }
 
     input {
@@ -158,7 +159,7 @@ export const CadastroMain = styled.main`
     .sugestaoCadastro {
       color: #fff;
       overflow-x: hidden;
-      max-width: 55vw;
+      max-width: 60vw;
       margin-top: 5px;
     }
   }

@@ -7,7 +7,7 @@ export const SecaoGraficoLinhas = styled.section`
   .titulo {
     letter-spacing: 3px;
     font-weight: 700;
-    margin: 30px 0;
+    margin: 10px 0;
     font-size: 30px;
   }
 
@@ -80,7 +80,7 @@ export const SecaoGraficoLinhas = styled.section`
     max-width: 470px;
 
     .titulo{
-      font-size: 25px;
+      font-size: 1.7rem;
     }
 
     .selects{

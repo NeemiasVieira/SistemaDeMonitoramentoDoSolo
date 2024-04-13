@@ -3,14 +3,13 @@ import { EspeciesStyle } from "./EspeciesStyle";
 import { useGetAllSpecies } from "../../../services/API/Species/useGetAllSpecies";
 import { Especie } from "../../../components/Especie/Especie";
 import { Loading } from "../../../components/Loading/Loading";
-import { faCircleLeft, faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SpecieUCModal } from "../../../components/PopUps/Create-Update/SpecieUCModal/SpecieUCModal";
 import { Specie } from "../../../components/Especie/Types";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 import { useDeleteSpecie } from "../../../services/API/Species/useDeleteSpecie";
-import { Link } from "react-router-dom";
-import { BotaoVoltar } from "../../../components/BotaoVoltar/BotaoVoltar";
+import { BotaoVoltar } from "../../../components/Buttons/BotaoVoltar";
 
 const Especies = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,13 +17,13 @@ const Especies = () => {
   const [especieEscolhidaParaAtualizacao, setEspecieEscolhidaParaAtualizacao] = useState<Specie>();
   const [deleteSpecieID, setDeleteSpecieID] = useState<string>("");
 
-  const { confirmDeleteSpecie, deleteSpecieError, deleteSpecieIsLoading } = useDeleteSpecie(deleteSpecieID);
+  const { confirmDeleteSpecie, deleteSpecieError } = useDeleteSpecie(deleteSpecieID);
   const { notificar }= useNotificacoes();
 
   useEffect(() => {
     if(deleteSpecieError) {
       notificar({tipo: "ERRO", mensagem: deleteSpecieError, tempoEmSeg: 4});
-    }
+    }// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deleteSpecieError])
 
   const openModalUpdate = () => {
@@ -48,10 +47,10 @@ const Especies = () => {
   } 
 
   useEffect(() => {
-    if(deleteSpecieID.length > 10) confirmDeleteSpecie();
+    if(deleteSpecieID.length > 10) confirmDeleteSpecie(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deleteSpecieID])
 
-  const { allSpeciesData, allSpeciesError, allSpeciesIsLoading, refetchAllSpecies } = useGetAllSpecies();
+  const { allSpeciesData, allSpeciesIsLoading } = useGetAllSpecies();
 
   return (
       <EspeciesStyle>

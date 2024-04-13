@@ -1,6 +1,6 @@
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Dispatch } from "react";
+import React from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
 Modal.setAppElement("#root");

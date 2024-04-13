@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const HomeStyle = styled.main`
-  /* min-height: calc(100vh - 70px); */
   overflow-x: hidden;
   display: flex;
   flex-flow: column wrap;
-  align-items: center;
   justify-content: center;
   background-color: var(--bg-primary);
+  max-width: 100vw;
+  overflow-x: hidden;
 
   h1 {
     font-size: 2.5rem;
@@ -23,8 +23,7 @@ export const HomeStyle = styled.main`
     align-items: center;
     gap: 2vw;
     border-radius: 10px;
-    padding: 20px;
-    justify-content: center;
+    padding: 20px 0;
     margin: 0 0 25px 0;
   }
 
@@ -33,7 +32,7 @@ export const HomeStyle = styled.main`
     justify-content: center;
     align-items: center;
     height: 30vh;
-    width: 60vh;
+    width: 80%;
     font-weight: 700;
     font-size: 1.3rem;
     color: #444;
@@ -42,20 +41,20 @@ export const HomeStyle = styled.main`
 
   .IntroducaoLadoDireito {
     width: 100%;
-    padding: 0 20px;
+    padding: 0;
   }
 
   .IntroducaoContent {
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
-    margin-top: 45px;
-    width: 100vw;
+    max-width: 100vw;
+    width: 100%;
     overflow: hidden;
     max-height: 93vh;
 
     img {
-      width: 55vw;
+      width: 50vw;
       max-width: 900px;
       height: 93vh;
       border-right: solid #ccc 3px;
@@ -64,7 +63,6 @@ export const HomeStyle = styled.main`
 
   .saibaMais {
     margin-top: 40px;
-    /* margin-right: 80vw; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,8 +91,8 @@ export const HomeStyle = styled.main`
 
     h1 {
       margin: 25px 0 0 0;
-      font-size: 1.5rem;
-      padding: 0 5vw;
+      font-size: 1.2rem;
+      padding: 0 20px;
     }
 
     .manjericao {
@@ -113,21 +111,21 @@ export const HomeStyle = styled.main`
     .IntroducaoLadoDireito {
       width: 100%;
       padding: 0;
+      justify-content: center;
     }
 
     .saibaMais {
-      margin-bottom: 50px;
+      margin: 15px 0 50px 0;
     }
 
     .introducaoTexto {
-      font-size: 1em;
+      font-size: .9rem;
       max-width: 85vw;
       padding: 10px;
       height: auto;
     }
 
     .IntroducaoContent {
-      margin: 50px 0 0 0;
       flex-flow: column wrap;
       max-height: 150vh;
       img {

@@ -1,7 +1,7 @@
 import React from "react";
 import { RelatorioDeSaudeStyle } from "./RelatorioDeSaudeStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceGrinWide as feliz2, faFaceSmile as feliz1, faFaceMeh as neutro, faFaceFrownOpen as triste, faCircleQuestion} from "@fortawesome/free-solid-svg-icons"; 
+import { faFaceGrinWide as feliz2, faFaceSmile as feliz1, faFaceMeh as neutro, faFaceFrownOpen as triste } from "@fortawesome/free-solid-svg-icons"; 
 import { Alerta } from "../Alerta/Alerta";
 import { Saude } from "../../pages/PainelDeControle/Resumo/Resumo.types";
 import { SaudeParamsModal } from "../PopUps/SaudeParamsModal/SaudeParamsModal";

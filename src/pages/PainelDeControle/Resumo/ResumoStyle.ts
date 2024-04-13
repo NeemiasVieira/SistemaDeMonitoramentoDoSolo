@@ -1,13 +1,19 @@
 import styled from "styled-components";
 
 export const ResumoStyle = styled.main`
-  min-height: 80vh;
-  margin: 0;
+  margin: 50px 0 0 0;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   gap: 20px;
   background-color: var(--bg-primary);
+
+  .identificacaoDaPlanta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+  }
 
   .nomeDaPlanta{
     font-size: 40px;
@@ -48,7 +54,7 @@ export const ResumoStyle = styled.main`
   }
 
   @media screen and (max-width: 480px) {
-    padding-top: 50px;
+    padding-top: 30px;
     max-width: 100vw;
     overflow-x: hidden;
   }

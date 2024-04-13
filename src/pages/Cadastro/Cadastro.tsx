@@ -19,7 +19,7 @@ const Cadastro = () => {
   const notificarErro = () => notificar({tipo: "ERRO", mensagem: error, tempoEmSeg: 3});
 
   useEffect(() => {
-    if(error) notificarErro();
+    if(error) notificarErro(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   if (signupResponse?.id) return <CadastroConcluido />;

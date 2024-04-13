@@ -12,7 +12,7 @@ export const NotificacaoStyle = styled.section`
   position: fixed;
   top: 1.5%;
   right: 0%;
-  z-index: 99999;
+  z-index: 2;
   transition: all 200ms;
   background-color: transparent;
   border-radius: 20px;
@@ -82,6 +82,14 @@ export const NotificacaoStyle = styled.section`
       svg {
         color: #ddd;
         font-size: 0.9rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px){
+    .mensagemNotificacaoDiv{
+      button{
+        right: -10px;
       }
     }
   }

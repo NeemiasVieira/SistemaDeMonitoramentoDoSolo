@@ -6,7 +6,7 @@ import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/Relatorio
 import { Planta } from "../Resumo/Resumo.types";
 import { useGetSpecie } from "../../../services/API/Species/useGetSpecie";
 import { PagRelatorioDeSaudeStyle } from "./RelatorioSaudeStyle";
-import { BotaoVoltar } from "../../../components/BotaoVoltar/BotaoVoltar";
+import { BotaoVoltar } from "../../../components/Buttons/BotaoVoltar";
 import { Loading } from "../../../components/Loading/Loading";
 
 const PagRelatorioSaude = () => {
@@ -44,7 +44,7 @@ const PagRelatorioSaude = () => {
         )}
       </div>
 
-      {!relatorioSaude && <Loading minHeight={"400px"} />}
+      {!relatorioSaude && <Loading minHeight={"70vh"} />}
     </PagRelatorioDeSaudeStyle>
   );
 };

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const FaqMain = styled.main`
-    min-height: 93vh;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -11,8 +10,9 @@ export const FaqMain = styled.main`
     background-color: var(--bg-primary);
 
     h1{
-        margin: 100px 0 40px 0;
+        margin:50px 0 10px 0;
         text-align: center;
+        letter-spacing: 3px;
     }
 
     h2{
@@ -22,13 +22,20 @@ export const FaqMain = styled.main`
     }
 
     .subtitulo{
-        margin: 15px 0 0 0;
+        margin: 15px 0 10px 0;
+        color: #222;
     }
 
 
     @media screen and (max-width: 480px){
         h1{
-            font-size: 1.4em;
+            font-size: 1.7rem;
+            margin: 50px 0 10px 0;
+        }
+
+        .subtitulo{
+            font-size: 1.3rem;
+            width: 90vw;
         }
     }
 

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const EspeciesStyle = styled.main`
-
-min-height: 500px;
+margin-top: 50px;
 background-color: var(--bg-primary);
 display: flex;
 align-items: center;
@@ -56,9 +55,9 @@ flex-flow: column wrap;
 
 @media screen and (max-width: 480px){
 
-
+  margin-top: 100px;
     .createSpecieButton{
-      margin-top: 60px;
+      margin-top: 10px;
     }
   }
 

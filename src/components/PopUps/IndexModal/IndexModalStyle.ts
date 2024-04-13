@@ -15,4 +15,10 @@ export const ModalIndexStyle = styled.div`
   height: 30px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 480px){
+  .closeButton{
+    font-size: .7rem;
+  }
+}
 `
