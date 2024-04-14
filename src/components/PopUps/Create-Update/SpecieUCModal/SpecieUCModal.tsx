@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { SpecieUCModalStyleIndex } from "./SpecieUCModalStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import Modal from "react-modal";
 import { Specie } from "../../../Especie/Types";
 import { useCreateSpecie } from "../../../../services/API/Species/useCreateSpecie";
 import { useUpdateSpecie } from "../../../../services/API/Species/useUpdateSpecie";
 import { useNotificacoes } from "../../../../contexts/NotificacoesProvider";
 import { Loading } from "../../../Loading/Loading";
+import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 interface Parametro {

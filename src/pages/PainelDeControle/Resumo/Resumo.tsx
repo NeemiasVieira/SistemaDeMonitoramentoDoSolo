@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
-import { UltimaAtualizacao } from "../../../components/UltimaAtualizacao/UltimaAtualizacao";
+import { DadosRegistro } from "../../../components/DadosRegistro/DadosRegistro";
 import { Planta } from "./Resumo.types";
 import { Loading } from "../../../components/Loading/Loading";
 import { useGetAllPlants } from "../../../services/API/Plants/useGetAllPlants";
@@ -70,7 +70,7 @@ const Resumo = () => {
  
 
         {allRecords && relatorioSaude && lastRecord && !errorLastRecord && (
-          <UltimaAtualizacao registro={lastRecord} ultimaAtualizacao />
+          <DadosRegistro registro={lastRecord} ultimaAtualizacao />
         )}
 
         {lastRecord && relatorioSaude && allRecords && !erroRelatorioSaude && (

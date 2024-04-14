@@ -145,27 +145,27 @@ export const RelatorioDeSaudeStyle = styled.section`
     gap: 10px;
     max-width: 95vw;
 
-    .SaudeEAlertas{
+    .SaudeEAlertas {
       align-items: center;
       width: 95%;
     }
 
-    .Saude{
+    .Saude {
       width: 90%;
       border: none;
       align-content: center;
       padding: 20px;
 
-      h3{
+      h3 {
         margin: 10px 0;
       }
     }
 
-    .legenda{
+    .legenda {
       width: 90%;
     }
 
-    .alertas{
+    .alertas {
       padding: 0 20px;
       margin-bottom: 20px;
     }

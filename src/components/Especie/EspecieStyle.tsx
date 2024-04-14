@@ -28,7 +28,7 @@ export const EspecieStyle = styled.div`
 
   .buttonActions {
     position: relative;
-    top: -320px;
+    top: -308px;
     right: -88.7%;
     display: flex;
     gap: 10px;
@@ -53,9 +53,6 @@ export const EspecieStyle = styled.div`
     background-color: #f2f2f2;
     border: solid #555 1px;
   }
-  /* tr:nth-child(even) {
-    background-color: #ddd;
-  } */
 
   @media screen and (max-width: 480px) {
   width: 85vw;

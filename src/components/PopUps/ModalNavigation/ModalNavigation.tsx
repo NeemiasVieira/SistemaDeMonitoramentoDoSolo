@@ -1,9 +1,11 @@
+import React, { useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import Modal from "react-modal";
 import { ModalNavigationStyle } from "./ModalNavigationStyle";
-import { ListaNavegacaoAutenticada, ListaNavegacaoNaoAutenticada } from "../../Navigation/Navigation";
+import { ListaNavegacaoAutenticada } from "../../Navigation/ListaNavegacaoAutenticada";
+import { ListaNavegacaoNaoAutenticada } from "../../Navigation/ListaNavegacaoNaoAutenticada";
+import Modal from "react-modal";
+
 Modal.setAppElement("#root");
 
 const customStyles = {
@@ -21,15 +23,15 @@ const customStyles = {
     backgroundColor: "#aaa",
     opacity: ".9",
     paddingTop: "90px",
-    zIndex: '1000'
+    zIndex: "1000",
   },
 };
 
-interface ModalNavigationProps{
-    auth: boolean;
+interface ModalNavigationProps {
+  auth: boolean;
 }
 
-export const ModalNavigation: React.FC<ModalNavigationProps> = ({auth}) => {
+export const ModalNavigation: React.FC<ModalNavigationProps> = ({ auth }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -48,12 +50,10 @@ export const ModalNavigation: React.FC<ModalNavigationProps> = ({auth}) => {
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
         <ModalNavigationStyle>
           <h2>Menu</h2>
-          {auth && <ListaNavegacaoAutenticada closeModal={closeModal}/>}
-          {!auth && <ListaNavegacaoNaoAutenticada closeModal={closeModal}/>}
-
+          {auth && <ListaNavegacaoAutenticada closeModal={closeModal} />}
+          {!auth && <ListaNavegacaoNaoAutenticada closeModal={closeModal} />}
         </ModalNavigationStyle>
       </Modal>
     </>
   );
 };
-

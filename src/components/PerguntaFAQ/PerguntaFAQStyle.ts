@@ -58,7 +58,7 @@ export const SecaoPerguntaFaq = styled.div`
     max-height: 500px;
     animation: fade 1s ease-in-out;
     padding-left: 5px;
-    border-top: solid var(--light-green) 2px;
+    border-top: solid var(--dark-green) 2px;
   }
 
   .ativo .icone {

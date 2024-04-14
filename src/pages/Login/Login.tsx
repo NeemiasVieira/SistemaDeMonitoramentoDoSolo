@@ -5,14 +5,16 @@ import { Loading } from "../../components/Loading/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 import { useLogin } from "../../services/API/Users/useLogin";
+import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { useApplication } from "../../contexts/ApplicationContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { notificar, setAuth } = useNotificacoes()
+  const { notificar } = useNotificacoes();
+  const { setAuth, setIsAdmin } = useApplication();
   
   let { loginResponse, error, isLoading, refetch } = useLogin(email, password);
 
@@ -33,13 +35,16 @@ const Login = () => {
       localStorage.setItem("userID", loginResponse.usuario.id);
       localStorage.setItem("sucessoLogin", "true");
       localStorage.setItem("profile", loginResponse.usuario.profile);
+      setIsAdmin(loginResponse.usuario.profile === "admin" ? true : false);
       setAuth(true);
       notificar({
         tipo: "SUCESSO",
         mensagem: `Bem vindo ${loginResponse.usuario.nome}`,
         tempoEmSeg: 4
       });
-      navigate("/painel");
+      const redirectToUrl = sessionStorage.getItem("redirectUrl");
+      sessionStorage.removeItem("redirectUrl");
+      navigate(redirectToUrl ?? "/painel");
     }// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loginResponse, error]);
 

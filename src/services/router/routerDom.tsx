@@ -3,6 +3,8 @@ import { RotaPrivada } from "./rotaPrivada";
 import { Redirect } from "./redirecionamento";
 import { NotificacoesProvider } from "../../contexts/NotificacoesProvider";
 import { RotaC } from "./rotaCondicionada";
+import { RegistrosProvider } from "../../contexts/RegistrosContext";
+import { ApplicationProvider } from "../../contexts/ApplicationContext";
 import Home from "../../pages/Home/Home";
 import React from "react";
 import Login from "../../pages/Login/Login";
@@ -18,39 +20,38 @@ import PagRelatorioSaude from "../../pages/PainelDeControle/RelatorioDeSaude/Rel
 import PagGraficoHistorico from "../../pages/PainelDeControle/HistoricoEmGrafico/GraficoHistorico";
 import NotFound from "../../pages/404NotFound/NotFound";
 import TodosOsRegistros from "../../pages/PainelDeControle/TodosOsRegistros/TodosOsRegistros";
-import { RegistrosProvider } from "../../contexts/RegistrosContext";
 import PagRegistro from "../../pages/Registro/PagRegistro";
 
 const RouterDOM = () => {
 
-    const profileIsAdmin = localStorage.getItem("profile") === "admin";
-
     return(
     <BrowserRouter>
         <NotificacoesProvider>
-            <Routes>
-                <Route index element={<Home/>} path="/"/>
-                <Route element={<Redirect><Login/></Redirect>} path = "/login"/>
-                <Route element={<Redirect><Cadastro/></Redirect>} path = "/cadastro"/>
-                <Route element={<Faq/>} path = "/faq"/>
-                <Route element={<Aplicacao/>} path ="/aplicacao"/>
-                <Route element={<NotFound/>} path="*"/>
+            <ApplicationProvider>
+                <Routes>
+                    <Route index element={<Home/>} path="/"/>
+                    <Route element={<Redirect><Login/></Redirect>} path = "/login"/>
+                    <Route element={<Redirect><Cadastro/></Redirect>} path = "/cadastro"/>
+                    <Route element={<Faq/>} path = "/faq"/>
+                    <Route element={<Aplicacao/>} path ="/aplicacao"/>
+                    <Route element={<NotFound/>} path="*"/>
 
-                {/* Rotas Privadas */}
-                <Route element={<RotaPrivada><PainelDeControle/></RotaPrivada>} path="painel" />
-                <Route element={<PainelMenu/>} path = "/painel/plantas/:idPlanta"/>
-                <Route element={<RotaPrivada><Resumo/></RotaPrivada>} path = "/painel/plantas/:idPlanta/resumo"/>
-                <Route element={<RotaPrivada><PagRelatorioSaude/></RotaPrivada>} path = "/painel/plantas/:idPlanta/relatorio-saude"/>
-                <Route element={<RotaPrivada><PagGraficoHistorico/></RotaPrivada>} path = "/painel/plantas/:idPlanta/grafico-historico"/>
+                    {/* Rotas Privadas */}
+                    <Route element={<RotaPrivada><PainelDeControle/></RotaPrivada>} path="painel" />
+                    <Route element={<RotaPrivada><PainelMenu/></RotaPrivada>} path = "/painel/plantas/:idPlanta"/>
+                    <Route element={<RotaPrivada><Resumo/></RotaPrivada>} path = "/painel/plantas/:idPlanta/resumo"/>
+                    <Route element={<RotaPrivada><PagRelatorioSaude/></RotaPrivada>} path = "/painel/plantas/:idPlanta/relatorio-saude"/>
+                    <Route element={<RotaPrivada><PagGraficoHistorico/></RotaPrivada>} path = "/painel/plantas/:idPlanta/grafico-historico"/>
 
-                <Route element={<RegistrosProvider><TodosOsRegistros/></RegistrosProvider>} path="/painel/plantas/:idPlanta/registros"/>
-                <Route element={<RegistrosProvider><PagRegistro/></RegistrosProvider>} path="/painel/registros/:idRegistro" />
-                
-                
-                
-                <Route element={<RotaC condicao={profileIsAdmin}><PainelAdm/></RotaC>} path="/adm/painel"/>
-                <Route element={<RotaC condicao={profileIsAdmin}><Especies/></RotaC>} path="/adm/especies"/>
-            </Routes>
+                    <Route element={<RotaPrivada><RegistrosProvider><TodosOsRegistros/></RegistrosProvider></RotaPrivada>} path="/painel/plantas/:idPlanta/registros"/>
+                    <Route element={<RotaPrivada><RegistrosProvider><PagRegistro/></RegistrosProvider></RotaPrivada>} path="/painel/registros/:idRegistro" />
+                    
+                    
+                    
+                    <Route element={<RotaC isAdm><PainelAdm/></RotaC>} path="/adm/painel"/>
+                    <Route element={<RotaC isAdm><Especies/></RotaC>} path="/adm/especies"/>
+                </Routes>
+            </ApplicationProvider>
         </NotificacoesProvider>
     </BrowserRouter>
     )

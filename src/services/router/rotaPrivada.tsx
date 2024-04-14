@@ -1,12 +1,20 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
+import { useApplication } from "../../contexts/ApplicationContext";
 
 interface RotaPrivadaProps{
     children: any
 }
 
 export const RotaPrivada: React.FC<RotaPrivadaProps> = ({children}) => {
-    const token = localStorage.getItem("token");
-    return token ? children : <Navigate to="/login"/>
+    const { auth } = useApplication()
+    const { pathname, search } = useLocation();
+
+    if(!auth){
+        const path = `${pathname}${search}`;
+        sessionStorage.setItem('redirectUrl', path);
+    }
+    
+    return auth ? children : <Navigate to="/login"/>
 
 }

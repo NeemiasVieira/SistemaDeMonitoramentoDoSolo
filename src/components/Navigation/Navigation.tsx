@@ -1,129 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { NavAutenticadaStyle, NavStyle, NavStyleMobile } from "./NavigationStyle";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { NavStyle, NavStyleMobile } from "./NavigationStyle";
+import { Link } from "react-router-dom";
 import { IconeLogoSms } from "../Icones/sms-logo";
 import { faArrowRightFromBracket, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ModalNavigation } from "../PopUps/ModalNavigation/ModalNavigation";
-import { useQueryClient } from "react-query";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { ListaNavegacaoAutenticada } from "./ListaNavegacaoAutenticada";
+import { NavAutenticadaStyle } from "./NavegacaoAutenticadaStyle";
+import { formarIniciais } from "./Services";
+import { ListaNavegacaoNaoAutenticada } from "./ListaNavegacaoNaoAutenticada";
+import { useApplication } from "../../contexts/ApplicationContext";
 
-const formarIniciais = (nome: string): string => {
-  let nomes: string[];
-  if(nome){
-    nome = nome.toUpperCase();
-    nomes = nome.split(" ");
-  }
-  if (nomes?.length >= 2) return nomes[0][0] + nomes[1][0];
-  if (nomes) return nomes[0][0];
-  return "";
-};
 
-interface NavigationProps {
-  auth?: boolean;
-}
-
-interface ListaNavegacaoProps{
-  closeModal?: () => void
-}
-
-export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({closeModal}) => {
-  const urlCompleta = window.location.href;
-  const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { setAuth } = useNotificacoes();
-
-  const profile = localStorage.getItem("profile");
-
-  const Logout = () => {
-    localStorage.removeItem("nome");
-    localStorage.removeItem("token");
-    localStorage.removeItem("userID");
-    localStorage.removeItem("sucessoLogin");
-    localStorage.removeItem("profile");
-    setAuth(false);
-    queryClient.removeQueries("login");
-    queryClient.invalidateQueries("login");
-    queryClient.clear();
-    navigate("/");
-  };
-
-  return (
-    <ul className="navegacao">
-      <li className="logo">
-        <IconeLogoSms path={"/"} />
-      </li>
-      <li className={caminhoAtual === "/aplicacao" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/aplicacao" onClick={closeModal}>Aplicação</Link>
-      </li>
-      <li className={caminhoAtual === "/faq" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/faq" onClick={closeModal}>FAQ</Link>
-      </li>
-      <li className={caminhoAtual === "/painel" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/painel" onClick={closeModal}>Painel de Controle</Link>
-      </li>
-      {profile === "admin" && (
-        <li>
-          <Link to="/adm/painel" className="mobileOnly" onClick={closeModal}>
-            Painel Administrativo
-          </Link>
-        </li>
-      )}
-      <li>
-        <Link to="/" onClick={Logout} className="logoutMobileButton">
-          Logout
-        </Link>
-      </li>
-    </ul>
-  );
-};
-
-export const ListaNavegacaoNaoAutenticada:React.FC<ListaNavegacaoProps> = ({closeModal}) => {
-  const urlCompleta = window.location.href;
-  const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
-
-  return (
-    <ul className="navegacao">
-      <li className="logo">
-        <IconeLogoSms path={"/"} />
-      </li>
-      <li className={caminhoAtual === "/aplicacao" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/aplicacao" onClick={closeModal}>Aplicação</Link>
-      </li>
-      <li className={caminhoAtual === "/faq" ? "selecionado" : "naoSelecionado"}>
-        <Link to="/faq" onClick={closeModal}>FAQ</Link>
-      </li>
-      <li className="botaoLogin">
-        <Link to="/login" onClick={closeModal}>Login</Link>
-      </li>
-    </ul>
-  );
-};
-
-export const Navigation: React.FC<NavigationProps> = ({ auth }) => {
+export const Navigation = () => {
   const [mostrarOpcoesMovimentacoes, setMostrarOpcoesMovimentacoes] = useState<boolean>(false);
-  const { setAuth } = useNotificacoes();
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
   const nome = localStorage.getItem("nome");
-  const profile = localStorage.getItem("profile");
-
-  useEffect(() => {}, [profile]);
-
-
-  const Logout = () => {
-    localStorage.removeItem("nome");
-    localStorage.removeItem("token");
-    localStorage.removeItem("userID");
-    localStorage.removeItem("sucessoLogin");
-    localStorage.removeItem("profile");
-    setAuth(false);
-    queryClient.removeQueries("login");
-    queryClient.invalidateQueries("login");
-    queryClient.clear();
-    navigate("/");
-  };
+  const { Logout, auth, isAdmin } = useApplication();
 
   const toggleOpcoesMovimentacoes = () => {
     setMostrarOpcoesMovimentacoes(!mostrarOpcoesMovimentacoes);
@@ -144,7 +36,7 @@ export const Navigation: React.FC<NavigationProps> = ({ auth }) => {
                   style={{ display: mostrarOpcoesMovimentacoes ? "block" : "none" }}
                 >
                   <ul>
-                    {profile === "admin" && (
+                    {isAdmin && (
                       <li>
                         <Link to="/adm/painel" onClick={toggleOpcoesMovimentacoes}>
                           <FontAwesomeIcon icon={faUserTie} />
@@ -154,7 +46,13 @@ export const Navigation: React.FC<NavigationProps> = ({ auth }) => {
                     )}
 
                     <li>
-                      <Link to="/login" onClick={() => {Logout(); toggleOpcoesMovimentacoes();}}>
+                      <Link
+                        to="/login"
+                        onClick={() => {
+                          Logout();
+                          toggleOpcoesMovimentacoes();
+                        }}
+                      >
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />
                         Sair
                       </Link>

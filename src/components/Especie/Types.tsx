@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 interface Parametro{
   min: string;
   max: string;
@@ -18,5 +20,12 @@ export interface Specie{
   nome: string;
   descricao: string;
   parametros: Parametros;
+}
+
+export interface EspecieProps {
+  especie: Specie;
+  openModalUpdate: any;
+  setEspecieEscolhidaParaAtualizacao: Dispatch<SetStateAction<Specie>>;
+  confirmDeleteSpecie: (id: string) => void 
 }
 

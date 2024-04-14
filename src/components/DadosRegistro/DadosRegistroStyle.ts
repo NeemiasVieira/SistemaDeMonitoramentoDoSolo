@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const UltimaAtualizacaoStyle = styled.div`
+export const DadosRegistroStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
   margin-top: 25px;
 
-  .Infos{
+  .Infos {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,16 +15,16 @@ export const UltimaAtualizacaoStyle = styled.div`
     gap: 25px;
   }
 
-  .InfoUltimaAtualizacao{
+  .InfoUltimaAtualizacao {
     font-weight: 400;
     font-size: 20px;
     letter-spacing: 1.5px;
     margin-top: 50px;
-    color: var(--light-gray)
+    color: var(--light-gray);
   }
 
   @media screen and (max-width: 480px) {
-    .Infos{
+    .Infos {
       width: 95vw;
       flex-flow: row wrap;
     }

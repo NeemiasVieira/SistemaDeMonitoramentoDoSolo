@@ -25,8 +25,6 @@ const Aplicacao = () => {
           </p>
         </div>
       </section>
-
-      {/* <br></br><br></br>Monitoramentos: <br></br><br></br>Nitrogênio, Fosfóro, Potássio, umidade, temperatura e pH</p> */}
     </AplicacaoMain>
   );
 };

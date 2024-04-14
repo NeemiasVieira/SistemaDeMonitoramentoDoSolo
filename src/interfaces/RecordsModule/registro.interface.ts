@@ -7,4 +7,6 @@ export interface IRegistro{
   pH: string;
   luz: string;
   dataDeRegistro: string;
+  imagem?: string;
+  diagnostico?: string;
 }

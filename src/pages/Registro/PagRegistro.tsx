@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { PagRegistroStyle } from "./PagRegistroStyle";
 import { useRegistrosContext } from "../../contexts/RegistrosContext";
 import { BotaoVoltar } from "../../components/Buttons/BotaoVoltar";
-import { UltimaAtualizacao } from "../../components/UltimaAtualizacao/UltimaAtualizacao";
+import { DadosRegistro } from "../../components/DadosRegistro/DadosRegistro";
 
 const PagRegistro = () => {
   const { registroEmMemoria: registro, backUrl } = useRegistrosContext();
@@ -19,7 +19,7 @@ const PagRegistro = () => {
       <>
         <h2 className="nuRegistro">{registro.nuRegistro}º</h2>
         <div className="DadosSensores">
-          <UltimaAtualizacao registro={registro} ultimaAtualizacao={false}/>
+          <DadosRegistro registro={registro} ultimaAtualizacao={false}/>
         </div>
         
         {registro?.imagem && (

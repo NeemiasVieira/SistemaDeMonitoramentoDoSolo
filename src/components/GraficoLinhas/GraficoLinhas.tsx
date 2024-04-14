@@ -1,120 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
 import Chart from "react-google-charts";
-import { IRegistro } from "../../interfaces/RecordsModule/registro.interface";
-import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
 import { Loading } from "../Loading/Loading";
-
-const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
-  let newData: any = [];
-
-  switch (tipoGrafico) {
-    case "NPK":
-      newData = [
-        ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
-        ...records?.map((record) => [
-          formatDate(record.dataDeRegistro),
-          Number(record.nitrogenio),
-          Number(record.fosforo),
-          Number(record.potassio),
-        ]),
-      ];
-      break;
-    case "temperatura":
-      newData = [
-        ["Dia", "Temperatura"],
-        ...records?.map((record) => [
-          formatDate(record.dataDeRegistro),
-          Number(record.temperatura),
-        ]),
-      ];
-      break;
-    case "pH":
-      newData = [
-        ["Dia", "pH"],
-        ...records?.map((record) => [
-          formatDate(record.dataDeRegistro),
-          Number(record.pH),
-        ]),
-      ];
-      break;
-    case "umidade":
-      newData = [
-        ["Dia", "Umidade"],
-        ...records?.map((record) => [
-          formatDate(record.dataDeRegistro),
-          Number(record.umidade),
-        ]),
-      ];
-      break;
-    case "luz":
-      newData = [
-        ["Dia", "Luz"],
-        ...records?.map((record) => [
-          formatDate(record.dataDeRegistro),
-          Number(record.luz),
-        ]),
-      ];
-      break;
-  }
-  return newData;
-};
-
-const unidadeMedida = (tipoGrafico: string) => {
-  let unidadeMedida;
-  switch(tipoGrafico){
-    case "NPK":
-      unidadeMedida = "Unidade de medida: mg/Kg";
-      break;
-    case "temperatura":
-      unidadeMedida = "Unidade de medida: ºC"
-      break;
-    case "pH":
-      unidadeMedida = ""
-      break;
-    case "umidade":
-      unidadeMedida = "Unidade de medida: %"
-      break;
-  }
-  return unidadeMedida
-}
-
-
-const formatDate = (inputDate: string) => {
-  const date = new Date(inputDate);
-  const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); 
-  return `${day}/${month}`;
-};
-
-interface StatesParams{
-  setIntervaloDeDias: React.Dispatch<number | string>;
-  setIntervaloDeBusca: React.Dispatch<number | string>;
-  intervaloDeDias: number | string,
-  intervaloDeBusca: number | string;
-  allRecordsIsLoading: boolean;
-}
-
-interface GraficoLinhasProps{
-  records: RecordQuery[];
-  params: StatesParams;
-
-  className?: string;
-}
+import { GraficoLinhasProps } from "./Types";
+import { selecionaGrafico, unidadeMedida } from "./Services";
 
 const GraficoLinhas: React.FC<GraficoLinhasProps> = ({records, params}) => {
 
   const { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading } = params
 
   const [tipoGrafico, setTipoGrafico] = useState("NPK");
-  const [data, setData] = useState([
-    ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
-  ]);
+  const [data, setData] = useState([["Dia", "Nitrogênio", "Fósforo", "Potássio"]]);
 
   useEffect(() => {
     if (intervaloDeBusca === "Selecione") setIntervaloDeBusca(null);
     if (intervaloDeDias === "Selecione") setIntervaloDeDias(null);
-// eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [intervaloDeBusca, intervaloDeDias]);
 
   useEffect(() => {

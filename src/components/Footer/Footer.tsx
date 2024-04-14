@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faFacebook, faInstagram, faWhatsapp, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
-import logoUnisanta from "../../assets/img/unisantalogo.png"
+import logoUnisanta from "../../assets/img/unisantalogo.png";
 
 export const Footer = () => {
   return (
@@ -16,23 +16,23 @@ export const Footer = () => {
               Nós somos um grupo de 4 integrantes buscando melhorar a qualidade de crescimento e vida da sua
               plantinha.
             </p>
-            <img
-              src={logoUnisanta}
-              alt="Logo Unisanta"
-            ></img>
+            <img src={logoUnisanta} alt="Logo Unisanta"></img>
           </div>
+
           <div className="footer-section">
             <h3>Integrantes do Grupo</h3>
             <p>
               Neemias Vieira <br /> Luan Carusi <br /> Caio Monteiro <br /> Luis Guilherme
             </p>
           </div>
+
           <div className="footer-section">
             <h3>Informações de Contato</h3>
             <p>e-mail: nf170550@alunos.unisanta.br</p>
             <p>Telefone: +55 (13) 99602-0483</p>
             <p>Rua Oswaldo Cruz 271, Boqueirão - Santos/SP</p>
           </div>
+
           <div className="footer-section footerServices">
             <h3>Serviços</h3>
             <ul>
@@ -47,9 +47,12 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
+
           <div className="footer-section">
             <h3>Redes Sociais</h3>
+
             <div className="social-media-icons">
+
               <a href="./">
                 <FontAwesomeIcon icon={faFacebook} />
               </a>
@@ -69,10 +72,14 @@ export const Footer = () => {
               <a href="https://github.com/NeemiasVieira" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faGithub} />
               </a>
+              
             </div>
+
           </div>
+
         </div>
       </div>
+
       <div className="footer-bottom">
         <p className="copyrights">&copy; 2024 Sistema de Monitoramento do Solo - Todos os direitos reservados.</p>
       </div>

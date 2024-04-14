@@ -8,7 +8,7 @@ export const AplicacaoMain = styled.main`
   justify-content: center;
   min-height: 80vh;
 
-  .SecaoIntroducao{
+  .SecaoIntroducao {
     display: flex;
     flex-flow: row nowrap;
     gap: 50px;
@@ -16,17 +16,17 @@ export const AplicacaoMain = styled.main`
     align-items: center;
     width: 60vw;
 
-    p{
+    p {
       margin: 0 0 10px 0;
       font-weight: 500;
     }
 
-    svg{
+    svg {
       font-size: 7em;
     }
   }
 
-  .introducaoTexto{
+  .introducaoTexto {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
@@ -37,17 +37,15 @@ export const AplicacaoMain = styled.main`
     max-width: 500px;
     color: #444;
     letter-spacing: 1px;
-    
   }
 
-  @media screen and (max-width: 480px){
-
+  @media screen and (max-width: 480px) {
     justify-content: flex-start;
     margin-top: 10px;
     padding: 50px 10px 0 10px;
     min-height: 50vh;
 
-    .SecaoIntroducao{
+    .SecaoIntroducao {
       width: 90vw;
       flex-flow: column wrap;
       padding: 0 10px;
@@ -55,12 +53,12 @@ export const AplicacaoMain = styled.main`
       gap: 30px;
       margin-top: 25px;
 
-      svg{
+      svg {
         font-size: 5em;
       }
     }
 
-    .introducaoTexto{
+    .introducaoTexto {
       font-size: 1rem;
       line-height: 20px;
       padding: 0 20px;
@@ -69,5 +67,4 @@ export const AplicacaoMain = styled.main`
       max-width: 450px;
     }
   }
-
-`
+`;

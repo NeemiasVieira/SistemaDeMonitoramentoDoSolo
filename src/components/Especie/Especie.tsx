@@ -1,16 +1,9 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { EspecieStyle } from "./EspecieStyle";
-import { Specie } from "./Types";
+import { EspecieProps } from "./Types";
 import { DeleteButton } from "../Buttons/DeleteButton";
 import { UpdateButton } from "../Buttons/UpdateButton";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-
-interface EspecieProps {
-  especie: Specie;
-  openModalUpdate: any;
-  setEspecieEscolhidaParaAtualizacao: Dispatch<SetStateAction<Specie>>;
-  confirmDeleteSpecie: (id: string) => void 
-}
 
 export const Especie: React.FC<EspecieProps> = ({ especie, openModalUpdate, setEspecieEscolhidaParaAtualizacao, confirmDeleteSpecie }) => {
 
