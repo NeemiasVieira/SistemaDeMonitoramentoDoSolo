@@ -26,10 +26,10 @@ const TodosOsRegistros = () => {
   const { setBackUrl } = useRegistrosContext();
   const navigate = useNavigate();
   
-  // eslint-disable-next-line
+  
   useEffect(() => {
     setBackUrl(`${location.pathname}?rpp=${registrosPorPag ?? 10}&pag=${pagina ?? 1}`)
-    getAllRecordsPaginated()
+    getAllRecordsPaginated() // eslint-disable-next-line
   }, [registrosPorPag, pagina, idPlanta]);
 
   useEffect(() => {
