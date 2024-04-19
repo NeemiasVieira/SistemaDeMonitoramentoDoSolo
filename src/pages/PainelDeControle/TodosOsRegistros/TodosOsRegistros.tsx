@@ -23,11 +23,12 @@ const TodosOsRegistros = () => {
 
   //Hooks
   const { getAllRecordsPaginated, allRecordsPaginated, allRecordsPaginatedIsLoading } = useGetAllRecordsPaginated({idPlanta, pagina, registrosPorPag});
-  const { setBackUrl } = useRegistrosContext();
+  const { setBackUrl, setIdPlanta} = useRegistrosContext();
   const navigate = useNavigate();
   
   
   useEffect(() => {
+    setIdPlanta(idPlanta);
     setBackUrl(`${location.pathname}?rpp=${registrosPorPag ?? 10}&pag=${pagina ?? 1}`)
     getAllRecordsPaginated() // eslint-disable-next-line
   }, [registrosPorPag, pagina, idPlanta]);

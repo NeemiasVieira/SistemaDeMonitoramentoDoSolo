@@ -11,14 +11,13 @@ import { Loading } from "../../../components/Loading/Loading";
 
 const PagRelatorioSaude = () => {
   const { idPlanta } = useParams();
-  const [plantaSelecionada, setPlantaSelecionada] = useState<Planta>();
+  const [ plantaSelecionada, setPlantaSelecionada ] = useState<Planta>();
   const { getSpecie, specieData } = useGetSpecie({
     nome: plantaSelecionada?.especie,
   });
   let { relatorioSaude, erroRelatorioSaude, refetchRelatorioSaude } =
     useGetRelatorioSaude(idPlanta);
   const { plantas } = useGetAllPlants();
-
 
   useEffect(() => {
     if (plantas) {

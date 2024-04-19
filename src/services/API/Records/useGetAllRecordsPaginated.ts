@@ -4,7 +4,7 @@ import { AxiosResponse } from "axios";
 
 export interface Record{
     id: string;
-    idPlamta: string;
+    idPlanta: string;
     nitrogenio: string,
     fosforo: string,
     potassio: string,

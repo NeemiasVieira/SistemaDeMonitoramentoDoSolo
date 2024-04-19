@@ -13,6 +13,8 @@ interface RelatorioSaudeQuery {
    estadoGeral: string;
    ultimaAtualizacao: string;
    alertas: string[];
+   imagem?: string;
+   diagnostico?: string;
   }
   
   interface Error {

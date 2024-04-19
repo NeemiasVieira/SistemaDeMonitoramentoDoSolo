@@ -20,7 +20,8 @@ import PagRelatorioSaude from "../../pages/PainelDeControle/RelatorioDeSaude/Rel
 import PagGraficoHistorico from "../../pages/PainelDeControle/HistoricoEmGrafico/GraficoHistorico";
 import NotFound from "../../pages/404NotFound/NotFound";
 import TodosOsRegistros from "../../pages/PainelDeControle/TodosOsRegistros/TodosOsRegistros";
-import PagRegistro from "../../pages/Registro/PagRegistro";
+import PagRegistro from "../../pages/PainelDeControle/TodosOsRegistros/Registro/PagRegistro";
+import PagRelatorioSaudePorRegistro from "../../pages/PainelDeControle/TodosOsRegistros/Registro/RelatorioSaudeDoRegistro";
 
 const RouterDOM = () => {
 
@@ -45,6 +46,7 @@ const RouterDOM = () => {
 
                     <Route element={<RotaPrivada><RegistrosProvider><TodosOsRegistros/></RegistrosProvider></RotaPrivada>} path="/painel/plantas/:idPlanta/registros"/>
                     <Route element={<RotaPrivada><RegistrosProvider><PagRegistro/></RegistrosProvider></RotaPrivada>} path="/painel/registros/:idRegistro" />
+                    <Route element={<RotaPrivada><RegistrosProvider><PagRelatorioSaudePorRegistro/></RegistrosProvider></RotaPrivada>} path="/painel/registros/:idRegistro/saude" />
                     
                     
                     

@@ -8,14 +8,16 @@ interface RegistrosProviderProps {
 interface IRegistrosContext {
   registroEmMemoria: Record;
   backUrl: string;
+  idPlanta: string;
   setBackUrl: React.Dispatch<React.SetStateAction<string>>
   setRegistroEmMemoria: React.Dispatch<React.SetStateAction<Record>>;
+  setIdPlanta: React.Dispatch<React.SetStateAction<string>>
 }
 
 const RegistrosContext = createContext<IRegistrosContext>({
   registroEmMemoria: {
     id: "",
-    idPlamta: "",
+    idPlanta: "",
     nitrogenio: "",
     fosforo: "",
     potassio: "",
@@ -26,17 +28,20 @@ const RegistrosContext = createContext<IRegistrosContext>({
     luz: "",
     nuRegistro: 0,
   },
-  setRegistroEmMemoria: () => {},
   backUrl: "",
-  setBackUrl: () => {}
+  idPlanta: "",
+  setRegistroEmMemoria: () => {},
+  setBackUrl: () => {},
+  setIdPlanta: () => {}
 });
 
 export const RegistrosProvider: React.FC<RegistrosProviderProps> = ({ children }) => {
   const [registroEmMemoria, setRegistroEmMemoria] = useState<Record>();
   const [backUrl, setBackUrl] = useState<string>();
+  const [idPlanta, setIdPlanta] = useState<string>();
 
   return (
-    <RegistrosContext.Provider value={{ registroEmMemoria, backUrl, setBackUrl, setRegistroEmMemoria }}>
+    <RegistrosContext.Provider value={{ registroEmMemoria, backUrl, setBackUrl, setRegistroEmMemoria, setIdPlanta, idPlanta }}>
       {children}
     </RegistrosContext.Provider>
   );
