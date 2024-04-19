@@ -40,7 +40,7 @@ export const HomeStyle = styled.main`
   }
 
   .IntroducaoLadoDireito {
-    width: 100%;
+    width: 50vw;  
     padding: 0;
   }
 
