@@ -4,6 +4,8 @@ import { useRegistrosContext } from "../../../../contexts/RegistrosContext";
 import { BotaoVoltar } from "../../../../components/Buttons/BotaoVoltar";
 import { DadosRegistro } from "../../../../components/DadosRegistro/DadosRegistro";
 import { Link, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileWaveform } from "@fortawesome/free-solid-svg-icons";
 
 const PagRegistro = () => {
   const { registroEmMemoria: registro, backUrl } = useRegistrosContext();
@@ -12,11 +14,11 @@ const PagRegistro = () => {
   return (
   <PagRegistroStyle>
     <BotaoVoltar path={backUrl}/>
-    <Link to={`/painel/registros/${idRegistro}/saude`}>Teste</Link>
     <h1>Registro Detalhado</h1>
     {registro && (
       <>
         <h2 className="nuRegistro">{registro.nuRegistro}º</h2>
+        <Link to={`/painel/registros/${idRegistro}/saude`} className="botaoSaude"><FontAwesomeIcon icon={faFileWaveform}/> Saúde do Relatório</Link>
         <div className="DadosSensores">
           <DadosRegistro registro={registro} ultimaAtualizacao={false}/>
         </div>

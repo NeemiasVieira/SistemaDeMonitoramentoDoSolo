@@ -80,6 +80,25 @@ export const PagRegistroStyle = styled.main`
     }
   }
 
+  .botaoSaude{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    color: #000;
+    font-size: 1rem;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: solid #aaa 1px;
+    transition: all 200ms;
+    gap: 5px;
+  }
+
+  .botaoSaude:hover{
+    transform: scale(1.1);
+  }
+
   @media screen and (max-width: 480px){
 
     margin-top:60px;
