@@ -8,10 +8,10 @@ interface PaginacaoProps{
   totalPaginas: number;
   registrosPorPag: number;
   setPagina: React.Dispatch<React.SetStateAction<number>>;
-  SetRegistrosPorPag: React.Dispatch<React.SetStateAction<number>>;
+  setRegistrosPorPag: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const Paginacao: React.FC<PaginacaoProps> = ({pagina, setPagina, totalPaginas, registrosPorPag, SetRegistrosPorPag}) => {
+export const Paginacao: React.FC<PaginacaoProps> = ({pagina, setPagina, totalPaginas, registrosPorPag, setRegistrosPorPag}) => {
 
   const voltarPagina = () => {
     if(pagina >= 2) setPagina(pagina - 1);
@@ -21,9 +21,14 @@ export const Paginacao: React.FC<PaginacaoProps> = ({pagina, setPagina, totalPag
     if(pagina + 1 <= totalPaginas) setPagina(pagina + 1);
   }
 
+  const onSelectPageOptions = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRegistrosPorPag(Number(e.target.value));
+    setPagina(1);
+  }
+
   return(
     <PaginacaoStyle>
-      <select onChange={(e) => SetRegistrosPorPag(Number(e.target.value))} value={registrosPorPag}>
+      <select onChange={(e) => onSelectPageOptions(e)} value={registrosPorPag}>
         <option value={5}>5 registros por página</option>
         <option value={10}>10 registros por página</option>
         <option value={25}>25 registros por página</option>

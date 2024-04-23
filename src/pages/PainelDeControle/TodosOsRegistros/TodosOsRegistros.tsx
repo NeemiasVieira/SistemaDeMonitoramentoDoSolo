@@ -43,7 +43,7 @@ const TodosOsRegistros = () => {
       <h1>Todos os Registros</h1>
       {allRecordsPaginatedIsLoading && <Loading minHeight={"70vh"}/>}
       {allRecordsPaginated && allRecordsPaginated.registros.map(registro => <Registro registro={registro} key={registro.id} />)}
-      {allRecordsPaginated && <Paginacao setPagina={setPagina} pagina={pagina} totalPaginas={allRecordsPaginated.totalPaginas} registrosPorPag={registrosPorPag} SetRegistrosPorPag={setRegistrosPorPag}/>}
+      {allRecordsPaginated && <Paginacao setPagina={setPagina} pagina={pagina} totalPaginas={allRecordsPaginated.totalPaginas} registrosPorPag={registrosPorPag} setRegistrosPorPag={setRegistrosPorPag}/>}
       
 
     </TodosOsRegistrosStyle>
