@@ -65,7 +65,10 @@ interface getAllRecordsPaginated {
 export const useGetAllRecordsPaginated = (params: allRecordsPaginatedQueryParams) => {
 
   const { notificar } = useNotificacoes();
-  const { idPlanta, pagina, registrosPorPag, dataDeInicioBusca, dataDeFimBusca } = params;
+  let { idPlanta, pagina, registrosPorPag, dataDeInicioBusca, dataDeFimBusca } = params;
+  
+  if (dataDeInicioBusca === "1970-01-01T00:00:00.000Z") dataDeInicioBusca = null;
+  if (dataDeFimBusca === "1970-01-01T00:00:00.000Z") dataDeFimBusca = null;
 
     const { data: allRecordsPaginated, refetch: getAllRecordsPaginated, isLoading: allRecordsPaginatedIsLoading } = useQuery({
         queryFn: () => getAllRecords(params),
