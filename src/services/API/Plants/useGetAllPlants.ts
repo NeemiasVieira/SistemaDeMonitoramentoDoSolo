@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 interface PlantaQuery {
   id: string;
@@ -33,12 +34,15 @@ const fetcher = async (): Promise<AxiosResponse<PlantaQueryResponse>> => {
 };
 
 export const useGetAllPlants = () => {
+  const { notificar } = useNotificacoes();
   const { isLoading, data: plantas, refetch,} = useQuery({
     queryFn: () => fetcher(),
     queryKey: ["plantsByOwner"],
     cacheTime: 30 * 60 * 1000,
     refetchInterval: false,
     staleTime: 30 * 60 * 1000,
+    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
+  
   });
 
   return {

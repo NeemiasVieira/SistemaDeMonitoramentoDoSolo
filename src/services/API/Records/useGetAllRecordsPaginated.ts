@@ -1,6 +1,7 @@
 import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
 import { AxiosResponse } from "axios";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 export interface Record{
     id: string;
@@ -63,6 +64,7 @@ interface getAllRecordsPaginated {
 
 export const useGetAllRecordsPaginated = (params: allRecordsPaginatedQueryParams) => {
 
+  const { notificar } = useNotificacoes();
   const { idPlanta, pagina, registrosPorPag, dataDeInicioBusca, dataDeFimBusca } = params;
 
     const { data: allRecordsPaginated, refetch: getAllRecordsPaginated, isLoading: allRecordsPaginatedIsLoading } = useQuery({
@@ -72,6 +74,7 @@ export const useGetAllRecordsPaginated = (params: allRecordsPaginatedQueryParams
         refetchInterval: false,
         staleTime: 10 * 60 * 1000,
         enabled: false,
+        onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
         });
 
     return {

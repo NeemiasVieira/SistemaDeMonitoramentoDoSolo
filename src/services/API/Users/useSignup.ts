@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 interface Error {
     message: string;
@@ -37,6 +38,7 @@ const cadastrarNovoUsuario = async(nome: string, email: string, senha: string): 
 
   export const useSignUp = (params: useSignUpProps) => {
     const { nome, email, senha } = params;
+    const { notificar } = useNotificacoes();
 
     const { isLoading, data: signupResponse, refetch} = useQuery({
         queryKey: ["signup"],
@@ -45,6 +47,7 @@ const cadastrarNovoUsuario = async(nome: string, email: string, senha: string): 
         staleTime: 0,
         cacheTime: 0,
         enabled: false,
+        onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
       })
 
       return {

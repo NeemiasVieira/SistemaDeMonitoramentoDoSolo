@@ -85,7 +85,7 @@ const Resumo = () => {
           />
         )}
 
-        {!lastRecord && !lastRecordIsLoading && plantaSelecionada?.id && (
+        {!lastRecord && !lastRecordIsLoading && !errorLastRecord && plantaSelecionada?.id && (
           <p>A Planta não possui nenhum registro</p>
         )}
       </ResumoStyle>

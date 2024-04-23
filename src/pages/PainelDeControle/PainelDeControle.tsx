@@ -6,16 +6,11 @@ import { useGetAllPlants } from "../../services/API/Plants/useGetAllPlants";
 import { PainelDeControleStyle } from "./PainelDeControleStyle";
 
 const PainelDeControle = () => {
-  const { notificar } = useNotificacoes();
-  const { plantas, refetch, erro, isLoading } = useGetAllPlants();
+  const { plantas, refetch, isLoading } = useGetAllPlants();
 
   useEffect(() => {
     if (!plantas) refetch(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plantas]);
-
-  useEffect(() => {
-    if (erro) notificar({ tipo: "ERRO", mensagem: erro, tempoEmSeg: 3}); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [erro]);
 
   if (isLoading)
     return (

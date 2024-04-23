@@ -1,6 +1,7 @@
 import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
 import { AxiosResponse } from "axios";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
   
 interface Error {
     message: string;
@@ -36,6 +37,8 @@ const login = async (email: string, senha: string): Promise<AxiosResponse<userLo
 
 export const useLogin = (email: string, senha: string) => {
 
+  const { notificar } = useNotificacoes();
+
   const { isLoading, data: loginResponse, refetch} = useQuery({
     queryKey: ["login", email, senha],
     queryFn: () => login(email, senha),
@@ -43,6 +46,7 @@ export const useLogin = (email: string, senha: string) => {
     staleTime: 10 * 1000,
     cacheTime: 10 * 1000,
     enabled: false,
+    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
   })
   
 

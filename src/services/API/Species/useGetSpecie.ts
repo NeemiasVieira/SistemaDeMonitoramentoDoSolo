@@ -1,6 +1,7 @@
 import { AxiosPromise } from "axios";
 import { useQuery } from "react-query";
 import SMS_API from "../sms-api";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 interface Error {
   message: string;
@@ -73,6 +74,8 @@ const getSpecieRequest = async(args: getSpecieParams): AxiosPromise<SpecieRespon
 
 export const useGetSpecie = (args: getSpecieParams) => {
 
+  const { notificar } = useNotificacoes();
+
   const { data: specieData, isLoading: specieIsLoading, refetch: getSpecie } = useQuery({
     queryFn: () => getSpecieRequest(args),
     queryKey: ["getSpecie"],
@@ -81,6 +84,7 @@ export const useGetSpecie = (args: getSpecieParams) => {
     staleTime: 10 * 60 * 1000,
     retry: false,
     enabled: false,
+    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
   })
 
   return{

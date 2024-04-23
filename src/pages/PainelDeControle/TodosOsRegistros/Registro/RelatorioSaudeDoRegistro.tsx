@@ -30,7 +30,7 @@ const PagRelatorioSaudePorRegistro = () => {
   }, [plantas]);
 
   useEffect(() => {
-    console.log(plantaSelecionada);
+
     if (plantaSelecionada) {
       getSpecie();
       getRelatorioSaude();

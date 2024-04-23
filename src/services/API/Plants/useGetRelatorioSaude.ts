@@ -1,6 +1,7 @@
 import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
 import { AxiosResponse } from "axios";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 interface RelatorioSaudeQuery {
    nitrogenio: string;
@@ -43,13 +44,17 @@ const getRelatorioDeSaude = async(idPlanta: string): Promise<AxiosResponse<Relat
 }
 
 export const useGetRelatorioSaude = (idPlanta: string) => {
+
+    const { notificar } = useNotificacoes();
+
     const { isLoading: isLoadingSaude, data: relatorioSaude, refetch: refetchRelatorioSaude,} = useQuery({
       queryFn: () => getRelatorioDeSaude(idPlanta),
       queryKey: ["relatorioSaude"],
       cacheTime: 10 * 60 * 1000,
       refetchInterval: false,
       staleTime: 10 * 60 * 1000,
-      enabled: false
+      enabled: false,
+      onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
     });
   
     return {

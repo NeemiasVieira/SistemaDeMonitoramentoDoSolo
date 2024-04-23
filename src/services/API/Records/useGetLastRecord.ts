@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 interface LastRecordQuery {
     id: string,
@@ -40,6 +41,8 @@ const getUltimoRegistro = async(idPlanta: string): Promise<AxiosResponse<LastRec
 } 
 
 export const useGetLastRecord = (idPlanta: string) => {
+
+  const { notificar } = useNotificacoes();
     
     const { data: lastRecord, refetch: refetchLastRecord, isLoading: lastRecordIsLoading } = useQuery({
         queryFn: () => getUltimoRegistro(idPlanta),
@@ -48,6 +51,7 @@ export const useGetLastRecord = (idPlanta: string) => {
         refetchInterval: 10 * 60 * 1000,
         staleTime: 10 * 60 * 1000,
         enabled: false,
+        onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
       });
 
     return {

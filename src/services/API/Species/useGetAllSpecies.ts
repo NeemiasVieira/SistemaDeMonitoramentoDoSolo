@@ -1,6 +1,7 @@
 import { AxiosPromise } from "axios";
 import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 interface Error {
   message: string;
@@ -64,6 +65,8 @@ const getAllSpecies = async(): AxiosPromise<AllSpeciesResponse> => {
 
 export const useGetAllSpecies = () => {
 
+  const { notificar } = useNotificacoes();
+
   const { data: allSpeciesData, isLoading: allSpeciesIsLoading, refetch: refetchAllSpecies } = useQuery({
     queryFn: () => getAllSpecies(),
     queryKey: ["getAllSpecies"],
@@ -72,6 +75,7 @@ export const useGetAllSpecies = () => {
     staleTime: 10 * 60 * 1000,
     retry: false,
     enabled: true,
+    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
   })
 
   return{

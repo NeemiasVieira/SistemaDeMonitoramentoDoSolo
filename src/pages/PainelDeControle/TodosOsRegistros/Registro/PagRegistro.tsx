@@ -9,10 +9,6 @@ const PagRegistro = () => {
   const { registroEmMemoria: registro, backUrl } = useRegistrosContext();
   const { idRegistro } = useParams();
 
-  useEffect(() => {
-    console.log(backUrl);
-  })
-
   return (
   <PagRegistroStyle>
     <BotaoVoltar path={backUrl}/>

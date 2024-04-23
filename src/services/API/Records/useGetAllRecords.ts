@@ -1,6 +1,7 @@
 import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
 import { AxiosResponse } from "axios";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 export interface RecordQuery {
     nitrogenio: string,
@@ -54,6 +55,8 @@ export interface RecordQuery {
 export const useGetAllRecords = (params?: allRecordsQueryParams) => {
 
     const { idPlanta, intervaloDeBusca, intervaloDeDias } = params;
+    const { notificar } = useNotificacoes();
+   
 
     const { data: allRecords, refetch: refetchAllRecords, isLoading: allRecordsIsLoading } = useQuery({
         queryFn: () => getAllRecords({idPlanta, intervaloDeBusca, intervaloDeDias}),
@@ -62,6 +65,7 @@ export const useGetAllRecords = (params?: allRecordsQueryParams) => {
         refetchInterval: false,
         staleTime: 10 * 60 * 1000,
         enabled: false,
+        onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
         });
 
     return {

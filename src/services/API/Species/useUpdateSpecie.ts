@@ -66,17 +66,16 @@ export const useUpdateSpecie = (args: {id: string, nome: string, descricao: stri
     onSuccess: () => {
       queryClient.invalidateQueries('getAllSpecies');
       queryClient.invalidateQueries("getSpecie");
-      if(updateSpecieData?.data?.errors?.length < 1){
-        notificar({
+      notificar({
           tipo: "SUCESSO",
           mensagem: "Espécie atualizada com sucesso",
           tempoEmSeg: 4,
         });
-      }
     },
     queryKey: ["updateSpecie"],
     retry: false,
     enabled: false,
+    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
   });
 
   useEffect(() => {

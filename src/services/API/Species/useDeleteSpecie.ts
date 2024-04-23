@@ -42,11 +42,10 @@ export const useDeleteSpecie = (id: string) => {
     onSuccess: () => {
       queryClient.invalidateQueries("getAllSpecies")
       queryClient.invalidateQueries("getSpecie");
-      if(deleteSpecieData?.data?.errors?.length < 1){
         notificar({tipo: "SUCESSO", mensagem: "Espécie excluída com sucesso!", tempoEmSeg: 4});
-      }
     },
     enabled: false,
+    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
   })
 
   return{

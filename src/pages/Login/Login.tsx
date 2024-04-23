@@ -16,18 +16,14 @@ const Login = () => {
   const { notificar } = useNotificacoes();
   const { setAuth, setIsAdmin } = useApplication();
   
-  let { loginResponse, error, isLoading, refetch } = useLogin(email, password);
-
-  const notificarErro = () => notificar({ tipo: "ERRO", mensagem: error, tempoEmSeg: 3 });
+  let { loginResponse, isLoading, refetch } = useLogin(email, password);
 
   const login = async (e: any) => {
     e.preventDefault();
     await refetch();
-    if(error) notificarErro();
   };
 
   useEffect(() => {
-    if (error) notificarErro();
 
     if (loginResponse?.token) {
       localStorage.setItem("token", loginResponse.token);
@@ -46,7 +42,7 @@ const Login = () => {
       sessionStorage.removeItem("redirectUrl");
       navigate(redirectToUrl ?? "/painel");
     }// eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loginResponse, error]);
+  }, [loginResponse]);
 
   return (
       <LoginMain>

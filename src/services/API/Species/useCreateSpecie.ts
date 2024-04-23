@@ -88,17 +88,17 @@ export const useCreateSpecie = (args: { nome: string; descricao: string; paramet
     onSuccess: () => {
       queryClient.invalidateQueries("getAllSpecies");
       queryClient.invalidateQueries("getSpecie");
-      if(createSpecieData?.data?.errors?.length < 1){
         notificar({
           tipo: "SUCESSO",
           mensagem: "Espécie criada com sucesso",
           tempoEmSeg: 4,
         });
-      }
+      
     },
     queryKey: ["createSpecie"],
     retry: false,
     enabled: false,
+    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
   });
 
   useEffect(() => {
