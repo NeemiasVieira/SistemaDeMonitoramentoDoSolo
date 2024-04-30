@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavStyle, NavStyleMobile } from "./NavigationStyle";
 import { Link } from "react-router-dom";
 import { IconeLogoSms } from "../Icones/sms-logo";
-import { faArrowRightFromBracket, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightFromBracket, faPaintRoller, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ModalNavigation } from "../PopUps/ModalNavigation/ModalNavigation";
 import { ListaNavegacaoAutenticada } from "./ListaNavegacaoAutenticada";
@@ -10,12 +10,14 @@ import { NavAutenticadaStyle } from "./NavegacaoAutenticadaStyle";
 import { formarIniciais } from "./Services";
 import { ListaNavegacaoNaoAutenticada } from "./ListaNavegacaoNaoAutenticada";
 import { useApplication } from "../../contexts/ApplicationContext";
+import { useThemes } from "../../contexts/ThemeProvider";
 
 
 export const Navigation = () => {
   const [mostrarOpcoesMovimentacoes, setMostrarOpcoesMovimentacoes] = useState<boolean>(false);
   const nome = localStorage.getItem("nome");
   const { Logout, auth, isAdmin } = useApplication();
+  const { theme, toggleTheme } = useThemes();
 
   const toggleOpcoesMovimentacoes = () => {
     setMostrarOpcoesMovimentacoes(!mostrarOpcoesMovimentacoes);
@@ -36,6 +38,18 @@ export const Navigation = () => {
                   style={{ display: mostrarOpcoesMovimentacoes ? "block" : "none" }}
                 >
                   <ul>
+
+
+                  <li className="switchTheme">
+                    <FontAwesomeIcon icon={faPaintRoller} />
+                    <span className="texto">Tema {theme === "light" ? "claro" : "escuro"} </span>
+                      
+                      <label className="switch">
+                      <input type="checkbox" onClick={toggleTheme} checked={theme === "light" ? false : true}/>
+                      <span className="slider round"></span>
+                      </label>
+                    </li>
+
                     {isAdmin && (
                       <li>
                         <Link to="/adm/painel" onClick={toggleOpcoesMovimentacoes}>
@@ -44,6 +58,7 @@ export const Navigation = () => {
                         </Link>
                       </li>
                     )}
+                    
 
                     <li>
                       <Link
