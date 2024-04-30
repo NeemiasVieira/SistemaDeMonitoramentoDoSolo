@@ -33,6 +33,7 @@ export const HomeStyle = styled.main`
     align-items: center;
     height: 30vh;
     width: 80%;
+    /* max-width: 690px; */
     font-weight: 700;
     font-size: 1.3rem;
     color: #444;
@@ -41,7 +42,7 @@ export const HomeStyle = styled.main`
 
   .IntroducaoLadoDireito {
     width: 50vw;  
-    padding: 0;
+    padding: 0 7vw;
   }
 
   .IntroducaoContent {

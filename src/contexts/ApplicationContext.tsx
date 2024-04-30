@@ -10,7 +10,7 @@ const ApplicationBackgroundStyle = styled.div`
   display: flex;
   justify-content: space-between;
   flex-flow: column wrap;
-  min-height: 130vh;
+  min-height: 1000px;
   margin-top: 70px;
   max-width: 100vw;
   overflow-x: hidden;
