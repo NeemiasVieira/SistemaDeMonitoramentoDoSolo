@@ -28,7 +28,7 @@ export const LoginMain = styled.main`
     max-width: 450px;
     height: 20vh;
     min-height: 360px;
-    border: solid #ccc 3px;
+    border: solid var(--border-primary) 1px;
     border-radius: 10px;
     padding: 20px;
     overflow-x: hidden;
@@ -48,12 +48,12 @@ export const LoginMain = styled.main`
     justify-content: center;
     align-items: center;
     height: 100%;
-    border-right: solid #000 2px;
+    border-right: solid var(--border-primary) 2px;
 
     svg {
       font-size: 1.8rem;
       height: 45px;
-      color: #000;
+      color: var(--text-primary);
       padding-right: 15px;
     }
   }
@@ -63,9 +63,10 @@ export const LoginMain = styled.main`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background: #fff;
+    background: var(--button-primary);
     padding: 0 10px;
     border-radius: 5px;
+    border: solid var(--border-primary) 1px;
   }
 
   input {
@@ -76,8 +77,8 @@ export const LoginMain = styled.main`
     padding: 10px;
     max-width: 300px;
     border: none;
-    background: #fff;
-    color: #000;
+    background: var(--button-primary);
+    color: var(--text-primary)
   }
 
   input:focus {
@@ -93,8 +94,9 @@ export const LoginMain = styled.main`
     border: none;
     font-size: 1.2em;
     transition: all 300ms;
-    background: #fff;
-    color: #000;
+    background: var(--button-primary);
+    color: var(--text-primary);
+    border: solid var(--border-primary) 1px;
 
     :hover {
       transform: scale(1.1);

@@ -6,13 +6,13 @@ export const NavAutenticadaStyle = styled.nav`
   align-items: center;
   flex-flow: row nowrap;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--white);
   height: 70px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
-  border-bottom: solid #ccc 2px;
+  border-bottom: solid var(--border-primary) 2px;
 
   * {
     font-family: "Montserrat", sans-serif;
@@ -40,10 +40,14 @@ export const NavAutenticadaStyle = styled.nav`
 
   .navegacao li{
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
     height: 100%;  
     padding: 0 10px;
+  }
+  
+  .Iniciais{
+    color: #ddd;
   }
 
   li {
@@ -90,13 +94,13 @@ export const NavAutenticadaStyle = styled.nav`
     right: 5%;
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: var(--button-primary);
     min-width: 160px;
     z-index: 1;
     box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
-    color: black;
+    color: var(--text-primary);
     border-radius: 15px 0 15px 15px;
-    border: solid #ccc 1px;
+    border: solid var(--border-primary) 1px;
   ul {
       padding: 10px;
       margin: 0px;
@@ -118,7 +122,7 @@ export const NavAutenticadaStyle = styled.nav`
     justify-content: center;
     align-items: center;
     float: none;
-    color: black;
+    color: var(--text-primary);
     width: 100%;
     padding: 12px 16px;
     display: block;
@@ -191,7 +195,7 @@ export const NavAutenticadaStyle = styled.nav`
 }
 
 input:checked + .slider {
-  background-color: #333;
+  background-color: #555;
 }
 
 input:focus + .slider {

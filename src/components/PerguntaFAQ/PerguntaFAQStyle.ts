@@ -7,8 +7,8 @@ export const SecaoPerguntaFaq = styled.div`
   width: 900px;
   margin: 5px;
   max-width: 75vw;
-  background: #222;
-  border: solid #ddd 2px;
+  background: var(--footer);
+  border: solid var(--border-primary) 2px;
   border-radius: 10px;
   color: whitesmoke;
 

@@ -47,6 +47,9 @@ export const SecaoGraficoLinhas = styled.section`
     margin: 0;
     height: 40px;
     padding: 5px;
+    background-color: var(--white);
+    color: var(--text-primary);
+    border: solid var(--border-primary) 1px;
   }
 
   h2{

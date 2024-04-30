@@ -55,11 +55,14 @@ export const IntervaloDatasInput: React.FC<IntervaloDatasInputProps> = ({ params
       display: "flex",
       alignItems: "center",
       flexFlow: "column wrap",
-      border: "solid #ccc 1px", 
-      backgroundColor: "#fff",
+      border: "solid var(--border-primary) 1px", 
+      backgroundColor: "var(--white)",
       opacity: ".9",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
       overflow: "hidden"
+    },
+    overlay: {
+      backgroundColor: "var(--bg-modal)", 
     },
   };
 

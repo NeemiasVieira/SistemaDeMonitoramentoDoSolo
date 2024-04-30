@@ -36,17 +36,20 @@ export const IndexModal: React.FC<ModalIndexProps> = ({botaoOpenModal: OpenButto
       display: "flex",
       alignItems: "center",
       flexFlow: "column wrap",
-      border: "solid #ccc 1px",
+      border: "solid var(--border-primary) 1px",
       width: width ?? "70vw",
       height: height ?? "70vh",
       maxHeight: maxHeight ?? "400px",
       maxWidth: maxWidth ?? "400px",
       minHeight: minHeight ?? "300px",
       minWidth: minWidth ?? "300px",
-      backgroundColor: "#fff",
+      backgroundColor: "var(--white)",
       opacity: ".9",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
       overflow: "hidden"
+    },
+    overlay: {
+      backgroundColor: "var(--bg-modal)", 
     },
   };
 

@@ -35,6 +35,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({records, params}) => {
     },
     width: "100%",
     height: "auto",
+    
     curveType: "function",
     legend: { position: "none" },
   };

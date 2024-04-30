@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IconeLogoSms } from "../Icones/sms-logo";
 import { useApplication } from "../../contexts/ApplicationContext";
+import { useThemes } from "../../contexts/ThemeProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 interface ListaNavegacaoProps {
   closeModal?: () => void;
@@ -10,6 +13,7 @@ interface ListaNavegacaoProps {
 export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({ closeModal }) => {
   const urlCompleta = window.location.href;
   const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
+  const { theme, toggleTheme } = useThemes();
   const { Logout, isAdmin } = useApplication();
 
   return (
@@ -39,6 +43,13 @@ export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({ close
           </Link>
         </li>
       )}
+      <li className="switchTheme mobileOnly">
+        {theme === "light" ? <FontAwesomeIcon icon={faSun} className="mobileOnly"/> : <FontAwesomeIcon icon={faMoon} className="mobileOnly" />}
+        <label className="switch mobileOnly">
+          <input type="checkbox" onClick={toggleTheme} checked={theme === "light" ? false : true} className="mobileOnly" />
+          <span className="slider round mobileOnly"></span>
+        </label>
+      </li>
       <li>
         <Link to="/" onClick={Logout} className="logoutMobileButton">
           Logout

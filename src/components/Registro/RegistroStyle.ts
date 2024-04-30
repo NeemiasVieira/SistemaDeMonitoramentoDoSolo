@@ -11,16 +11,16 @@ export const RegistroStyle = styled.div`
   width: 50vw;
   max-width: 600px;
   border-radius: 10px;
-  border: solid #bbb 1px;
+  border: solid var(--border-primary) 1px;
 
   p {
-    color: #444;
+    color: var(--text-secondary);
     font-style: italic;
     letter-spacing: 0.5px;
   }
   svg {
     font-size: 1.5rem;
-    color: #444;
+    color: var(--text-secondary);
   }
 
   svg,
@@ -32,7 +32,7 @@ export const RegistroStyle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid #aaa 1px;
+    border: solid var(--border-primary) 1px;
     background-color: var(--white);
     border-radius: 5px;
     width: 120px;
@@ -40,7 +40,7 @@ export const RegistroStyle = styled.div`
     cursor: pointer;
     transition: all 200ms;
     font-size: 0.9rem;
-    color: #222;
+    color: var(--text-primary);
     font-weight: 700;
   }
   button:hover {

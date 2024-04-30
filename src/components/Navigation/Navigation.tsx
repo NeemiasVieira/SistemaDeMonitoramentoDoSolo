@@ -30,7 +30,7 @@ export const Navigation = () => {
           <NavAutenticadaStyle>
             <ListaNavegacaoAutenticada />
             <div className="botaoPerfil" onClick={toggleOpcoesMovimentacoes}>
-              <span>{formarIniciais(nome)}</span>
+              <span className="Iniciais">{formarIniciais(nome)}</span>
               {mostrarOpcoesMovimentacoes && (
                 <div
                   className="dropdown-content"
@@ -38,7 +38,6 @@ export const Navigation = () => {
                   style={{ display: mostrarOpcoesMovimentacoes ? "block" : "none" }}
                 >
                   <ul>
-
 
                   <li className="switchTheme">
                     <FontAwesomeIcon icon={faPaintRoller} />
@@ -58,7 +57,6 @@ export const Navigation = () => {
                         </Link>
                       </li>
                     )}
-                    
 
                     <li>
                       <Link

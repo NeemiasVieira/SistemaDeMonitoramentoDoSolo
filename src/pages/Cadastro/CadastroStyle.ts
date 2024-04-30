@@ -26,7 +26,7 @@ export const CadastroMain = styled.main`
     flex-flow: column wrap;
     width: 50vw;
     max-width: 450px;
-    border: solid #ccc 3px;
+    border: solid var(--border-primary) 3px;
     border-radius: 10px;
     padding: 20px;
     overflow-x: hidden;
@@ -45,14 +45,14 @@ export const CadastroMain = styled.main`
     justify-content: center;
     align-items: center;
     height: 50px;
-    border-right: solid #000 2px;
+    border-right: solid var(--border-primary) 2px;
     width: 60px;
   }
 
   svg {
     font-size: 1.8rem;
     height: 35px;
-    color: #000;
+    color: var(--text-primary);
     padding-right: 15px;
   }
 
@@ -61,7 +61,7 @@ export const CadastroMain = styled.main`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background: #fff;
+    background: var(--button-primary);
     padding: 0 10px;
     border-radius: 5px;
     max-height: 50px;
@@ -74,8 +74,8 @@ export const CadastroMain = styled.main`
     padding: 3px;
     max-width: 300px;
     border: none;
-    background: #fff;
-    color: #000;
+    background: var(--button-primary);
+    color: var(--text-primary);
     font-size: 1rem;
   }
 
@@ -92,8 +92,9 @@ export const CadastroMain = styled.main`
     border: none;
     font-size: 1.2em;
     transition: all 300ms;
-    background: #fff;
-    color: #000;
+    background: var(--button-primary);
+    color: var(--text-primary);
+    border: solid var(--border-primary) 1px;
 
     :hover {
       transform: scale(1.1);

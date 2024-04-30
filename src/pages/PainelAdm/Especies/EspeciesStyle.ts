@@ -27,7 +27,8 @@ flex-flow: column wrap;
   align-items: center;
   flex-flow: row nowrap;
   gap: 10px;
-  border: solid #aaa 1px;
+  color: var(--text-primary);
+  border: solid var(--border-primary) 1px;
   width: 200px;
   height: 40px;
   padding: 10px;
@@ -43,7 +44,7 @@ flex-flow: column wrap;
 
   svg{
     font-size: 1.2rem;
-    color: #333;
+    color: var(--text-primary);
   }
 }
 

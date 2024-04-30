@@ -40,6 +40,12 @@ export const LightTheme = createGlobalStyle`
         --bg-primary: #E1E1E1;
         --text-secondary: #444;
         --text-primary: #000;
+        --border-primary: #ccc;
+        --border-secondary: #222;
+        --button-primary: #fff;
+        --footer: #222;
+        --border-hover: #222;
+        --bg-modal: rgba(0, 0, 0, 0.5);
     }
 `;
 

@@ -10,7 +10,8 @@ import { Specie } from "../../Especie/Types";
 const ButtonOpenModal = styled.button`
     background-color: transparent;
     cursor: pointer;
-    border: solid var(--gray-primary) 1px;
+    border: solid var(--border-primary) 1px;
+    color: var(--text-primary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,7 +46,7 @@ const BotaoOpenModal: React.FC<BotaoOpenModalProps> = ({ onClick }) => {
 const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
-  border: solid #111 1px;
+  border: solid var(--border-secondary) 1px;
 
   @media screen and (max-width: 480px) {
     width: 80%;
@@ -53,9 +54,9 @@ const StyledTable = styled.table`
 `;
 
 const StyledHeaderCell = styled.th`
-  border-bottom: 1px solid #111;
-  background-color: #fff;
-  color: black;
+  border-bottom: 1px solid var(--border-secondary);
+  background-color: var(--white);
+  color: var(--text-primary);
   font-weight: bold;
   padding: 10px;
   width: 150px;
@@ -69,9 +70,9 @@ const StyledHeaderCell = styled.th`
 const StyledBodyCell = styled.td`
   text-align: center;
   padding: 5px;
-  border-right: 1px solid black;
-  border-bottom: solid 1px #111;
-  background-color: #fff;
+  border-right: 1px solid var(--border-secondary);
+  border-bottom: solid 1px var(--border-secondary);
+  background-color: var(--white);
 
 `;
 

@@ -13,7 +13,7 @@ export const HomeStyle = styled.main`
     font-size: 2.5rem;
     margin: 70px 0 25px 0;
     text-align: center;
-    color: #222;
+    color: var(--text-primary);
     padding: 0 80px;
   }
 
@@ -33,10 +33,9 @@ export const HomeStyle = styled.main`
     align-items: center;
     height: 30vh;
     width: 80%;
-    /* max-width: 690px; */
     font-weight: 700;
     font-size: 1.3rem;
-    color: #444;
+    color: var(--text-secondary);
     letter-spacing: 1px;
   }
 
@@ -58,7 +57,7 @@ export const HomeStyle = styled.main`
       width: 50vw;
       max-width: 900px;
       height: 93vh;
-      border-right: solid #ccc 3px;
+      border-right: solid var(--border-primary) 3px;
     }
   }
 
@@ -68,13 +67,13 @@ export const HomeStyle = styled.main`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color: var(--white);
+    background-color: var(--button-primary);
     text-decoration: none;
     width: 200px;
     padding: 10px 15px;
     border-radius: 7px;
-    border: solid #aaa 1px;
-    color: #000;
+    border: solid var(--border-primary) 1px;
+    color: var(--text-primary);
     font-size: 1.2rem;
     transition: all 200ms; 
 

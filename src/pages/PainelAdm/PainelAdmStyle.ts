@@ -27,7 +27,7 @@ export const PainelAdmStyle = styled.main`
   .botaoMenu {
     width: 350px;
     height: 150px;
-    border: solid #c4c4c4 1px;
+    border: solid var(--border-primary) 1px;
     border-radius: 8px;
     background-color: var(--white);
     cursor: pointer;
@@ -36,20 +36,22 @@ export const PainelAdmStyle = styled.main`
       font-size: 2rem;
       color: #555;
       margin-bottom: 10px;
+      color: var(--text-secondary);
     }
 
     h3 {
       margin: 5px;
+      color: var(--text-primary);
     }
 
     p {
       margin: 0;
-      color: #888;
+      color: var(--text-secondary);
     }
   }
 
   .botaoMenu:hover {
-    border: solid #222 1px;
+    border: solid var(--border-hover) 1px;
   }
 
   @media screen and (max-width: 480px) {

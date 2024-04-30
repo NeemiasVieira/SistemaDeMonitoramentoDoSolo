@@ -22,7 +22,7 @@ export const DarkTheme = createGlobalStyle`
     }
 
     body::-webkit-scrollbar-thumb {
-        background-color: var(--dark-green);
+        background-color: #53BF30;
         border: solid #53AF30 1.5px;
         border-radius: 5px;
     }
@@ -33,14 +33,20 @@ export const DarkTheme = createGlobalStyle`
     }
 
     :root {
-    --gray-primary: #333333;  
-    --bg-dark-blue: #023047; 
-    --white: #E0E0E0;         
+    --gray-primary: #ccc;  
+    --bg-dark-blue: #054472; 
+    --white: #111;         
     --light-green: #5FA81D;   
-    --dark-green: #2F7F16;    
-    --bg-primary: #333; 
+    --dark-green: #8CDF27;    
+    --bg-primary: #222; 
     --text-secondary: #ccc;
     --text-primary: #fff;
+    --border-primary: #555;
+    --border-secondary: #ccc;
+    --button-primary: #333;
+    --footer: #000;
+    --border-hover: #777;
+    --bg-modal: rgba(50, 50, 50, 0.6);
     }
 `;
 

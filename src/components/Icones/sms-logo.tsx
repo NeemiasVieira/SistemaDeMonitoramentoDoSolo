@@ -8,6 +8,7 @@ const ImagemLogo = styled.img`
   height: 75px;
   cursor: pointer;
   margin-top: 5px;
+  border-radius: 100px;
 `;
 
 interface IconeLogoProps{
@@ -15,6 +16,7 @@ interface IconeLogoProps{
 }
 
 export const IconeLogoSms: React.FC<IconeLogoProps> = ({path}) => {
+
   return (
     <>
       <Link to={path}>

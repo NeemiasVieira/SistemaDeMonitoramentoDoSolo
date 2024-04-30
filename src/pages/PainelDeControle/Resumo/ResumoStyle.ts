@@ -26,7 +26,7 @@ export const ResumoStyle = styled.main`
     font-size: 25px;
     letter-spacing: 1.5px;
     font-weight: 600;
-    color: #333;
+    color: var(--text-secondary);
     margin: 0;
   }
 

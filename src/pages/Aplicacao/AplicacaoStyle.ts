@@ -19,6 +19,7 @@ export const AplicacaoMain = styled.main`
     p {
       margin: 0 0 10px 0;
       font-weight: 500;
+      color: var(--text-secondary);
     }
 
     svg {

@@ -25,6 +25,9 @@ const customStyles = {
     paddingTop: "90px",
     zIndex: "1000",
   },
+  overlay: {
+    backgroundColor: "var(--bg-modal)", 
+  },
 };
 
 interface ModalNavigationProps {

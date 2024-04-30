@@ -212,12 +212,15 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
       width: "80vw",
       height: "590px",
       maxWidth: "370px",
-      backgroundColor: "#fff",
+      backgroundColor: "var(--white)",
       opacity: "1",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
       marginTop: "25px",
       zIndex: "3",
       overflow: "hidden"
+    },
+    overlay: {
+      backgroundColor: "var(--bg-modal)", 
     },
   };
 

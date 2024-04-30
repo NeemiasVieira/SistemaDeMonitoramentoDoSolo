@@ -49,7 +49,7 @@ export const useGetRelatorioSaudePorRegistro = (idPlanta: string) => {
 
     const { isLoading: isLoadingSaude, data: relatorioSaude, refetch: getRelatorioSaude,} = useQuery({
       queryFn: () => getRelatorioDeSaude(idPlanta),
-      queryKey: ["relatorioSaudePorRegistro"],
+      queryKey: ["relatorioSaudePorRegistro", idPlanta],
       cacheTime: 10 * 60 * 1000,
       refetchInterval: false,
       staleTime: 10 * 60 * 1000,

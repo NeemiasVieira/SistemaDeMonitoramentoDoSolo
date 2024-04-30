@@ -5,6 +5,8 @@ export const SpecieUCModalStyleIndex = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
+  color: var(--text-primary);
+  background-color: var(--white);
 
   .closeButton {
     position: absolute;
@@ -64,6 +66,8 @@ export const SpecieUCModalStyleIndex = styled.div`
   .DivInputDescricao textarea {
     border: solid #333 1px;
     border-radius: 5px;
+    color: var(--text-primary);
+    background-color: var(--button-primary);
   }
 
   .DivInputNome input,
@@ -71,6 +75,8 @@ export const SpecieUCModalStyleIndex = styled.div`
   .DivInputParametro input {
     border: solid #333 1px;
     border-radius: 5px;
+    background-color: var(--button-primary);
+    color: var(--text-primary);
   }
 
   .criarAtualizarButton {
@@ -79,7 +85,7 @@ export const SpecieUCModalStyleIndex = styled.div`
     align-items: center;
     flex-flow: row nowrap;
     gap: 10px;
-    border: solid #222 1px;
+    border: solid var(--border-primary) 1px;
     width: 200px;
     height: 40px;
     padding: 10px;
@@ -88,6 +94,7 @@ export const SpecieUCModalStyleIndex = styled.div`
     background-color: var(--white);
     font-weight: 700;
     box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
     cursor: pointer;
     font-size: 1rem;
     letter-spacing: 0.5px;

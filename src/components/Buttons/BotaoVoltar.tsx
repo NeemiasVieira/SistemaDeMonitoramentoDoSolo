@@ -19,7 +19,7 @@ const BotaoVoltarStyle = styled.div`
     padding: 10px 15px;
     border-radius: 7px;
     border: solid #aaa 1px;
-    color: #000;
+    color: var(--text-primary);
     font-size: 1.2rem;
 
     svg {

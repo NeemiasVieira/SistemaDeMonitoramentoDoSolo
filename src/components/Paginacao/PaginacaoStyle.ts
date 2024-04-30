@@ -10,7 +10,14 @@ gap: 10px;
 margin: 15px 0 50px 0;
 
   span{
-    color: #333;
+    color: var(--text-secondary);
+  }
+
+  select{
+    background-color: var(--white);
+    color: var(--text-primary);
+    padding: 2px;
+    border-radius: 5px;
   }
 
   svg{

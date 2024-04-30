@@ -19,11 +19,12 @@ export const FaqMain = styled.main`
         margin: 10px;
         width: 70vw;
         text-align: center;
+        color: var(--text-secondary);
     }
 
     .subtitulo{
         margin: 15px 0 10px 0;
-        color: #222;
+        color: var(--text-secondary);
     }
 
 

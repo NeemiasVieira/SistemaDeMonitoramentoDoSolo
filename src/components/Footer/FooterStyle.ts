@@ -6,7 +6,7 @@ export const FooterStyle = styled.footer`
   align-items: center;
   flex-flow: column wrap;
   color: #fff;
-  background-color: #222;
+  background-color: var(--footer);
   height: auto;
   padding: 40px 20px;
   max-width: 100vw;

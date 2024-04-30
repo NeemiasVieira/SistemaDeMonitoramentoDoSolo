@@ -12,6 +12,7 @@ export const NotFoundStyle = styled.main`
     letter-spacing: 3px;
     font-size: 5rem;
     margin: 0;
+    color: var(--text-primary);
   }
 
   svg{
@@ -22,6 +23,6 @@ export const NotFoundStyle = styled.main`
 
   span{
     font-size: 1.7rem;
-    color: #555;
+    color: var(--text-secondary);
   }
 `

@@ -22,7 +22,7 @@ export const NotificacaoStyle = styled.section`
   }
 
   .SUCESSO {
-    background-color: var(--dark-green);
+    background-color: #53BF30;
   }
 
   .ALERTA {

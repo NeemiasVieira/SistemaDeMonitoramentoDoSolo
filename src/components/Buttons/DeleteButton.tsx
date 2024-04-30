@@ -64,9 +64,8 @@ const ModalStyle = styled.div`
 
   h2{
     font-size: 1.1rem;
-    color: #111;
     margin-bottom: 30px;
-    color: #333;
+    color: var(--text-secondary);
     font-size: 1rem;
   }
 
@@ -80,13 +79,15 @@ const ModalStyle = styled.div`
     width: 100px;
     height: 25px;
     border-radius: 5px;
-    border: solid #aaa 1px;
+    border: solid var(--border-primary) 1px;
+    background-color: var(--white);
+    color: var(--text-primary);
     transition: all 200ms;
     cursor: pointer;
   }
 
   .YesOrNo:hover{
-    border: solid #222 1px;
+    border: solid var(--border-hover) 1px;
     transform: scale(1.1);
   }
 
@@ -114,7 +115,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({ onDelete }) => {
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      border: "solid #aaa 1px",
+      border: "solid var(--border-primary) 1px",
       borderRadius: "15px",
       display: "flex",
       justifyContent: "center",
@@ -123,9 +124,12 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({ onDelete }) => {
       maxWidth: "350px",
       width: "70vw",
       height: "140px",
-      backgroundColor: "#fff",
+      backgroundColor: "var(--white)",
       opacity: "1",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
+    },
+    overlay: {
+      backgroundColor: "var(--bg-modal)", 
     },
   };
 

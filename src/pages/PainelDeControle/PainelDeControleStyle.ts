@@ -21,7 +21,7 @@ export const PainelDeControleStyle = styled.main`
   }
 
   .subTitulo {
-    color: #444;
+    color: var(--text-secondary);
   }
 
   h1,

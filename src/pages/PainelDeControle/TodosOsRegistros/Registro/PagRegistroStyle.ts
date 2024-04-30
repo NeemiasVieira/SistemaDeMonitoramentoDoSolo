@@ -85,12 +85,12 @@ export const PagRegistroStyle = styled.main`
     justify-content: center;
     align-items: center;
     background-color: var(--white);
-    color: #000;
+    color: var(--text-primary);
     font-size: 1rem;
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
-    border: solid #aaa 1px;
+    border: solid var(--border-primary) 1px;
     transition: all 200ms;
     gap: 5px;
   }

@@ -25,8 +25,8 @@ export const IntervaloDataInputModalStyle = styled.div`
     text-decoration: none;
     padding: 5px 15px;
     border-radius: 7px;
-    border: solid #aaa 1px;
-    color: #000;
+    border: solid var(--border-primary) 1px;
+    color: var(--text-primary);
     font-size: 1.2rem;
     width:  150px;
     margin-top: 20px;
@@ -75,8 +75,8 @@ export const IntervaloDataInputStyle = styled.div`
     text-decoration: none;
     padding: 5px 15px;
     border-radius: 7px;
-    border: solid #aaa 1px;
-    color: #000;
+    border: solid var(--border-primary) 1px;
+    color: var(--text-primary);
     font-size: 1.2rem;
     width:  200px;
     font-size: 1rem;

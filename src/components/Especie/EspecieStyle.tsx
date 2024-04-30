@@ -6,7 +6,7 @@ export const EspecieStyle = styled.div`
   background-color: var(--white);
   width: 800px;
   height: auto;
-  border: solid #ccc 1px;
+  border: solid var(--border-primary) 1px;
   border-radius: 10px;
   padding: 10px 20px 0 20px;
   overflow-x: hidden;
@@ -16,14 +16,14 @@ export const EspecieStyle = styled.div`
   }
 
   .descricao {
-    color: #444;
+    color: var(--text-secondary);
     height: 70px;
     max-height: 70px;
     overflow: hidden;
     font-size: .9rem;
     padding: 0;
     margin-bottom: 5px;
-    background-color: #fff;
+    background-color: var(--white);
   }
 
   .buttonActions {
@@ -42,16 +42,16 @@ export const EspecieStyle = styled.div`
   }
   th,
   td {
-    border: 1px solid #aaa;
+    border: 1px solid var(--border-primary);
     padding: 2px;
     text-align: left;
     text-align: center;
     font-size: 0.9rem;
-    color: #222;
+    color: var(--text-primary);
   }
   th {
-    background-color: #f2f2f2;
-    border: solid #555 1px;
+    background-color: var(--white);
+    border: solid var(--border-primary) 1px;
   }
 
   @media screen and (max-width: 480px) {

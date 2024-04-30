@@ -7,7 +7,7 @@ export const PlantaStyle = styled.div`
   flex-flow: column wrap;
   padding: 20px;
   border-radius: 5px;
-  border: solid #ddd 1px;
+  border: solid var(--border-primary) 1px;
   gap: 15px;
   background-color: var(--white);
   -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
@@ -57,9 +57,9 @@ export const PlantaStyle = styled.div`
     border: none;
     font-size: 1.2em;
     transition: all 300ms ease 0s;
-    border: solid #000 1px;
-    color: #000;
-    background-color: var(--white);
+    border: solid var(--border-primary) 1px;
+    color: var(--text-primary);
+    background-color: var(--button-primary);
 
     :hover {
       transform: scale(1.1);

@@ -4,6 +4,7 @@ export const SaudeParamsModalStyle = styled.div`
 
 h2{
   text-align: center;
+  color: var(--text-primary);
 }
 
 
