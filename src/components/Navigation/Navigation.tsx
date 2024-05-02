@@ -44,7 +44,7 @@ export const Navigation = () => {
                     <span className="texto">Tema {theme === "light" ? "claro" : "escuro"} </span>
                       
                       <label className="switch">
-                      <input type="checkbox" onClick={toggleTheme} checked={theme === "light" ? false : true}/>
+                      <input type="checkbox" onChange={toggleTheme} checked={theme === "light" ? false : true}/>
                       <span className="slider round"></span>
                       </label>
                     </li>

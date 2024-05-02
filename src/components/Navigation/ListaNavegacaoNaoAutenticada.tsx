@@ -11,7 +11,7 @@ interface ListaNavegacaoProps {
 
 export const ListaNavegacaoNaoAutenticada: React.FC<ListaNavegacaoProps> = ({ closeModal }) => {
   const urlCompleta = window.location.href;
-  const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
+  const caminhoAtual = String(new URL(urlCompleta).pathname);
   const { theme, toggleTheme } = useThemes();
 
   return (
@@ -37,7 +37,7 @@ export const ListaNavegacaoNaoAutenticada: React.FC<ListaNavegacaoProps> = ({ cl
       <li className="switchTheme">
         {theme === "light" ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
         <label className="switch">
-          <input type="checkbox" onClick={toggleTheme} checked={theme === "light" ? false : true} />
+          <input type="checkbox" onChange={toggleTheme} checked={theme === "light" ? false : true} />
           <span className="slider round"></span>
         </label>
       </li>

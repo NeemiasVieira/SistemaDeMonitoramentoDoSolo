@@ -12,9 +12,10 @@ interface ListaNavegacaoProps {
 
 export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({ closeModal }) => {
   const urlCompleta = window.location.href;
-  const caminhoAtual = new URL(urlCompleta).hash.replace("#", "");
+  const caminhoAtual = String(new URL(urlCompleta).pathname);
   const { theme, toggleTheme } = useThemes();
   const { Logout, isAdmin } = useApplication();
+  console.log(caminhoAtual);
 
   return (
     <ul className="navegacao">
@@ -31,7 +32,7 @@ export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({ close
           FAQ
         </Link>
       </li>
-      <li className={caminhoAtual === "/painel" ? "selecionado" : "naoSelecionado"}>
+      <li className={caminhoAtual.includes("/painel") ? "selecionado" : "naoSelecionado"}>
         <Link to="/painel" onClick={closeModal}>
           Painel de Controle
         </Link>
@@ -46,7 +47,7 @@ export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({ close
       <li className="switchTheme mobileOnly">
         {theme === "light" ? <FontAwesomeIcon icon={faSun} className="mobileOnly"/> : <FontAwesomeIcon icon={faMoon} className="mobileOnly" />}
         <label className="switch mobileOnly">
-          <input type="checkbox" onClick={toggleTheme} checked={theme === "light" ? false : true} className="mobileOnly" />
+          <input type="checkbox" onChange={toggleTheme} checked={theme === "light" ? false : true} className="mobileOnly" />
           <span className="slider round mobileOnly"></span>
         </label>
       </li>
