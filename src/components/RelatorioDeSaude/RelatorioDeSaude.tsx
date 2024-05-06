@@ -90,7 +90,7 @@ export const RelatorioDeSaude: React.FC<RelatorioDeSaudeProps> = ({ relatorio, e
 
       </div>
       </div>
-      <SaudeParamsModal especie={especie}/>
+      {especie && <SaudeParamsModal especie={especie}/> }
 
     </RelatorioDeSaudeStyle>
   );

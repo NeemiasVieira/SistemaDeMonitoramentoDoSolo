@@ -9,7 +9,7 @@ interface LoadingProps {
 
 export const Loading: React.FC<LoadingProps> = ({ minHeight, logoHeight, logoWidth }) => {
   return (
-    <LoadingStyle minHeight={minHeight}>
+    <LoadingStyle style={{ minHeight: minHeight ?? "1px" }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"

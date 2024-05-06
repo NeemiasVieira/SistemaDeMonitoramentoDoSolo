@@ -15,6 +15,9 @@ import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
 
 
 const Resumo = () => {
+
+  const { idPlanta } = useParams();
+
   //States
   const [plantaSelecionada, setPlantaSelecionada] = useState<Planta>();
   const [intervaloDeDias, setIntervaloDeDias] = useState(null);
@@ -22,12 +25,12 @@ const Resumo = () => {
   
   //Hooks
   const { plantas, isLoading: plantasLoading} = useGetAllPlants();
-  let { lastRecord,  lastRecordIsLoading, errorLastRecord, refetchLastRecord } = useGetLastRecord(plantaSelecionada?.id);
-  let { relatorioSaude, erroRelatorioSaude, refetchRelatorioSaude } = useGetRelatorioSaude(plantaSelecionada?.id);
-  let { allRecords, errorAllRecords, refetchAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta: plantaSelecionada?.id, intervaloDeBusca, intervaloDeDias});
+  let { lastRecord,  lastRecordIsLoading, errorLastRecord } = useGetLastRecord(idPlanta);
+  let { relatorioSaude, erroRelatorioSaude } = useGetRelatorioSaude(idPlanta);
+  let { allRecords, errorAllRecords, refetchAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta, intervaloDeBusca, intervaloDeDias});
   const { getSpecie, specieData } = useGetSpecie({nome: plantaSelecionada?.especie});
   const params = { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading};
-  const { idPlanta } = useParams();
+  
 
   //useEffects
   useEffect(() => {
@@ -44,9 +47,6 @@ const Resumo = () => {
 
   useEffect(() => {
     if (plantaSelecionada) {
-      refetchRelatorioSaude();
-      refetchLastRecord();
-      refetchAllRecords();
       getSpecie();
     }
     // eslint-disable-next-line
@@ -61,7 +61,7 @@ const Resumo = () => {
         {plantaSelecionada && lastRecordIsLoading && <Loading minHeight={"70vh"}/>}
         {plantasLoading  && <Loading minHeight={"70vh"}/>}
 
-        {lastRecord && !errorLastRecord && (
+        {plantaSelecionada && lastRecord && !errorLastRecord && (
           <div className="identificacaoDaPlanta">
             <h2 className="nomeDaPlanta">{plantaSelecionada?.nome}</h2>
             <h3 className="especieDaPlanta">{plantaSelecionada?.especie}</h3>
@@ -73,7 +73,7 @@ const Resumo = () => {
           <DadosRegistro registro={lastRecord} ultimaAtualizacao />
         )}
 
-        {lastRecord && relatorioSaude && allRecords && !erroRelatorioSaude && (
+        {lastRecord && relatorioSaude && allRecords && plantaSelecionada?.especie && !erroRelatorioSaude && (
           <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />
         )}
 

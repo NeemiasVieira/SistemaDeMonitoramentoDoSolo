@@ -10,7 +10,7 @@ export const PainelMenuStyle = styled.main`
   background-color: var(--bg-primary);
 
   h2{
-    margin-bottom: 70px;
+    margin-bottom: 30px;
     text-align: center;
     color: var(--text-primary);
   }

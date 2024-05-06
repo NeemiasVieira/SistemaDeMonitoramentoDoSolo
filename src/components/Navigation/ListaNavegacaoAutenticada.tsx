@@ -15,7 +15,6 @@ export const ListaNavegacaoAutenticada: React.FC<ListaNavegacaoProps> = ({ close
   const caminhoAtual = String(new URL(urlCompleta).pathname);
   const { theme, toggleTheme } = useThemes();
   const { Logout, isAdmin } = useApplication();
-  console.log(caminhoAtual);
 
   return (
     <ul className="navegacao">

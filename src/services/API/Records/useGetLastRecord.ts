@@ -50,7 +50,6 @@ export const useGetLastRecord = (idPlanta: string) => {
         cacheTime: 10 * 60 * 1000,
         refetchInterval: 10 * 60 * 1000,
         staleTime: 10 * 60 * 1000,
-        enabled: false,
         onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
       });
 
