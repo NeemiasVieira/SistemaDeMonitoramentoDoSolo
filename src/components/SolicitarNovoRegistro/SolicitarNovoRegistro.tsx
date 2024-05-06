@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { SolicitarNovoRegistroStyle } from "./SolicitarNovoRegistroStyle";
 import { useParams } from "react-router-dom";
 import { useGetPlant } from "../../services/API/Plants/useGetPlant";
@@ -10,14 +10,13 @@ import { useCancelarSolicitacao } from "../../services/API/Plants/useCancelarSol
 import { useEnviarSolicitacao } from "../../services/API/Plants/useEnviarSolicitacao";
 import { Loading } from "../Loading/Loading";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-import { useQueryClient } from "react-query";
 
 const mapearTitulo = (solicitacaoNovoRegistro: "nenhuma" | "aguardando" | "confirmado") => {
   switch (solicitacaoNovoRegistro) {
     case "nenhuma":
-      return "Você pode: ";
+      return "Nenhuma Solicitação ";
     case "aguardando":
-      return "Solicitação enviada";
+      return "Solicitação Enviada";
     case "confirmado":
       return "Solicitação Concluída";
   }
@@ -36,10 +35,9 @@ const mapearTituloBotao = (solicitacaoNovoRegistro: "nenhuma" | "aguardando" | "
 
 export const SolicitarNovoRegistro = () => {
   const { idPlanta } = useParams();
-  const { planta, isLoading } = useGetPlant(idPlanta);
+  const { planta, isLoading, isLoadingNoCache } = useGetPlant(idPlanta);
   const { lastRecord } = useGetLastRecord(idPlanta);
   const { notificar } = useNotificacoes();
-  const queryClient = useQueryClient();
 
   const { cancelarSolicitacao, isLoading: cancelLoading } = useCancelarSolicitacao(idPlanta);
   const { enviarSolicitacao, isLoading: sendLoading } = useEnviarSolicitacao(idPlanta);
@@ -53,10 +51,6 @@ export const SolicitarNovoRegistro = () => {
       enviarSolicitacao();
       notificar({tipo: "NOTIFICACAO", mensagem: "Solicitação enviada", tempoEmSeg: 4});
     } 
-
-    setTimeout(() => {
-      queryClient.invalidateQueries("planta");
-    }, 1500)
   };
 
   return (
@@ -88,10 +82,10 @@ export const SolicitarNovoRegistro = () => {
       {(planta?.solicitacaoNovoRegistro === "nenhuma" || planta?.solicitacaoNovoRegistro === "aguardando") && (
         <div className="Acoes">
           <h3>{mapearTitulo(planta.solicitacaoNovoRegistro)}</h3>
-          {(sendLoading || cancelLoading || isLoading) && (
+          {(sendLoading || cancelLoading || isLoading || isLoadingNoCache) && (
             <Loading minHeight="20px" logoHeight="40px" logoWidth="40px" />
           )}
-          {!sendLoading && !cancelLoading && (
+          {!sendLoading && !cancelLoading && !isLoadingNoCache && (
             <button onClick={handleClick}>{mapearTituloBotao(planta.solicitacaoNovoRegistro)}</button>
           )}
         </div>

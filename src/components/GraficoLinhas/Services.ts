@@ -1,7 +1,8 @@
 import { FormatarDatas } from "../../assets/utils/FormatDate";
-import { IRegistro } from "../../interfaces/RecordsModule/registro.interface";
+import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
+import { Record } from "../../services/API/Records/useGetAllRecordsPaginated";
 
-export const selecionaGrafico = (tipoGrafico: string, records: IRegistro[]) => {
+export const selecionaGrafico = (tipoGrafico: string, records: RecordQuery[]) => {
   let newData: any = [];
 
   switch (tipoGrafico) {

@@ -1,11 +1,11 @@
 import React from "react";
-import { DadosRegistroStyle } from "./DadosRegistroStyle";
-import { IRegistro } from "../../interfaces/RecordsModule/registro.interface";
-import { FormatarDatas } from "../../assets/utils/FormatDate";
 import styled from "styled-components";
+import { DadosRegistroStyle } from "./DadosRegistroStyle";
+import { FormatarDatas } from "../../assets/utils/FormatDate";
+import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
 
 interface DadosRegistroProps {
-  registro: IRegistro;
+  registro: RecordQuery;
   ultimaAtualizacao: boolean;
 }
 

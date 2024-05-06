@@ -1,8 +1,8 @@
 import React from "react";
 import { PlantaStyle } from "./PlantaStyle";
-import { IPlanta } from "../../interfaces/PlantsModule/planta.interface";
 import { useNavigate } from "react-router-dom";
 import { FormatarDatas } from "../../assets/utils/FormatDate";
+import { Planta as IPlanta } from "../../pages/PainelDeControle/Resumo/Resumo.types";
 import manjericao from "../../assets/img/manjericao2.png";
 import plantagenerica from "../../assets/img/plantagenerica.png";
 

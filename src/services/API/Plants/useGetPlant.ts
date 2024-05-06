@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { useQuery } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
+import { useEffect, useState } from "react";
 import SMS_API from "../sms-api";
 
 interface PlantaQuery {
@@ -38,9 +39,17 @@ const fetcher = async (idPlanta: string): Promise<AxiosResponse<PlantaQueryRespo
 
 export const useGetPlant = (idPlanta: string) => {
   const { notificar } = useNotificacoes();
+  const [ isLoadingNoCache, setIsLoadingNoCache ] = useState<boolean>(false);
+
+  useEffect(() => {},[isLoadingNoCache]);
 
   const { isLoading, data, refetch: getPlant,} = useQuery({
-    queryFn: () => fetcher(idPlanta),
+    queryFn: async() => {
+      setIsLoadingNoCache(true);
+      const response = await fetcher(idPlanta)
+      setIsLoadingNoCache(false);
+      return response;
+    },
     queryKey: ["planta", idPlanta],
     cacheTime: 30 * 60 * 1000,
     refetchInterval: false,
@@ -49,16 +58,16 @@ export const useGetPlant = (idPlanta: string) => {
     onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
     onSuccess: (data) => {
       if(data?.data?.data?.getPlant?.solicitacaoNovoRegistro === "confirmado"){
-        notificar({tipo: "SUCESSO", mensagem: "Sua solicitação de novo registro foi finalizada", tempoEmSeg: 6});
+        notificar({tipo: "SUCESSO", mensagem: "Sua solicitação de novo registro foi finalizada", tempoEmSeg: 7});
       }
     }
-  
   });
 
   return {
     planta: data?.data?.data?.getPlant ? data.data.data.getPlant : null,
     erro: data?.data?.errors?.length > 0 ? data.data.errors[0].message : null,
     isLoading,
+    isLoadingNoCache,
     getPlant,
   };
 };

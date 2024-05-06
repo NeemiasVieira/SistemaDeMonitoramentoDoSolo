@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
 import Chart from "react-google-charts";
+import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
 import { Loading } from "../Loading/Loading";
 import { GraficoLinhasProps } from "./Types";
 import { selecionaGrafico, unidadeMedida } from "./Services";

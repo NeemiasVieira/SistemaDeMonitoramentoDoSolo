@@ -1,11 +1,11 @@
 import React from "react";
 import { Chart } from "react-google-charts";
 import { SecaoGraficoBarras } from "./GraficoBarrasStyle";
-import { IRegistro } from "../../interfaces/RecordsModule/registro.interface";
 import { FormatarDatas } from "../../assets/utils/FormatDate";
+import { Record } from "../../services/API/Records/useGetAllRecordsPaginated";
 
 interface GraficoBarrasProps{
-  registro: IRegistro
+  registro: Record
 }
 
 const GraficoBarras: React.FC<GraficoBarrasProps> = ({registro}) => {

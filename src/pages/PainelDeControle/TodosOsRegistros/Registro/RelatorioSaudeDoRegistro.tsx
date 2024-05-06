@@ -1,42 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { useGetRelatorioSaude } from "../../../../services/API/Plants/useGetRelatorioSaude";
-import { useGetAllPlants } from "../../../../services/API/Plants/useGetAllPlants";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RelatorioDeSaude } from "../../../../components/RelatorioDeSaude/RelatorioDeSaude";
-import { Planta } from "../../Resumo/Resumo.types";
 import { useGetSpecie } from "../../../../services/API/Species/useGetSpecie";
 import { BotaoVoltar } from "../../../../components/Buttons/BotaoVoltar";
 import { Loading } from "../../../../components/Loading/Loading";
 import { PagRelatorioDeSaudeStyle } from "../../RelatorioDeSaude/RelatorioSaudeStyle";
 import { useRegistrosContext } from "../../../../contexts/RegistrosContext";
 import { useGetRelatorioSaudePorRegistro } from "../../../../services/API/Records/useGetRelatorioSaudePorRegistro";
+import { useGetPlant } from "../../../../services/API/Plants/useGetPlant";
 
 const PagRelatorioSaudePorRegistro = () => {
   const { idRegistro } = useParams();
   const { idPlanta } = useRegistrosContext();
-  const [ plantaSelecionada, setPlantaSelecionada ] = useState<Planta>();
+  const { planta } = useGetPlant(idPlanta);
   const { getSpecie, specieData } = useGetSpecie({
-    nome: plantaSelecionada?.especie,
+    nome: planta?.especie,
   });
   let { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } =
     useGetRelatorioSaudePorRegistro(idRegistro);
-  const { plantas } = useGetAllPlants();
-
-  useEffect(() => {
-    if (plantas) {
-      setPlantaSelecionada(plantas.find((planta) => planta.id === idPlanta));
-    }
-  // eslint-disable-next-line
-  }, [plantas]);
 
   useEffect(() => {
 
-    if (plantaSelecionada) {
+    if (planta) {
       getSpecie();
       getRelatorioSaude();
     }
     // eslint-disable-next-line
-  }, [plantaSelecionada]);
+  }, [planta]);
 
   return (
     <PagRelatorioDeSaudeStyle>
