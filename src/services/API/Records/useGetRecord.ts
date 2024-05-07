@@ -3,19 +3,21 @@ import { AxiosPromise } from "axios";
 import { useQuery } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
-interface RecordQuery {
-    id: string,
-    nitrogenio: string,
-    fosforo: string,
-    potassio: string,
-    umidade: string,
-    temperatura: string,
-    pH: string,
-    dataDeRegistro: string 
-    luz: string
-    imagem?: string;
-    diagnostico?: string;
-  }
+ interface RecordQuery {
+  nitrogenio: string,
+  fosforo: string,
+  potassio: string,
+  umidade: string,
+  temperatura: string,
+  pH: string,
+  dataDeRegistro: string 
+  luz: string
+  lux: string;
+  imagem?: string;
+  diagnostico?: string;
+  idPlanta: string;
+  nomeEspecie: string;
+}
   
   interface Error {
     message: string;
@@ -34,7 +36,7 @@ const fetcher = async(idRegistro: string): AxiosPromise<RecordResponse> => {
     const options = { headers: {  Authorization: token, }};
     const variables = { idRecord: idRegistro }
     const query = `query GetRecord($idRecord: String!) {
-      getRecord(idRecord: $idRecord) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz imagem diagnostico }}`; 
+      getRecord(idRecord: $idRecord) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux imagem diagnostico idPlanta nomeEspecie }}`; 
 
     const response = await SMS_API.post<RecordResponse>('', {query, variables}, options);
 

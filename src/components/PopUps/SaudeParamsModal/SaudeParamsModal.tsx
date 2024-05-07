@@ -7,6 +7,13 @@ import { SaudeParamsModalStyle } from "./SaudeParamsModalStyle";
 import { Column, useTable } from "react-table";
 import { Specie } from "../../Especie/Types";
 
+export const formatarNumeroComPontos = (numero: string): string => {
+  const regex = /(\d)(?=(\d{3})+(?!\d))/g;
+  const numeroFormatado = numero.replace(regex, '$1.');
+  return numeroFormatado;
+};
+
+
 const ButtonOpenModal = styled.button`
     background-color: transparent;
     cursor: pointer;
@@ -89,7 +96,7 @@ export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) =
       { propriedade: "Nitrogênio", unidade: "mg/Kg", valorMinimo: nitrogenio?.min, valorMaximo: nitrogenio?.max },
       { propriedade: "Fósforo", unidade: "mg/Kg", valorMinimo: fosforo?.min, valorMaximo: fosforo?.max },
       { propriedade: "Potássio", unidade: "mg/Kg", valorMinimo: potassio?.min, valorMaximo: potassio?.max },
-      { propriedade: "Luz", unidade: "%", valorMinimo: luz?.min, valorMaximo: luz?.max },
+      { propriedade: "Luz", unidade: "lx (lux)", valorMinimo: formatarNumeroComPontos(luz?.min), valorMaximo: formatarNumeroComPontos(luz?.max)},
       { propriedade: "Umidade", unidade: "%", valorMinimo: umidade?.min, valorMaximo: umidade?.max },
       { propriedade: "Temperatura", unidade: "ºC", valorMinimo: temperatura?.min, valorMaximo: temperatura?.max },
       { propriedade: "pH", unidade: "", valorMinimo: pH?.min, valorMaximo: pH?.max },

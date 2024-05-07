@@ -1,6 +1,5 @@
 import { FormatarDatas } from "../../assets/utils/FormatDate";
 import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
-import { Record } from "../../services/API/Records/useGetAllRecordsPaginated";
 
 export const selecionaGrafico = (tipoGrafico: string, records: RecordQuery[]) => {
   let newData: any = [];
@@ -70,6 +69,9 @@ export const unidadeMedida = (tipoGrafico: string) => {
       unidadeMedida = ""
       break;
     case "umidade":
+      unidadeMedida = "Unidade de medida: %"
+      break;
+    case "luz":
       unidadeMedida = "Unidade de medida: %"
       break;
   }

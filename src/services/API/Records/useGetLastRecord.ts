@@ -4,8 +4,6 @@ import { useQuery } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 
 interface LastRecordQuery {
-    id: string,
-    idPlanta: string,
     nitrogenio: string,
     fosforo: string,
     potassio: string,
@@ -14,6 +12,11 @@ interface LastRecordQuery {
     pH: string,
     dataDeRegistro: string 
     luz: string
+    lux: string;
+    imagem?: string;
+    diagnostico?: string;
+    idPlanta: string;
+    nomeEspecie: string;
   }
   
   interface Error {
@@ -33,7 +36,7 @@ const getUltimoRegistro = async(idPlanta: string): Promise<AxiosResponse<LastRec
     const options = { headers: {  Authorization: token, }};
     const variables = { idPlanta }
     const query = `query GetLastRecordByPlant($idPlanta: String!) {
-        getLastRecordByPlant(idPlanta: $idPlanta) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz}}`; 
+        getLastRecordByPlant(idPlanta: $idPlanta) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux idPlanta nomeEspecie}}`; 
 
     const response = await SMS_API.post<LastRecordResponse>('', {query, variables}, options);
 

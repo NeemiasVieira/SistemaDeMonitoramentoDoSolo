@@ -71,7 +71,6 @@ export const NavAutenticadaStyle = styled.nav`
     background-color: inherit;
     font-family: inherit;
     margin: 0;
-    cursor: pointer;
   }
 
   .botaoPerfil {
@@ -95,12 +94,13 @@ export const NavAutenticadaStyle = styled.nav`
     display: none;
     position: absolute;
     background-color: var(--button-primary);
-    min-width: 160px;
+    min-width: 240px;
     z-index: 1;
     box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
     color: var(--text-primary);
     border-radius: 15px 0 15px 15px;
     border: solid var(--border-primary) 1px;
+    cursor: default;
   ul {
       padding: 10px;
       margin: 0px;
@@ -141,10 +141,11 @@ export const NavAutenticadaStyle = styled.nav`
     display: flex;
     flex-flow: row nowrap;
     gap: 25px;
+    padding: 8px 0;
 
     .texto{
-      max-width: 47%;
-      margin-left: 25px;
+      width: 47%;
+      margin-left: 23px;
       text-align: initial;
     }
 

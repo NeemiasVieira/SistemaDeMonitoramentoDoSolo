@@ -4,6 +4,7 @@ import { EspecieProps } from "./Types";
 import { DeleteButton } from "../Buttons/DeleteButton";
 import { UpdateButton } from "../Buttons/UpdateButton";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { formatarNumeroComPontos } from "../PopUps/SaudeParamsModal/SaudeParamsModal";
 
 export const Especie: React.FC<EspecieProps> = ({ especie, openModalUpdate, setEspecieEscolhidaParaAtualizacao, confirmDeleteSpecie }) => {
 
@@ -50,8 +51,8 @@ export const Especie: React.FC<EspecieProps> = ({ especie, openModalUpdate, setE
           </tr>
           <tr>
             <td>Luz</td>
-            <td>{especie.parametros.luz.min} %</td>
-            <td>{especie.parametros.luz.max} %</td>
+            <td>{formatarNumeroComPontos(especie.parametros.luz.min)} lx (lux)</td>
+            <td>{formatarNumeroComPontos(especie.parametros.luz.max)} lx (lux)</td>
           </tr>
           <tr>
             <td>Umidade</td>

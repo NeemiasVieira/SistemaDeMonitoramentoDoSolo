@@ -7,7 +7,7 @@ export const CadastroConcluidoMain = styled.main`
   min-height: 80vh;
 
   section {
-    background: #fff;
+    background: var(--white);
     width: 500px;
     height: 200px;
     display: flex;
@@ -15,7 +15,7 @@ export const CadastroConcluidoMain = styled.main`
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    border: solid #ccc 1px;
+    border: solid var(--border-primary) 1px;
     gap: 20px;
     -webkit-box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
@@ -23,7 +23,7 @@ export const CadastroConcluidoMain = styled.main`
   }
 
   h2 {
-    color: #000;
+    color: var(--text-primary);
     margin: 0;
     font-weight: 500;
   }
@@ -34,12 +34,12 @@ export const CadastroConcluidoMain = styled.main`
   }
 
   .link {
-    color: #000;
+    color: var(--text-primary);
     width: 150px;
     font-size: 1.2em;
     font-weight: 600;
     text-decoration: none;
-    border: solid #aaa 1px;
+    border: solid var(--border-primary) 1px;
     border-radius: 5px;
     background: var(--white);
     text-align: center;

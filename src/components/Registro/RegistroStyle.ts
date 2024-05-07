@@ -9,6 +9,7 @@ export const RegistroStyle = styled.div`
   background-color: var(--white);
   margin: 10px 0;
   width: 50vw;
+  min-width: 500px;
   max-width: 600px;
   border-radius: 10px;
   border: solid var(--border-primary) 1px;
@@ -50,6 +51,7 @@ export const RegistroStyle = styled.div`
   @media screen and (max-width: 480px) {
     width: 80vw;
     padding: 0 20px;
+    min-width: 10px;
 
     p{
       font-size: .7rem;

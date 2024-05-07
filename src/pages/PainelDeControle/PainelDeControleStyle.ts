@@ -5,7 +5,7 @@ export const PainelDeControleStyle = styled.main`
   background-color: var(--bg-primary);
   width: 100vw;
   display: flex;
-  justify-content: center;
+  margin-top: 30px;
   align-items: center;
   flex-flow: column wrap;
   min-height: 75vh;
@@ -49,6 +49,29 @@ export const PainelDeControleStyle = styled.main`
 
   .suasPlantas {
     font-size: 1.6rem;
+  }
+
+  .avisoSemPlantas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 20px;
+    margin-top: 80px;
+    background-color: var(--white);
+    border: solid var(--border-primary) 1px;
+    border-radius: 10px;
+    padding: 15px;
+
+    p{
+      color: var(--text-secondary);
+      width: 250px;
+    }
+    
+    svg{
+      font-size: 2rem;
+      color: #faa520
+    }
   }
 
   @media screen and (max-width: 480px) {

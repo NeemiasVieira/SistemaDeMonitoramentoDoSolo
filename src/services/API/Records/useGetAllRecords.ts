@@ -12,6 +12,9 @@ export interface RecordQuery {
     pH: string,
     dataDeRegistro: string 
     luz: string
+    lux: string;
+    idPlanta: string;
+    nomeEspecie: string;
   }
   
   interface Error {
@@ -42,7 +45,7 @@ export interface RecordQuery {
 
     const query = `query GetAllRecordsByPlant($idPlanta: String!, $intervaloDeDias: Float, $intervaloDeBusca: Float ) {
         getAllRecordsByPlant( idPlanta: $idPlanta, intervaloDeDias: $intervaloDeDias, intervaloDeBusca: $intervaloDeBusca )   
-        { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz } }`
+        { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux idPlanta nomeEspecie } }`
     
     const options = { headers: { Authorization: token }};
     const variables = {idPlanta, intervaloDeDias, intervaloDeBusca};

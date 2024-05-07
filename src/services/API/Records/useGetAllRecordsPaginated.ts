@@ -6,17 +6,20 @@ import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 export interface Record{
     id: string;
     idPlanta: string;
-    nitrogenio: string,
-    fosforo: string,
-    potassio: string,
-    umidade: string,
-    temperatura: string,
-    pH: string,
-    dataDeRegistro: string 
-    luz: string
+    nitrogenio: string;
+    fosforo: string;
+    potassio: string;
+    umidade: string;
+    temperatura: string;
+    pH: string;
+    dataDeRegistro: string ;
+    luz: string;
+    lux: string;
+    nomeEspecie: string;
     nuRegistro: number;
     imagem?: string;
     diagnostico?: string;
+
   }
 
 interface getAllRecordsPaginated {
@@ -51,7 +54,7 @@ interface getAllRecordsPaginated {
 
     const query = `query GetAllRecordsPaginated($idPlanta: String!, $registrosPorPag: Float!, $pagina: Float!, $dataDeInicioBusca: DateTime, $dataDeFimBusca: DateTime) { 
       getAllRecordsPaginated(idPlanta: $idPlanta, registrosPorPag: $registrosPorPag, pagina: $pagina, dataDeInicioBusca: $dataDeInicioBusca, dataDeFimBusca: $dataDeFimBusca) 
-      { registros { id idPlanta nitrogenio fosforo potassio umidade temperatura pH luz dataDeRegistro imagem diagnostico nuRegistro } pagina totalPaginas } }
+      { registros { id idPlanta nitrogenio fosforo potassio umidade temperatura pH luz lux dataDeRegistro imagem diagnostico nuRegistro idPlanta nomeEspecie } pagina totalPaginas } }
     `
     
     const options = { headers: { Authorization: token }};

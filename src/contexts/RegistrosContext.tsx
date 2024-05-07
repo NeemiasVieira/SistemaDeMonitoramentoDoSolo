@@ -27,6 +27,8 @@ const RegistrosContext = createContext<IRegistrosContext>({
     dataDeRegistro: "",
     luz: "",
     nuRegistro: 0,
+    nomeEspecie: "",
+    lux: ""
   },
   backUrl: "",
   idPlanta: "",
