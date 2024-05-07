@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Planta } from "../../components/Planta/Planta";
 import { Loading } from "../../components/Loading/Loading";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 import { useGetAllPlants } from "../../services/API/Plants/useGetAllPlants";
 import { PainelDeControleStyle } from "./PainelDeControleStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
