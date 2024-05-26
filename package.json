@@ -1,6 +1,6 @@
 {
   "name": "tcc",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "private": true,
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.0",

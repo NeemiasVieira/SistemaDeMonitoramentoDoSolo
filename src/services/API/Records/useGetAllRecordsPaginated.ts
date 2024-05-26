@@ -19,7 +19,6 @@ export interface Record{
     nuRegistro: number;
     imagem?: string;
     diagnostico?: string;
-
   }
 
 interface getAllRecordsPaginated {

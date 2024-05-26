@@ -24,13 +24,13 @@ const Resumo = () => {
   const { planta } = useGetPlant(idPlanta);
   let { lastRecord,  lastRecordIsLoading, errorLastRecord } = useGetLastRecord(idPlanta);
   let { relatorioSaude, erroRelatorioSaude, isLoadingSaude } = useGetRelatorioSaude(idPlanta);
-  let { allRecords, errorAllRecords, refetchAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta, intervaloDeBusca, intervaloDeDias});
+  let { allRecords, errorAllRecords, getAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta, intervaloDeBusca, intervaloDeDias});
   const { getSpecie, specieData } = useGetSpecie({nome: planta?.especie});
   const params = { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading};
 
   useEffect(() => {
     if(planta){
-      refetchAllRecords();
+      getAllRecords();
     }
     // eslint-disable-next-line
   }, [intervaloDeBusca, intervaloDeDias]);

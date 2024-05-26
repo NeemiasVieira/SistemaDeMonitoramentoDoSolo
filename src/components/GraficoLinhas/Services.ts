@@ -1,5 +1,5 @@
 import { FormatarDatas } from "../../assets/utils/FormatDate";
-import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
+import { RecordQuery } from "./Types";
 
 export const selecionaGrafico = (tipoGrafico: string, records: RecordQuery[]) => {
   let newData: any = [];

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { DadosRegistroStyle } from "./DadosRegistroStyle";
 import { FormatarDatas } from "../../assets/utils/FormatDate";
-import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
+import { RecordQuery } from "../GraficoLinhas/Types";
 
 interface DadosRegistroProps {
   registro: RecordQuery;

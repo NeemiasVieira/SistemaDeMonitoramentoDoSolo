@@ -1,4 +1,19 @@
-import { RecordQuery } from "../../services/API/Records/useGetAllRecords";
+
+export interface RecordQuery {
+  nitrogenio: string,
+  fosforo: string,
+  potassio: string,
+  umidade: string,
+  temperatura: string,
+  pH: string,
+  dataDeRegistro: string 
+  luz: string
+  lux: string;
+  idPlanta: string;
+  nomeEspecie: string;
+  imagem?: string;
+  diagnostico?: string;
+}
 
 export interface StatesParams{
   setIntervaloDeDias: React.Dispatch<number | string>;

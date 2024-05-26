@@ -1,48 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LoginMain } from "./LoginStyle";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
 import { useLogin } from "../../services/API/Users/useLogin";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-import { useApplication } from "../../contexts/ApplicationContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const { notificar } = useNotificacoes();
-  const { setAuth, setIsAdmin } = useApplication();
   
-  let { loginResponse, isLoading, confirmLogin } = useLogin(email, password);
+  const { isLoading, confirmLogin } = useLogin(email, password);
 
   const login = async (e: any) => {
     e.preventDefault();
     confirmLogin();
   };
-
-  useEffect(() => {
-
-    if (loginResponse?.token) {
-      localStorage.setItem("token", loginResponse.token);
-      localStorage.setItem("nome", loginResponse.usuario.nome);
-      localStorage.setItem("userID", loginResponse.usuario.id);
-      localStorage.setItem("sucessoLogin", "true");
-      localStorage.setItem("profile", loginResponse.usuario.profile);
-      setIsAdmin(loginResponse.usuario.profile === "admin" ? true : false);
-      setAuth(true);
-      notificar({
-        tipo: "SUCESSO",
-        mensagem: `Bem vindo ${loginResponse.usuario.nome}`,
-        tempoEmSeg: 4
-      });
-      const redirectToUrl = sessionStorage.getItem("redirectUrl");
-      sessionStorage.removeItem("redirectUrl");
-      navigate(redirectToUrl ?? "/painel");
-    }// eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loginResponse]);
 
   return (
       <LoginMain>

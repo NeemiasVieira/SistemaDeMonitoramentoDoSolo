@@ -13,7 +13,5 @@ export const formarIniciais = (nome: string): string => {
 export const limparLocalStorage = () => {
   localStorage.removeItem("nome");
   localStorage.removeItem("token");
-  localStorage.removeItem("userID");
-  localStorage.removeItem("sucessoLogin");
   localStorage.removeItem("profile");
 };
