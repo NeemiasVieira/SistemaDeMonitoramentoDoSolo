@@ -3,13 +3,13 @@ import Chart from "react-google-charts";
 import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
 import { Loading } from "../Loading/Loading";
 import { GraficoLinhasProps } from "./Types";
-import { selecionaGrafico, unidadeMedida } from "./Services";
+import { TipoGrafico, selecionaGrafico, unidadeMedida } from "./Services";
 
 const GraficoLinhas: React.FC<GraficoLinhasProps> = ({records, params}) => {
 
   const { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading } = params
 
-  const [tipoGrafico, setTipoGrafico] = useState("NPK");
+  const [tipoGrafico, setTipoGrafico] = useState<TipoGrafico>("NPK");
   const [data, setData] = useState([["Dia", "Nitrogênio", "Fósforo", "Potássio"]]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({records, params}) => {
   useEffect(() => {
     setData([]);
     // Atualize o estado do data sempre que records for alterado
-    let newData = [];
+    let newData: any;
     if(records){
       newData = selecionaGrafico(tipoGrafico, records);
     }
@@ -52,7 +52,7 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({records, params}) => {
             value={tipoGrafico}
             className="selectFiltro"
             onChange={(e) => {
-              setTipoGrafico(e.target.value);
+              setTipoGrafico(e.target.value as TipoGrafico);
             }}
           >
             <option value="NPK">Nutrientes</option>

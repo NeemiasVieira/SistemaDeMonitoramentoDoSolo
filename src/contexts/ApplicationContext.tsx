@@ -2,9 +2,9 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Navigation } from "../components/Navigation/Navigation";
 import { Footer } from "../components/Footer/Footer";
-import { limparLocalStorage } from "../components/Navigation/Services";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
+import { limparLocalStorage } from "../assets/utils/limparLocalStorage";
 
 const ApplicationBackgroundStyle = styled.div`
   display: flex;
@@ -49,6 +49,7 @@ export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }
 
   const Logout = () => {
     setAuth(false);
+    setIsAdmin(false);
     queryClient.removeQueries("login");
     queryClient.invalidateQueries("login");
     queryClient.clear();

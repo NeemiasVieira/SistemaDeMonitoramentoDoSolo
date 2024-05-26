@@ -1,79 +1,61 @@
 import { FormatarDatas } from "../../assets/utils/FormatDate";
 import { RecordQuery } from "./Types";
 
-export const selecionaGrafico = (tipoGrafico: string, records: RecordQuery[]) => {
-  let newData: any = [];
+const unidades = {
+  NPK: "Unidade de medida: mg/Kg",
+  temperatura: "Unidade de medida: ºC",
+  pH: "",
+  umidade: "Unidade de medida: %",
+  luz: "Unidade de medida: %"
+} as const
 
-  switch (tipoGrafico) {
-    case "NPK":
-      newData = [
-        ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
-        ...records?.map((record) => [
-          FormatarDatas.diaMes(record.dataDeRegistro),
-          Number(record.nitrogenio),
-          Number(record.fosforo),
-          Number(record.potassio),
-        ]),
-      ];
-      break;
-    case "temperatura":
-      newData = [
-        ["Dia", "Temperatura"],
-        ...records?.map((record) => [
-          FormatarDatas.diaMes(record.dataDeRegistro),
-          Number(record.temperatura),
-        ]),
-      ];
-      break;
-    case "pH":
-      newData = [
-        ["Dia", "pH"],
-        ...records?.map((record) => [
-          FormatarDatas.diaMes(record.dataDeRegistro),
-          Number(record.pH),
-        ]),
-      ];
-      break;
-    case "umidade":
-      newData = [
-        ["Dia", "Umidade"],
-        ...records?.map((record) => [
-          FormatarDatas.diaMes(record.dataDeRegistro),
-          Number(record.umidade),
-        ]),
-      ];
-      break;
-    case "luz":
-      newData = [
-        ["Dia", "Luz"],
-        ...records?.map((record) => [
-          FormatarDatas.diaMes(record.dataDeRegistro),
-          Number(record.luz),
-        ]),
-      ];
-      break;
-  }
-  return newData;
+export type TipoGrafico = keyof typeof unidades;
+
+export const selecionaGrafico = (tipoGrafico: TipoGrafico, records: RecordQuery[]) => {
+
+  const newDataValues = {
+    NPK: [
+      ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
+      ...records?.map((record) => [
+        FormatarDatas.diaMes(record.dataDeRegistro),
+        Number(record.nitrogenio),
+        Number(record.fosforo),
+        Number(record.potassio),
+      ]),
+    ],
+    temperatura: [
+      ["Dia", "Temperatura"],
+      ...records?.map((record) => [
+        FormatarDatas.diaMes(record.dataDeRegistro),
+        Number(record.temperatura),
+      ]),
+    ],
+    umidade: [
+      ["Dia", "Umidade"],
+      ...records.map((record) => [
+        FormatarDatas.diaMes(record.dataDeRegistro),
+        Number(record.umidade),
+      ])
+    ],
+    pH: [
+      ["Dia", "pH"],
+      ...records?.map((record) => [
+        FormatarDatas.diaMes(record.dataDeRegistro),
+        Number(record.pH),
+      ]),
+    ],
+    luz: [
+      ["Dia", "Luz"],
+      ...records?.map((record) => [
+        FormatarDatas.diaMes(record.dataDeRegistro),
+        Number(record.luz),
+      ]),
+    ]
+  } as const;
+
+  return newDataValues[tipoGrafico] ?? "Unidade de medida não especificada";
 };
 
-export const unidadeMedida = (tipoGrafico: string) => {
-  let unidadeMedida;
-  switch(tipoGrafico){
-    case "NPK":
-      unidadeMedida = "Unidade de medida: mg/Kg";
-      break;
-    case "temperatura":
-      unidadeMedida = "Unidade de medida: ºC"
-      break;
-    case "pH":
-      unidadeMedida = ""
-      break;
-    case "umidade":
-      unidadeMedida = "Unidade de medida: %"
-      break;
-    case "luz":
-      unidadeMedida = "Unidade de medida: %"
-      break;
-  }
-  return unidadeMedida
+export const unidadeMedida = (tipoGrafico: TipoGrafico) => {
+  return unidades[tipoGrafico] !== undefined ? unidades[tipoGrafico] : "Unidade de medida não especificada";
 }
