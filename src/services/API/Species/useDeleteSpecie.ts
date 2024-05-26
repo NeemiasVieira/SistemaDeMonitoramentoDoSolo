@@ -1,35 +1,20 @@
-// 660ac67e05f2b8bb382ca1f7
-
-import { AxiosPromise } from "axios";
-import SMS_API from "../sms-api";
-import { useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
+import SMS_API, { GraphQLResponse } from "../sms-api";
 
-interface Error{
-  message: string;
+interface DeleteSpecieResponse{
+  deleteSpecie: string;
 }
 
-interface DeleteSpecieResponse {
-  data?: {
-    deleteSpecie: string;
-  };
-  errors?: Error[];
-}
-
-const deleteSpecieRequest = async(id: string): AxiosPromise<DeleteSpecieResponse> => {
-
+const request = async(id: string) => {
   const token = `Bearer ${localStorage.getItem("token")}`;
   const options = { headers: {  Authorization: token, }};
   const variables = { id };
-
-  const mutation = `mutation DeleteSpecie($id: String!) {
+  const query = `mutation DeleteSpecie($id: String!) {
     deleteSpecie(id: $id)
   }`
 
-  const response = await SMS_API.post<DeleteSpecieResponse>('', {query: mutation, variables},options);
-
-  return response;
-
+  return await SMS_API.post<GraphQLResponse<DeleteSpecieResponse>>('', {query, variables},options);
 }
 
 export const useDeleteSpecie = (id: string) => {
@@ -37,20 +22,24 @@ export const useDeleteSpecie = (id: string) => {
   const queryClient = useQueryClient();
   const { notificar } = useNotificacoes()
 
-  const { data: deleteSpecieData, isLoading: deleteSpecieIsLoading, refetch: confirmDeleteSpecie } = useQuery({
-    queryFn: () => deleteSpecieRequest(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries("getAllSpecies")
-      queryClient.invalidateQueries("getSpecie");
-        notificar({tipo: "SUCESSO", mensagem: "Espécie excluída com sucesso!", tempoEmSeg: 4});
-    },
-    enabled: false,
+  const onSucesso = () => {
+    queryClient.invalidateQueries("getAllSpecies")
+    queryClient.invalidateQueries("getSpecie");
+    notificar({tipo: "SUCESSO", mensagem: "Espécie excluída com sucesso!", tempoEmSeg: 4});
+  }
+
+  const { data, isLoading: deleteSpecieIsLoading, mutate: confirmDeleteSpecie, error } = useMutation({
+    mutationFn: () => request(id),
+    onSuccess: onSucesso,
     onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
+    retry: false,
   })
 
+  const deleteSpecieData = data?.data?.data?.deleteSpecie;
+
   return{
-    deleteSpecieData: deleteSpecieData?.data?.data?.deleteSpecie ?? null,
-    deleteSpecieError: deleteSpecieData?.data?.errors?.length > 0 ? deleteSpecieData.data.errors[0].message : null,
+    deleteSpecieData,
+    deleteSpecieError: error as string,
     deleteSpecieIsLoading,
     confirmDeleteSpecie
   }

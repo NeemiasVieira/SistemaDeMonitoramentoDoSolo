@@ -1,39 +1,24 @@
-import { AxiosPromise } from "axios";
 import { useQuery } from "react-query";
-import SMS_API from "../sms-api";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
+import SMS_API, { GraphQLResponse } from "../sms-api";
 
-interface Error {
-  message: string;
-}
-
-interface Parametro{
-  min: string;
-  max: string;
-}
-
-interface Parametros{
-  nitrogenio: Parametro;
-  fosforo: Parametro;
-  potassio: Parametro;
-  luz: Parametro;
-  umidade: Parametro;
-  temperatura: Parametro;
-  pH: Parametro;
-}
-
-interface Specie{
+interface Specie {
   id: string;
   nome: string;
   descricao: string;
-  parametros: Parametros;
+  parametros: {
+    nitrogenio: { min: string; max: string };
+    fosforo: { min: string; max: string };
+    potassio: { min: string; max: string };
+    luz: { min: string; max: string };
+    umidade: { min: string; max: string };
+    temperatura: { min: string; max: string };
+    pH: { min: string; max: string };
+  };
 }
 
-interface SpecieResponse {
-  data?: {
-    getSpecie: Specie;
-  };
-  errors?: Error[];
+interface SpecieQuery {
+  getSpecie: Specie;
 }
 
 interface getSpecieParams{
@@ -41,8 +26,7 @@ interface getSpecieParams{
   nome?: string
 }
 
-
-const getSpecieRequest = async(args: getSpecieParams): AxiosPromise<SpecieResponse> => {
+const request = async(args: getSpecieParams) => {
 
   const { id, nome } = args;
   if(!id && !nome) return;
@@ -67,9 +51,7 @@ const getSpecieRequest = async(args: getSpecieParams): AxiosPromise<SpecieRespon
     }
 }`;
 
-  const response = await SMS_API.post<SpecieResponse>('', {query, variables}, options);
-
-  return response;
+  return await SMS_API.post<GraphQLResponse<SpecieQuery>>('', {query, variables}, options);
 } 
 
 export const useGetSpecie = (args: getSpecieParams) => {
@@ -77,7 +59,7 @@ export const useGetSpecie = (args: getSpecieParams) => {
   const { notificar } = useNotificacoes();
 
   const { data: specieData, isLoading: specieIsLoading, refetch: getSpecie } = useQuery({
-    queryFn: () => getSpecieRequest(args),
+    queryFn: () => request(args),
     queryKey: ["getSpecie"],
     cacheTime: 10 * 60 * 1000,
     refetchInterval: 10 * 60 * 1000,
@@ -93,7 +75,4 @@ export const useGetSpecie = (args: getSpecieParams) => {
     specieIsLoading,
     getSpecie
   }
-
 }
-
-

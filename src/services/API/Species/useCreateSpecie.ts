@@ -1,126 +1,65 @@
-import { useState, useEffect } from "react";
-import { AxiosPromise } from "axios";
-import SMS_API from "../sms-api";
-import { useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-
-interface Error {
-  message: string;
-}
-
-interface Parametro {
-  min: string;
-  max: string;
-}
-
-interface Parametros {
-  nitrogenio: Parametro;
-  fosforo: Parametro;
-  potassio: Parametro;
-  luz: Parametro;
-  umidade: Parametro;
-  temperatura: Parametro;
-  pH: Parametro;
-}
+import SMS_API, { GraphQLResponse } from "../sms-api";
 
 interface Specie {
   id: string;
   nome: string;
   descricao: string;
-  parametros: Parametros;
-}
-
-interface createSpecieResponse {
-  data?: {
-    createSpecie: Specie;
+  parametros?: {
+    nitrogenio: { min: string; max: string };
+    fosforo: { min: string; max: string };
+    potassio: { min: string; max: string };
+    luz: { min: string; max: string };
+    umidade: { min: string; max: string };
+    temperatura: { min: string; max: string };
+    pH: { min: string; max: string };
   };
-  errors?: Error[];
 }
 
-const createSpecie = async (args: {
-  nome: string;
-  descricao: string;
-  parametros: Parametros;
-}): AxiosPromise<createSpecieResponse> => {
+interface SpecieQuery {
+  createSpecie: Specie;
+}
+
+const request = async (args: Specie) => {
   const { nome, descricao, parametros } = args;
 
   const token = `Bearer ${localStorage.getItem("token")}`;
   const options = { headers: { Authorization: token } };
   const variables = { nome, descricao, parametros };
 
-  const mutation = `mutation CreateSpecie($nome: String!, $descricao: String!, $parametros: IParametros!) {
-    createSpecie(
-      nome: $nome,
-      descricao: $descricao,
-      parametros: $parametros
-    ) {
-      id
-      nome
-      descricao
-      parametros {
-        nitrogenio { min max }
-        fosforo { min max }
-        potassio { min max }
-        luz { min max }
-        umidade { min max }
-        temperatura { min max }
-        pH { min max }
-      }
-    }
+  const query = `mutation CreateSpecie($nome: String!, $descricao: String!, $parametros: IParametros!) {
+    createSpecie( nome: $nome, descricao: $descricao, parametros: $parametros ) { id nome descricao }
   }`;
 
-  const response = await SMS_API.post<createSpecieResponse>("", { query: mutation, variables }, options);
-
-  return response;
+  return await SMS_API.post<GraphQLResponse<SpecieQuery>>("", { query, variables }, options);
 };
 
-export const useCreateSpecie = (args: { nome: string; descricao: string; parametros: Parametros }) => {
+export const useCreateSpecie = (args: Specie) => {
+
   const queryClient = useQueryClient();
   const { notificar } = useNotificacoes();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const {
-    data: createSpecieData,
-    isLoading: createSpecieIsLoading,
-    refetch: confirmCreateSpecie,
-  } = useQuery({
-    queryFn: () => createSpecie(args),
-    onSuccess: () => {
-      queryClient.invalidateQueries("getAllSpecies");
-      queryClient.invalidateQueries("getSpecie");
-        notificar({
-          tipo: "SUCESSO",
-          mensagem: "Espécie criada com sucesso",
-          tempoEmSeg: 4,
-        });
-      
-    },
-    queryKey: ["createSpecie"],
+  const onSucesso = () => {
+    queryClient.invalidateQueries("getAllSpecies");
+    queryClient.invalidateQueries("getSpecie");
+    notificar({ tipo: "SUCESSO", mensagem: "Espécie criada com sucesso", tempoEmSeg: 4 });
+  };
+
+  const { data, error, isLoading: createSpecieIsLoading, mutate: confirmCreateSpecie } = useMutation({
+    mutationFn: () => request(args),
+    mutationKey: ["createSpecie"],
+    onSuccess: onSucesso,
     retry: false,
-    enabled: false,
-    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
+    onError: (e) => notificar({ mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4 }),
   });
 
-  useEffect(() => {
-    const handleConfirmCreateSpecie = async () => {
-      setIsSubmitting(true);
-      try {
-        await confirmCreateSpecie();
-      } 
-       finally {
-        setIsSubmitting(false);
-      }
-    };
-
-    if (isSubmitting) {
-      handleConfirmCreateSpecie();
-    }
-  }, [isSubmitting, confirmCreateSpecie]);
+  const newSpecie = data?.data?.data?.createSpecie;
 
   return {
-    createSpecieData: createSpecieData?.data?.data?.createSpecie ?? null,
-    createSpecieError: createSpecieData?.data?.errors?.length > 0 ? createSpecieData.data.errors[0].message : null,
-    createSpecieIsLoading: createSpecieIsLoading || isSubmitting,
-    confirmCreateSpecie: () => setIsSubmitting(true),
-  };
+    newSpecie,
+    createSpecieError: error as string,
+    createSpecieIsLoading,
+    confirmCreateSpecie
+  }
 };

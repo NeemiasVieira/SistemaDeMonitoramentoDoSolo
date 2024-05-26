@@ -25,7 +25,7 @@ const PagRegistro = () => {
         <>
           {registro && <h2 className="nuRegistro">{registro?.nuRegistro}º</h2>}
           <Link to={`/painel/registros/${idRegistro}/saude`} className="botaoSaude">
-            <FontAwesomeIcon icon={faFileWaveform} /> Saúde do Relatório
+            <FontAwesomeIcon icon={faFileWaveform} /> Saúd e do Relatório
           </Link>
 
           <div className="DadosSensores">

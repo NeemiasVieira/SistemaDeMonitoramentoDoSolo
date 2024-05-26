@@ -1,23 +1,16 @@
-import { AxiosPromise } from "axios";
 import { useMutation, useQueryClient } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
+import { GraphQLResponse } from "../sms-api";
 import SMS_API from "../sms-api";
 
-interface Error {
-  message: string;
-}
-
-interface EnviarSolicitacaoResponse {
-  data: {
+interface updateSolicitacaoRegistro {
     updateSolicitacaoRegistro: "nenhuma" | "aguardando" | "confirmado";
-  };
-  errors: Error[];
 }
 
-const fetcher = async (idPlanta: string): AxiosPromise<EnviarSolicitacaoResponse> => {
+const request = async (idPlanta: string) => {
   const token = `Bearer ${localStorage.getItem("token")}`;
   const variables = { idPlanta, aguardando: true };
-  const query = `mutation Mutation($idPlanta: String!, $aguardando: Boolean) {
+  const query = `mutation enviarSolicitacaoRegistro($idPlanta: String!, $aguardando: Boolean) {
     updateSolicitacaoRegistro(idPlanta: $idPlanta, aguardando: $aguardando) {
       solicitacaoNovoRegistro
     }
@@ -25,27 +18,33 @@ const fetcher = async (idPlanta: string): AxiosPromise<EnviarSolicitacaoResponse
 
   const options = { headers: { Authorization: token } };
 
-  const response = await SMS_API.post<EnviarSolicitacaoResponse>("", { query, variables }, options);
-  return response;
+  return await SMS_API.post<GraphQLResponse<updateSolicitacaoRegistro>>("", { query, variables }, options);
 };
 
 export const useEnviarSolicitacao = (idPlanta: string) => {
+
   const { notificar } = useNotificacoes();
   const queryClient = useQueryClient();
 
-  const { mutate: enviarSolicitacao, isLoading, data } = useMutation({
-    mutationFn: () => fetcher(idPlanta),
-    onError: (e) => notificar({ mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4 }),
-    onSuccess: () => {
-      queryClient.invalidateQueries("planta");
-      notificar({ tipo: "SUCESSO", mensagem: "Solicitação enviada com sucesso!", tempoEmSeg: 4 });
-    },
+  const onSucesso = () => {
+    queryClient.invalidateQueries("planta");
+    notificar({ tipo: "SUCESSO", mensagem: "Solicitação enviada com sucesso!", tempoEmSeg: 4 });
+  }
+
+  const onErro = (e: string) => notificar({ mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4 });
+
+  const { mutate: enviarSolicitacao, isLoading, data, error } = useMutation({
+    mutationFn: () => request(idPlanta),
+    onError: (e) => onErro(String(e)),
+    onSuccess: onSucesso,
     retry: false,
   });
 
+  const response = data?.data?.data?.updateSolicitacaoRegistro;
+
   return {
-    respostaEnvio: data?.data?.data?.updateSolicitacaoRegistro ? data.data.data.updateSolicitacaoRegistro : null,
-    erro: data?.data?.errors?.length > 0 ? data.data.errors[0].message : null,
+    respostaEnvio: response,
+    erro: error as string,
     isLoading,
     enviarSolicitacao,
   };

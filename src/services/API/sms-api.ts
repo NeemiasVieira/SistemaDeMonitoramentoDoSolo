@@ -1,5 +1,14 @@
 import axios from "axios";
 
+interface GraphQLError {
+  message: string;
+}
+
+export interface GraphQLResponse<T> {
+  data?: T;
+  errors?: GraphQLError[];
+}
+
 const SMS_API = axios.create({
   // baseURL: 'https://sms-api-oe8t.onrender.com/', render
   // baseURL: "http://3.95.189.148:3333/graphql", aws
@@ -17,7 +26,9 @@ SMS_API.interceptors.response.use(
   },
   (error) => {
     console.error("Erro na requisição:", error);
-    return Promise.reject(error);
+    const messages = error?.response?.data?.errors;
+    const erro = messages?.length > 0 ? messages[0].message : "Erro inesperado, contate o suporte do site";
+    return Promise.reject(erro);
   }
 );
 

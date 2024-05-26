@@ -32,7 +32,7 @@ const PainelDeControle = () => {
           </h2>
           <section className="Plantas">
             {plantas?.length > 0 && <h2 className="suasPlantas">Suas plantas</h2>}
-            {!plantas && (
+            {plantas.length === 0 && (
                 <div className="avisoSemPlantas">
                   <FontAwesomeIcon icon={faCircleExclamation}/>
                   <p>Nenhuma planta cadastrada, contate o suporte para cadastrar sua plantinha.</p>

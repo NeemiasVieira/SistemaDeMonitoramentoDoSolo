@@ -1,11 +1,6 @@
-import { AxiosResponse } from "axios";
-import SMS_API from "../sms-api";
-import { useQuery } from "react-query";
+import SMS_API, { GraphQLResponse } from "../sms-api";
+import { useMutation } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-
-interface Error {
-    message: string;
-}
 
 interface useSignUpProps{
     email: string,
@@ -13,48 +8,37 @@ interface useSignUpProps{
     senha: string,
 }
   
-interface userLoginQueryResponse {
-    data?: {
-        createUser: createUserResponse;
-    };
-    errors?: Error[];
+interface createUser {
+  createUser: {
+    id: string;
+  };
 }
 
-interface createUserResponse {
-  id: string;
-}
-
-const cadastrarNovoUsuario = async(nome: string, email: string, senha: string): Promise<AxiosResponse<userLoginQueryResponse>> => {
-  
-    const Query = `mutation CreateUser($email: String!, $nome: String!, $senha: String!) {
+const cadastrarNovoUsuario = async(nome: string, email: string, senha: string) => {
+    const query = `mutation CreateUser($email: String!, $nome: String!, $senha: String!) {
         createUser(email: $email, nome: $nome, senha: $senha) { id } }`
-        
-    const options = { query: Query, variables: { email, nome, senha } };
+    const options = { query, variables: { email, nome, senha } };
     
-    const response = await SMS_API.post<userLoginQueryResponse>("", options);
-
-    return response;
+    return await SMS_API.post<GraphQLResponse<createUser>>("", options);
   }
 
   export const useSignUp = (params: useSignUpProps) => {
     const { nome, email, senha } = params;
     const { notificar } = useNotificacoes();
 
-    const { isLoading, data: signupResponse, refetch} = useQuery({
-        queryKey: ["signup"],
-        queryFn: () => cadastrarNovoUsuario(nome, email, senha),
+    const { isLoading, data, mutate: confirmCreateUser, error} = useMutation({
+        mutationKey: ["signup"],
+        mutationFn: () => cadastrarNovoUsuario(nome, email, senha),
         retry: false,
-        staleTime: 0,
-        cacheTime: 0,
-        enabled: false,
         onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
       })
 
-      return {
-        signupResponse: signupResponse?.data?.data?.createUser ?? null,
-        error: signupResponse?.data?.errors?.length > 0 ? signupResponse.data.errors[0].message : null,
-        refetch,
-        isLoading
-      }
+    const signupResponse = data?.data?.data?.createUser;
 
+    return {
+      signupResponse,
+      error: error as string,
+      confirmCreateUser,
+      isLoading
+    }
   }

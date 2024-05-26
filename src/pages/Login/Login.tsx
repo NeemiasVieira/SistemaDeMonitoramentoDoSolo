@@ -16,11 +16,11 @@ const Login = () => {
   const { notificar } = useNotificacoes();
   const { setAuth, setIsAdmin } = useApplication();
   
-  let { loginResponse, isLoading, refetch } = useLogin(email, password);
+  let { loginResponse, isLoading, confirmLogin } = useLogin(email, password);
 
   const login = async (e: any) => {
     e.preventDefault();
-    await refetch();
+    confirmLogin();
   };
 
   useEffect(() => {

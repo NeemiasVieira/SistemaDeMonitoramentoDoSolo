@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useGetRelatorioSaude } from "../../../services/API/Plants/useGetRelatorioSaude";
-import { useGetAllPlants } from "../../../services/API/Plants/useGetAllPlants";
 import { useParams } from "react-router-dom";
 import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
 import { useGetSpecie } from "../../../services/API/Species/useGetSpecie";
@@ -15,13 +14,13 @@ const PagRelatorioSaude = () => {
   const { getSpecie, specieData } = useGetSpecie({
     nome: planta?.especie,
   });
-  let { relatorioSaude, erroRelatorioSaude, refetchRelatorioSaude } =
+  let { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } =
     useGetRelatorioSaude(idPlanta);
 
   useEffect(() => {
     if (planta) {
       getSpecie();
-      refetchRelatorioSaude();
+      getRelatorioSaude();
     }
     // eslint-disable-next-line
   }, [planta]);

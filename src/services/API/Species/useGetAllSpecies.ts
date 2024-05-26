@@ -1,43 +1,27 @@
-import { AxiosPromise } from "axios";
-import SMS_API from "../sms-api";
 import { useQuery } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
+import SMS_API, { GraphQLResponse } from "../sms-api";
 
-interface Error {
-  message: string;
-}
-
-interface Parametro{
-  min: string;
-  max: string;
-}
-
-interface Parametros{
-  nitrogenio: Parametro;
-  fosforo: Parametro;
-  potassio: Parametro;
-  luz: Parametro;
-  umidade: Parametro;
-  temperatura: Parametro;
-  pH: Parametro;
-}
-
-interface Specie{
+interface Specie {
   id: string;
   nome: string;
   descricao: string;
-  parametros: Parametros;
-}
-
-interface AllSpeciesResponse {
-  data?: {
-    getAllSpecies: Specie[];
+  parametros: {
+    nitrogenio: { min: string; max: string };
+    fosforo: { min: string; max: string };
+    potassio: { min: string; max: string };
+    luz: { min: string; max: string };
+    umidade: { min: string; max: string };
+    temperatura: { min: string; max: string };
+    pH: { min: string; max: string };
   };
-  errors?: Error[];
 }
 
+interface SpecieQuery {
+    getAllSpecies: Specie[];
+}
 
-const getAllSpecies = async(): AxiosPromise<AllSpeciesResponse> => {
+const getAllSpecies = async() => {
   const token = `Bearer ${localStorage.getItem("token")}`;
   const options = { headers: {  Authorization: token, }};
   const query = `query GetAllSpecies {
@@ -57,17 +41,14 @@ const getAllSpecies = async(): AxiosPromise<AllSpeciesResponse> => {
     }
 }`;
 
-
-  const response = await SMS_API.post<AllSpeciesResponse>('', {query}, options);
-
-  return response;
+  return await SMS_API.post<GraphQLResponse<SpecieQuery>>('', {query}, options);
 } 
 
 export const useGetAllSpecies = () => {
 
   const { notificar } = useNotificacoes();
 
-  const { data: allSpeciesData, isLoading: allSpeciesIsLoading, refetch: refetchAllSpecies } = useQuery({
+  const { data, isLoading: allSpeciesIsLoading, refetch: refetchAllSpecies, error } = useQuery({
     queryFn: () => getAllSpecies(),
     queryKey: ["getAllSpecies"],
     cacheTime: 10 * 60 * 1000,
@@ -78,13 +59,12 @@ export const useGetAllSpecies = () => {
     onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
   })
 
+  const allSpeciesData = data?.data?.data?.getAllSpecies;
+
   return{
-    allSpeciesData: allSpeciesData?.data?.data?.getAllSpecies ?? null,
-    allSpeciesError: allSpeciesData?.data?.errors?.length > 0 ? allSpeciesData.data.errors[0].message : null,
+    allSpeciesData,
+    allSpeciesError: error as string,
     allSpeciesIsLoading,
     refetchAllSpecies
   }
-
 }
-
-

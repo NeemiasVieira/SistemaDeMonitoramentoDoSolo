@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CadastroMain } from "./CadastroStyle";
 import { Link } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
@@ -13,14 +13,9 @@ const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [senha1, setSenha1] = useState("");
   const [senha2, setSenha2] = useState("");
+  
   const { notificar } = useNotificacoes();
-  let { signupResponse, isLoading, error, refetch } = useSignUp({email, nome, senha: senha1})
-
-  const notificarErro = () => notificar({tipo: "ERRO", mensagem: error, tempoEmSeg: 3});
-
-  useEffect(() => {
-    if(error) notificarErro(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]);
+  const { signupResponse, isLoading, confirmCreateUser } = useSignUp({email, nome, senha: senha1})
 
   if (signupResponse?.id) return <CadastroConcluido />;
 
@@ -29,14 +24,16 @@ const Cadastro = () => {
   const Cadastrar = async (e: any) => {
     e.preventDefault();
 
-    if (!VerificaSenha()) {
-      error = "As senhas não correspondem";
-      notificarErro();
+    if(!nome || !email || !senha1 || !senha2){
+      notificar({mensagem: "Todos os campos são obrigatórios", tempoEmSeg: 3, tipo: 'ERRO'});
       return;
     }
-    await refetch();
-    
-    if(error) notificarErro();
+
+    if (!VerificaSenha()) {
+      notificar({mensagem: "As senhas não correspondem", tempoEmSeg: 3, tipo: 'ERRO'});
+      return;
+    }
+    confirmCreateUser();
   };
 
   return (
