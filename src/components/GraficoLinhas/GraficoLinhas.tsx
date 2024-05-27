@@ -103,12 +103,12 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({records, params}) => {
 
       {allRecordsIsLoading && <Loading minHeight={"55vh"}/>}
 
-      {data.length <= 2 && !allRecordsIsLoading && (
+      {data?.length <= 2 && !allRecordsIsLoading && (
         <p className="Aviso">
           Não há registros necessários para formar um histórico
         </p>
       )}
-      {data.length > 2 && !allRecordsIsLoading &&  (
+      {data?.length > 2 && !allRecordsIsLoading &&  (
         <div className="graficoContainer">
         <Chart
           chartType="Line"
