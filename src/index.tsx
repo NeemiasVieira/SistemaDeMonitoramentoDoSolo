@@ -6,6 +6,14 @@ import { ThemeProvider } from "./contexts/ThemeProvider";
 
 const queryClient = new QueryClient();
 
+queryClient.defaultMutationOptions({
+  retry: false,
+})
+
+queryClient.defaultQueryOptions({
+  retry: false,
+})
+
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <ThemeProvider>

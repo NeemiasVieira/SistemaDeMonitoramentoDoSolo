@@ -72,7 +72,7 @@ export const useGetAllRecordsPaginated = (params: allRecordsPaginatedQueryParams
   if (dataDeInicioBusca === "1970-01-01T00:00:00.000Z") dataDeInicioBusca = null;
   if (dataDeFimBusca === "1970-01-01T00:00:00.000Z") dataDeFimBusca = null;
 
-    const { data: allRecordsPaginated, refetch: getAllRecordsPaginated, isLoading: allRecordsPaginatedIsLoading } = useQuery({
+    const { data, refetch: getAllRecordsPaginated, isLoading: allRecordsPaginatedIsLoading, error } = useQuery({
         queryFn: () => getAllRecords(params),
         queryKey: ["allRecordsPaginated", idPlanta, pagina, registrosPorPag, dataDeInicioBusca, dataDeFimBusca],
         cacheTime: 10 * 60 * 1000,
@@ -82,9 +82,11 @@ export const useGetAllRecordsPaginated = (params: allRecordsPaginatedQueryParams
         onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
         });
 
+    const allRecordsPaginated = data?.data?.data?.getAllRecordsPaginated;
+
     return {
-        allRecordsPaginated: allRecordsPaginated?.data?.data?.getAllRecordsPaginated ?? null,
-        errorAllRecords: allRecordsPaginated?.data?.errors?.length > 0 ? allRecordsPaginated.data.errors[0].message : null,
+        allRecordsPaginated,
+        errorAllRecords: error as string,
         getAllRecordsPaginated,
         allRecordsPaginatedIsLoading
     };

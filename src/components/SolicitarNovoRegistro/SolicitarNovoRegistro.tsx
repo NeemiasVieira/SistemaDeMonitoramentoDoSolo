@@ -10,6 +10,11 @@ import { useCancelarSolicitacao } from "../../services/API/Plants/useCancelarSol
 import { useEnviarSolicitacao } from "../../services/API/Plants/useEnviarSolicitacao";
 import { Loading } from "../Loading/Loading";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { BotaoAtualizar } from "../Buttons/BotaoAtualizar";
+import { Tooltip } from "../Buttons/ToolTip";
+
+const tip1 = "Nesta etapa, caso os sensores estejam ativos, o registro será processado em aproximadamente 40 segundos.";
+const tip2 = "Caso os sensores estejam desligados não se preocupe, pois assim que forem ativados, a sua solicitação de registro será processada :)";
 
 const mapearTitulo = (solicitacaoNovoRegistro: "nenhuma" | "aguardando" | "confirmado") => {
   switch (solicitacaoNovoRegistro) {
@@ -45,17 +50,21 @@ export const SolicitarNovoRegistro = () => {
   const handleClick = () => {
     if (planta?.solicitacaoNovoRegistro === "aguardando"){
       cancelarSolicitacao();
-      notificar({tipo: "NOTIFICACAO", mensagem: "Solicitação de cancelamento enviada", tempoEmSeg: 4});
+      notificar({tipo: "NOTIFICACAO", mensagem: "Enviando solicitação de cancelamento de novo registro", tempoEmSeg: 4});
     } 
     else if (planta?.solicitacaoNovoRegistro === "nenhuma"){
       enviarSolicitacao();
-      notificar({tipo: "NOTIFICACAO", mensagem: "Solicitação enviada", tempoEmSeg: 4});
+      notificar({tipo: "NOTIFICACAO", mensagem: "Enviando solicitação de novo registro", tempoEmSeg: 4});
     } 
   };
 
   return (
     <SolicitarNovoRegistroStyle>
       {isLoading && <Loading minHeight="50px" logoHeight="60px" logoWidth="60px" />}
+      <div className="botaoAtualizar">
+        <BotaoAtualizar isLoading={isLoading || isLoadingNoCache} queryKeys={['planta']}/>
+      </div>
+    
 
       <div className="plantaInfo">
         {planta && lastRecord && (
@@ -81,7 +90,7 @@ export const SolicitarNovoRegistro = () => {
 
       {(planta?.solicitacaoNovoRegistro === "nenhuma" || planta?.solicitacaoNovoRegistro === "aguardando") && (
         <div className="Acoes">
-          <h3>{mapearTitulo(planta.solicitacaoNovoRegistro)}</h3>
+          <h3>{mapearTitulo(planta.solicitacaoNovoRegistro)} {mapearTitulo(planta.solicitacaoNovoRegistro) === "Solicitação Enviada" && <Tooltip texts={[tip1, tip2]}/>}</h3>
           {(sendLoading || cancelLoading || isLoading || isLoadingNoCache) && (
             <Loading minHeight="20px" logoHeight="40px" logoWidth="40px" />
           )}

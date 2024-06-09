@@ -13,6 +13,12 @@ flex-flow: row nowrap;
 height: 135px;
 border: solid var(--border-primary) 1px;
 
+.botaoAtualizar{
+    position: relative;
+    left: 96.5%;;
+    bottom: 37%;
+}
+
 .plantaInfo{
   display: flex;
   justify-content: center;
@@ -64,12 +70,19 @@ border: solid var(--border-primary) 1px;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (width <= 480px) {
   width: 80vw;
   flex-flow: column wrap;
   font-size: .9rem;
   height: auto;
   gap: 20px;
+
+  .botaoAtualizar{
+    position: inherit;
+    align-self: flex-end;
+    margin-top: 5px;
+    height: 2px;
+  }
 
   .plantaInfo, .Acoes{
     width: 100%;

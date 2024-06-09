@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 import { useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
@@ -31,6 +31,8 @@ export const useGetPlant = (idPlanta: string) => {
   const { notificar } = useNotificacoes();
   const [ isLoadingNoCache, setIsLoadingNoCache ] = useState<boolean>(false);
 
+  const queryClient = useQueryClient();
+
   useEffect(() => {},[isLoadingNoCache]);
 
   const QueryFunction = async() => {
@@ -45,17 +47,16 @@ export const useGetPlant = (idPlanta: string) => {
   const onSucesso = (data: AxiosResponse<GraphQLResponse<Planta>>) => {
     const status = data?.data?.data?.getPlant?.solicitacaoNovoRegistro
     if(status === "confirmado"){
-      notificar({tipo: "SUCESSO", mensagem: "Sua solicitação de novo registro foi finalizada", tempoEmSeg: 7});
+      notificar({tipo: "SUCESSO", mensagem: "Sua solicitação de novo registro foi finalizada", tempoEmSeg: 10});
+      setTimeout(() => queryClient.invalidateQueries('planta'), 5000);
     }
   }
 
   const { isLoading, data, refetch: getPlant, error} = useQuery({
     queryFn: QueryFunction,
     queryKey: ["planta", idPlanta],
-    cacheTime: 30 * 60 * 1000,
-    refetchInterval: false,
-    staleTime: 30 * 60 * 1000,
     retry: false,
+    enabled: true,
     onError: (e) => onErro(e as string),
     onSuccess: (data) => onSucesso(data),
     }
