@@ -80,7 +80,7 @@ export const PagRegistroStyle = styled.main`
     }
   }
 
-  .botaoSaude{
+  .botaoSaude, .BotaoDownloadPDF{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,11 +93,18 @@ export const PagRegistroStyle = styled.main`
     border: solid var(--border-primary) 1px;
     transition: all 200ms;
     gap: 5px;
+    width: 160px;
   }
 
-  .botaoSaude:hover{
+  .botaoSaude:hover, .BotaoDownloadPDF:hover{
     transform: scale(1.1);
   }
+
+  .BotaoDownloadPDF{
+    cursor: pointer;
+  }
+
+
 
   @media screen and (max-width: 480px){
 

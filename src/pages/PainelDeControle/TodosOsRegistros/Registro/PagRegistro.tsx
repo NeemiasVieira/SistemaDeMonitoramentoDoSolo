@@ -5,14 +5,16 @@ import { BotaoVoltar } from "../../../../components/Buttons/BotaoVoltar";
 import { DadosRegistro } from "../../../../components/DadosRegistro/DadosRegistro";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileWaveform } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf, faFileWaveform } from "@fortawesome/free-solid-svg-icons";
 import { useGetRecord } from "../../../../services/API/Records/useGetRecord";
 import { Loading } from "../../../../components/Loading/Loading";
+import { useGeneratePdf } from "../../../../services/API/Records/useGeneratePdf";
 
 const PagRegistro = () => {
   const { registroEmMemoria: registro, backUrl } = useRegistrosContext();
   const { idRegistro } = useParams();
   const { record, recordIsLoading } = useGetRecord(idRegistro);
+  const { generatePdf, isLoading } = useGeneratePdf(idRegistro);
 
   return (
     <PagRegistroStyle>
@@ -25,8 +27,9 @@ const PagRegistro = () => {
         <>
           {registro && <h2 className="nuRegistro">{registro?.nuRegistro}º</h2>}
           <Link to={`/painel/registros/${idRegistro}/saude`} className="botaoSaude">
-            <FontAwesomeIcon icon={faFileWaveform} /> Saúd e do Relatório
+            <FontAwesomeIcon icon={faFileWaveform} /> Saúde do Relatório
           </Link>
+          <button className="BotaoDownloadPDF" onClick={() => generatePdf()}><FontAwesomeIcon icon={faFilePdf} />Download PDF</button>
 
           <div className="DadosSensores">
             <DadosRegistro registro={registro ?? record} ultimaAtualizacao={false} />
