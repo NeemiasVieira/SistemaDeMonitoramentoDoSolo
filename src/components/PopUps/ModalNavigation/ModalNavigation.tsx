@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ModalNavigationStyle } from "./ModalNavigationStyle";
@@ -25,21 +25,17 @@ const customStyles = {
     zIndex: "1000",
   },
   overlay: {
-    backgroundColor: "var(--bg-modal)", 
+    backgroundColor: "var(--bg-modal)",
   },
 };
 
-interface ModalNavigationProps {
-  auth: boolean;
-}
-
-export const ModalNavigation: React.FC<ModalNavigationProps> = ({ auth }) => {
+export const ModalNavigation = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    if(!isMobile) closeModal();
-  }, [isMobile])
+    if (!isMobile) closeModal();
+  }, [isMobile]);
 
   const openModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -57,7 +53,7 @@ export const ModalNavigation: React.FC<ModalNavigationProps> = ({ auth }) => {
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
         <ModalNavigationStyle>
           <h2>Menu</h2>
-          <ListaNavegacao closeModal={closeModal}/>
+          <ListaNavegacao closeModal={closeModal} />
         </ModalNavigationStyle>
       </Modal>
     </>

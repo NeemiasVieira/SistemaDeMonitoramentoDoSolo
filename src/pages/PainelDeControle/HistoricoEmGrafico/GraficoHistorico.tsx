@@ -34,8 +34,8 @@ const PagGraficoHistorico = () => {
   useEffect(() => {
     if (intervaloDeBusca || intervaloDeDias) {
       navigate(`${location.pathname}?intBusca=${intervaloDeBusca ?? 0}&intDias=${intervaloDeDias ?? 0}`);
-    } else navigate(location.pathname); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ intervaloDeBusca, intervaloDeDias, intBusca, intDias ]);
+    } else navigate(location.pathname); // eslint-disable-next-line
+  }, [intervaloDeBusca, intervaloDeDias, intBusca, intDias]);
 
   return (
     <PagGraficoHistoricoStyle>

@@ -18,51 +18,51 @@ const Especies = () => {
   const [deleteSpecieID, setDeleteSpecieID] = useState<string>("");
 
   const { confirmDeleteSpecie, deleteSpecieError } = useDeleteSpecie(deleteSpecieID);
-  const { notificar }= useNotificacoes();
+  const { notificar } = useNotificacoes();
 
   useEffect(() => {
-    if(deleteSpecieError) {
-      notificar({tipo: "ERRO", mensagem: deleteSpecieError, tempoEmSeg: 4});
-    }// eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deleteSpecieError])
+    if (deleteSpecieError) {
+      notificar({ tipo: "ERRO", mensagem: deleteSpecieError, tempoEmSeg: 4 });
+    } // eslint-disable-next-line
+  }, [deleteSpecieError]);
 
   const openModalUpdate = () => {
-    setType("Update")
+    setType("Update");
     setIsModalOpen(true);
   };
 
   const openModalCreate = () => {
-    setType("Create")
+    setType("Create");
     setEspecieEscolhidaParaAtualizacao(null);
     setIsModalOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   const handleDelete = (id: string) => {
-    setDeleteSpecieID(id)
-    notificar({tipo: "NOTIFICACAO", mensagem: "Solicitação de exclusão realizada com sucesso!"})
-  } 
+    setDeleteSpecieID(id);
+    notificar({ tipo: "NOTIFICACAO", mensagem: "Solicitação de exclusão realizada com sucesso!" });
+  };
 
   useEffect(() => {
-    if(deleteSpecieID.length > 10) confirmDeleteSpecie(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deleteSpecieID])
+    if (deleteSpecieID.length > 10) confirmDeleteSpecie(); // eslint-disable-next-line
+  }, [deleteSpecieID]);
 
   const { allSpeciesData, allSpeciesIsLoading } = useGetAllSpecies();
 
   return (
-      <EspeciesStyle>
-        
-        <BotaoVoltar path="/adm/painel"/>
-        <h2 className="tituloDaPagina">Todas as Espécies ativas</h2>
-        <button className="createSpecieButton" onClick={openModalCreate}>
-          <FontAwesomeIcon icon={faSquarePlus} /> Nova Espécie
-        </button>
+    <EspeciesStyle>
+      <BotaoVoltar path="/adm/painel" />
+      <h2 className="tituloDaPagina">Todas as Espécies ativas</h2>
+      <button className="createSpecieButton" onClick={openModalCreate}>
+        <FontAwesomeIcon icon={faSquarePlus} /> Nova Espécie
+      </button>
 
-        <div className="especies">
-          {allSpeciesData && allSpeciesData.map((especie) => (
+      <div className="especies">
+        {allSpeciesData &&
+          allSpeciesData.map((especie) => (
             <Especie
               especie={especie}
               key={especie.id}
@@ -71,11 +71,16 @@ const Especies = () => {
               confirmDeleteSpecie={() => handleDelete(especie.id)} // Passando diretamente o id
             />
           ))}
-          {allSpeciesIsLoading && <Loading minHeight={"50vh"}/>}
-        </div>
+        {allSpeciesIsLoading && <Loading minHeight={"50vh"} />}
+      </div>
 
-        <SpecieUCModal type={type} closeModal={closeModal} isModalOpen={isModalOpen} especie={especieEscolhidaParaAtualizacao} />
-      </EspeciesStyle>
+      <SpecieUCModal
+        type={type}
+        closeModal={closeModal}
+        isModalOpen={isModalOpen}
+        especie={especieEscolhidaParaAtualizacao}
+      />
+    </EspeciesStyle>
   );
 };
 export default Especies;

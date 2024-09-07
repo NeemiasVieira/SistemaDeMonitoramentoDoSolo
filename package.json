@@ -1,8 +1,9 @@
 {
   "name": "tcc",
-  "version": "1.8.5",
+  "version": "1.8.6",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -33,7 +34,8 @@
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src"
   },
   "eslintConfig": {
     "extends": [
@@ -54,11 +56,16 @@
     ]
   },
   "devDependencies": {
+    "@eslint/js": "^9.10.0",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@types/react-modal": "^3.16.3",
     "@types/styled-components": "^5.1.34",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.35.2",
     "gh-pages": "^5.0.0",
-    "typescript": "^4.9.5"
+    "globals": "^15.9.0",
+    "typescript": "^4.9.5",
+    "typescript-eslint": "^8.4.0"
   }
 }

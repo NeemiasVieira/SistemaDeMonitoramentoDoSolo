@@ -22,9 +22,9 @@ const Resumo = () => {
   
   //Hooks
   const { planta } = useGetPlant(idPlanta);
-  let { lastRecord,  lastRecordIsLoading, errorLastRecord } = useGetLastRecord(idPlanta);
-  let { relatorioSaude, erroRelatorioSaude, isLoadingSaude } = useGetRelatorioSaude(idPlanta);
-  let { allRecords, errorAllRecords, getAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta, intervaloDeBusca, intervaloDeDias});
+  const { lastRecord,  lastRecordIsLoading, errorLastRecord } = useGetLastRecord(idPlanta);
+  const { relatorioSaude, erroRelatorioSaude, isLoadingSaude } = useGetRelatorioSaude(idPlanta);
+  const { allRecords, errorAllRecords, getAllRecords, allRecordsIsLoading } = useGetAllRecords({idPlanta, intervaloDeBusca, intervaloDeDias});
   const { getSpecie, specieData } = useGetSpecie({nome: planta?.especie});
   const params = { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading};
 

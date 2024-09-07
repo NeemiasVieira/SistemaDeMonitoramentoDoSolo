@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { NotificacaoStyle } from "./NotificacaoStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faBell, faCircleExclamation, faCircleXmark, faSquareCheck, faTriangleExclamation,} from "@fortawesome/free-solid-svg-icons";
+import {
+  faBell,
+  faCircleExclamation,
+  faCircleXmark,
+  faSquareCheck,
+  faTriangleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 import { INotificacao, useNotificacoes } from "../../contexts/NotificacoesProvider";
 
 interface NotificacaoProps {
@@ -36,7 +42,7 @@ const Notificacao: React.FC<NotificacaoProps> = ({ notificacao }) => {
   useEffect(() => {
     setTimeout(() => {
       destruirNotificacao();
-    }, notificacao.tempoEmSeg * 1000);// eslint-disable-next-line react-hooks/exhaustive-deps
+    }, notificacao.tempoEmSeg * 1000); // eslint-disable-next-line
   }, []);
 
   return (

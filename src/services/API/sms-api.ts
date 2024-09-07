@@ -10,12 +10,8 @@ export interface GraphQLResponse<T> {
 }
 
 const SMS_API = axios.create({
-  // baseURL: 'https://sms-api-oe8t.onrender.com/', render
-  // baseURL: "http://3.95.189.148:3333/graphql", aws
   baseURL: "https://sms.devneemiasvieira.com/api/",
-  // azure ˆ
-  // baseURL: 'https://sms-api-git-main-neemiasvieira.vercel.app/', vercel
-  // baseURL: "http://localhost:3333/graphql", //localhost
+  // baseURL: "http://localhost:3333/graphql",
   timeout: 90000,
 });
 

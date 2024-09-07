@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SecaoPerguntaFaq = styled.div`
+export const SecaoPerguntaFaq = styled.div<{ exibirResposta: boolean }>`
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -27,6 +27,7 @@ export const SecaoPerguntaFaq = styled.div`
     font-size: 1.5em;
     transition: transform 0.1s ease-in;
     margin-right: 15px;
+    transform: ${(props) => (props.exibirResposta ? "rotate(90deg)" : "rotate(0deg)")};
   }
 
   .pergunta h3 {
@@ -59,10 +60,6 @@ export const SecaoPerguntaFaq = styled.div`
     animation: fade 1s ease-in-out;
     padding-left: 5px;
     border-top: solid var(--dark-green) 2px;
-  }
-
-  .ativo .icone {
-    transform: rotate(90deg);
   }
 
   @keyframes fade {
@@ -102,3 +99,7 @@ export const SecaoPerguntaFaq = styled.div`
     }
   }
 `;
+
+SecaoPerguntaFaq.defaultProps = {
+  exibirResposta: false,
+};

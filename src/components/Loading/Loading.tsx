@@ -2,7 +2,7 @@ import React from "react";
 import { LoadingStyle } from "./LoadingStyle";
 
 interface LoadingProps {
-  minHeight?: any;
+  minHeight?: string;
   logoWidth?: string;
   logoHeight?: string;
 }
@@ -13,7 +13,7 @@ export const Loading: React.FC<LoadingProps> = ({ minHeight, logoHeight, logoWid
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        style={{ margin: 'auto', background: 'transparent', display: 'block', shapeRendering: 'auto' }}
+        style={{ margin: "auto", background: "transparent", display: "block", shapeRendering: "auto" }}
         width={logoWidth ?? "200px"}
         height={logoHeight ?? "200px"}
         viewBox="0 0 100 100"

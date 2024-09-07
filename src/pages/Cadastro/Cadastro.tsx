@@ -13,39 +13,44 @@ const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [senha1, setSenha1] = useState("");
   const [senha2, setSenha2] = useState("");
-  
+
   const { notificar } = useNotificacoes();
-  const { signupResponse, isLoading, confirmCreateUser } = useSignUp({email, nome, senha: senha1})
+  const { signupResponse, isLoading, confirmCreateUser } = useSignUp({ email, nome, senha: senha1 });
 
   if (signupResponse?.id) return <CadastroConcluido />;
 
-  const VerificaSenha = () => {return senha1 === senha2 ? true : false;}
+  const VerificaSenha = () => {
+    return senha1 === senha2 ? true : false;
+  };
 
-  const Cadastrar = async (e: any) => {
+  const Cadastrar = async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    if(!nome || !email || !senha1 || !senha2){
-      notificar({mensagem: "Todos os campos são obrigatórios", tempoEmSeg: 3, tipo: 'ERRO'});
+    if (!nome || !email || !senha1 || !senha2) {
+      notificar({ mensagem: "Todos os campos são obrigatórios", tempoEmSeg: 3, tipo: "ERRO" });
       return;
     }
 
     if (!VerificaSenha()) {
-      notificar({mensagem: "As senhas não correspondem", tempoEmSeg: 3, tipo: 'ERRO'});
+      notificar({ mensagem: "As senhas não correspondem", tempoEmSeg: 3, tipo: "ERRO" });
       return;
     }
     confirmCreateUser();
   };
 
   return (
-      <CadastroMain>
-        <h2>Cadastro</h2>
+    <CadastroMain>
+      <h2>Cadastro</h2>
 
-        {isLoading && <Loading minHeight={"60vh"}/>}
+      {isLoading && <Loading minHeight={"60vh"} />}
 
-        {!isLoading && (<form onSubmit={(e) => Cadastrar(e)}>
+      {!isLoading && (
+        <form onSubmit={(e) => Cadastrar(e)}>
           <label htmlFor="">Nome</label>
           <div className="divInput">
-            <div className="divIcon"><FontAwesomeIcon icon={faA} /></div>
+            <div className="divIcon">
+              <FontAwesomeIcon icon={faA} />
+            </div>
             <input
               type="text"
               placeholder="Digite o seu nome"
@@ -57,7 +62,9 @@ const Cadastro = () => {
           </div>
           <label htmlFor="">E-mail</label>
           <div className="divInput">
-            <div className="divIcon"><FontAwesomeIcon icon={faAt} /></div>
+            <div className="divIcon">
+              <FontAwesomeIcon icon={faAt} />
+            </div>
             <input
               type="text"
               placeholder="Digite o seu e-mail"
@@ -69,7 +76,9 @@ const Cadastro = () => {
           </div>
           <label htmlFor="">Senha</label>
           <div className="divInput">
-            <div className="divIcon"><FontAwesomeIcon icon={faKey} /></div>
+            <div className="divIcon">
+              <FontAwesomeIcon icon={faKey} />
+            </div>
             <input
               type="password"
               placeholder="Digite a sua senha"
@@ -79,7 +88,9 @@ const Cadastro = () => {
           </div>
           <label htmlFor="">Confirmar Senha</label>
           <div className="divInput">
-            <div className="divIcon"><FontAwesomeIcon icon={faKey} /></div>
+            <div className="divIcon">
+              <FontAwesomeIcon icon={faKey} />
+            </div>
             <input
               type="password"
               placeholder="Confirme sua senha"
@@ -98,8 +109,9 @@ const Cadastro = () => {
               Faça Login
             </Link>
           </div>
-        </form>)}
-      </CadastroMain>
+        </form>
+      )}
+    </CadastroMain>
   );
 };
 

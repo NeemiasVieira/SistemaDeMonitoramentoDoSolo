@@ -5,18 +5,27 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-interface ModalIndexProps{
+interface ModalIndexProps {
   botaoOpenModal: React.FC<{ onClick: () => void }>;
-  children: any;
+  children: React.JSX.Element;
   width?: string;
   height?: string;
-  minHeight?: string,
-  minWidth?: string
+  minHeight?: string;
+  minWidth?: string;
   maxWidth?: string;
   maxHeight?: string;
 }
 
-export const IndexModal: React.FC<ModalIndexProps> = ({botaoOpenModal: OpenButton, width, height, children, minHeight, minWidth, maxHeight, maxWidth}) => {
+export const IndexModal: React.FC<ModalIndexProps> = ({
+  botaoOpenModal: OpenButton,
+  width,
+  height,
+  children,
+  minHeight,
+  minWidth,
+  maxHeight,
+  maxWidth,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -46,26 +55,25 @@ export const IndexModal: React.FC<ModalIndexProps> = ({botaoOpenModal: OpenButto
       backgroundColor: "var(--white)",
       opacity: ".9",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
-      overflow: "hidden"
+      overflow: "hidden",
     },
     overlay: {
-      backgroundColor: "var(--bg-modal)", 
+      backgroundColor: "var(--bg-modal)",
     },
   };
 
   return (
     <>
-      
-      <OpenButton onClick={openModal}/>
+      <OpenButton onClick={openModal} />
 
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
         <ModalIndexStyle>
-        <button onClick={closeModal} className="closeButton">
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
-        {children}
+          <button onClick={closeModal} className="closeButton">
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+          {children}
         </ModalIndexStyle>
-      </Modal>  
+      </Modal>
     </>
   );
 };

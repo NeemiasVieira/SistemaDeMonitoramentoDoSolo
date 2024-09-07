@@ -16,7 +16,7 @@ const PagRelatorioSaudePorRegistro = () => {
   const { getSpecie, specieData } = useGetSpecie({
     nome: planta?.especie,
   });
-  let { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } =
+  const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } =
     useGetRelatorioSaudePorRegistro(idRegistro);
 
   useEffect(() => {

@@ -16,7 +16,7 @@ export const Navigation = () => {
       {isMobile ? (
         <NavStyleMobile>
           <IconeLogoSms path={"/"} />
-          <ModalNavigation auth={auth} />
+          <ModalNavigation />
         </NavStyleMobile>
       ) : (
         <ListaNavegacaoStyle>

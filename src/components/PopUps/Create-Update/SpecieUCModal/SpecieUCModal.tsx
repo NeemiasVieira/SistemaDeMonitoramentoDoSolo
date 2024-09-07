@@ -33,7 +33,6 @@ interface SpecieUCModalProps {
 }
 
 const verificarCamposPreenchidos = (especie: Specie): boolean => {
-
   if (!especie.nome || especie.nome.trim() === "") {
     return false;
   }
@@ -48,10 +47,9 @@ const verificarCamposPreenchidos = (especie: Specie): boolean => {
     }
   }
   return true;
-}
+};
 
 export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type, closeModal, especie }) => {
-
   const defaultSpecie: Specie = {
     id: "",
     nome: "",
@@ -66,38 +64,35 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
       pH: { min: "", max: "" },
     },
   };
-  
 
   const [especieI, setEspecieI] = useState<Specie>(defaultSpecie);
 
   const { confirmCreateSpecie, createSpecieIsLoading, createSpecieError } = useCreateSpecie(especieI);
-  const { confirmUpdateSpecie, updateSpecieIsLoading, updateSpecieError } = useUpdateSpecie(especieI)  
+  const { confirmUpdateSpecie, updateSpecieIsLoading, updateSpecieError } = useUpdateSpecie(especieI);
   const { notificar } = useNotificacoes();
 
   useEffect(() => {
-    if(createSpecieError){
+    if (createSpecieError) {
       notificar({
         tipo: "ERRO",
         mensagem: createSpecieError,
-        tempoEmSeg: 4
-      })
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [createSpecieError])
+        tempoEmSeg: 4,
+      });
+    } // eslint-disable-next-line
+  }, [createSpecieError]);
 
-  useEffect(() =>{
-    if(updateSpecieError){
+  useEffect(() => {
+    if (updateSpecieError) {
       notificar({
         tipo: "ERRO",
         mensagem: updateSpecieError,
-        tempoEmSeg: 4
-      })
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updateSpecieError])
-
+        tempoEmSeg: 4,
+      });
+    } // eslint-disable-next-line
+  }, [updateSpecieError]);
 
   useEffect(() => {
-
-    if(especie){
+    if (especie) {
       const specieFromEspecie: Specie = {
         id: especie?.id ?? "",
         nome: especie?.nome ?? "",
@@ -113,11 +108,10 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
         },
       };
       setEspecieI(specieFromEspecie);
-    }
-    else{
+    } else {
       setEspecieI(defaultSpecie);
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [especie])
+    } // eslint-disable-next-line
+  }, [especie]);
 
   const setNome = (nome: string) => {
     setEspecieI((prevState) => ({
@@ -162,9 +156,8 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
   useEffect(() => {
     if (!updateSpecieIsLoading && !createSpecieIsLoading) {
       closeModal();
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+    } // eslint-disable-next-line
   }, [updateSpecieIsLoading, createSpecieIsLoading]);
-  
 
   const handleChangeMin = (parametro: keyof Specie["parametros"], event: React.ChangeEvent<HTMLInputElement>) => {
     setMinParametro(parametro, event.target.value);
@@ -175,29 +168,28 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
   };
 
   const handleCriarEspecie = () => {
-    if(!verificarCamposPreenchidos(especieI)){
+    if (!verificarCamposPreenchidos(especieI)) {
       notificar({
         tipo: "ERRO",
         mensagem: "Toodos os campos precisam ser preenchidos",
-        tempoEmSeg: 4
-      })
+        tempoEmSeg: 4,
+      });
       return;
     }
     confirmCreateSpecie();
-  }
+  };
 
   const handleAtualizarEspecie = () => {
-    if(!verificarCamposPreenchidos(especieI)){
+    if (!verificarCamposPreenchidos(especieI)) {
       notificar({
         tipo: "ERRO",
         mensagem: "Toodos os campos precisam ser preenchidos",
-        tempoEmSeg: 4
-      })
+        tempoEmSeg: 4,
+      });
       return;
     }
     confirmUpdateSpecie();
-
-  }
+  };
 
   const customStyles = {
     content: {
@@ -217,61 +209,67 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
       marginTop: "25px",
       zIndex: "3",
-      overflow: "hidden"
+      overflow: "hidden",
     },
     overlay: {
-      backgroundColor: "var(--bg-modal)", 
+      backgroundColor: "var(--bg-modal)",
     },
   };
 
   return (
- 
-      <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
-        <SpecieUCModalStyleIndex>
+    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
+      <SpecieUCModalStyleIndex>
+        <button onClick={closeModal} className="closeButton">
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
 
-          <button onClick={closeModal} className="closeButton">
-            <FontAwesomeIcon icon={faXmark} />
-          </button>
+        {type === "Create" && <h2>Criar Nova Espécie</h2>}
+        {type === "Update" && <h2>Atualizar Espécie</h2>}
 
-          {type === "Create" && <h2>Criar Nova Espécie</h2>}
-          {type === "Update" && <h2>Atualizar Espécie</h2>}
-
-          <div className="DivInputNome">
-            <p>Nome</p>
-            <input value={especieI.nome} onChange={(event) => setNome(event.target.value)} />
-          </div>
-          <div className="DivInputDescricao">
-            <p>Descrição</p>
-            <textarea
-              value={especieI.descricao}
-              onChange={(event) => setDescricao(event.target.value)}
-              cols={25}
-              rows={4}
-              maxLength={400}
+        <div className="DivInputNome">
+          <p>Nome</p>
+          <input value={especieI.nome} onChange={(event) => setNome(event.target.value)} />
+        </div>
+        <div className="DivInputDescricao">
+          <p>Descrição</p>
+          <textarea
+            value={especieI.descricao}
+            onChange={(event) => setDescricao(event.target.value)}
+            cols={25}
+            rows={4}
+            maxLength={400}
+          />
+        </div>
+        {Object.entries(especieI.parametros).map(([parametro, valor]) => (
+          <div key={parametro} className="DivInputParametro">
+            <p>{parametro}</p>
+            <label htmlFor={`${parametro}MinInput`}>Min</label>
+            <input
+              id={`${parametro}MinInput`}
+              value={valor.min}
+              onChange={(event) => handleChangeMin(parametro as keyof Specie["parametros"], event)}
+            />
+            <label htmlFor={`${parametro}MaxInput`}>Máx</label>
+            <input
+              id={`${parametro}MaxInput`}
+              value={valor.max}
+              onChange={(event) => handleChangeMax(parametro as keyof Specie["parametros"], event)}
             />
           </div>
-          {Object.entries(especieI.parametros).map(([parametro, valor]) => (
-            <div key={parametro} className="DivInputParametro">
-              <p>{parametro}</p>
-              <label htmlFor={`${parametro}MinInput`}>Min</label>
-              <input
-                id={`${parametro}MinInput`}
-                value={valor.min}
-                onChange={(event) => handleChangeMin(parametro as keyof Specie["parametros"], event)}
-              />
-              <label htmlFor={`${parametro}MaxInput`}>Máx</label>
-              <input
-                id={`${parametro}MaxInput`}
-                value={valor.max}
-                onChange={(event) => handleChangeMax(parametro as keyof Specie["parametros"], event)}
-              />
-            </div>
-          ))}
-          {type === "Create" && !createSpecieIsLoading && <button className="criarAtualizarButton" onClick={handleCriarEspecie}>Criar</button>}
-          {type === "Update" && !updateSpecieIsLoading && <button className="criarAtualizarButton" onClick={handleAtualizarEspecie}>Atualizar</button>}
-          {updateSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="50px" logoWidth="50px"/>}
-          {createSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="50px" logoWidth="50px"/>}
-        </SpecieUCModalStyleIndex>
-      </Modal>
+        ))}
+        {type === "Create" && !createSpecieIsLoading && (
+          <button className="criarAtualizarButton" onClick={handleCriarEspecie}>
+            Criar
+          </button>
+        )}
+        {type === "Update" && !updateSpecieIsLoading && (
+          <button className="criarAtualizarButton" onClick={handleAtualizarEspecie}>
+            Atualizar
+          </button>
+        )}
+        {updateSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="50px" logoWidth="50px" />}
+        {createSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="50px" logoWidth="50px" />}
+      </SpecieUCModalStyleIndex>
+    </Modal>
   );
 };

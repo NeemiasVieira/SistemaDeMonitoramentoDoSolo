@@ -14,7 +14,7 @@ const PagRegistro = () => {
   const { registroEmMemoria: registro, backUrl } = useRegistrosContext();
   const { idRegistro } = useParams();
   const { record, recordIsLoading } = useGetRecord(idRegistro);
-  const { generatePdf, isLoading } = useGeneratePdf(idRegistro);
+  const { generatePdf } = useGeneratePdf(idRegistro);
 
   return (
     <PagRegistroStyle>

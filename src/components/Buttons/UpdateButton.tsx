@@ -6,7 +6,7 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 interface UpdateButtonProps {
-  openModal?: any
+  openModal?: () => void;
 }
 
 const ButtonStyle = styled.div`
@@ -33,23 +33,20 @@ const ButtonStyle = styled.div`
     color: #fff;
   }
 
-@media screen and (max-width: 480px){
-    button{
-      width: 28px;  
+  @media screen and (max-width: 480px) {
+    button {
+      width: 28px;
       height: 28px;
       padding: 18px;
     }
 
-    svg{
+    svg {
       font-size: 1rem;
     }
   }
-
 `;
 
 export const UpdateButton: React.FC<UpdateButtonProps> = ({ openModal }) => {
-
-
   return (
     <ButtonStyle>
       <button onClick={() => openModal()}>

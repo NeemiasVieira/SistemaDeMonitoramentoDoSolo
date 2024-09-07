@@ -25,7 +25,8 @@ interface allRecordsQueryParams {
 }
 
 const request = async (params?: allRecordsQueryParams) => {
-  let { idPlanta, intervaloDeBusca, intervaloDeDias } = params;
+  const { idPlanta } = params;
+  let { intervaloDeBusca, intervaloDeDias } = params;
 
   const token = `Bearer ${localStorage.getItem("token")}`;
 
@@ -42,12 +43,16 @@ const request = async (params?: allRecordsQueryParams) => {
   return await SMS_API.post<GraphQLResponse<getAllRecords>>("", { query, variables }, options);
 };
 
-  export const useGetAllRecords = (params: allRecordsQueryParams) => {
-
+export const useGetAllRecords = (params: allRecordsQueryParams) => {
   const { notificar } = useNotificacoes();
   const { idPlanta, intervaloDeBusca, intervaloDeDias } = params;
 
-  const { data, refetch: getAllRecords, isLoading: allRecordsIsLoading, error } = useQuery({
+  const {
+    data,
+    refetch: getAllRecords,
+    isLoading: allRecordsIsLoading,
+    error,
+  } = useQuery({
     queryFn: () => request({ idPlanta, intervaloDeBusca, intervaloDeDias }),
     queryKey: ["allRecords", idPlanta, intervaloDeBusca, intervaloDeDias],
     cacheTime: 10 * 60 * 1000,

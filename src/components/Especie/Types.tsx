@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 
-interface Parametro{
+interface Parametro {
   min: string;
   max: string;
 }
 
-interface Parametros{
+interface Parametros {
   nitrogenio: Parametro;
   fosforo: Parametro;
   potassio: Parametro;
@@ -15,7 +15,7 @@ interface Parametros{
   pH: Parametro;
 }
 
-export interface Specie{
+export interface Specie {
   id: string;
   nome: string;
   descricao: string;
@@ -24,8 +24,7 @@ export interface Specie{
 
 export interface EspecieProps {
   especie: Specie;
-  openModalUpdate: any;
+  openModalUpdate: () => void;
   setEspecieEscolhidaParaAtualizacao: Dispatch<SetStateAction<Specie>>;
-  confirmDeleteSpecie: (id: string) => void 
+  confirmDeleteSpecie: (id: string) => void;
 }
-
