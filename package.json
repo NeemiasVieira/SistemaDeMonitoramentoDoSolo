@@ -7,7 +7,7 @@
     "build": "tsc -b && vite build",
     "test": "test",
     "lint": "eslint ./src",
-    "prod": "vite preview --port 3000"
+    "prod": "vite preview --port 3000 --host"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
