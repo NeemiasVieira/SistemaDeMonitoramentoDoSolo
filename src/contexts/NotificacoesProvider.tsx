@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { Notificacoes } from "../components/Notificacao/Notificacao";
+import { Notificacoes } from "@components/Notificacao/Notificacao";
 import { v4 as uuidv4 } from "uuid";
 
 interface NotificacaoConstructor {
@@ -43,8 +43,8 @@ export class INotificacao {
 
 const mapearNotificacao = (mensagem: string): string => {
   switch (mensagem) {
-    case "jwt expired":
-      return "Sessão expirada, por favor faça login novamente";
+  case "jwt expired":
+    return "Sessão expirada, por favor faça login novamente";
   }
 };
 

@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { DadosRegistroStyle } from "./DadosRegistroStyle";
-import { FormatarDatas } from "../../assets/utils/FormatDate";
+import { FormatarDatas } from "@assets/utils/FormatDate";
 import { RecordQuery } from "../GraficoLinhas/Types";
+import { Tooltip } from "../Buttons/ToolTip";
 
 interface DadosRegistroProps {
   registro: RecordQuery;
@@ -104,6 +105,9 @@ export const DadosRegistro: React.FC<DadosRegistroProps> = ({ registro, ultimaAt
           <Info nomeInfo="Fósforo" valorInfo={registro.fosforo} unidadeMedida="mg/Kg" />
           <Info nomeInfo="Potássio" valorInfo={registro.potassio} unidadeMedida="mg/Kg" />
           <Info nomeInfo="Luz" valorInfo={registro.luz} unidadeMedida="%" />
+          <span className="toolTip">
+            <Tooltip texts={[`Valor registrado pelo sensor de luminosidade: ${registro.lux} lux`]} />
+          </span>
           <Info nomeInfo="Temperatura" valorInfo={registro.temperatura} unidadeMedida="°C" />
           <Info nomeInfo="Umidade" valorInfo={registro.umidade} unidadeMedida="%" />
           <Info nomeInfo="pH" valorInfo={registro.pH} />

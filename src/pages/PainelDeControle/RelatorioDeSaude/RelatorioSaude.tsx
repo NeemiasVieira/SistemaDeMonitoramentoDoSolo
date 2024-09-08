@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useGetRelatorioSaude } from "../../../services/API/Plants/useGetRelatorioSaude";
+import { useEffect } from "react";
+import { useGetRelatorioSaude } from "@services/API/Plants/useGetRelatorioSaude";
 import { useParams } from "react-router-dom";
-import { RelatorioDeSaude } from "../../../components/RelatorioDeSaude/RelatorioDeSaude";
-import { useGetSpecie } from "../../../services/API/Species/useGetSpecie";
+import { RelatorioDeSaude } from "@components/RelatorioDeSaude/RelatorioDeSaude";
+import { useGetSpecie } from "@services/API/Species/useGetSpecie";
 import { PagRelatorioDeSaudeStyle } from "./RelatorioSaudeStyle";
-import { BotaoVoltar } from "../../../components/Buttons/BotaoVoltar";
-import { Loading } from "../../../components/Loading/Loading";
-import { useGetPlant } from "../../../services/API/Plants/useGetPlant";
+import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
+import { Loading } from "@components/Loading/Loading";
+import { useGetPlant } from "@services/API/Plants/useGetPlant";
 
 const PagRelatorioSaude = () => {
   const { idPlanta } = useParams();
@@ -14,8 +14,7 @@ const PagRelatorioSaude = () => {
   const { getSpecie, specieData } = useGetSpecie({
     nome: planta?.especie,
   });
-  const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } =
-    useGetRelatorioSaude(idPlanta);
+  const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } = useGetRelatorioSaude(idPlanta);
 
   useEffect(() => {
     if (planta) {
@@ -29,9 +28,7 @@ const PagRelatorioSaude = () => {
     <PagRelatorioDeSaudeStyle>
       <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
       <div className="relatorioSaudeDiv">
-        {relatorioSaude && !erroRelatorioSaude && (
-          <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />
-        )}
+        {relatorioSaude && !erroRelatorioSaude && <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />}
       </div>
 
       {!relatorioSaude && <Loading minHeight={"70vh"} />}

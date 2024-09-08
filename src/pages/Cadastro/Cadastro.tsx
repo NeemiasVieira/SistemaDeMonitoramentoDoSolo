@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { CadastroMain } from "./CadastroStyle";
 import { Link } from "react-router-dom";
-import { Loading } from "../../components/Loading/Loading";
-import { CadastroConcluido } from "../../components/CadastroConcluido/CadastroConcluido";
+import { Loading } from "@components/Loading/Loading";
+import { CadastroConcluido } from "@components/CadastroConcluido/CadastroConcluido";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faAt, faA } from "@fortawesome/free-solid-svg-icons";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-import { useSignUp } from "../../services/API/Users/useSignup";
+import { useSignUp } from "@services/API/Users/useSignup";
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");

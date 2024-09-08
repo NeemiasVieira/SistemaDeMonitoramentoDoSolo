@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import { RecordQuery } from "../../../components/GraficoLinhas/Types";
+import { RecordQuery } from "@components/GraficoLinhas/Types";
 import SMS_API, { GraphQLResponse } from "../sms-api";
 
 interface LastRecord {
@@ -20,7 +20,12 @@ const getUltimoRegistro = async (idPlanta: string) => {
 export const useGetLastRecord = (idPlanta: string) => {
   const { notificar } = useNotificacoes();
 
-  const { data, refetch: getLastRecord, isLoading: lastRecordIsLoading, error } = useQuery({
+  const {
+    data,
+    refetch: getLastRecord,
+    isLoading: lastRecordIsLoading,
+    error,
+  } = useQuery({
     queryFn: () => getUltimoRegistro(idPlanta),
     queryKey: ["getLastRecord", idPlanta],
     cacheTime: 10 * 60 * 1000,

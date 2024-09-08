@@ -12,7 +12,7 @@ export const PerguntaFAQ: React.FC<PerguntaFAQProps> = ({ pergunta, resposta }) 
   const [exibirResposta, setExibirResposta] = useState<boolean>(false);
 
   return (
-    <SecaoPerguntaFaq exibirResposta={exibirResposta}>
+    <SecaoPerguntaFaq $exibirResposta={exibirResposta}>
       <div className={`faqs ${exibirResposta ? "ativo" : ""}`}>
         <div className="pergunta" onClick={() => setExibirResposta(!exibirResposta)}>
           <h3>{pergunta}</h3>

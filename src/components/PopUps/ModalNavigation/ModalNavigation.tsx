@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ModalNavigationStyle } from "./ModalNavigationStyle";
 import { ListaNavegacao } from "../../Navigation/ListaNavegacao";
-import { useIsMobile } from "../../../services/hooks/useIsMobile";
+import { useIsMobile } from "@services/hooks/useIsMobile";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
@@ -18,11 +18,10 @@ const customStyles = {
     flexFlow: "column wrap",
     border: "solid #000 1px",
     width: "100vw",
-    height: "100vh",
-    backgroundColor: "#aaa",
-    opacity: ".9",
-    paddingTop: "90px",
-    zIndex: "1000",
+    height: "100%",
+    backgroundColor: "var(--white)",
+    opacity: "1",
+    zIndex: "1",
   },
   overlay: {
     backgroundColor: "var(--bg-modal)",

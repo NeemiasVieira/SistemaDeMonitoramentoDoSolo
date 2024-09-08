@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays, faFloppyDisk, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { IntervaloDataInputModalStyle, IntervaloDataInputStyle } from "./IntervaloDatasInputModalStyle";
-import { FormatarDatas } from "../../../assets/utils/FormatDate";
+import { FormatarDatas } from "@assets/utils/FormatDate";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
@@ -16,7 +16,6 @@ interface IntervaloDatasInputProps {
 }
 
 export const IntervaloDatasInput: React.FC<IntervaloDatasInputProps> = ({ params }) => {
-
   const [d1, setD1] = useState<string>(FormatarDatas.isoToInputDate(params.dataDeInicioBusca ?? String(new Date())));
   const [d2, setD2] = useState<string>(FormatarDatas.isoToInputDate(params.dataDeFimBusca ?? String(new Date())));
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -27,19 +26,19 @@ export const IntervaloDatasInput: React.FC<IntervaloDatasInputProps> = ({ params
 
   const openModal = () => {
     setIsModalOpen(true);
-  }
+  };
 
   const saveFilters = () => {
     closeModal();
     params.setDataDeInicioBusca(d1);
     params.setDataDeFimBusca(d2);
-  }
+  };
 
   const cleanFilters = () => {
     closeModal();
     params.setDataDeInicioBusca(null);
     params.setDataDeFimBusca(null);
-  }
+  };
 
   const customStyles = {
     content: {
@@ -55,21 +54,23 @@ export const IntervaloDatasInput: React.FC<IntervaloDatasInputProps> = ({ params
       display: "flex",
       alignItems: "center",
       flexFlow: "column wrap",
-      border: "solid var(--border-primary) 1px", 
+      border: "solid var(--border-primary) 1px",
       backgroundColor: "var(--white)",
       opacity: ".9",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
-      overflow: "hidden"
+      overflow: "hidden",
     },
     overlay: {
-      backgroundColor: "var(--bg-modal)", 
+      backgroundColor: "var(--bg-modal)",
     },
   };
 
   return (
     <IntervaloDataInputStyle>
-      <button onClick={openModal} className="openButton"><FontAwesomeIcon icon={faCalendarDays} />
-      <span>Filtrar por datas</span></button>
+      <button onClick={openModal} className="openButton">
+        <FontAwesomeIcon icon={faCalendarDays} />
+        <span>Filtrar por datas</span>
+      </button>
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
         <IntervaloDataInputModalStyle>
           <button onClick={closeModal} className="closeButton">

@@ -59,7 +59,7 @@ export const useGetPlant = (idPlanta: string) => {
     enabled: true,
     onError: (e) => onErro(e as string),
     onSuccess: (data) => onSucesso(data),
-    }
+  }
   );
 
   const planta = data?.data?.data?.getPlant;

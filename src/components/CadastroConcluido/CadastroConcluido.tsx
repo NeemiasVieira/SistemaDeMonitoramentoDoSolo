@@ -1,4 +1,3 @@
-import React from "react";
 import { CadastroConcluidoMain } from "./CadastroConcluidoStyle";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

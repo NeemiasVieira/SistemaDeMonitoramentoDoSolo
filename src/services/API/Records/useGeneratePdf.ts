@@ -25,6 +25,15 @@ const request = async (recordId: string) => {
 export const useGeneratePdf = (recordId: string) => {
   const { notificar } = useNotificacoes();
 
+  const downloadPdf = useCallback((base64: string) => {
+    const link = document.createElement("a");
+    link.href = `data:application/pdf;base64,${base64}`;
+    link.download = `registro`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
+
   const onSuccesso = useCallback(
     (data: AxiosResponse<GraphQLResponse<generatePdf>, unknown>) => {
       const base64 = data?.data?.data?.generatePdf;
@@ -35,7 +44,7 @@ export const useGeneratePdf = (recordId: string) => {
         notificar({ tipo: "ERRO", mensagem: "Erro ao gerar PDF", tempoEmSeg: 4 });
       } // eslint-disable-next-line
     },
-    [notificar]
+    [notificar, downloadPdf]
   );
 
   const {
@@ -50,15 +59,6 @@ export const useGeneratePdf = (recordId: string) => {
     onSuccess: (data) => onSuccesso(data),
     retry: false,
   });
-
-  const downloadPdf = useCallback((base64: string) => {
-    const link = document.createElement("a");
-    link.href = `data:application/pdf;base64,${base64}`;
-    link.download = `registro`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }, []);
 
   return {
     isLoading,

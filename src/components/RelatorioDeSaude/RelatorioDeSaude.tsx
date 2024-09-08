@@ -8,7 +8,7 @@ import {
   faFaceFrownOpen as triste,
 } from "@fortawesome/free-solid-svg-icons";
 import { Alerta } from "../Alerta/Alerta";
-import { Saude } from "../../pages/PainelDeControle/Resumo/Resumo.types";
+import { Saude } from "@pages/PainelDeControle/Resumo/Resumo.types";
 import { SaudeParamsModal } from "../PopUps/SaudeParamsModal/SaudeParamsModal";
 import { Specie } from "../Especie/Types";
 

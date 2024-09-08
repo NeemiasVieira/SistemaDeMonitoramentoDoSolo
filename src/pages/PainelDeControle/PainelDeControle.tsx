@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Planta } from "../../components/Planta/Planta";
-import { Loading } from "../../components/Loading/Loading";
-import { useGetAllPlants } from "../../services/API/Plants/useGetAllPlants";
+import { useEffect } from "react";
+import { Planta } from "@components/Planta/Planta";
+import { Loading } from "@components/Loading/Loading";
+import { useGetAllPlants } from "@services/API/Plants/useGetAllPlants";
 import { PainelDeControleStyle } from "./PainelDeControleStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";

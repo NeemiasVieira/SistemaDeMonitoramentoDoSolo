@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { LoginMain } from "./LoginStyle";
 import { Link } from "react-router-dom";
-import { Loading } from "../../components/Loading/Loading";
+import { Loading } from "@components/Loading/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
-import { useLogin } from "../../services/API/Users/useLogin";
+import { useLogin } from "@services/API/Users/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");

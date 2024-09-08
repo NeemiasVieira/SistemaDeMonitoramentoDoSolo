@@ -1,4 +1,4 @@
-import { FormatarDatas } from "../../assets/utils/FormatDate";
+import { FormatarDatas } from "@assets/utils/FormatDate";
 import { RecordQuery } from "./Types";
 
 const unidades = {
@@ -14,32 +14,32 @@ export type TipoGrafico = keyof typeof unidades;
 export const selecionaGrafico = (tipoGrafico: TipoGrafico, records: RecordQuery[]) => {
   const newDataValues = records
     ? ({
-        NPK: [
-          ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
-          ...records.map((record) => [
-            FormatarDatas.diaMes(record.dataDeRegistro),
-            Number(record.nitrogenio),
-            Number(record.fosforo),
-            Number(record.potassio),
-          ]),
-        ],
-        temperatura: [
-          ["Dia", "Temperatura"],
-          ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.temperatura)]),
-        ],
-        umidade: [
-          ["Dia", "Umidade"],
-          ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.umidade)]),
-        ],
-        pH: [
-          ["Dia", "pH"],
-          ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.pH)]),
-        ],
-        luz: [
-          ["Dia", "Luz"],
-          ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.luz)]),
-        ],
-      } as const)
+      NPK: [
+        ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
+        ...records.map((record) => [
+          FormatarDatas.diaMes(record.dataDeRegistro),
+          Number(record.nitrogenio),
+          Number(record.fosforo),
+          Number(record.potassio),
+        ]),
+      ],
+      temperatura: [
+        ["Dia", "Temperatura"],
+        ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.temperatura)]),
+      ],
+      umidade: [
+        ["Dia", "Umidade"],
+        ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.umidade)]),
+      ],
+      pH: [
+        ["Dia", "pH"],
+        ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.pH)]),
+      ],
+      luz: [
+        ["Dia", "Luz"],
+        ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.luz)]),
+      ],
+    } as const)
     : undefined;
 
   return newDataValues[tipoGrafico] ?? "Unidade de medida não especificada";

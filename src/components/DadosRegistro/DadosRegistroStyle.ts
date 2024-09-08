@@ -23,10 +23,19 @@ export const DadosRegistroStyle = styled.div`
     color: var(--light-gray);
   }
 
+  .toolTip {
+    position: absolute;
+    margin: 0 0 145px 55px;
+  }
+
   @media screen and (max-width: 480px) {
     .Infos {
       width: 95vw;
       flex-flow: row wrap;
+    }
+
+    .toolTip {
+      margin: 0 0 208px 140 px;
     }
   }
 `;

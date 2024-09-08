@@ -5,7 +5,7 @@ import { useApplication } from "../../contexts/ApplicationContext";
 import { useThemes } from "../../contexts/ThemeProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import { useIsMobile } from "../../services/hooks/useIsMobile";
+import { useIsMobile } from "@services/hooks/useIsMobile";
 
 interface ListaNavegacaoProps {
   closeModal?: () => void;
@@ -21,7 +21,7 @@ export const ListaNavegacao: React.FC<ListaNavegacaoProps> = ({ closeModal }) =>
   const handleLogout = () => {
     closeModal();
     Logout();
-  }
+  };
 
   return (
     <ul className="navegacao">

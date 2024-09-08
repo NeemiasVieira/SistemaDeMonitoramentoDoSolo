@@ -5,8 +5,7 @@ export const CadastroMain = styled.main`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 0px;
-  min-height: 80vh;
+  margin: 0px;
   background-color: var(--bg-primary);
 
   h1 {
@@ -30,6 +29,7 @@ export const CadastroMain = styled.main`
     border-radius: 10px;
     padding: 20px;
     overflow-x: hidden;
+    margin-bottom: 3.5rem;
   }
 
   label {
@@ -79,7 +79,7 @@ export const CadastroMain = styled.main`
     font-size: 1rem;
   }
 
-  input:focus{
+  input:focus {
     outline: none;
   }
 

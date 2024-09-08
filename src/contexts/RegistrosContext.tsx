@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { Record } from "../services/API/Records/useGetAllRecordsPaginated";
+import { Record } from "@services/API/Records/useGetAllRecordsPaginated";
 
 interface RegistrosProviderProps {
   children: React.ReactNode;

@@ -1,5 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
-
+import { createGlobalStyle } from "styled-components";
 
 export const LightTheme = createGlobalStyle`
     body {
@@ -46,6 +45,6 @@ export const LightTheme = createGlobalStyle`
         --footer: #222;
         --border-hover: #222;
         --bg-modal: rgba(0, 0, 0, 0.5);
+        --red: #ff2200;
     }
 `;
-

@@ -9,6 +9,7 @@ export const ModalNavigationStyle = styled.div`
   h2 {
     margin: 40px 0;
     text-align: center;
+    color: var(--text-primary);
   }
 
   .logo {
@@ -53,8 +54,8 @@ export const ModalNavigationStyle = styled.div`
   .switch {
     position: relative;
     display: inline-block;
-    width: calc(60px * 0.75); 
-    height: calc(34px * 0.75); 
+    width: calc(60px * 0.75);
+    height: calc(34px * 0.75);
   }
 
   .switch input {
@@ -78,10 +79,10 @@ export const ModalNavigationStyle = styled.div`
   .slider:before {
     position: absolute;
     content: "";
-    height: calc(26px * 0.75); 
+    height: calc(26px * 0.75);
     width: calc(26px * 0.75);
-    left: calc(4px * 0.75); 
-    bottom: calc(4px * 0.75); 
+    left: calc(4px * 0.75);
+    bottom: calc(4px * 0.75);
     background-color: white;
     -webkit-transition: 0.4s;
     transition: 0.4s;
@@ -92,7 +93,7 @@ export const ModalNavigationStyle = styled.div`
   }
 
   input:focus + .slider {
-    box-shadow: 0 0 calc(1px * 0.75) #333; 
+    box-shadow: 0 0 calc(1px * 0.75) #333;
   }
 
   input:checked + .slider:before {
@@ -102,7 +103,7 @@ export const ModalNavigationStyle = styled.div`
   }
 
   .slider.round {
-    border-radius: calc(34px * 0.75); 
+    border-radius: calc(34px * 0.75);
   }
 
   .slider.round:before {

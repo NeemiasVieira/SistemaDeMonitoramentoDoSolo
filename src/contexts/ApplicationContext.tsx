@@ -1,34 +1,34 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Navigation } from "../components/Navigation/Navigation";
-import { Footer } from "../components/Footer/Footer";
+import { Navigation } from "@components/Navigation/Navigation";
+import { Footer } from "@components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
-import { limparLocalStorage } from "../assets/utils/limparLocalStorage";
+import { limparLocalStorage } from "@assets/utils/limparLocalStorage";
 
 const ApplicationBackgroundStyle = styled.div`
   display: flex;
   justify-content: space-between;
   flex-flow: column wrap;
-  min-height: 1000px;
+  min-height: calc(100vh - 70px);
   margin-top: 70px;
   max-width: 100vw;
   overflow-x: hidden;
 
   @media screen and (max-width: 480px) {
-    min-height: 1650px;
+    min-height: 1600px;
   }
 `;
 
-interface ICreateContext{
+interface ICreateContext {
   Logout: () => void;
   isAdmin: boolean;
   auth: boolean;
   setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
-  setAuth: React.Dispatch<React.SetStateAction<boolean>>
+  setAuth: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface IApplicationProvider{
+interface IApplicationProvider {
   children: React.ReactNode;
 }
 
@@ -38,7 +38,7 @@ const ApplicationContext = createContext<ICreateContext>({
   Logout: () => {},
   setIsAdmin: () => {},
   setAuth: () => {},
-})
+});
 
 export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }) => {
   const [auth, setAuth] = useState<boolean>(localStorage.getItem("token") ? true : false);
@@ -55,16 +55,16 @@ export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }
     queryClient.clear();
     limparLocalStorage();
     navigate("/");
-  }
+  };
 
   useEffect(() => {}, [auth]);
 
   return (
     <ApplicationContext.Provider value={{ Logout, auth, isAdmin, setIsAdmin, setAuth }}>
-        <ApplicationBackgroundStyle>
-          <Navigation/>
-            {children}
-          <Footer />
+      <ApplicationBackgroundStyle>
+        <Navigation />
+        {children}
+        <Footer />
       </ApplicationBackgroundStyle>
     </ApplicationContext.Provider>
   );

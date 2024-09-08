@@ -6,24 +6,33 @@ import { UpdateButton } from "../Buttons/UpdateButton";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 import { formatarNumeroComPontos } from "../PopUps/SaudeParamsModal/SaudeParamsModal";
 
-export const Especie: React.FC<EspecieProps> = ({ especie, openModalUpdate, setEspecieEscolhidaParaAtualizacao, confirmDeleteSpecie }) => {
-
+export const Especie: React.FC<EspecieProps> = ({
+  especie,
+  openModalUpdate,
+  setEspecieEscolhidaParaAtualizacao,
+  confirmDeleteSpecie,
+}) => {
   const { notificar } = useNotificacoes();
-
 
   const handleUpdate = () => {
     setEspecieEscolhidaParaAtualizacao(especie);
     openModalUpdate();
-  }
+  };
 
   const handleDelete = () => {
-    notificar({tipo: "NOTIFICACAO", mensagem: "Solicitação de exclusão confirmada", tempoEmSeg: 4});
-    confirmDeleteSpecie(especie.id);;
-  }
+    notificar({ tipo: "NOTIFICACAO", mensagem: "Solicitação de exclusão confirmada", tempoEmSeg: 4 });
+    confirmDeleteSpecie(especie.id);
+  };
 
   return (
     <EspecieStyle>
-      <h3>{especie.nome}</h3>
+      <div className="titleAndButtons">
+        <h3>{especie.nome}</h3>
+        <div className="buttonActions">
+          <UpdateButton openModal={handleUpdate} />
+          <DeleteButton onDelete={handleDelete} />
+        </div>
+      </div>
       <p className="descricao">{especie.descricao}</p>
       <table>
         <thead>
@@ -71,10 +80,6 @@ export const Especie: React.FC<EspecieProps> = ({ especie, openModalUpdate, setE
           </tr>
         </tbody>
       </table>
-      <div className="buttonActions">
-        <UpdateButton openModal={handleUpdate} />
-        <DeleteButton onDelete={handleDelete} />
-      </div>
     </EspecieStyle>
   );
 };

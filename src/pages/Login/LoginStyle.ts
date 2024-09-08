@@ -3,10 +3,9 @@ import styled from "styled-components";
 export const LoginMain = styled.main`
   display: flex;
   flex-flow: column wrap;
-  margin-top: 70px;
+  margin-top: 20px;
   align-items: center;
   justify-content: center;
-  min-height: 50vh;
   background-color: var(--bg-primary);
 
   h1 {
@@ -32,7 +31,7 @@ export const LoginMain = styled.main`
     border-radius: 10px;
     padding: 20px;
     overflow-x: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
   }
 
   label {
@@ -78,7 +77,7 @@ export const LoginMain = styled.main`
     max-width: 300px;
     border: none;
     background: var(--button-primary);
-    color: var(--text-primary)
+    color: var(--text-primary);
   }
 
   input:focus {
@@ -128,9 +127,8 @@ export const LoginMain = styled.main`
   }
 
   @media screen and (max-width: 480px) {
-
     h2 {
-      margin-top: 5px;
+      margin-top: 25px;
       font-size: 1.4rem;
     }
     form {

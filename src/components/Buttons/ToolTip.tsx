@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useIsMobile } from "@services/hooks/useIsMobile";
 import styled from "styled-components";
 
 const ToolTipStyle = styled.div`
@@ -39,7 +40,7 @@ const TooltipText = styled.span<{ $visible: boolean }>`
   -moz-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
 
-  @media screen and (width <=480px){
+  @media screen and (width <=480px) {
     width: 50vw;
     min-width: 100px;
   }
@@ -50,15 +51,18 @@ interface ToolTipProps {
 }
 
 export const Tooltip: React.FC<ToolTipProps> = ({ texts }) => {
-  const [visible, setVisible] = useState(false);
+  const isMobile = useIsMobile();
+  const [visible, setVisible] = useState<boolean>(false);
+  const [clicked, setCliked] = useState<boolean>(false);
+
+  const showToolTip = useMemo(() => {
+    return isMobile ? clicked : visible || clicked;
+  }, [visible, clicked, isMobile]);
 
   return (
-    <ToolTipStyle
-      onMouseEnter={() => setVisible(true)}
-      onMouseLeave={() => setVisible(false)}
-    >
-      <FontAwesomeIcon icon={faInfoCircle} onClick={() => setVisible(!visible)}/>
-      <TooltipText $visible={visible}>
+    <ToolTipStyle onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
+      <FontAwesomeIcon icon={faInfoCircle} onClick={() => setCliked(!clicked)} />
+      <TooltipText $visible={showToolTip}>
         {texts.map((line, index) => (
           <React.Fragment key={index}>
             {line}

@@ -1,4 +1,3 @@
-import React from "react";
 import { AplicacaoMain } from "./AplicacaoStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
@@ -20,8 +19,8 @@ const Aplicacao = () => {
           </p>
           <p>
             O sistema contará com controle em tempo real de onde estiver, monitorando a planta por imagens, que
-            conseguirão detectar a presença de doenças e/ou anomalias, e também contará com o controle de
-            nutrientes e estatísticas como: Nitrogênio, Fósforo, Potássio (NPK), umidade, temperatura e pH.
+            conseguirão detectar a presença de doenças e/ou anomalias, e também contará com o controle de nutrientes e
+            estatísticas como: Nitrogênio, Fósforo, Potássio (NPK), umidade, temperatura e pH.
           </p>
         </div>
       </section>

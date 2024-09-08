@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useApplication } from "../../contexts/ApplicationContext";
+import { useApplication } from "../../../contexts/ApplicationContext";
 
 interface RedirectProps {
   children: React.JSX.Element;

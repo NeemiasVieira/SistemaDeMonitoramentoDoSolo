@@ -11,28 +11,28 @@ export const EspecieStyle = styled.div`
   padding: 10px 20px 0 20px;
   overflow-x: hidden;
 
-  h3 {
-    margin: 15px 0 0 0;
-  }
-
   .descricao {
     color: var(--text-secondary);
     height: 70px;
     max-height: 70px;
     overflow: hidden;
-    font-size: .9rem;
+    font-size: 0.9rem;
     padding: 0;
+    margin-top: 0;
     margin-bottom: 5px;
     background-color: var(--white);
   }
 
+  .titleAndButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+  }
+
   .buttonActions {
-    position: relative;
-    top: -308px;
-    right: -88.7%;
     display: flex;
     gap: 10px;
-    height: 1px;
   }
 
   table {
@@ -55,25 +55,25 @@ export const EspecieStyle = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-  width: 85vw;
-  height: auto;
-  border-radius: 8px;
-  padding: 10px 15px 0 15px;
+    width: 85vw;
+    height: auto;
+    border-radius: 8px;
+    padding: 10px 15px 0 15px;
 
-  h3 {
-    margin: 15px 0 0 10px;
-  }
+    h3 {
+      margin: 15px 0 0 10px;
+    }
 
-  .descricao {
-    font-size: .8rem;
-    margin: 15px 0 15px 10px;
-    height: 75px;
-    max-height: 75px;
-  }
+    .descricao {
+      font-size: 0.8rem;
+      margin: 15px 0 15px 10px;
+      height: 75px;
+      max-height: 75px;
+    }
 
-  .buttonActions {
-    top: -330px;
-    right: -76%;
-  }
+    .buttonActions {
+      top: -330px;
+      right: -76%;
+    }
   }
 `;

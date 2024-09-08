@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { BotaoVoltar } from "../../../components/Buttons/BotaoVoltar";
-import { Loading } from "../../../components/Loading/Loading";
+import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
+import { Loading } from "@components/Loading/Loading";
 import { PagGraficoHistoricoStyle } from "./GraficoHistoricoStyle";
-import { useGetAllRecords } from "../../../services/API/Records/useGetAllRecords";
+import { useGetAllRecords } from "@services/API/Records/useGetAllRecords";
 import { useLocation } from "react-router-dom";
-import GraficoLinhas from "../../../components/GraficoLinhas/GraficoLinhas";
+import GraficoLinhas from "@components/GraficoLinhas/GraficoLinhas";
 
 const PagGraficoHistorico = () => {
   //States

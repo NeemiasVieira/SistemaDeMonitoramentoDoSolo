@@ -8,8 +8,8 @@ import styled from "styled-components";
 const BotaoVoltarStyle = styled.div`
   .buttonVoltar {
     position: absolute;
-    left: 4%;
-    top: 13%;
+    left: 75px;
+    top: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,8 +29,8 @@ const BotaoVoltarStyle = styled.div`
 
   @media screen and (max-width: 480px) {
     .buttonVoltar {
-      top: 16%;
-      left: 5%;
+      top: 110px;
+      left: 25px;
       margin: 0;
       width: 20px;
       height: 15px;

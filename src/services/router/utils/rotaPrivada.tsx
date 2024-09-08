@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useApplication } from "../../contexts/ApplicationContext";
+import { useApplication } from "../../../contexts/ApplicationContext";
 
 interface RotaPrivadaProps {
   children: React.JSX.Element;

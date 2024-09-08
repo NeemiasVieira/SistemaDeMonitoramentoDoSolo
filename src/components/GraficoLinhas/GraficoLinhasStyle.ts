@@ -11,19 +11,18 @@ export const SecaoGraficoLinhas = styled.section`
     font-size: 30px;
   }
 
-  .filtros{
+  .filtros {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-  
 
-    h3{
+    h3 {
       margin: 10px;
     }
   }
 
-  .selects{
+  .selects {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +34,7 @@ export const SecaoGraficoLinhas = styled.section`
     border-radius: 15px;
   }
 
-  .Select{
+  .Select {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,7 +42,11 @@ export const SecaoGraficoLinhas = styled.section`
     gap: 10px;
   }
 
-  .selectFiltro{
+  select {
+    cursor: pointer;
+  }
+
+  .selectFiltro {
     margin: 0;
     height: 40px;
     padding: 5px;
@@ -52,18 +55,18 @@ export const SecaoGraficoLinhas = styled.section`
     border: solid var(--border-primary) 1px;
   }
 
-  h2{
+  h2 {
     text-align: center;
   }
 
-  .Aviso{
+  .Aviso {
     text-align: center;
   }
-  .tituloSelect{
+  .tituloSelect {
     max-width: 185px;
   }
 
-  .graficoContainer{
+  .graficoContainer {
     width: auto;
     height: auto;
     display: flex;
@@ -73,20 +76,20 @@ export const SecaoGraficoLinhas = styled.section`
     background-color: #fff;
     border-radius: 10px;
     margin-bottom: 35px;
-    -webkit-box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
-    box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   }
 
   @media screen and (max-width: 480px) {
     width: 100vw;
     max-width: 470px;
 
-    .titulo{
+    .titulo {
       font-size: 1.7rem;
     }
 
-    .selects{
+    .selects {
       margin-top: 20px;
       flex-flow: column wrap;
       align-items: center;
@@ -95,8 +98,8 @@ export const SecaoGraficoLinhas = styled.section`
       background-color: transparent;
     }
 
-    .Select{
+    .Select {
       flex-flow: row nowrap;
     }
   }
-`
+`;

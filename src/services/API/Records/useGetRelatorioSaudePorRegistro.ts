@@ -20,14 +20,14 @@ interface Saude {
 }
 
 const request = async(idRegistro: string) => {
-    const token = `Bearer ${localStorage.getItem("token")}`
-    const options = { headers: { Authorization: token }}
-    const variables = { idRegistro };
-    const query = `query GetSaudeByRecordId($idRegistro: String!) {
+  const token = `Bearer ${localStorage.getItem("token")}`
+  const options = { headers: { Authorization: token }}
+  const variables = { idRegistro };
+  const query = `query GetSaudeByRecordId($idRegistro: String!) {
       getSaudeByRecordId(idRegistro: $idRegistro) { nitrogenio fosforo potassio luz umidade temperatura
             pH estadoGeral ultimaAtualizacao alertas imagem diagnostico }}`;                
 
-    return await SMS_API.post<GraphQLResponse<Saude>>('', {query, variables}, options)
+  return await SMS_API.post<GraphQLResponse<Saude>>('', {query, variables}, options)
 }
 
 export const useGetRelatorioSaudePorRegistro = (idPlanta: string) => {

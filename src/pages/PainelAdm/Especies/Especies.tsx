@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { EspeciesStyle } from "./EspeciesStyle";
-import { useGetAllSpecies } from "../../../services/API/Species/useGetAllSpecies";
-import { Especie } from "../../../components/Especie/Especie";
-import { Loading } from "../../../components/Loading/Loading";
+import { useGetAllSpecies } from "@services/API/Species/useGetAllSpecies";
+import { Especie } from "@components/Especie/Especie";
+import { Loading } from "@components/Loading/Loading";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SpecieUCModal } from "../../../components/PopUps/Create-Update/SpecieUCModal/SpecieUCModal";
-import { Specie } from "../../../components/Especie/Types";
+import { SpecieUCModal } from "@components/PopUps/Create-Update/SpecieUCModal/SpecieUCModal";
+import { Specie } from "@components/Especie/Types";
 import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import { useDeleteSpecie } from "../../../services/API/Species/useDeleteSpecie";
-import { BotaoVoltar } from "../../../components/Buttons/BotaoVoltar";
+import { useDeleteSpecie } from "@services/API/Species/useDeleteSpecie";
+import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
 
 const Especies = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -60,10 +60,29 @@ export const PlantaStyle = styled.div`
     border: solid var(--border-primary) 1px;
     color: var(--text-primary);
     background-color: var(--button-primary);
+  }
 
-    :hover {
-      transform: scale(1.1);
+  .buttonDetalhes:hover {
+    transform: scale(1.1);
+  }
+
+  .copyId {
+    color: var(--text-secondary);
+    border: none;
+    margin-left: 5px;
+    background-color: transparent;
+    font-style: italic;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 300ms ease 0s;
+    svg {
+      font-size: 1rem;
+      margin-left: 5px;
     }
+  }
+  .copyId:hover {
+    color: var(--dark-green);
+    font-weight: 800;
   }
 
   @media screen and (max-width: 480px) {

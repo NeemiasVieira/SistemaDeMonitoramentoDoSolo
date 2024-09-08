@@ -2,8 +2,7 @@ import { FooterStyle } from "./FooterStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faFacebook, faInstagram, faWhatsapp, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
-import React from "react";
-import logoUnisanta from "../../assets/img/unisantalogo.png";
+import logoUnisanta from "@assets/img/unisantalogo.png";
 
 export const Footer = () => {
   return (
@@ -13,8 +12,7 @@ export const Footer = () => {
           <div className="Intro">
             <h3>Trabalho de Conclusão de Curso</h3>
             <p>
-              Nós somos um grupo de 4 integrantes buscando melhorar a qualidade de crescimento e vida da sua
-              plantinha.
+              Nós somos um grupo de 4 integrantes buscando melhorar a qualidade de crescimento e vida da sua plantinha.
             </p>
             <img src={logoUnisanta} alt="Logo Unisanta"></img>
           </div>
@@ -37,10 +35,12 @@ export const Footer = () => {
             <h3>Serviços</h3>
             <ul>
               <li>
-                <a href="./">Monitoramento de Plantas</a>
+                <a href="/painel">Monitoramento de Plantas</a>
               </li>
               <li>
-                <a href="https://sms-api-oe8t.onrender.com/api/">Documentação da API</a>
+                <a href="https://sms.devneemiasvieira.com/api/" target="_blank" rel="noreferrer">
+                  Documentação da API
+                </a>
               </li>
               <li>
                 <Link to="/faq">FAQ</Link>
@@ -52,8 +52,7 @@ export const Footer = () => {
             <h3>Redes Sociais</h3>
 
             <div className="social-media-icons">
-
-              <a href="./">
+              <a href="https://wwww.facebook.com/neemias.vieiraf" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faFacebook} />
               </a>
               <a href="https://www.instagram.com/neemiasvieira/" target="_blank" rel="noreferrer">
@@ -72,11 +71,8 @@ export const Footer = () => {
               <a href="https://github.com/NeemiasVieira" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faGithub} />
               </a>
-              
             </div>
-
           </div>
-
         </div>
       </div>
 

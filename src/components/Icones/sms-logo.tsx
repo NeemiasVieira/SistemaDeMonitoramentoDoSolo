@@ -18,8 +18,8 @@ interface IconeLogoProps{
 export const IconeLogoSms: React.FC<IconeLogoProps> = ({path}) => {
 
   return (
-      <Link to={path}>
-        <ImagemLogo src={SMSLogo} alt="Logo do sistema de monitoramento do solo"></ImagemLogo>
-      </Link>
+    <Link to={path}>
+      <ImagemLogo src={SMSLogo} alt="Logo do sistema de monitoramento do solo"></ImagemLogo>
+    </Link>
   );
 };

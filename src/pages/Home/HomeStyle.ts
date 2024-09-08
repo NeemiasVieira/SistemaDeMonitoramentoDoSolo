@@ -40,7 +40,7 @@ export const HomeStyle = styled.main`
   }
 
   .IntroducaoLadoDireito {
-    width: 50vw;  
+    width: 50vw;
     padding: 0 7vw;
   }
 
@@ -55,7 +55,7 @@ export const HomeStyle = styled.main`
 
     img {
       width: 50vw;
-      max-width: 900px;
+      max-width: 1000px;
       height: 93vh;
       border-right: solid var(--border-primary) 3px;
     }
@@ -75,14 +75,14 @@ export const HomeStyle = styled.main`
     border: solid var(--border-primary) 1px;
     color: var(--text-primary);
     font-size: 1.2rem;
-    transition: all 200ms; 
+    transition: all 200ms;
 
-    svg{
-    font-size: 1.2rem;
-  }
+    svg {
+      font-size: 1.2rem;
+    }
   }
 
-  .saibaMais:hover{
+  .saibaMais:hover {
     transform: scale(1.1);
   }
 
@@ -119,7 +119,7 @@ export const HomeStyle = styled.main`
     }
 
     .introducaoTexto {
-      font-size: .9rem;
+      font-size: 0.9rem;
       max-width: 85vw;
       padding: 10px;
       height: auto;

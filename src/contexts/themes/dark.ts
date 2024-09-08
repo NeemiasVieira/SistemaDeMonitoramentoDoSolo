@@ -1,5 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
-
+import { createGlobalStyle } from "styled-components";
 
 export const DarkTheme = createGlobalStyle`
     body {
@@ -47,6 +46,6 @@ export const DarkTheme = createGlobalStyle`
     --footer: #000;
     --border-hover: #777;
     --bg-modal: rgba(50, 50, 50, 0.6);
+    --red: #ff2200;
     }
 `;
-

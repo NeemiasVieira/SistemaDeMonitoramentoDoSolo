@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SecaoPerguntaFaq = styled.div<{ exibirResposta: boolean }>`
+export const SecaoPerguntaFaq = styled.div<{ $exibirResposta: boolean }>`
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -27,7 +27,7 @@ export const SecaoPerguntaFaq = styled.div<{ exibirResposta: boolean }>`
     font-size: 1.5em;
     transition: transform 0.1s ease-in;
     margin-right: 15px;
-    transform: ${(props) => (props.exibirResposta ? "rotate(90deg)" : "rotate(0deg)")};
+    transform: ${(props) => (props.$exibirResposta ? "rotate(90deg)" : "rotate(0deg)")};
   }
 
   .pergunta h3 {
@@ -101,5 +101,5 @@ export const SecaoPerguntaFaq = styled.div<{ exibirResposta: boolean }>`
 `;
 
 SecaoPerguntaFaq.defaultProps = {
-  exibirResposta: false,
+  $exibirResposta: false,
 };
