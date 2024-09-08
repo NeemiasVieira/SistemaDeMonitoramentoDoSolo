@@ -28,7 +28,7 @@ export const useGeneratePdf = (recordId: string) => {
   const downloadPdf = useCallback((base64: string) => {
     const link = document.createElement("a");
     link.href = `data:application/pdf;base64,${base64}`;
-    link.download = `registro`;
+    link.download = `registro_${recordId.slice(-7)}`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

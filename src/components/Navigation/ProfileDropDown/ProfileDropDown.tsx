@@ -5,7 +5,7 @@ import { useThemes } from "../../../contexts/ThemeProvider";
 import { useApplication } from "../../../contexts/ApplicationContext";
 import { Link } from "react-router-dom";
 import { ProfileDropDownStyle } from "./ProfileDropDownStyle";
-import { formarIniciais } from "../../../assets/utils/formatarIniciais";
+import { formarIniciais } from "@assets/utils/formatarIniciais";
 
 export const ProfileDropDown = () => {
   const { theme, toggleTheme } = useThemes();

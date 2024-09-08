@@ -18,24 +18,28 @@ const PagRegistro = () => {
   return (
     <PagRegistroStyle>
       <BotaoVoltar path={backUrl ?? `/painel`} />
-      <h1>Registro Detalhado</h1>
+      <h1>Detalhes do Registro</h1>
 
       {!registro && recordIsLoading && <Loading minHeight="50vh" />}
 
       {(registro || record) && (
         <>
-          {registro && <h2 className="nuRegistro">{registro?.nuRegistro}º</h2>}
-          <Link to={`/painel/registros/${idRegistro}/saude`} className="botaoSaude">
-            <FontAwesomeIcon icon={faFileWaveform} /> Saúde do Relatório
-          </Link>
-          <button className="BotaoDownloadPDF" onClick={() => generatePdf()}>
-            <FontAwesomeIcon icon={faFilePdf} />
-            Download PDF
-          </button>
+          <section className="informacoes">
+            {registro && <h2 className="nuRegistro">Registro n° {registro?.nuRegistro}</h2>}
+            <div className="botoesAcao">
+              <Link to={`/painel/registros/${idRegistro}/saude`} className="botaoSaude">
+                <FontAwesomeIcon icon={faFileWaveform} className="ico" /> Saúde do Relatório
+              </Link>
+              <button className="BotaoDownloadPDF" onClick={() => generatePdf()}>
+                <FontAwesomeIcon icon={faFilePdf} className="ico" />
+                Baixar Registro
+              </button>
+            </div>
+          </section>
 
-          <div className="DadosSensores">
+          <section className="DadosSensores">
             <DadosRegistro registro={registro ?? record} ultimaAtualizacao={false} />
-          </div>
+          </section>
 
           {(registro?.imagem || record?.imagem) && (
             <div className="imagemEDiagnosticoDiv">

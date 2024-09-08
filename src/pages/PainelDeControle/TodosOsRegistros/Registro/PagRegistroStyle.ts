@@ -11,16 +11,66 @@ export const PagRegistroStyle = styled.main`
     text-align: center;
   }
 
+  .informacoes {
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    width: auto;
+    height: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 50px;
+    border: solid var(--border-primary) 1px;
+    background-color: var(--white);
+  }
+
   .nuRegistro {
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 700;
     margin: 10px 0 30px 0;
     text-align: center;
-    width: 150px;
+    width: 300px;
     background-color: var(--white);
     padding-left: 10px;
     border-radius: 10px;
+  }
 
+  .botoesAcao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 30px;
+  }
+
+  .botaoSaude,
+  .BotaoDownloadPDF {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    color: var(--text-primary);
+    font-size: 1rem;
+    padding: 10px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: solid var(--border-primary) 1px;
+    transition: all 200ms;
+    gap: 5px;
+    width: 200px;
+  }
+
+  .botaoSaude:hover,
+  .BotaoDownloadPDF:hover {
+    transform: scale(1.1);
+  }
+
+  .BotaoDownloadPDF {
+    cursor: pointer;
+  }
+
+  .ico {
+    font-size: 1.8rem;
   }
 
   .DadosSensores {
@@ -41,7 +91,6 @@ export const PagRegistroStyle = styled.main`
     width: 60vw;
     max-width: 700px;
     margin-bottom: 50px;
-
 
     h3 {
       margin: 0 0 30px 0;
@@ -80,53 +129,26 @@ export const PagRegistroStyle = styled.main`
     }
   }
 
-  .botaoSaude, .BotaoDownloadPDF{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--white);
-    color: var(--text-primary);
-    font-size: 1rem;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    border: solid var(--border-primary) 1px;
-    transition: all 200ms;
-    gap: 5px;
-    width: 160px;
-  }
-
-  .botaoSaude:hover, .BotaoDownloadPDF:hover{
-    transform: scale(1.1);
-  }
-
-  .BotaoDownloadPDF{
-    cursor: pointer;
-  }
-
-
-
-  @media screen and (max-width: 480px){
-
-    margin-top:60px;
+  @media screen and (max-width: 480px) {
+    margin-top: 60px;
 
     .DadosSensores {
-    max-width: 90vw;
-    padding: 0;
-    border-radius: 8px;
-  }
-
-  .imagemEDiagnostico{
-    flex-flow: column wrap;
-
-    img{
-      width: 200px;
-      height: 200px;
+      max-width: 90vw;
+      padding: 0;
+      border-radius: 8px;
     }
 
-    img:hover{
-      transform: scale(1.3);
+    .imagemEDiagnostico {
+      flex-flow: column wrap;
+
+      img {
+        width: 200px;
+        height: 200px;
+      }
+
+      img:hover {
+        transform: scale(1.3);
+      }
     }
-  }
   }
 `;
