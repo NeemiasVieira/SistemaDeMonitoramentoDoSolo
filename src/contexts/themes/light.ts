@@ -41,10 +41,12 @@ export const LightTheme = createGlobalStyle`
         --text-primary: #000;
         --border-primary: #ccc;
         --border-secondary: #222;
+        --border-constrast: #000;
         --button-primary: #fff;
         --footer: #222;
         --border-hover: #222;
         --bg-modal: rgba(0, 0, 0, 0.5);
         --red: #ff2200;
+        --light-gray: #ddd;
     }
 `;

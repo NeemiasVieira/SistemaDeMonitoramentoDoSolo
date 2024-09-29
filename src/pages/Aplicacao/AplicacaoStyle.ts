@@ -6,7 +6,11 @@ export const AplicacaoMain = styled.main`
   align-items: center;
   background-color: var(--bg-primary);
   justify-content: center;
-  min-height: 80vh;
+  margin-top: 80px;
+
+  h1 {
+    margin-bottom: 30px;
+  }
 
   .SecaoIntroducao {
     display: flex;
@@ -15,6 +19,7 @@ export const AplicacaoMain = styled.main`
     justify-content: center;
     align-items: center;
     width: 60vw;
+    margin-bottom: 30px;
 
     p {
       margin: 0 0 10px 0;

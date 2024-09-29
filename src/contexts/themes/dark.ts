@@ -42,10 +42,12 @@ export const DarkTheme = createGlobalStyle`
     --text-primary: #fff;
     --border-primary: #555;
     --border-secondary: #ccc;
+    --border-constrast: #fff;
     --button-primary: #333;
     --footer: #000;
     --border-hover: #777;
     --bg-modal: rgba(50, 50, 50, 0.6);
     --red: #ff2200;
+    --light-gray: #222;
     }
 `;

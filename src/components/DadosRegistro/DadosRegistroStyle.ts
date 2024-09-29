@@ -30,12 +30,19 @@ export const DadosRegistroStyle = styled.div`
 
   @media screen and (max-width: 480px) {
     .Infos {
-      width: 95vw;
+      width: 90vw;
       flex-flow: row wrap;
     }
 
     .toolTip {
-      margin: 0 0 208px 140 px;
+      margin: 0 0 208px 140px;
+    }
+
+    .InfoUltimaAtualizacao {
+      max-width: 80%;
+      font-size: 16px;
+      text-align: center;
+      padding-bottom: 20px;
     }
   }
 `;

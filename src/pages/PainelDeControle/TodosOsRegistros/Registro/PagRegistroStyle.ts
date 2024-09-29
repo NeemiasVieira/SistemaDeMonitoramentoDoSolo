@@ -132,6 +132,35 @@ export const PagRegistroStyle = styled.main`
   @media screen and (max-width: 480px) {
     margin-top: 60px;
 
+    .informacoes {
+      max-width: 100%;
+      margin: 0;
+      padding: 20px 4vw;
+    }
+
+    .botoesAcao {
+      gap: 20px;
+    }
+
+    .botaoSaude,
+    .BotaoDownloadPDF {
+      width: 148px;
+      font-size: 1rem;
+    }
+
+    .botaoSaude:hover,
+    .BotaoDownloadPDF:hover {
+      transform: scale(1);
+    }
+
+    .BotaoDownloadPDF {
+      cursor: pointer;
+    }
+
+    .ico {
+      font-size: 1.5rem;
+    }
+
     .DadosSensores {
       max-width: 90vw;
       padding: 0;
