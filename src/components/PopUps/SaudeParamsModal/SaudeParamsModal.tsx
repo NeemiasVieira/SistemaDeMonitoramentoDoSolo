@@ -3,9 +3,9 @@ import React, { useMemo } from "react";
 import { IndexModal } from "../IndexModal/IndexModal";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SaudeParamsModalStyle } from "./SaudeParamsModalStyle";
 import { Column, useTable } from "react-table";
 import { Specie } from "../../Especie/Types";
+import { useIsMobile } from "@services/hooks/useIsMobile";
 
 export const formatarNumeroComPontos = (numero: string): string => {
   const regex = /(\d)(?=(\d{3})+(?!\d))/g;
@@ -23,7 +23,7 @@ const ButtonOpenModal = styled.button`
   align-items: center;
   gap: 10px;
   letter-spacing: 1px;
-  background-color: var(--white);
+  background-color: var(--contrast);
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 1.1rem;
@@ -60,7 +60,7 @@ const StyledTable = styled.table`
 
 const StyledHeaderCell = styled.th`
   border-bottom: 1px solid var(--border-secondary);
-  background-color: var(--white);
+  background-color: var(--contrast);
   color: var(--text-primary);
   font-weight: bold;
   padding: 10px;
@@ -77,7 +77,7 @@ const StyledBodyCell = styled.td`
   padding: 5px;
   border-right: 1px solid var(--border-secondary);
   border-bottom: solid 1px var(--border-secondary);
-  background-color: var(--white);
+  background-color: var(--contrast);
 `;
 
 interface SaudeParamsModalProps {
@@ -86,6 +86,7 @@ interface SaudeParamsModalProps {
 
 export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) => {
   const { nitrogenio, fosforo, potassio, luz, umidade, temperatura, pH } = especie.parametros;
+  const isMobile = useIsMobile();
 
   const data = useMemo(
     () => [
@@ -120,43 +121,39 @@ export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) =
   return (
     <IndexModal
       botaoOpenModal={BotaoOpenModal}
-      height="43vh"
-      width="80vw"
-      minHeight="35vh"
-      minWidth="35vw"
-      maxHeight="500px"
-      maxWidth="600px"
+      height="340px"
+      width={isMobile ? "330px" : "600px"}
+      paddingContent="20px"
+      title="Faixas saudáveis"
+      icon={faCircleQuestion}
     >
-      <SaudeParamsModalStyle>
-        <h2>Faixas saudáveis </h2>
-        <StyledTable {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
-                {headerGroup.headers.map((column) => (
-                  <StyledHeaderCell {...column.getHeaderProps()} key={column.id}>
-                    {column.render("Header")}
-                  </StyledHeaderCell>
+      <StyledTable {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+              {headerGroup.headers.map((column) => (
+                <StyledHeaderCell {...column.getHeaderProps()} key={column.id}>
+                  {column.render("Header")}
+                </StyledHeaderCell>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()} key={row.id}>
+                {row.cells.map((cell) => (
+                  <StyledBodyCell {...cell.getCellProps()} key={cell.value}>
+                    {cell.render("Cell")}
+                  </StyledBodyCell>
                 ))}
               </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()} key={row.id}>
-                  {row.cells.map((cell) => (
-                    <StyledBodyCell {...cell.getCellProps()} key={cell.value}>
-                      {cell.render("Cell")}
-                    </StyledBodyCell>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </StyledTable>
-      </SaudeParamsModalStyle>
+            );
+          })}
+        </tbody>
+      </StyledTable>
     </IndexModal>
   );
 };

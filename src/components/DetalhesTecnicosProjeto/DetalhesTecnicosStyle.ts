@@ -5,6 +5,7 @@ export const DetalhesTecnicosStyle = styled.section`
   flex-flow: column wrap;
   margin-bottom: 20px;
   justify-content: center;
+  align-items: center;
 
   .diagramaARQ {
     margin: 70px 0;
@@ -54,10 +55,13 @@ export const DetalhesTecnicosStyle = styled.section`
 
   .divtecnologias {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-rows: repeat(auto-fill, 360px);
     justify-items: center;
-    width: auto;
-    height: auto;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    max-width: 860px;
     padding: 0 30px;
     gap: 20px;
   }
@@ -70,8 +74,8 @@ export const DetalhesTecnicosStyle = styled.section`
     display: flex;
     align-items: center;
     flex-flow: column wrap;
-    height: 320px;
-    background-color: var(--white);
+    height: 360px;
+    background-color: var(--contrast);
     border-radius: 10px;
     width: 200px;
     max-width: 200px;
@@ -79,7 +83,7 @@ export const DetalhesTecnicosStyle = styled.section`
     h3 {
       text-align: center;
       width: 100%;
-      margin: 20px 5px;
+      margin: 20px 0;
       font-size: 1.2rem;
       font-weight: 600;
     }
@@ -91,7 +95,11 @@ export const DetalhesTecnicosStyle = styled.section`
       font-style: italic;
       height: 50%;
       margin: 10px 0;
-      padding: 0;
+      padding: 0 10px;
+    }
+
+    li {
+      margin-left: 5px;
     }
 
     a {
@@ -149,7 +157,7 @@ export const DetalhesTecnicosStyle = styled.section`
 
     .tecnologia {
       height: 300px;
-      background-color: var(--white);
+      background-color: var(--contrast);
       border-radius: 10px;
       width: 200px;
       max-width: 100vw;
@@ -183,21 +191,6 @@ export const DetalhesTecnicosStyle = styled.section`
         color: var(--dark-green);
         font-weight: 700;
       }
-    }
-  }
-  @media screen and (min-width: 701px) and (max-width: 950px) {
-    .divtecnologias {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  @media screen and (min-width: 481px) and (max-width: 700px) {
-    .divtecnologias {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media screen and (min-width: 951px) {
-    .divtecnologias {
-      grid-template-columns: repeat(4, 1fr);
     }
   }
 `;

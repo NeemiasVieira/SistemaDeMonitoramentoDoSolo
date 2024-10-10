@@ -8,21 +8,21 @@ export const ResumoStyle = styled.main`
   gap: 20px;
   background-color: var(--bg-primary);
 
-  .identificacaoDaPlanta{
+  .identificacaoDaPlanta {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
   }
 
-  .nomeDaPlanta{
+  .nomeDaPlanta {
     font-size: 40px;
     letter-spacing: 1.5px;
     font-weight: 700;
     margin: 0;
   }
 
-  .especieDaPlanta{
+  .especieDaPlanta {
     font-size: 25px;
     letter-spacing: 1.5px;
     font-weight: 600;
@@ -35,7 +35,6 @@ export const ResumoStyle = styled.main`
     margin: 60px 0 15px 0;
   }
 
-
   select {
     display: flex;
     justify-content: center;
@@ -46,7 +45,7 @@ export const ResumoStyle = styled.main`
     font-size: 16px;
     border: 1px solid #bbb;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--white);
     color: #333;
     margin: 0 0 20px 0;
     height: 40px;

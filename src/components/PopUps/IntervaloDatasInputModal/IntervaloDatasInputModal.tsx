@@ -4,6 +4,7 @@ import { faCalendarDays, faFloppyDisk, faTrash, faXmark } from "@fortawesome/fre
 import { IntervaloDataInputModalStyle, IntervaloDataInputStyle } from "./IntervaloDatasInputModalStyle";
 import { FormatarDatas } from "@assets/utils/FormatDate";
 import Modal from "react-modal";
+import { useIsMobile } from "@services/hooks/useIsMobile";
 Modal.setAppElement("#root");
 
 interface IntervaloDatasInputProps {
@@ -19,6 +20,7 @@ export const IntervaloDatasInput: React.FC<IntervaloDatasInputProps> = ({ params
   const [d1, setD1] = useState<string>(FormatarDatas.isoToInputDate(params.dataDeInicioBusca ?? String(new Date())));
   const [d2, setD2] = useState<string>(FormatarDatas.isoToInputDate(params.dataDeFimBusca ?? String(new Date())));
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const isMobile = useIsMobile();
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -43,9 +45,8 @@ export const IntervaloDatasInput: React.FC<IntervaloDatasInputProps> = ({ params
   const customStyles = {
     content: {
       minHeight: "180px",
-      height: "200px",
-      width: "30vw",
-      minWidth: "350px",
+      height: "340px",
+      width: isMobile ? "250px" : "350px",
       maxWidth: "400px",
       top: "50%",
       left: "50%",
@@ -54,11 +55,11 @@ export const IntervaloDatasInput: React.FC<IntervaloDatasInputProps> = ({ params
       display: "flex",
       alignItems: "center",
       flexFlow: "column wrap",
-      border: "solid var(--border-primary) 1px",
-      backgroundColor: "var(--white)",
-      opacity: ".9",
+      border: "none",
+      backgroundColor: "var(--contrast)",
       boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
       overflow: "hidden",
+      padding: 0,
     },
     overlay: {
       backgroundColor: "var(--bg-modal)",
@@ -73,9 +74,16 @@ export const IntervaloDatasInput: React.FC<IntervaloDatasInputProps> = ({ params
       </button>
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
         <IntervaloDataInputModalStyle>
-          <button onClick={closeModal} className="closeButton">
-            <FontAwesomeIcon icon={faXmark} />
-          </button>
+          <div className="header">
+            <h3>
+              <FontAwesomeIcon icon={faCalendarDays} />
+              Filtrar por datas
+            </h3>
+            <button onClick={closeModal} className="closeButton">
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+          </div>
+
           <label htmlFor="inputDataInicio">Data de início</label>
           <input type="date" id="inputDataInicio" value={d1} onChange={(e) => setD1(e.target.value)} />
           <label htmlFor="inputDataFim">Data de fim</label>

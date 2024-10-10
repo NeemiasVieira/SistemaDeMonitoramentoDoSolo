@@ -20,7 +20,7 @@ export const DadosRegistroStyle = styled.div`
     font-size: 20px;
     letter-spacing: 1.5px;
     margin-top: 50px;
-    color: var(--light-gray);
+    color: var(--text-secondary);
   }
 
   .toolTip {

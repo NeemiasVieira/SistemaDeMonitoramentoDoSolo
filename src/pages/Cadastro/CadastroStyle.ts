@@ -34,7 +34,7 @@ export const CadastroMain = styled.main`
 
   label {
     text-align: center;
-    color: #fff;
+    color: var(--white);
     font-weight: 600;
     margin: 5px 0;
     font-size: 1rem;
@@ -108,7 +108,7 @@ export const CadastroMain = styled.main`
 
   .sugestaoCadastro {
     margin-top: 20px;
-    color: #fff;
+    color: var(--white);
     display: flex;
     font-size: 1rem;
     flex-flow: row nowrap;
@@ -122,7 +122,7 @@ export const CadastroMain = styled.main`
     }
 
     .jaPossuiCadastro {
-      color: #fff;
+      color: var(--white);
       font-weight: 600;
     }
   }
@@ -158,7 +158,7 @@ export const CadastroMain = styled.main`
     }
 
     .sugestaoCadastro {
-      color: #fff;
+      color: var(--white);
       overflow-x: hidden;
       max-width: 60vw;
       margin-top: 5px;

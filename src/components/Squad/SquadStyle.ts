@@ -5,10 +5,8 @@ export const SquadStyle = styled.section`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  width: auto;
-  max-width: 1000px;
   padding: 40px;
-  background-color: var(--white);
+  background-color: var(--contrast);
   border-radius: 25px;
   margin-bottom: 50px;
   -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
@@ -23,7 +21,11 @@ export const SquadStyle = styled.section`
 
   .pessoas {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, 215px);
+    grid-template-rows: repeat(auto-fill, 320px);
+    justify-content: center;
+    width: 60vw;
+    max-width: 1000px;
     gap: 30px;
   }
 
@@ -33,7 +35,7 @@ export const SquadStyle = styled.section`
     align-items: center;
     flex-flow: column wrap;
     width: 180px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     border-radius: 20px;
     padding: 15px;
     border: solid var(--border-primary);
@@ -56,7 +58,7 @@ export const SquadStyle = styled.section`
     }
   }
 
-  @media screen and (max-width: 480px) {
+  /* @media screen and (max-width: 480px) {
     .pessoas {
       grid-template-columns: repeat(1fr, 1);
     }
@@ -71,5 +73,5 @@ export const SquadStyle = styled.section`
     .pessoas {
       grid-template-columns: repeat(1, 1fr);
     }
-  }
+  } */
 `;

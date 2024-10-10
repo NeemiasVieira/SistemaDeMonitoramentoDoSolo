@@ -64,7 +64,7 @@ export const RelatorioDeSaudeStyle = styled.section`
     align-items: center;
     flex-flow: column wrap;
     gap: 8px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     width: 400px;
     border-radius: 20px;
     padding: 10px;
@@ -102,7 +102,7 @@ export const RelatorioDeSaudeStyle = styled.section`
     display: flex;
     justify-content: center;
     flex-flow: row nowrap;
-    background-color: var(--white);
+    background-color: var(--contrast);
     border-radius: 15px;
   }
 

@@ -6,7 +6,7 @@ export const RegistroStyle = styled.div`
   align-items: center;
   flex-flow: row nowrap;
   gap: 20px;
-  background-color: var(--white);
+  background-color: var(--contrast);
   margin: 10px 0;
   width: 50vw;
   min-width: 500px;
@@ -34,7 +34,7 @@ export const RegistroStyle = styled.div`
     justify-content: center;
     align-items: center;
     border: solid var(--border-primary) 1px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     border-radius: 5px;
     width: 120px;
     padding: 7px 0;
@@ -53,20 +53,20 @@ export const RegistroStyle = styled.div`
     padding: 0 20px;
     min-width: 10px;
 
-    p{
-      font-size: .7rem;
+    p {
+      font-size: 0.7rem;
       width: 220px;
     }
 
-    span{
+    span {
       width: 20px;
     }
 
-    button{
+    button {
       width: 125px;
       height: 40px;
       padding: 0 10px;
-      font-size: .8rem
+      font-size: 0.8rem;
     }
   }
 `;

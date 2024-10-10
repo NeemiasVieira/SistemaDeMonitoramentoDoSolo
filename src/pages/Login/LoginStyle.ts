@@ -36,7 +36,7 @@ export const LoginMain = styled.main`
 
   label {
     text-align: center;
-    color: #fff;
+    color: var(--white);
     font-weight: 600;
     margin: 10px 0;
     font-size: 1.2rem;
@@ -104,7 +104,7 @@ export const LoginMain = styled.main`
 
   .crieSuaConta {
     text-decoration: none;
-    color: #fff;
+    color: var(--white);
     font-size: 1rem;
     font-weight: 600;
   }
@@ -122,7 +122,7 @@ export const LoginMain = styled.main`
     p {
       font-size: 0.9rem;
       font-weight: 300;
-      color: #fff;
+      color: var(--white);
     }
   }
 

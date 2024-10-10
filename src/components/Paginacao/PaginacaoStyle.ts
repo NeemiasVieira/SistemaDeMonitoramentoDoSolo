@@ -13,7 +13,7 @@ export const PaginacaoStyle = styled.div`
   }
 
   select {
-    background-color: var(--white);
+    background-color: var(--contrast);
     color: var(--text-primary);
     padding: 2px;
     border-radius: 5px;

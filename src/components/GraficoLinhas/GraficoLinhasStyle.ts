@@ -29,7 +29,7 @@ export const SecaoGraficoLinhas = styled.section`
     flex-flow: row nowrap;
     gap: 15px;
     margin-bottom: 20px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     padding: 10px 20px;
     border-radius: 15px;
   }
@@ -48,9 +48,9 @@ export const SecaoGraficoLinhas = styled.section`
 
   .selectFiltro {
     margin: 0;
-    height: 40px;
+    height: 35px;
     padding: 5px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     color: var(--text-primary);
     border: solid var(--border-primary) 1px;
   }
@@ -73,7 +73,7 @@ export const SecaoGraficoLinhas = styled.section`
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 10px;
     margin-bottom: 35px;
     -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
@@ -96,10 +96,17 @@ export const SecaoGraficoLinhas = styled.section`
       margin-bottom: 20px;
       padding: 0 15px;
       background-color: transparent;
+      gap: 5px;
     }
 
     .Select {
-      flex-flow: row nowrap;
+      flex-flow: column wrap;
+      align-items: flex-start;
+      gap: 0px;
+    }
+
+    .selectFiltro {
+      width: 80vw;
     }
   }
 `;

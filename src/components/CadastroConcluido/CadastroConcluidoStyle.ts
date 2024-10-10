@@ -7,7 +7,7 @@ export const CadastroConcluidoMain = styled.main`
   min-height: 80vh;
 
   section {
-    background: var(--white);
+    background: var(--contrast);
     width: 500px;
     height: 200px;
     display: flex;
@@ -17,9 +17,9 @@ export const CadastroConcluidoMain = styled.main`
     border-radius: 10px;
     border: solid var(--border-primary) 1px;
     gap: 20px;
-    -webkit-box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
-    box-shadow: 2px -1px 25px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   }
 
   h2 {
@@ -41,7 +41,7 @@ export const CadastroConcluidoMain = styled.main`
     text-decoration: none;
     border: solid var(--border-primary) 1px;
     border-radius: 5px;
-    background: var(--white);
+    background: var(--contrast);
     text-align: center;
     padding: 5px 0;
     transition: transform 300ms;
@@ -51,14 +51,13 @@ export const CadastroConcluidoMain = styled.main`
     transform: scale(1.1);
   }
 
-  @media screen and (max-width: 480px){
-
-    h2{
+  @media screen and (max-width: 480px) {
+    h2 {
       font-size: 1.2rem;
       text-align: center;
     }
 
-    section{
+    section {
       max-width: 70vw;
       padding: 20px;
     }

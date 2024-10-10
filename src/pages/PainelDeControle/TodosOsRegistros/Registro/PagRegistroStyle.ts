@@ -17,11 +17,11 @@ export const PagRegistroStyle = styled.main`
     flex-flow: column wrap;
     width: auto;
     height: auto;
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 10px;
     padding: 20px 50px;
     border: solid var(--border-primary) 1px;
-    background-color: var(--white);
+    background-color: var(--contrast);
   }
 
   .nuRegistro {
@@ -30,7 +30,7 @@ export const PagRegistroStyle = styled.main`
     margin: 10px 0 30px 0;
     text-align: center;
     width: 300px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     padding-left: 10px;
     border-radius: 10px;
   }
@@ -48,7 +48,7 @@ export const PagRegistroStyle = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--white);
+    background-color: var(--contrast);
     color: var(--text-primary);
     font-size: 1rem;
     padding: 10px 10px;
@@ -74,7 +74,7 @@ export const PagRegistroStyle = styled.main`
   }
 
   .DadosSensores {
-    background-color: var(--white);
+    background-color: var(--contrast);
     padding: 30px;
     border-radius: 10px;
     margin-bottom: 30px;
@@ -85,7 +85,7 @@ export const PagRegistroStyle = styled.main`
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-    background-color: var(--white);
+    background-color: var(--contrast);
     padding: 50px;
     border-radius: 10px;
     width: 60vw;
@@ -115,7 +115,7 @@ export const PagRegistroStyle = styled.main`
       height: 300px;
       border-radius: 10px;
       padding: 10px;
-      background-color: #fff;
+      background-color: var(--white);
       border: solid #aaa 1px;
       transition: all 500ms;
       cursor: pointer;

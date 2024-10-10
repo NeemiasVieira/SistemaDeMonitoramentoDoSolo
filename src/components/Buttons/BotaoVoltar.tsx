@@ -14,7 +14,7 @@ const BotaoVoltarStyle = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 7px;

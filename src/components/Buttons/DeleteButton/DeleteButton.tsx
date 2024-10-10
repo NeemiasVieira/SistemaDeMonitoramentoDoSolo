@@ -1,12 +1,11 @@
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import styled from "styled-components";
-import Modal from "react-modal";
-Modal.setAppElement("#root");
+import { useCallback, useState } from "react";
+import { DeleteButtonModal } from "./DeleteButtonModal";
 
-interface UpdateButtonProps {
-  openModal?: () => void;
+interface DeleteButtonProps {
+  onDelete: () => void;
 }
 
 const ButtonStyle = styled.div`
@@ -18,7 +17,7 @@ const ButtonStyle = styled.div`
     border: none;
     width: 35px;
     height: 35px;
-    background-color: #ffa520;
+    background-color: var(--red);
     cursor: pointer;
     padding: 20px;
     transition: all 300ms;
@@ -46,12 +45,23 @@ const ButtonStyle = styled.div`
   }
 `;
 
-export const UpdateButton: React.FC<UpdateButtonProps> = ({ openModal }) => {
+export const DeleteButton: React.FC<DeleteButtonProps> = ({ onDelete }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = useCallback(() => {
+    setIsModalOpen(true);
+  }, [setIsModalOpen]);
+
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+  }, [setIsModalOpen]);
+
   return (
     <ButtonStyle>
       <button onClick={() => openModal()}>
-        <FontAwesomeIcon icon={faPencil} />
+        <FontAwesomeIcon icon={faTrashCan} />
       </button>
+      <DeleteButtonModal onDelete={onDelete} isModalOpen={isModalOpen} closeModal={closeModal} />
     </ButtonStyle>
   );
 };

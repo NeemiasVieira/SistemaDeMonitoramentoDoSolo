@@ -1,38 +1,37 @@
 import styled from "styled-components";
 
 export const ProfileDropDownStyle = styled.div`
-
-margin-right: 40px;
-display: flex;
-width: 30px;
-height: 30px;
-padding: 10px;
-border-radius: 50px;
-justify-content: center;
-align-items: center;
-color: var(--white);
-font-weight: 700;
-cursor: pointer;
-background-color: var(--bg-dark-blue);
-
-.switchThemeOnDropDown{
+  margin-right: 40px;
   display: flex;
-  flex-flow: row nowrap;
-  gap: 25px;
-  padding: 8px 0;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  color: var(--contrast);
+  font-weight: 700;
+  cursor: pointer;
+  background-color: var(--bg-dark-blue);
 
-  .texto{
-    width: 47%;
-    margin-left: 23px;
-    text-align: initial;
-  }
-  svg{
-    position: absolute;
-    left: 25px;
-  }
-}
+  .switchThemeOnDropDown {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 25px;
+    padding: 8px 0;
 
-.dropdown {
+    .texto {
+      width: 47%;
+      margin-left: 23px;
+      text-align: initial;
+    }
+    svg {
+      position: absolute;
+      left: 25px;
+    }
+  }
+
+  .dropdown {
     font-size: 17px;
     border: none;
     outline: none;
@@ -56,21 +55,20 @@ background-color: var(--bg-dark-blue);
     border-radius: 15px 0 15px 15px;
     border: solid var(--border-primary) 1px;
     cursor: default;
-  ul {
+    ul {
       padding: 10px;
       margin: 0px;
     }
 
-  li{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  svg{
-    margin-right  : 5px;
-  }
-
+    svg {
+      margin-right: 5px;
+    }
   }
   .dropdown-content a {
     display: flex;
@@ -92,16 +90,15 @@ background-color: var(--bg-dark-blue);
     display: block;
   }
 
-
-  @media screen and (min-width: 482px) and (max-width: 850px){
-    .dropdown-content{
+  @media screen and (min-width: 482px) and (max-width: 850px) {
+    .dropdown-content {
       right: 9%;
     }
   }
 
-  @media screen and (min-width: 851px) and (max-width: 1100px){
-    .dropdown-content{
+  @media screen and (min-width: 851px) and (max-width: 1100px) {
+    .dropdown-content {
       right: 7%;
     }
   }
-`
+`;

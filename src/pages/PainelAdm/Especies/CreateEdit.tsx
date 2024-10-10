@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { SpecieUCModalStyleIndex } from "./SpecieUCModalStyle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Specie } from "../../../Especie/Types";
+import { useEffect, useState } from "react";
+import { CreateEditStyle } from "./CreateEditStyle";
+import { useNotificacoes } from "@contexts/NotificacoesProvider";
 import { useCreateSpecie } from "@services/API/Species/useCreateSpecie";
 import { useUpdateSpecie } from "@services/API/Species/useUpdateSpecie";
-import { useNotificacoes } from "../../../../contexts/NotificacoesProvider";
-import { Loading } from "../../../Loading/Loading";
-import Modal from "react-modal";
-Modal.setAppElement("#root");
+import { Loading } from "@components/Loading/Loading";
+import { Specie } from "@components/Especie/Types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
 interface Parametro {
   min: string;
@@ -23,13 +21,6 @@ interface Parametros {
   umidade: Parametro;
   temperatura: Parametro;
   pH: Parametro;
-}
-
-interface SpecieUCModalProps {
-  isModalOpen: boolean;
-  type: string;
-  closeModal: () => void;
-  especie?: Specie;
 }
 
 const verificarCamposPreenchidos = (especie: Specie): boolean => {
@@ -49,7 +40,13 @@ const verificarCamposPreenchidos = (especie: Specie): boolean => {
   return true;
 };
 
-export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type, closeModal, especie }) => {
+interface CreateEditEspecieProps {
+  action: "Create" | "Update" | null;
+  setAction: React.Dispatch<React.SetStateAction<"Create" | "Update">>;
+  especie?: Specie;
+}
+
+export const CreateEditEspecie: React.FC<CreateEditEspecieProps> = ({ action, setAction, especie }) => {
   const defaultSpecie: Specie = {
     id: "",
     nome: "",
@@ -67,29 +64,15 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
 
   const [especieI, setEspecieI] = useState<Specie>(defaultSpecie);
 
-  const { confirmCreateSpecie, createSpecieIsLoading, createSpecieError } = useCreateSpecie(especieI);
-  const { confirmUpdateSpecie, updateSpecieIsLoading, updateSpecieError } = useUpdateSpecie(especieI);
+  const { confirmCreateSpecie, createSpecieIsLoading, newSpecie } = useCreateSpecie(especieI);
+  const { confirmUpdateSpecie, updateSpecieIsLoading, specie } = useUpdateSpecie(especieI);
   const { notificar } = useNotificacoes();
 
   useEffect(() => {
-    if (createSpecieError) {
-      notificar({
-        tipo: "ERRO",
-        mensagem: createSpecieError,
-        tempoEmSeg: 4,
-      });
-    } // eslint-disable-next-line
-  }, [createSpecieError]);
-
-  useEffect(() => {
-    if (updateSpecieError) {
-      notificar({
-        tipo: "ERRO",
-        mensagem: updateSpecieError,
-        tempoEmSeg: 4,
-      });
-    } // eslint-disable-next-line
-  }, [updateSpecieError]);
+    if (newSpecie?.id || specie?.id) {
+      setAction(null);
+    }
+  }, [newSpecie, specie]);
 
   useEffect(() => {
     if (especie) {
@@ -155,7 +138,7 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
 
   useEffect(() => {
     if (!updateSpecieIsLoading && !createSpecieIsLoading) {
-      closeModal();
+      // closeModal();
     } // eslint-disable-next-line
   }, [updateSpecieIsLoading, createSpecieIsLoading]);
 
@@ -191,41 +174,12 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
     confirmUpdateSpecie();
   };
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      border: "solid #aaa 1px",
-      borderRadius: "15px",
-      display: "flex",
-      alignItems: "center",
-      flexFlow: "column wrap",
-      width: "80vw",
-      height: "590px",
-      maxWidth: "370px",
-      backgroundColor: "var(--white)",
-      opacity: "1",
-      boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
-      marginTop: "25px",
-      zIndex: "3",
-      overflow: "hidden",
-    },
-    overlay: {
-      backgroundColor: "var(--bg-modal)",
-    },
-  };
-
   return (
-    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
-      <SpecieUCModalStyleIndex>
-        <button onClick={closeModal} className="closeButton">
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
+    <CreateEditStyle>
+      {action === "Create" && <h2>Criar Nova Espécie</h2>}
+      {action === "Update" && <h2>Atualizar Espécie</h2>}
 
-        {type === "Create" && <h2>Criar Nova Espécie</h2>}
-        {type === "Update" && <h2>Atualizar Espécie</h2>}
-
+      <div className="NomeEDescricao">
         <div className="DivInputNome">
           <p>Nome</p>
           <input value={especieI.nome} onChange={(event) => setNome(event.target.value)} />
@@ -240,16 +194,23 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
             maxLength={400}
           />
         </div>
+      </div>
+
+      <div className="Parametros">
+        <div className="LegendaParametros">
+          <p className="leitura">Leitura</p>
+          <p>Valor mínimo</p>
+          <p>Valor máximo</p>
+        </div>
         {Object.entries(especieI.parametros).map(([parametro, valor]) => (
           <div key={parametro} className="DivInputParametro">
-            <p>{parametro}</p>
-            <label htmlFor={`${parametro}MinInput`}>Min</label>
+            <p className="leitura">{parametro}</p>
             <input
               id={`${parametro}MinInput`}
               value={valor.min}
               onChange={(event) => handleChangeMin(parametro as keyof Specie["parametros"], event)}
             />
-            <label htmlFor={`${parametro}MaxInput`}>Máx</label>
+
             <input
               id={`${parametro}MaxInput`}
               value={valor.max}
@@ -257,19 +218,25 @@ export const SpecieUCModal: React.FC<SpecieUCModalProps> = ({ isModalOpen, type,
             />
           </div>
         ))}
-        {type === "Create" && !createSpecieIsLoading && (
-          <button className="criarAtualizarButton" onClick={handleCriarEspecie}>
+      </div>
+
+      <div className="actions">
+        <button className="backButton" onClick={() => setAction(null)}>
+          <FontAwesomeIcon icon={faCircleLeft} /> Voltar
+        </button>
+        {action === "Create" && !createSpecieIsLoading && (
+          <button className="createButton" onClick={handleCriarEspecie}>
             Criar
           </button>
         )}
-        {type === "Update" && !updateSpecieIsLoading && (
-          <button className="criarAtualizarButton" onClick={handleAtualizarEspecie}>
+        {action === "Update" && !updateSpecieIsLoading && (
+          <button className="updateButton" onClick={handleAtualizarEspecie}>
             Atualizar
           </button>
         )}
-        {updateSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="50px" logoWidth="50px" />}
-        {createSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="50px" logoWidth="50px" />}
-      </SpecieUCModalStyleIndex>
-    </Modal>
+        {updateSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="40px" logoWidth="200px" fullWidth={false} />}
+        {createSpecieIsLoading && <Loading minHeight={"50px"} logoHeight="40px" logoWidth="50px" fullWidth={false} />}
+      </div>
+    </CreateEditStyle>
   );
 };

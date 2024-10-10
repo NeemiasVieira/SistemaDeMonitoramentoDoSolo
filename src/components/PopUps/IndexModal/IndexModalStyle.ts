@@ -1,24 +1,30 @@
 import styled from "styled-components";
 
 export const ModalIndexStyle = styled.div`
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: var(--light-gray);
 
-.closeButton{
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 1rem;
-  background-color: #f44;
-  border-radius: 10px;
-  border: none;
-  color: #fff;  
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 480px){
-  .closeButton{
-    font-size: .7rem;
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 20px;
+    }
   }
-}
-`
+
+  .closeButton {
+    font-size: 1rem;
+    background-color: transparent;
+    border-radius: 10px;
+    border: none;
+    color: var(--text-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 12px;
+  }
+`;

@@ -18,6 +18,7 @@ export const PainelDeControleStyle = styled.main`
     font-size: 1em;
     font-weight: 600;
     margin: 10px 0;
+    width: 90%;
   }
 
   .subTitulo {
@@ -51,26 +52,26 @@ export const PainelDeControleStyle = styled.main`
     font-size: 1.6rem;
   }
 
-  .avisoSemPlantas{
+  .avisoSemPlantas {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: row nowrap;
     gap: 20px;
     margin-top: 80px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     border: solid var(--border-primary) 1px;
     border-radius: 10px;
     padding: 15px;
 
-    p{
+    p {
       color: var(--text-secondary);
       width: 250px;
     }
-    
-    svg{
+
+    svg {
       font-size: 2rem;
-      color: #faa520
+      color: #faa520;
     }
   }
 
@@ -79,7 +80,7 @@ export const PainelDeControleStyle = styled.main`
     min-height: 200px;
 
     .Plantas {
-      margin-top: 25px;
+      margin-top: 20px;
       gap: 25px;
     }
   }

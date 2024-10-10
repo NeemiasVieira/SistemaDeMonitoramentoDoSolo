@@ -9,7 +9,7 @@ export const DarkTheme = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background-color: var(--bg-primary);
-        color: #fff;
+        color: var(--white);
     }
 
     body::-webkit-scrollbar {
@@ -34,7 +34,7 @@ export const DarkTheme = createGlobalStyle`
     :root {
     --gray-primary: #ccc;  
     --bg-dark-blue: #054472; 
-    --white: #111;         
+    --contrast: #111;         
     --light-green: #5FA81D;   
     --dark-green: #8CDF27;    
     --bg-primary: #222; 
@@ -49,5 +49,6 @@ export const DarkTheme = createGlobalStyle`
     --bg-modal: rgba(50, 50, 50, 0.6);
     --red: #ff2200;
     --light-gray: #222;
+    --white: #fff;
     }
 `;

@@ -22,7 +22,7 @@ export const NotificacaoStyle = styled.section`
   }
 
   .SUCESSO {
-    background-color: #53BF30;
+    background-color: var(--light-green);
   }
 
   .ALERTA {
@@ -48,12 +48,12 @@ export const NotificacaoStyle = styled.section`
 
     .icone {
       max-width: 25px;
-      color: #fff;
+      color: var(--white);
       padding: 0;
     }
 
     p {
-      color: #fff;
+      color: var(--white);
       font-size: 0.8rem;
       font-weight: 500;
       width: 100%;
@@ -86,9 +86,9 @@ export const NotificacaoStyle = styled.section`
     }
   }
 
-  @media screen and (max-width: 480px){
-    .mensagemNotificacaoDiv{
-      button{
+  @media screen and (max-width: 480px) {
+    .mensagemNotificacaoDiv {
+      button {
         right: -10px;
       }
     }

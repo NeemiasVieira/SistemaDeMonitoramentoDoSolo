@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const EspecieStyle = styled.div`
   display: flex;
   flex-flow: column wrap;
-  background-color: var(--white);
+  background-color: var(--contrast);
   width: 800px;
   height: auto;
   border: solid var(--border-primary) 1px;
@@ -20,7 +20,7 @@ export const EspecieStyle = styled.div`
     padding: 0;
     margin-top: 0;
     margin-bottom: 5px;
-    background-color: var(--white);
+    background-color: var(--contrast);
   }
 
   .titleAndButtons {
@@ -50,7 +50,7 @@ export const EspecieStyle = styled.div`
     color: var(--text-primary);
   }
   th {
-    background-color: var(--white);
+    background-color: var(--contrast);
     border: solid var(--border-primary) 1px;
   }
 

@@ -8,7 +8,7 @@ export const NavStyleMobile = styled.nav`
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  background-color: var(--white);
+  background-color: var(--contrast);
   border-bottom: solid #ccc 2px;
   z-index: 1;
 
@@ -36,7 +36,7 @@ export const ListaNavegacaoStyle = styled.nav`
   justify-content: center;
   flex-flow: row nowrap;
   width: 100%;
-  background-color: var(--white);
+  background-color: var(--contrast);
   height: 70px;
   position: fixed;
   top: 0;
@@ -54,8 +54,8 @@ export const ListaNavegacaoStyle = styled.nav`
   }
 
   .navegacao .selecionado {
-    padding: 4px 10px -1px 10px;
     border-bottom: solid var(--light-green) 4px;
+    border-top: solid transparent 4px;
   }
 
   .navegacao {
@@ -73,7 +73,7 @@ export const ListaNavegacaoStyle = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 66px;
     padding: 0 10px;
   }
 

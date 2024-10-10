@@ -9,7 +9,7 @@ export const PlantaStyle = styled.div`
   border-radius: 5px;
   border: solid var(--border-primary) 1px;
   gap: 15px;
-  background-color: var(--white);
+  background-color: var(--contrast);
   -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
@@ -86,9 +86,8 @@ export const PlantaStyle = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-    max-width: 85vw;
+    width: 80vw;
     padding: 15px 0;
-    gap: 0;
     border-radius: 10px;
 
     h2 {
@@ -98,9 +97,9 @@ export const PlantaStyle = styled.div`
     }
 
     .Planta {
-      padding-top: 10px;
-      max-width: 75vw;
-      gap: 10px;
+      padding: 10px;
+      max-width: 95%;
+      gap: 5px;
     }
 
     .infoPlanta {

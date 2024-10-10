@@ -1,7 +1,7 @@
 import React from "react";
 import { EspecieStyle } from "./EspecieStyle";
 import { EspecieProps } from "./Types";
-import { DeleteButton } from "../Buttons/DeleteButton";
+import { DeleteButton } from "../Buttons/DeleteButton/DeleteButton";
 import { UpdateButton } from "../Buttons/UpdateButton";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 import { formatarNumeroComPontos } from "../PopUps/SaudeParamsModal/SaudeParamsModal";
@@ -20,7 +20,7 @@ export const Especie: React.FC<EspecieProps> = ({
   };
 
   const handleDelete = () => {
-    notificar({ tipo: "NOTIFICACAO", mensagem: "Solicitação de exclusão confirmada", tempoEmSeg: 4 });
+    notificar({ tipo: "NOTIFICACAO", mensagem: "Solicitação de exclusão enviada", tempoEmSeg: 4 });
     confirmDeleteSpecie(especie.id);
   };
 

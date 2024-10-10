@@ -9,34 +9,10 @@ import { useCancelarSolicitacao } from "@services/API/Plants/useCancelarSolicita
 import { useEnviarSolicitacao } from "@services/API/Plants/useEnviarSolicitacao";
 import { Loading } from "../Loading/Loading";
 import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-import { BotaoAtualizar } from "../Buttons/BotaoAtualizar";
+import { RefreshQueryButton } from "../Buttons/RefreshQueryButton";
 import { Tooltip } from "../Buttons/ToolTip";
-
-const tip1 = "Nesta etapa, caso os sensores estejam ativos, o registro será processado em aproximadamente 40 segundos.";
-const tip2 =
-  "Caso os sensores estejam desligados não se preocupe, pois assim que forem ativados, a sua solicitação de registro será processada :)";
-
-const mapearTitulo = (solicitacaoNovoRegistro: "nenhuma" | "aguardando" | "confirmado") => {
-  switch (solicitacaoNovoRegistro) {
-  case "nenhuma":
-    return "Nenhuma Solicitação ";
-  case "aguardando":
-    return "Solicitação Enviada";
-  case "confirmado":
-    return "Solicitação Concluída";
-  }
-};
-
-const mapearTituloBotao = (solicitacaoNovoRegistro: "nenhuma" | "aguardando" | "confirmado") => {
-  switch (solicitacaoNovoRegistro) {
-  case "nenhuma":
-    return "Solicitar novo registro";
-  case "aguardando":
-    return "Cancelar solicitação";
-  case "confirmado":
-    return "";
-  }
-};
+import { useMemo } from "react";
+import { ESolicitacaoNovoRegistro, mapearTitulo, mapearTituloBotao, tip1, tip2 } from "./Contrato";
 
 export const SolicitarNovoRegistro = () => {
   const { idPlanta } = useParams();
@@ -47,15 +23,30 @@ export const SolicitarNovoRegistro = () => {
   const { cancelarSolicitacao, isLoading: cancelLoading } = useCancelarSolicitacao(idPlanta);
   const { enviarSolicitacao, isLoading: sendLoading } = useEnviarSolicitacao(idPlanta);
 
+  const { titulo, tituloBotao, nenhuma, aguardando, confirmado } = useMemo(() => {
+    return {
+      titulo: mapearTitulo(planta?.solicitacaoNovoRegistro),
+      tituloBotao: mapearTituloBotao(planta?.solicitacaoNovoRegistro),
+      nenhuma: planta?.solicitacaoNovoRegistro === ESolicitacaoNovoRegistro.NENHUMA,
+      aguardando: planta?.solicitacaoNovoRegistro === ESolicitacaoNovoRegistro.AGUARDANDO,
+      confirmado: planta?.solicitacaoNovoRegistro === ESolicitacaoNovoRegistro.CONFIRMADO,
+    };
+  }, [planta?.solicitacaoNovoRegistro]);
+
+  const isActionLoading = useMemo(
+    () => (sendLoading || cancelLoading || isLoadingNoCache) && !isLoading,
+    [sendLoading, cancelLoading, isLoadingNoCache]
+  );
+
   const handleClick = () => {
-    if (planta?.solicitacaoNovoRegistro === "aguardando") {
+    if (aguardando) {
       cancelarSolicitacao();
       notificar({
         tipo: "NOTIFICACAO",
         mensagem: "Enviando solicitação de cancelamento de novo registro",
         tempoEmSeg: 4,
       });
-    } else if (planta?.solicitacaoNovoRegistro === "nenhuma") {
+    } else if (nenhuma) {
       enviarSolicitacao();
       notificar({ tipo: "NOTIFICACAO", mensagem: "Enviando solicitação de novo registro", tempoEmSeg: 4 });
     }
@@ -63,10 +54,7 @@ export const SolicitarNovoRegistro = () => {
 
   return (
     <SolicitarNovoRegistroStyle>
-      {isLoading && <Loading minHeight="50px" logoHeight="60px" logoWidth="60px" />}
-      <div className="botaoAtualizar">
-        <BotaoAtualizar isLoading={isLoading || isLoadingNoCache} queryKeys={["planta"]} />
-      </div>
+      {isLoading && <Loading minHeight="100%" logoHeight="60px" logoWidth="60px" />}
 
       <div className="plantaInfo">
         {planta && lastRecord && (
@@ -90,25 +78,31 @@ export const SolicitarNovoRegistro = () => {
         )}
       </div>
 
-      {(planta?.solicitacaoNovoRegistro === "nenhuma" || planta?.solicitacaoNovoRegistro === "aguardando") && (
+      {isActionLoading ? (
         <div className="Acoes">
-          <h3>
-            {mapearTitulo(planta.solicitacaoNovoRegistro)}{" "}
-            {mapearTitulo(planta.solicitacaoNovoRegistro) === "Solicitação Enviada" && <Tooltip texts={[tip1, tip2]} />}
-          </h3>
-          {(sendLoading || cancelLoading || isLoading || isLoadingNoCache) && (
-            <Loading minHeight="20px" logoHeight="40px" logoWidth="40px" />
-          )}
-          {!sendLoading && !cancelLoading && !isLoadingNoCache && (
-            <button onClick={handleClick}>{mapearTituloBotao(planta.solicitacaoNovoRegistro)}</button>
-          )}
+          <Loading minHeight="100px" logoHeight="50px" logoWidth="100%" />
         </div>
-      )}
-
-      {planta?.solicitacaoNovoRegistro === "confirmado" && (
+      ) : (
         <div className="Acoes">
-          <h3>{mapearTitulo(planta.solicitacaoNovoRegistro)}</h3>
-          <FontAwesomeIcon icon={faCircleCheck} className="svg" />
+          {(nenhuma || aguardando) && (
+            <>
+              <RefreshQueryButton queryKeys={["planta"]} className="refreshButton" />
+              <h3>
+                {titulo}
+                {aguardando && <Tooltip texts={[tip1, tip2]} />}
+              </h3>
+              <button onClick={handleClick} className="action">
+                {tituloBotao}
+              </button>
+            </>
+          )}
+
+          {confirmado && (
+            <>
+              <h3>{titulo}</h3>
+              <FontAwesomeIcon icon={faCircleCheck} className="svg" />
+            </>
+          )}
         </div>
       )}
     </SolicitarNovoRegistroStyle>

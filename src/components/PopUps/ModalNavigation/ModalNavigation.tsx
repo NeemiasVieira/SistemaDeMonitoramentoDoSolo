@@ -19,7 +19,7 @@ const customStyles = {
     border: "solid #000 1px",
     width: "100vw",
     height: "100%",
-    backgroundColor: "var(--white)",
+    backgroundColor: "var(--contrast)",
     opacity: "1",
     zIndex: "1",
   },

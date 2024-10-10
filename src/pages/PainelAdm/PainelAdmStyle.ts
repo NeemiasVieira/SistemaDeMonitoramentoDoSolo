@@ -29,7 +29,7 @@ export const PainelAdmStyle = styled.main`
     height: 150px;
     border: solid var(--border-primary) 1px;
     border-radius: 8px;
-    background-color: var(--white);
+    background-color: var(--contrast);
     cursor: pointer;
 
     svg {

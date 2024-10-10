@@ -33,7 +33,7 @@ export const LightTheme = createGlobalStyle`
     :root {
         --gray-primary: #6B6B6B;
         --bg-dark-blue: #054472;
-        --white: #fff;
+        --contrast: #fff;
         --light-green: #8CDF27;
         --dark-green: #53BF30;
         --bg-primary: #E1E1E1;
@@ -48,5 +48,6 @@ export const LightTheme = createGlobalStyle`
         --bg-modal: rgba(0, 0, 0, 0.5);
         --red: #ff2200;
         --light-gray: #ddd;
+        --white: #fff;
     }
 `;
