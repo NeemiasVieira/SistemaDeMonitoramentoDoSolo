@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "react-google-charts";
-import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
 import { Loading } from "../Loading/Loading";
-import { GraficoLinhasProps } from "./Types";
+import { SecaoGraficoLinhas } from "./GraficoLinhasStyle";
 import { TipoGrafico, selecionaGrafico, unidadeMedida } from "./Services";
+import { GraficoLinhasProps } from "./Types";
 
 const GraficoLinhas: React.FC<GraficoLinhasProps> = ({ records, params }) => {
-  const { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading } = params;
+  const {
+    intervaloDeBusca,
+    intervaloDeDias,
+    setIntervaloDeBusca,
+    setIntervaloDeDias,
+    allRecordsIsLoading,
+  } = params;
 
   const [tipoGrafico, setTipoGrafico] = useState<TipoGrafico>("NPK");
-  const [data, setData] = useState([["Dia", "Nitrogênio", "Fósforo", "Potássio"]]);
+  const [data, setData] = useState([
+    ["Dia", "Nitrogênio", "Fósforo", "Potássio"],
+  ]);
 
   useEffect(() => {
     if (intervaloDeBusca === "Selecione") setIntervaloDeBusca(null);
@@ -104,11 +112,19 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({ records, params }) => {
       {allRecordsIsLoading && <Loading minHeight={"55vh"} />}
 
       {data?.length <= 2 && !allRecordsIsLoading && (
-        <p className="Aviso">Não há registros necessários para formar um histórico</p>
+        <p className="Aviso">
+          Não há registros necessários para formar um histórico
+        </p>
       )}
       {data?.length > 2 && !allRecordsIsLoading && (
         <div className="graficoContainer">
-          <Chart chartType="Line" width="100%" height="450px" data={data} options={options} />
+          <Chart
+            chartType="Line"
+            width="100%"
+            height="450px"
+            data={data}
+            options={options}
+          />
         </div>
       )}
     </SecaoGraficoLinhas>

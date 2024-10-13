@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
-import { RelatorioDeSaude } from "@components/RelatorioDeSaude/RelatorioDeSaude";
+import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
 import { DadosRegistro } from "@components/DadosRegistro/DadosRegistro";
+import GraficoLinhas from "@components/GraficoLinhas/GraficoLinhas";
 import { Loading } from "@components/Loading/Loading";
-import { useGetLastRecord } from "@services/API/Records/useGetLastRecord";
+import { RelatorioDeSaude } from "@components/RelatorioDeSaude/RelatorioDeSaude";
+import { useGetPlant } from "@services/API/Plants/useGetPlant";
 import { useGetRelatorioSaude } from "@services/API/Plants/useGetRelatorioSaude";
 import { useGetAllRecords } from "@services/API/Records/useGetAllRecords";
+import { useGetLastRecord } from "@services/API/Records/useGetLastRecord";
 import { useGetSpecie } from "@services/API/Species/useGetSpecie";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
 import { ResumoStyle } from "./ResumoStyle";
-import { useGetPlant } from "@services/API/Plants/useGetPlant";
-import GraficoLinhas from "@components/GraficoLinhas/GraficoLinhas";
 
 const Resumo = () => {
   const { idPlanta } = useParams();
@@ -21,15 +21,24 @@ const Resumo = () => {
 
   //Hooks
   const { planta } = useGetPlant(idPlanta);
-  const { lastRecord, lastRecordIsLoading, errorLastRecord } = useGetLastRecord(idPlanta);
-  const { relatorioSaude, erroRelatorioSaude, isLoadingSaude } = useGetRelatorioSaude(idPlanta);
-  const { allRecords, errorAllRecords, getAllRecords, allRecordsIsLoading } = useGetAllRecords({
-    idPlanta,
+  const { lastRecord, lastRecordIsLoading, errorLastRecord } =
+    useGetLastRecord(idPlanta);
+  const { relatorioSaude, erroRelatorioSaude, isLoadingSaude } =
+    useGetRelatorioSaude(idPlanta);
+  const { allRecords, errorAllRecords, getAllRecords, allRecordsIsLoading } =
+    useGetAllRecords({
+      idPlanta,
+      intervaloDeBusca,
+      intervaloDeDias,
+    });
+  const { getSpecie, specieData } = useGetSpecie({ nome: planta?.especie });
+  const params = {
     intervaloDeBusca,
     intervaloDeDias,
-  });
-  const { getSpecie, specieData } = useGetSpecie({ nome: planta?.especie });
-  const params = { intervaloDeBusca, intervaloDeDias, setIntervaloDeBusca, setIntervaloDeDias, allRecordsIsLoading };
+    setIntervaloDeBusca,
+    setIntervaloDeDias,
+    allRecordsIsLoading,
+  };
 
   useEffect(() => {
     if (planta) {
@@ -50,28 +59,44 @@ const Resumo = () => {
   return (
     <ResumoStyle>
       <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
-      {(lastRecordIsLoading || isLoadingSaude) && <Loading minHeight={"70vh"} />}
-
-      {planta && lastRecord && !isLoadingSaude && !lastRecordIsLoading && !errorLastRecord && (
-        <div className="identificacaoDaPlanta">
-          <h2 className="nomeDaPlanta">{planta?.nome}</h2>
-          <h3 className="especieDaPlanta">{planta?.especie}</h3>
-        </div>
+      {(lastRecordIsLoading || isLoadingSaude) && (
+        <Loading minHeight={"70vh"} />
       )}
 
-      {relatorioSaude && lastRecord && !errorLastRecord && <DadosRegistro registro={lastRecord} ultimaAtualizacao />}
+      {planta &&
+        lastRecord &&
+        !isLoadingSaude &&
+        !lastRecordIsLoading &&
+        !errorLastRecord && (
+          <div className="identificacaoDaPlanta">
+            <h2 className="nomeDaPlanta">{planta?.nome}</h2>
+            <h3 className="especieDaPlanta">{planta?.especie}</h3>
+          </div>
+        )}
 
-      {lastRecord && relatorioSaude && planta?.especie && !erroRelatorioSaude && (
-        <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />
+      {relatorioSaude && lastRecord && !errorLastRecord && (
+        <DadosRegistro registro={lastRecord} ultimaAtualizacao />
       )}
+
+      {lastRecord &&
+        relatorioSaude &&
+        planta?.especie &&
+        !erroRelatorioSaude && (
+          <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />
+        )}
 
       {!errorAllRecords && relatorioSaude && lastRecord && (
-        <GraficoLinhas className="GraficoLinhas" records={allRecords} params={params} />
+        <GraficoLinhas
+          className="GraficoLinhas"
+          records={allRecords}
+          params={params}
+        />
       )}
 
-      {!lastRecord && !lastRecordIsLoading && !errorLastRecord && planta?.id && (
-        <p>A Planta não possui nenhum registro</p>
-      )}
+      {!lastRecord &&
+        !lastRecordIsLoading &&
+        !errorLastRecord &&
+        planta?.id && <p>A Planta não possui nenhum registro</p>}
     </ResumoStyle>
   );
 };

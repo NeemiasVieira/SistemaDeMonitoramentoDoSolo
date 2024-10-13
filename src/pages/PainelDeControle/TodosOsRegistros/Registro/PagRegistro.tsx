@@ -1,13 +1,13 @@
-import { PagRegistroStyle } from "./PagRegistroStyle";
-import { useRegistrosContext } from "../../../../contexts/RegistrosContext";
 import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
 import { DadosRegistro } from "@components/DadosRegistro/DadosRegistro";
-import { Link, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilePdf, faFileWaveform } from "@fortawesome/free-solid-svg-icons";
-import { useGetRecord } from "@services/API/Records/useGetRecord";
 import { Loading } from "@components/Loading/Loading";
+import { faFilePdf, faFileWaveform } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useGeneratePdf } from "@services/API/Records/useGeneratePdf";
+import { useGetRecord } from "@services/API/Records/useGetRecord";
+import { Link, useParams } from "react-router-dom";
+import { useRegistrosContext } from "../../../../contexts/RegistrosContext";
+import { PagRegistroStyle } from "./PagRegistroStyle";
 
 const PagRegistro = () => {
   const { registroEmMemoria: registro, backUrl } = useRegistrosContext();
@@ -25,12 +25,21 @@ const PagRegistro = () => {
       {(registro || record) && (
         <>
           <section className="informacoes">
-            {registro && <h2 className="nuRegistro">Registro n° {registro?.nuRegistro}</h2>}
+            {registro && (
+              <h2 className="nuRegistro">Registro n° {registro?.nuRegistro}</h2>
+            )}
             <div className="botoesAcao">
-              <Link to={`/painel/registros/${idRegistro}/saude`} className="botaoSaude">
-                <FontAwesomeIcon icon={faFileWaveform} className="ico" /> Saúde do Relatório
+              <Link
+                to={`/painel/registros/${idRegistro}/saude`}
+                className="botaoSaude"
+              >
+                <FontAwesomeIcon icon={faFileWaveform} className="ico" /> Saúde
+                do Relatório
               </Link>
-              <button className="BotaoDownloadPDF" onClick={() => generatePdf()}>
+              <button
+                className="BotaoDownloadPDF"
+                onClick={() => generatePdf()}
+              >
                 <FontAwesomeIcon icon={faFilePdf} className="ico" />
                 Baixar Registro
               </button>
@@ -38,7 +47,10 @@ const PagRegistro = () => {
           </section>
 
           <section className="DadosSensores">
-            <DadosRegistro registro={registro ?? record} ultimaAtualizacao={false} />
+            <DadosRegistro
+              registro={registro ?? record}
+              ultimaAtualizacao={false}
+            />
           </section>
 
           {(registro?.imagem || record?.imagem) && (

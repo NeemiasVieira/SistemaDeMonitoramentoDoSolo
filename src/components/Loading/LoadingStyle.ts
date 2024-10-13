@@ -1,14 +1,19 @@
 import styled from "styled-components";
-import { LoadingProps } from "./Loading";
+interface LoadingProps {
+  $minheight?: string;
+  $logowidth?: string;
+  $logoheight?: string;
+  $fullwidth?: boolean;
+}
 
 export const LoadingStyle = styled.div<LoadingProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: ${(props) => (props.minHeight ? props.minHeight : "100vh")};
-  min-width: ${(props) => (props.fullWidth ? "100%" : 0)};
-  width: ${(props) => (props.logoWidth ? props.logoWidth : "50px")};
-  height: ${(props) => (props.logoHeight ? props.logoHeight : "50px")};
+  min-height: ${(props) => (props.$minheight ? props.$minheight : "100vh")};
+  min-width: ${(props) => (props.$fullwidth ? "100%" : 0)};
+  width: ${(props) => (props.$logowidth ? props.$logowidth : "50px")};
+  height: ${(props) => (props.$logoheight ? props.$logoheight : "50px")};
   overflow-x: hidden;
 
   svg {

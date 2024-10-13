@@ -22,7 +22,7 @@ export const SquadStyle = styled.section`
   .pessoas {
     display: grid;
     grid-template-columns: repeat(auto-fill, 215px);
-    grid-template-rows: repeat(auto-fill, 320px);
+    grid-template-rows: repeat(auto-fill, 350px);
     justify-content: center;
     width: 60vw;
     max-width: 1000px;
@@ -57,21 +57,4 @@ export const SquadStyle = styled.section`
       text-align: center;
     }
   }
-
-  /* @media screen and (max-width: 480px) {
-    .pessoas {
-      grid-template-columns: repeat(1fr, 1);
-    }
-  }
-  @media screen and (min-width: 651px) and (max-width: 1370px) {
-    .pessoas {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media screen and (max-width: 650px) {
-    .pessoas {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  } */
 `;

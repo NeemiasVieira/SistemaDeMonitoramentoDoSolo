@@ -8,19 +8,28 @@ export interface LoadingProps {
   fullWidth?: boolean;
 }
 
-export const Loading: React.FC<LoadingProps> = ({ minHeight, logoHeight, logoWidth, fullWidth = true }) => {
+export const Loading: React.FC<LoadingProps> = ({
+  minHeight,
+  logoHeight,
+  logoWidth,
+  fullWidth = true,
+}) => {
   return (
     <LoadingStyle
-      // style={{ minHeight: minHeight ?? "1px", minWidth: fullWidth ? "100%" : "0", width: logoWidth ?? "50px" }}
-      minHeight={minHeight}
-      fullWidth={fullWidth}
-      logoHeight={logoHeight}
-      logoWidth={logoWidth}
+      $minheight={minHeight}
+      $fullwidth={fullWidth}
+      $logoheight={logoHeight}
+      $logowidth={logoWidth}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        style={{ margin: "0", background: "transparent", display: "block", shapeRendering: "auto" }}
+        style={{
+          margin: "0",
+          background: "transparent",
+          display: "block",
+          shapeRendering: "auto",
+        }}
         width={logoWidth ?? "200px"}
         height={logoHeight ?? "200px"}
         viewBox="0 0 100 100"

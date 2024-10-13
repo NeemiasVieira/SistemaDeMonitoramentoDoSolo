@@ -1,13 +1,14 @@
 {
   "name": "tcc",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "private": true,
   "scripts": {
     "start": "vite --host",
     "build": "tsc -b && vite build",
     "test": "test",
     "lint": "eslint ./src",
-    "prod": "vite preview --port 3000 --host"
+    "prod": "vite preview --port 3000 --host",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.0",

@@ -13,7 +13,7 @@ export enum ESolicitacaoNovoRegistro {
 
 export enum Status {
   NENHUMA_SOLICITACAO = "Nenhuma Solicitação ",
-  SOLICITACAO_ENVIADA = "Solicitação Enviada",
+  SOLICITACAO_ENVIADA = "Solicitação em Andamento",
   SOLICITACAO_CONCLUIDA = "Solicitação Concluída",
 }
 

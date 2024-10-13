@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { CadastroMain } from "./CadastroStyle";
-import { Link } from "react-router-dom";
-import { Loading } from "@components/Loading/Loading";
 import { CadastroConcluido } from "@components/CadastroConcluido/CadastroConcluido";
+import { Loading } from "@components/Loading/Loading";
+import { faA, faAt, faKey } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faKey, faAt, faA } from "@fortawesome/free-solid-svg-icons";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
 import { useSignUp } from "@services/API/Users/useSignup";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNotificacoes } from "../../contexts/NotificacoesProvider";
+import { CadastroMain } from "./CadastroStyle";
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");
@@ -15,7 +15,11 @@ const Cadastro = () => {
   const [senha2, setSenha2] = useState("");
 
   const { notificar } = useNotificacoes();
-  const { signupResponse, isLoading, confirmCreateUser } = useSignUp({ email, nome, senha: senha1 });
+  const { signupResponse, isLoading, confirmCreateUser } = useSignUp({
+    email,
+    nome,
+    senha: senha1,
+  });
 
   if (signupResponse?.id) return <CadastroConcluido />;
 
@@ -23,16 +27,28 @@ const Cadastro = () => {
     return senha1 === senha2 ? true : false;
   };
 
-  const Cadastrar = async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const Cadastrar = async (
+    e:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
 
     if (!nome || !email || !senha1 || !senha2) {
-      notificar({ mensagem: "Todos os campos são obrigatórios", tempoEmSeg: 3, tipo: "ERRO" });
+      notificar({
+        mensagem: "Todos os campos são obrigatórios",
+        tempoEmSeg: 3,
+        tipo: "ERRO",
+      });
       return;
     }
 
     if (!VerificaSenha()) {
-      notificar({ mensagem: "As senhas não correspondem", tempoEmSeg: 3, tipo: "ERRO" });
+      notificar({
+        mensagem: "As senhas não correspondem",
+        tempoEmSeg: 3,
+        tipo: "ERRO",
+      });
       return;
     }
     confirmCreateUser();

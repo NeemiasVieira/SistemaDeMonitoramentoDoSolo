@@ -156,7 +156,7 @@ export const DetalhesTecnicosStyle = styled.section`
     }
 
     .tecnologia {
-      height: 300px;
+      height: 335px;
       background-color: var(--contrast);
       border-radius: 10px;
       width: 200px;

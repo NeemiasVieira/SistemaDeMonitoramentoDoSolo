@@ -25,6 +25,5 @@ export const ModalIndexStyle = styled.div`
     width: 30px;
     height: 30px;
     cursor: pointer;
-    margin-right: 12px;
   }
 `;

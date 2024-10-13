@@ -1,19 +1,20 @@
-import { useEffect, useMemo, useState } from "react";
-import { EspeciesStyle } from "./EspeciesStyle";
-import { useGetAllSpecies } from "@services/API/Species/useGetAllSpecies";
+import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
 import { Especie } from "@components/Especie/Especie";
+import { Specie } from "@components/Especie/Types";
 import { Loading } from "@components/Loading/Loading";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Specie } from "@components/Especie/Types";
-import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 import { useDeleteSpecie } from "@services/API/Species/useDeleteSpecie";
-import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
+import { useGetAllSpecies } from "@services/API/Species/useGetAllSpecies";
+import { useEffect, useMemo, useState } from "react";
+import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
 import { CreateEditEspecie } from "./CreateEdit";
+import { EspeciesStyle } from "./EspeciesStyle";
 
 const Especies = () => {
   const [action, setAction] = useState<"Create" | "Update" | null>();
-  const [especieEscolhidaParaAtualizacao, setEspecieEscolhidaParaAtualizacao] = useState<Specie>();
+  const [especieEscolhidaParaAtualizacao, setEspecieEscolhidaParaAtualizacao] =
+    useState<Specie>();
   const [deleteSpecieID, setDeleteSpecieID] = useState<string>("");
 
   const { confirmDeleteSpecie } = useDeleteSpecie(deleteSpecieID);
@@ -36,7 +37,10 @@ const Especies = () => {
 
   const handleDelete = (id: string) => {
     setDeleteSpecieID(id);
-    notificar({ tipo: "NOTIFICACAO", mensagem: "Solicitação de exclusão concluída com sucesso!" });
+    notificar({
+      tipo: "NOTIFICACAO",
+      mensagem: "Solicitação de exclusão concluída com sucesso!",
+    });
   };
 
   useEffect(() => {
@@ -62,15 +66,21 @@ const Especies = () => {
                   especie={especie}
                   key={especie.id}
                   openModalUpdate={openModalUpdate}
-                  setEspecieEscolhidaParaAtualizacao={setEspecieEscolhidaParaAtualizacao}
-                  confirmDeleteSpecie={() => handleDelete(especie.id)} // Passando diretamente o id
+                  setEspecieEscolhidaParaAtualizacao={
+                    setEspecieEscolhidaParaAtualizacao
+                  }
+                  confirmDeleteSpecie={() => handleDelete(especie.id)}
                 />
               ))}
             {allSpeciesIsLoading && <Loading minHeight={"50vh"} />}
           </div>
         </EspeciesStyle>
       ) : (
-        <CreateEditEspecie action={action} setAction={setAction} especie={especieEscolhidaParaAtualizacao} />
+        <CreateEditEspecie
+          action={action}
+          setAction={setAction}
+          especie={especieEscolhidaParaAtualizacao}
+        />
       )}
     </>
   );

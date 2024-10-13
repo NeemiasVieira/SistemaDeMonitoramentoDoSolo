@@ -36,8 +36,9 @@ export class FormatarDatas {
   }
 
   static mapearMes(mes: string): Mes | undefined {
-    const indice = Number(mes);
+    let indice = Number(mes);
     if (!isNaN(indice) && indice >= 0 && indice < mesesDoAno.length) {
+      indice--;
       return mesesDoAno[indice];
     } else {
       console.error("FormatarDatas: Índice do mês do ano inválido");

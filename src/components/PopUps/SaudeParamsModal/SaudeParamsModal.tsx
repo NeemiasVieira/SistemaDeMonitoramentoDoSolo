@@ -121,8 +121,8 @@ export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) =
   return (
     <IndexModal
       botaoOpenModal={BotaoOpenModal}
-      height="340px"
-      width={isMobile ? "330px" : "600px"}
+      height={isMobile ? "370px" : "auto"}
+      width={isMobile ? "90vw" : "600px"}
       paddingContent="20px"
       title="Faixas saudáveis"
       icon={faCircleQuestion}

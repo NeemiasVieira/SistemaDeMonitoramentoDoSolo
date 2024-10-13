@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { TodosOsRegistrosStyle } from "./TodosOsRegistrosStyle";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useGetAllRecordsPaginated } from "@services/API/Records/useGetAllRecordsPaginated";
-import { Paginacao } from "@components/Paginacao/Paginacao";
-import { Loading } from "@components/Loading/Loading";
-import { Registro } from "@components/Registro/Registro";
-import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
-import { useRegistrosContext } from "../../../contexts/RegistrosContext";
-import { IntervaloDatasInput } from "@components/PopUps/IntervaloDatasInputModal/IntervaloDatasInputModal";
 import { FormatarDatas } from "@assets/utils/FormatDate";
+import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
+import { Loading } from "@components/Loading/Loading";
+import { Paginacao } from "@components/Paginacao/Paginacao";
+import { IntervaloDatasInput } from "@components/PopUps/IntervaloDatasInputModal/IntervaloDatasInputModal";
+import { Registro } from "@components/Registro/Registro";
+import { useGetAllRecordsPaginated } from "@services/API/Records/useGetAllRecordsPaginated";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useRegistrosContext } from "../../../contexts/RegistrosContext";
+import { TodosOsRegistrosStyle } from "./TodosOsRegistrosStyle";
 const TodosOsRegistros = () => {
   //Params
   const { idPlanta } = useParams();
@@ -24,7 +24,11 @@ const TodosOsRegistros = () => {
   const [dataDeFimBusca, setDataDeFimBusca] = useState<string>();
 
   //Hooks
-  const { getAllRecordsPaginated, allRecordsPaginated, allRecordsPaginatedIsLoading } = useGetAllRecordsPaginated({
+  const {
+    getAllRecordsPaginated,
+    allRecordsPaginated,
+    allRecordsPaginatedIsLoading,
+  } = useGetAllRecordsPaginated({
     idPlanta,
     pagina,
     registrosPorPag,
@@ -36,22 +40,35 @@ const TodosOsRegistros = () => {
 
   useEffect(() => {
     setIdPlanta(idPlanta);
-    setBackUrl(`${location.pathname}?rpp=${registrosPorPag ?? 10}&pag=${pagina ?? 1}`);
+    setBackUrl(
+      `${location.pathname}?rpp=${registrosPorPag ?? 10}&pag=${pagina ?? 1}`
+    );
     getAllRecordsPaginated(); // eslint-disable-next-line
   }, [registrosPorPag, pagina, idPlanta, dataDeInicioBusca, dataDeFimBusca]);
 
   useEffect(() => {
-    navigate(`${location.pathname}?rpp=${registrosPorPag ?? 10}&pag=${pagina ?? 1}`); // eslint-disable-next-line
+    navigate(
+      `${location.pathname}?rpp=${registrosPorPag ?? 10}&pag=${pagina ?? 1}`
+    ); // eslint-disable-next-line
   }, [pagina, registrosPorPag]);
 
   return (
     <TodosOsRegistrosStyle>
       <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
       <h1>Todos os Registros</h1>
-      <IntervaloDatasInput params={{ dataDeInicioBusca, dataDeFimBusca, setDataDeInicioBusca, setDataDeFimBusca }} />
+      <IntervaloDatasInput
+        params={{
+          dataDeInicioBusca,
+          dataDeFimBusca,
+          setDataDeInicioBusca,
+          setDataDeFimBusca,
+        }}
+      />
       {allRecordsPaginatedIsLoading && <Loading minHeight={"70vh"} />}
       {allRecordsPaginated &&
-        allRecordsPaginated.registros.map((registro) => <Registro registro={registro} key={registro.id} />)}
+        allRecordsPaginated.registros.map((registro) => (
+          <Registro registro={registro} key={registro.id} />
+        ))}
       {allRecordsPaginated && (
         <Paginacao
           setPagina={setPagina}

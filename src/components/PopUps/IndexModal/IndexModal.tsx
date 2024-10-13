@@ -3,6 +3,7 @@ import { ModalIndexStyle } from "./IndexModalStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
+import { useIsMobile } from "@services/hooks/useIsMobile";
 Modal.setAppElement("#root");
 
 interface ModalIndexProps {
@@ -33,6 +34,7 @@ export const IndexModal: React.FC<ModalIndexProps> = ({
   paddingContent,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -80,7 +82,7 @@ export const IndexModal: React.FC<ModalIndexProps> = ({
               <FontAwesomeIcon icon={icon} />
               {title}
             </h3>
-            <button onClick={closeModal} className="closeButton">
+            <button onClick={closeModal} className="closeButton" style={{ marginRight: isMobile ? "20px" : "12px" }}>
               <FontAwesomeIcon icon={faXmark} />
             </button>
           </div>
