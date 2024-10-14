@@ -42,7 +42,6 @@ export const AplicacaoMain = styled.main`
     min-width: 400px;
     max-width: 500px;
     color: #444;
-    letter-spacing: 1px;
   }
 
   @media screen and (max-width: 480px) {

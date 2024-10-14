@@ -13,9 +13,6 @@ const PagGraficoHistorico = () => {
   const paramsDeBusca = new URLSearchParams(location.search);
   const intBusca = Number(paramsDeBusca.get("intBusca"));
   const intDias = Number(paramsDeBusca.get("intDias"));
-  const [intervaloDeDias, setIntervaloDeDias] = useState<string | number>(
-    intDias
-  );
   const [intervaloDeBusca, setIntervaloDeBusca] = useState<string | number>(
     intBusca
   );
@@ -25,26 +22,20 @@ const PagGraficoHistorico = () => {
     {
       idPlanta,
       intervaloDeBusca,
-      intervaloDeDias,
     }
   );
   const params = {
     intervaloDeBusca,
-    intervaloDeDias,
     setIntervaloDeBusca,
-    setIntervaloDeDias,
     allRecordsIsLoading,
   };
 
   useEffect(() => {
-    if (intervaloDeBusca || intervaloDeDias) {
-      navigate(
-        `${location.pathname}?intBusca=${intervaloDeBusca ?? 0}&intDias=${
-          intervaloDeDias ?? 0
-        }`
-      );
-    } else navigate(location.pathname); // eslint-disable-next-line
-  }, [intervaloDeBusca, intervaloDeDias, intBusca, intDias]);
+    navigate(
+      location.pathname + intervaloDeBusca ? `?intBusca${intervaloDeBusca}` : ""
+    );
+    // eslint-disable-next-line
+  }, [intervaloDeBusca, intBusca, intDias]);
 
   return (
     <PagGraficoHistoricoStyle>

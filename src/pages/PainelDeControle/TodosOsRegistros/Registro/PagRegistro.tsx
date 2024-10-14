@@ -25,9 +25,10 @@ const PagRegistro = () => {
       {(registro || record) && (
         <>
           <section className="informacoes">
-            {registro && (
-              <h2 className="nuRegistro">Registro n° {registro?.nuRegistro}</h2>
-            )}
+            <h2 className="nuRegistro">
+              Registro n° {registro?.nuRegistro || record?.nuRegistro}
+            </h2>
+
             <div className="botoesAcao">
               <Link
                 to={`/painel/registros/${idRegistro}/saude`}

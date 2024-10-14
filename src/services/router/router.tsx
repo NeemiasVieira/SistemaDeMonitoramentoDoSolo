@@ -1,26 +1,27 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { NotificacoesProvider } from "../../contexts/NotificacoesProvider";
-import { RegistrosProvider } from "../../contexts/RegistrosContext";
-import { ApplicationProvider } from "../../contexts/ApplicationContext";
-import { Redirect } from "./utils/redirecionamento";
-import { RotaPrivada } from "./utils/rotaPrivada";
-import { RotaC } from "./utils/rotaCondicionada";
-import Home from "@pages/Home/Home";
-import Login from "@pages/Login/Login";
-import PainelDeControle from "@pages/PainelDeControle/PainelDeControle";
+import Unauthorized from "@pages/401Unauthorized/Unauthorized";
+import NotFound from "@pages/404NotFound/NotFound";
+import Aplicacao from "@pages/Aplicacao/Aplicacao";
 import Cadastro from "@pages/Cadastro/Cadastro";
 import Faq from "@pages/FAQ/Faq";
-import Aplicacao from "@pages/Aplicacao/Aplicacao";
-import PainelAdm from "@pages/PainelAdm/PainelAdm";
+import Home from "@pages/Home/Home";
+import Login from "@pages/Login/Login";
 import Especies from "@pages/PainelAdm/Especies/Especies";
-import PainelMenu from "@pages/PainelDeControle/Menu/Menu";
-import Resumo from "@pages/PainelDeControle/Resumo/Resumo";
-import PagRelatorioSaude from "@pages/PainelDeControle/RelatorioDeSaude/RelatorioSaude";
+import PainelAdm from "@pages/PainelAdm/PainelAdm";
 import PagGraficoHistorico from "@pages/PainelDeControle/HistoricoEmGrafico/GraficoHistorico";
-import NotFound from "@pages/404NotFound/NotFound";
-import TodosOsRegistros from "@pages/PainelDeControle/TodosOsRegistros/TodosOsRegistros";
+import PainelMenu from "@pages/PainelDeControle/Menu/Menu";
+import PainelDeControle from "@pages/PainelDeControle/PainelDeControle";
+import PagRelatorioSaude from "@pages/PainelDeControle/RelatorioDeSaude/RelatorioSaude";
+import Resumo from "@pages/PainelDeControle/Resumo/Resumo";
 import PagRegistro from "@pages/PainelDeControle/TodosOsRegistros/Registro/PagRegistro";
 import PagRelatorioSaudePorRegistro from "@pages/PainelDeControle/TodosOsRegistros/Registro/RelatorioSaudeDoRegistro";
+import TodosOsRegistros from "@pages/PainelDeControle/TodosOsRegistros/TodosOsRegistros";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ApplicationProvider } from "../../contexts/ApplicationContext";
+import { NotificacoesProvider } from "../../contexts/NotificacoesProvider";
+import { RegistrosProvider } from "../../contexts/RegistrosContext";
+import { Redirect } from "./utils/redirecionamento";
+import { RotaC } from "./utils/rotaCondicionada";
+import { RotaPrivada } from "./utils/rotaPrivada";
 
 const Router = () => {
   return (
@@ -48,6 +49,7 @@ const Router = () => {
             <Route element={<Faq />} path="/faq" />
             <Route element={<Aplicacao />} path="/aplicacao" />
             <Route element={<NotFound />} path="*" />
+            <Route element={<Unauthorized />} path="unauthorized" />
 
             {/* Rotas Privadas */}
             <Route

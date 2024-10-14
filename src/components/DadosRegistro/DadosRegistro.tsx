@@ -1,9 +1,9 @@
+import { FormatarDatas } from "@assets/utils/FormatDate";
 import React from "react";
 import styled from "styled-components";
-import { DadosRegistroStyle } from "./DadosRegistroStyle";
-import { FormatarDatas } from "@assets/utils/FormatDate";
-import { RecordQuery } from "../GraficoLinhas/Types";
 import { Tooltip } from "../Buttons/ToolTip";
+import { RecordQuery } from "../GraficoLinhas/Types";
+import { DadosRegistroStyle } from "./DadosRegistroStyle";
 
 interface DadosRegistroProps {
   registro: RecordQuery;
@@ -20,7 +20,6 @@ const InfoStyle = styled.div`
   .nomeInfo {
     font-size: 18px;
     font-weight: 600;
-    letter-spacing: 10%;
     margin: 2px;
   }
 
@@ -90,26 +89,55 @@ const Info: React.FC<InfoProps> = ({ nomeInfo, valorInfo, unidadeMedida }) => {
         {unidadeMedida && <p className="valorInfo">{valorInfo}</p>}
         {!unidadeMedida && <p className="valorInfo2">{valorInfo}</p>}
 
-        <span className="unidadeMedida">{unidadeMedida ? unidadeMedida : ""}</span>
+        <span className="unidadeMedida">
+          {unidadeMedida ? unidadeMedida : ""}
+        </span>
       </div>
     </InfoStyle>
   );
 };
 
-export const DadosRegistro: React.FC<DadosRegistroProps> = ({ registro, ultimaAtualizacao }) => {
+export const DadosRegistro: React.FC<DadosRegistroProps> = ({
+  registro,
+  ultimaAtualizacao,
+}) => {
   return (
     <DadosRegistroStyle>
       {registro && (
         <div className="Infos">
-          <Info nomeInfo="Nitrogenio" valorInfo={registro.nitrogenio} unidadeMedida="mg/Kg" />
-          <Info nomeInfo="Fósforo" valorInfo={registro.fosforo} unidadeMedida="mg/Kg" />
-          <Info nomeInfo="Potássio" valorInfo={registro.potassio} unidadeMedida="mg/Kg" />
+          <Info
+            nomeInfo="Nitrogenio"
+            valorInfo={registro.nitrogenio}
+            unidadeMedida="mg/Kg"
+          />
+          <Info
+            nomeInfo="Fósforo"
+            valorInfo={registro.fosforo}
+            unidadeMedida="mg/Kg"
+          />
+          <Info
+            nomeInfo="Potássio"
+            valorInfo={registro.potassio}
+            unidadeMedida="mg/Kg"
+          />
           <Info nomeInfo="Luz" valorInfo={registro.luz} unidadeMedida="%" />
           <span className="toolTip">
-            <Tooltip texts={[`Valor registrado pelo sensor de luminosidade: ${registro.lux} lux`]} />
+            <Tooltip
+              texts={[
+                `Valor registrado pelo sensor de luminosidade: ${registro.lux} lux`,
+              ]}
+            />
           </span>
-          <Info nomeInfo="Temperatura" valorInfo={registro.temperatura} unidadeMedida="°C" />
-          <Info nomeInfo="Umidade" valorInfo={registro.umidade} unidadeMedida="%" />
+          <Info
+            nomeInfo="Temperatura"
+            valorInfo={registro.temperatura}
+            unidadeMedida="°C"
+          />
+          <Info
+            nomeInfo="Umidade"
+            valorInfo={registro.umidade}
+            unidadeMedida="%"
+          />
           <Info nomeInfo="pH" valorInfo={registro.pH} />
         </div>
       )}

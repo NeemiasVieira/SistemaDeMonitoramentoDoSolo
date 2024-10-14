@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import styled from "styled-components";
-import { Navigation } from "@components/Navigation/Navigation";
-import { Footer } from "@components/Footer/Footer";
-import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "react-query";
 import { limparLocalStorage } from "@assets/utils/limparLocalStorage";
+import { Footer } from "@components/Footer/Footer";
+import { Navigation } from "@components/Navigation/Navigation";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const ApplicationBackgroundStyle = styled.div`
   display: flex;
@@ -23,7 +23,9 @@ const ApplicationBackgroundStyle = styled.div`
 interface ICreateContext {
   Logout: () => void;
   isAdmin: boolean;
+  simulationMode: boolean;
   auth: boolean;
+  setSimulationMode: React.Dispatch<React.SetStateAction<boolean>>;
   setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
   setAuth: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -34,15 +36,27 @@ interface IApplicationProvider {
 
 const ApplicationContext = createContext<ICreateContext>({
   isAdmin: localStorage.getItem("profile") === "admin" ? true : false,
+  simulationMode:
+    localStorage.getItem("simulationMode") === "true" ? true : false,
   auth: localStorage.getItem("token") ? true : false,
   Logout: () => {},
   setIsAdmin: () => {},
   setAuth: () => {},
+  setSimulationMode: () => {},
 });
 
-export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }) => {
-  const [auth, setAuth] = useState<boolean>(localStorage.getItem("token") ? true : false);
-  const [isAdmin, setIsAdmin] = useState<boolean>(localStorage.getItem("profile") === "admin" ? true : false);
+export const ApplicationProvider: React.FC<IApplicationProvider> = ({
+  children,
+}) => {
+  const [auth, setAuth] = useState<boolean>(
+    localStorage.getItem("token") ? true : false
+  );
+  const [simulationMode, setSimulationMode] = useState<boolean>(
+    localStorage.getItem("simulationMode") === "true" ? true : false
+  );
+  const [isAdmin, setIsAdmin] = useState<boolean>(
+    localStorage.getItem("profile") === "admin" ? true : false
+  );
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -60,7 +74,17 @@ export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }
   useEffect(() => {}, [auth]);
 
   return (
-    <ApplicationContext.Provider value={{ Logout, auth, isAdmin, setIsAdmin, setAuth }}>
+    <ApplicationContext.Provider
+      value={{
+        Logout,
+        auth,
+        isAdmin,
+        setIsAdmin,
+        setAuth,
+        simulationMode,
+        setSimulationMode,
+      }}
+    >
       <ApplicationBackgroundStyle>
         <Navigation />
         {children}

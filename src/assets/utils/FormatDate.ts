@@ -53,7 +53,9 @@ export class FormatarDatas {
 
     const minutes = Math.floor(timeDiff / 60000);
     if (minutes < 60) {
-      return `Valores atualizados há ${minutes} minuto${minutes !== 1 ? "s" : ""}`;
+      return `Valores atualizados há ${minutes} minuto${
+        minutes !== 1 ? "s" : ""
+      }`;
     }
 
     const hours = Math.floor(timeDiff / 3600000);
@@ -102,6 +104,15 @@ export class FormatarDatas {
     return `${dia}/${mes}/${ano} - ${hora}:${minuto}h`;
   }
 
+  static horaMinutoSegundo(data: string) {
+    const novaData = new Date(data);
+    const hora = novaData.getHours().toString().padStart(2, "0");
+    const minuto = novaData.getMinutes().toString().padStart(2, "0");
+    const segundos = novaData.getSeconds().toString().padStart(2, "0");
+
+    return `${hora}:${minuto}:${segundos}`;
+  }
+
   static completao(data: string) {
     const novaData = new Date(data);
     const dia = novaData.getDate().toString().padStart(2, "0");
@@ -111,7 +122,9 @@ export class FormatarDatas {
     const minuto = novaData.getMinutes().toString().padStart(2, "0");
     const day = novaData.getDay();
 
-    return `${this.mapearDia(day)}, ${dia} de ${this.mapearMes(mes)} de ${ano} as ${hora}:${minuto}h`;
+    return `${this.mapearDia(day)}, ${dia} de ${this.mapearMes(
+      mes
+    )} de ${ano} as ${hora}:${minuto}h`;
   }
 
   static isoToInputDate(isoDate: string) {

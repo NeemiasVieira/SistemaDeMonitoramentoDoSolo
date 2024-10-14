@@ -1,31 +1,29 @@
 import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
 import { Loading } from "@components/Loading/Loading";
 import { RelatorioDeSaude } from "@components/RelatorioDeSaude/RelatorioDeSaude";
-import { useGetPlant } from "@services/API/Plants/useGetPlant";
+import { useGetRecord } from "@services/API/Records/useGetRecord";
 import { useGetRelatorioSaudePorRegistro } from "@services/API/Records/useGetRelatorioSaudePorRegistro";
 import { useGetSpecie } from "@services/API/Species/useGetSpecie";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useRegistrosContext } from "../../../../contexts/RegistrosContext";
 import { PagRelatorioDeSaudeStyle } from "../../RelatorioDeSaude/RelatorioSaudeStyle";
 
 const PagRelatorioSaudePorRegistro = () => {
   const { idRegistro } = useParams();
-  const { idPlanta } = useRegistrosContext();
-  const { planta } = useGetPlant(idPlanta);
+  const { record } = useGetRecord(idRegistro);
   const { getSpecie, specieData } = useGetSpecie({
-    nome: planta?.especie,
+    nome: record?.nomeEspecie,
   });
   const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } =
     useGetRelatorioSaudePorRegistro(idRegistro);
 
   useEffect(() => {
-    if (planta) {
+    if (record) {
       getSpecie();
       getRelatorioSaude();
     }
     // eslint-disable-next-line
-  }, [planta]);
+  }, [record]);
 
   return (
     <PagRelatorioDeSaudeStyle>

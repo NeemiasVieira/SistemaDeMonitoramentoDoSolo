@@ -17,14 +17,12 @@ export const ResumoStyle = styled.main`
 
   .nomeDaPlanta {
     font-size: 40px;
-    letter-spacing: 1.5px;
     font-weight: 700;
     margin: 0;
   }
 
   .especieDaPlanta {
     font-size: 25px;
-    letter-spacing: 1.5px;
     font-weight: 600;
     color: var(--text-secondary);
     margin: 0;

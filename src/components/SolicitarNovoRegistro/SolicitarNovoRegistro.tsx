@@ -22,7 +22,7 @@ import { SolicitarNovoRegistroStyle } from "./SolicitarNovoRegistroStyle";
 
 export const SolicitarNovoRegistro = () => {
   const { idPlanta } = useParams();
-  const { planta, isLoading, isLoadingNoCache } = useGetPlant(idPlanta);
+  const { planta, isLoading, isLoadingNoCache } = useGetPlant(idPlanta, true);
   const { lastRecord } = useGetLastRecord(idPlanta);
   const { notificar } = useNotificacoes();
 
@@ -48,7 +48,7 @@ export const SolicitarNovoRegistro = () => {
     }, [planta?.solicitacaoNovoRegistro]);
 
   const isActionLoading = useMemo(
-    () => (sendLoading || cancelLoading || isLoadingNoCache) && !isLoading,
+    () => (sendLoading || cancelLoading) && !isLoading,
     [sendLoading, cancelLoading, isLoadingNoCache]
   );
 
@@ -91,8 +91,12 @@ export const SolicitarNovoRegistro = () => {
             </p>
 
             <p>
-              <b>Última atualização: </b>
+              <b>Último Registro: </b>
               {FormatarDatas.dataHoraMinuto(lastRecord.dataDeRegistro)}
+            </p>
+            <p>
+              <b>Última Atualização: </b>
+              {FormatarDatas.horaMinutoSegundo(planta?.ultimaAtualizacao)}
             </p>
           </>
         )}
@@ -109,6 +113,7 @@ export const SolicitarNovoRegistro = () => {
               <RefreshQueryButton
                 queryKeys={["planta"]}
                 className="refreshButton"
+                observeVariable={planta?.ultimaAtualizacao}
               />
               <h3>
                 {titulo}

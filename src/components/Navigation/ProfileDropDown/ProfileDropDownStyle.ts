@@ -17,12 +17,11 @@ export const ProfileDropDownStyle = styled.div`
   .switchThemeOnDropDown {
     display: flex;
     flex-flow: row nowrap;
-    gap: 25px;
     padding: 8px 0;
 
     .texto {
-      width: 47%;
-      margin-left: 23px;
+      width: 160px;
+      margin-left: 40px;
       text-align: initial;
     }
     svg {
@@ -48,7 +47,7 @@ export const ProfileDropDownStyle = styled.div`
     display: none;
     position: absolute;
     background-color: var(--button-primary);
-    min-width: 240px;
+    min-width: 260px;
     z-index: 1;
     box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
     color: var(--text-primary);

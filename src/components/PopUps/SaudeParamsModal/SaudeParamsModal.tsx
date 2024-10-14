@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import React, { useMemo } from "react";
-import { IndexModal } from "../IndexModal/IndexModal";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Column, useTable } from "react-table";
-import { Specie } from "../../Especie/Types";
 import { useIsMobile } from "@services/hooks/useIsMobile";
+import React, { useMemo } from "react";
+import { Column, useTable } from "react-table";
+import styled from "styled-components";
+import { Specie } from "../../Especie/Types";
+import { IndexModal } from "../IndexModal/IndexModal";
 
 export const formatarNumeroComPontos = (numero: string): string => {
   const regex = /(\d)(?=(\d{3})+(?!\d))/g;
@@ -22,7 +22,6 @@ const ButtonOpenModal = styled.button`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  letter-spacing: 1px;
   background-color: var(--contrast);
   padding: 10px 20px;
   border-radius: 10px;
@@ -31,7 +30,6 @@ const ButtonOpenModal = styled.button`
   @media screen and (max-width: 480px) {
     span {
       font-size: 0.9rem;
-      letter-spacing: normal;
     }
   }
 `;
@@ -84,29 +82,67 @@ interface SaudeParamsModalProps {
   especie: Specie;
 }
 
-export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) => {
-  const { nitrogenio, fosforo, potassio, luz, umidade, temperatura, pH } = especie.parametros;
+export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({
+  especie,
+}) => {
+  const { nitrogenio, fosforo, potassio, luz, umidade, temperatura, pH } =
+    especie.parametros;
   const isMobile = useIsMobile();
 
   const data = useMemo(
     () => [
-      { propriedade: "Nitrogênio", unidade: "mg/Kg", valorMinimo: nitrogenio?.min, valorMaximo: nitrogenio?.max },
-      { propriedade: "Fósforo", unidade: "mg/Kg", valorMinimo: fosforo?.min, valorMaximo: fosforo?.max },
-      { propriedade: "Potássio", unidade: "mg/Kg", valorMinimo: potassio?.min, valorMaximo: potassio?.max },
+      {
+        propriedade: "Nitrogênio",
+        unidade: "mg/Kg",
+        valorMinimo: nitrogenio?.min,
+        valorMaximo: nitrogenio?.max,
+      },
+      {
+        propriedade: "Fósforo",
+        unidade: "mg/Kg",
+        valorMinimo: fosforo?.min,
+        valorMaximo: fosforo?.max,
+      },
+      {
+        propriedade: "Potássio",
+        unidade: "mg/Kg",
+        valorMinimo: potassio?.min,
+        valorMaximo: potassio?.max,
+      },
       {
         propriedade: "Luz",
         unidade: "lx (lux)",
         valorMinimo: formatarNumeroComPontos(luz?.min),
         valorMaximo: formatarNumeroComPontos(luz?.max),
       },
-      { propriedade: "Umidade", unidade: "%", valorMinimo: umidade?.min, valorMaximo: umidade?.max },
-      { propriedade: "Temperatura", unidade: "ºC", valorMinimo: temperatura?.min, valorMaximo: temperatura?.max },
-      { propriedade: "pH", unidade: "", valorMinimo: pH?.min, valorMaximo: pH?.max },
+      {
+        propriedade: "Umidade",
+        unidade: "%",
+        valorMinimo: umidade?.min,
+        valorMaximo: umidade?.max,
+      },
+      {
+        propriedade: "Temperatura",
+        unidade: "ºC",
+        valorMinimo: temperatura?.min,
+        valorMaximo: temperatura?.max,
+      },
+      {
+        propriedade: "pH",
+        unidade: "",
+        valorMinimo: pH?.min,
+        valorMaximo: pH?.max,
+      },
     ], // eslint-disable-next-line
     [especie]
   );
 
-  const columns: Column<{ propriedade: string; valorMinimo: string; valorMaximo: string; unidade: string }>[] = useMemo(
+  const columns: Column<{
+    propriedade: string;
+    valorMinimo: string;
+    valorMaximo: string;
+    unidade: string;
+  }>[] = useMemo(
     () => [
       { Header: "Propriedade", accessor: "propriedade" },
       { Header: "Valor Mínimo", accessor: "valorMinimo" },
@@ -116,7 +152,8 @@ export const SaudeParamsModal: React.FC<SaudeParamsModalProps> = ({ especie }) =
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns, data });
 
   return (
     <IndexModal

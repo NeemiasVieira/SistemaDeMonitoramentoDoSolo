@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NotFoundStyle = styled.main`
+export const UnauthorizedStyle = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@ export const NotFoundStyle = styled.main`
 
   svg {
     font-size: 7rem;
-    color: var(--dark-green);
+    color: var(--red);
     margin: 0;
   }
 

@@ -6,13 +6,7 @@ import { TipoGrafico, selecionaGrafico, unidadeMedida } from "./Services";
 import { GraficoLinhasProps } from "./Types";
 
 const GraficoLinhas: React.FC<GraficoLinhasProps> = ({ records, params }) => {
-  const {
-    intervaloDeBusca,
-    intervaloDeDias,
-    setIntervaloDeBusca,
-    setIntervaloDeDias,
-    allRecordsIsLoading,
-  } = params;
+  const { intervaloDeBusca, setIntervaloDeBusca, allRecordsIsLoading } = params;
 
   const [tipoGrafico, setTipoGrafico] = useState<TipoGrafico>("NPK");
   const [data, setData] = useState([
@@ -21,9 +15,8 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({ records, params }) => {
 
   useEffect(() => {
     if (intervaloDeBusca === "Selecione") setIntervaloDeBusca(null);
-    if (intervaloDeDias === "Selecione") setIntervaloDeDias(null);
     // eslint-disable-next-line
-  }, [intervaloDeBusca, intervaloDeDias]);
+  }, [intervaloDeBusca]);
 
   useEffect(() => {
     setData([]);
@@ -66,23 +59,6 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({ records, params }) => {
               <option value="umidade">Umidade</option>
               <option value="pH">pH</option>
               <option value="luz">Luz</option>
-            </select>
-          </div>
-          <div className="Select">
-            <p className="tituloSelect">Exibir um registro a cada</p>
-            <select
-              className="selectFiltro"
-              value={intervaloDeDias}
-              name=""
-              id=""
-              onChange={(e) => setIntervaloDeDias(e.target.value)}
-            >
-              <option value={null}>Selecione</option>
-              <option value={1}>1 dia</option>
-              <option value={3}>3 dias</option>
-              <option value={5}>5 dias</option>
-              <option value={7}>7 dias</option>
-              <option value={10}>10 dias</option>
             </select>
           </div>
           <div className="Select">

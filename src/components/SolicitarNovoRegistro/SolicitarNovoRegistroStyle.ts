@@ -9,7 +9,7 @@ export const SolicitarNovoRegistroStyle = styled.div`
   display: flex;
   align-items: center;
   flex-flow: row nowrap;
-  height: 135px;
+  height: 155px;
   border: solid var(--border-primary) 1px;
 
   .refreshButton {

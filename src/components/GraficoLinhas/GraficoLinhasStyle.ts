@@ -5,7 +5,6 @@ export const SecaoGraficoLinhas = styled.section`
   max-width: 900px;
 
   .titulo {
-    letter-spacing: 3px;
     font-weight: 700;
     margin: 10px 0;
     font-size: 30px;

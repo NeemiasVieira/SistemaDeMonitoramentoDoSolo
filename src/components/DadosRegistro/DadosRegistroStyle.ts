@@ -18,7 +18,6 @@ export const DadosRegistroStyle = styled.div`
   .InfoUltimaAtualizacao {
     font-weight: 400;
     font-size: 20px;
-    letter-spacing: 1.5px;
     margin-top: 50px;
     color: var(--text-secondary);
   }

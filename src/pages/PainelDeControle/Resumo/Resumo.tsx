@@ -16,7 +16,6 @@ const Resumo = () => {
   const { idPlanta } = useParams();
 
   //States
-  const [intervaloDeDias, setIntervaloDeDias] = useState(null);
   const [intervaloDeBusca, setIntervaloDeBusca] = useState(null);
 
   //Hooks
@@ -29,14 +28,11 @@ const Resumo = () => {
     useGetAllRecords({
       idPlanta,
       intervaloDeBusca,
-      intervaloDeDias,
     });
   const { getSpecie, specieData } = useGetSpecie({ nome: planta?.especie });
   const params = {
     intervaloDeBusca,
-    intervaloDeDias,
     setIntervaloDeBusca,
-    setIntervaloDeDias,
     allRecordsIsLoading,
   };
 
@@ -45,7 +41,7 @@ const Resumo = () => {
       getAllRecords();
     }
     // eslint-disable-next-line
-  }, [intervaloDeBusca, intervaloDeDias]);
+  }, [intervaloDeBusca]);
 
   useEffect(() => {
     if (planta) {
