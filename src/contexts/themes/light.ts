@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const LightTheme = createGlobalStyle`
     body {
@@ -36,6 +36,7 @@ export const LightTheme = createGlobalStyle`
         --contrast: #fff;
         --light-green: #8CDF27;
         --dark-green: #53BF30;
+        --force-dark-green: #53BF30;
         --bg-primary: #E1E1E1;
         --text-secondary: #444;
         --text-primary: #000;
@@ -48,6 +49,7 @@ export const LightTheme = createGlobalStyle`
         --bg-modal: rgba(0, 0, 0, 0.5);
         --red: #ff2200;
         --light-gray: #ddd;
+        --super-light-gray: #f5f5f5;
         --white: #fff;
     }
 `;

@@ -1,10 +1,10 @@
-import React from "react";
-import { EspecieStyle } from "./EspecieStyle";
-import { EspecieProps } from "./Types";
-import { DeleteButton } from "../Buttons/DeleteButton/DeleteButton";
-import { UpdateButton } from "../Buttons/UpdateButton";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-import { formatarNumeroComPontos } from "../PopUps/SaudeParamsModal/SaudeParamsModal";
+import React from 'react';
+import { EspecieStyle } from './EspecieStyle';
+import { EspecieProps } from './Types';
+import { DeleteButton } from '../Buttons/DeleteButton/DeleteButton';
+import { UpdateButton } from '../Buttons/UpdateButton';
+import { useNotificacoes } from '../../contexts/NotificacoesProvider';
+import { formatarNumeroComPontos } from '../PopUps/SaudeParamsModal/SaudeParamsModal';
 
 export const Especie: React.FC<EspecieProps> = ({
   especie,
@@ -20,7 +20,7 @@ export const Especie: React.FC<EspecieProps> = ({
   };
 
   const handleDelete = () => {
-    notificar({ tipo: "NOTIFICACAO", mensagem: "Solicitação de exclusão enviada", tempoEmSeg: 4 });
+    notificar({ tipo: 'NOTIFICACAO', mensagem: 'Solicitação de exclusão enviada', tempoEmSeg: 4 });
     confirmDeleteSpecie(especie.id);
   };
 
@@ -29,7 +29,7 @@ export const Especie: React.FC<EspecieProps> = ({
       <div className="titleAndButtons">
         <h3>{especie.nome}</h3>
         <div className="buttonActions">
-          <UpdateButton openModal={handleUpdate} />
+          <UpdateButton onCLick={handleUpdate} />
           <DeleteButton onDelete={handleDelete} />
         </div>
       </div>

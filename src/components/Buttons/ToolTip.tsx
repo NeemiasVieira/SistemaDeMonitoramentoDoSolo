@@ -1,15 +1,15 @@
-import React, { useMemo, useState } from "react";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useIsMobile } from "@services/hooks/useIsMobile";
-import styled from "styled-components";
+import React, { useMemo, useState } from 'react';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useIsMobile } from '@services/hooks/useIsMobile';
+import styled from 'styled-components';
 
-const ToolTipStyle = styled.div`
+const ToolTipStyle = styled.div<{ $color?: string }>`
   position: relative;
   display: inline-block;
 
   svg {
-    color: var(--text-secondary);
+    color: ${({ $color }) => ($color ? $color : 'var(--text-secondary)')};
     font-size: 1.1rem;
     margin-left: 5px;
     cursor: pointer;
@@ -17,7 +17,7 @@ const ToolTipStyle = styled.div`
 `;
 
 const TooltipText = styled.span<{ $visible: boolean }>`
-  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
+  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
   width: 20vw;
   min-width: 250px;
   padding: 10px 10px;
@@ -48,9 +48,10 @@ const TooltipText = styled.span<{ $visible: boolean }>`
 
 interface ToolTipProps {
   texts: string[];
+  color?: string;
 }
 
-export const Tooltip: React.FC<ToolTipProps> = ({ texts }) => {
+export const Tooltip: React.FC<ToolTipProps> = ({ texts, color }) => {
   const isMobile = useIsMobile();
   const [visible, setVisible] = useState<boolean>(false);
   const [clicked, setCliked] = useState<boolean>(false);
@@ -60,7 +61,7 @@ export const Tooltip: React.FC<ToolTipProps> = ({ texts }) => {
   }, [visible, clicked, isMobile]);
 
   return (
-    <ToolTipStyle onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
+    <ToolTipStyle onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)} $color={color}>
       <FontAwesomeIcon icon={faInfoCircle} onClick={() => setCliked(!clicked)} />
       <TooltipText $visible={showToolTip}>
         {texts.map((line, index) => (

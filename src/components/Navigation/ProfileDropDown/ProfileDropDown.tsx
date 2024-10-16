@@ -1,29 +1,22 @@
-import { formarIniciais } from "@assets/utils/formatarIniciais";
-import {
-  faArrowRightFromBracket,
-  faLaptop,
-  faPaintRoller,
-  faUserTie,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useApplication } from "../../../contexts/ApplicationContext";
-import { useThemes } from "../../../contexts/ThemeProvider";
-import { ProfileDropDownStyle } from "./ProfileDropDownStyle";
+import { formarIniciais } from '@assets/utils/formatarIniciais';
+import { faArrowRightFromBracket, faLaptop, faPaintRoller, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useApplication } from '../../../contexts/ApplicationContext';
+import { useThemes } from '../../../contexts/ThemeProvider';
+import { ProfileDropDownStyle } from './ProfileDropDownStyle';
 
 export const ProfileDropDown = () => {
   const { theme, toggleTheme } = useThemes();
-  const { isAdmin, Logout, simulationMode, setSimulationMode } =
-    useApplication();
+  const { isAdmin, Logout, simulationMode, toggleSimulationMode } = useApplication();
 
-  const [mostrarOpcoesMovimentacoes, setMostrarOpcoesMovimentacoes] =
-    useState<boolean>(false);
+  const [mostrarOpcoesMovimentacoes, setMostrarOpcoesMovimentacoes] = useState<boolean>(false);
   const toggleOpcoesMovimentacoes = () => {
     setMostrarOpcoesMovimentacoes(!mostrarOpcoesMovimentacoes);
   };
 
-  const nome = localStorage.getItem("nome");
+  const nome = localStorage.getItem('nome');
 
   return (
     <ProfileDropDownStyle onClick={toggleOpcoesMovimentacoes}>
@@ -32,21 +25,15 @@ export const ProfileDropDown = () => {
         <div
           className="dropdown-content"
           onClick={(e) => e.stopPropagation()}
-          style={{ display: mostrarOpcoesMovimentacoes ? "block" : "none" }}
+          style={{ display: mostrarOpcoesMovimentacoes ? 'block' : 'none' }}
         >
           <ul>
             <li className="switchThemeOnDropDown">
               <FontAwesomeIcon icon={faPaintRoller} />
-              <span className="texto">
-                Tema {theme === "light" ? "claro" : "escuro"}{" "}
-              </span>
+              <span className="texto">Tema {theme === 'light' ? 'claro' : 'escuro'} </span>
 
               <label className="switch">
-                <input
-                  type="checkbox"
-                  onChange={toggleTheme}
-                  checked={theme === "light" ? false : true}
-                />
+                <input type="checkbox" onChange={toggleTheme} checked={theme === 'light' ? false : true} />
                 <span className="slider round"></span>
               </label>
             </li>
@@ -56,11 +43,7 @@ export const ProfileDropDown = () => {
               <span className="texto">Modo Simulação</span>
 
               <label className="switch">
-                <input
-                  type="checkbox"
-                  onChange={() => setSimulationMode((prevValue) => !prevValue)}
-                  checked={simulationMode}
-                />
+                <input type="checkbox" onChange={toggleSimulationMode} checked={simulationMode} />
                 <span className="slider round"></span>
               </label>
             </li>

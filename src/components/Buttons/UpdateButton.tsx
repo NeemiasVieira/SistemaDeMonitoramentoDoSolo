@@ -1,12 +1,12 @@
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import styled from "styled-components";
-import Modal from "react-modal";
-Modal.setAppElement("#root");
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import styled from 'styled-components';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
 interface UpdateButtonProps {
-  openModal?: () => void;
+  onCLick?: () => void;
 }
 
 const ButtonStyle = styled.div`
@@ -46,10 +46,10 @@ const ButtonStyle = styled.div`
   }
 `;
 
-export const UpdateButton: React.FC<UpdateButtonProps> = ({ openModal }) => {
+export const UpdateButton: React.FC<UpdateButtonProps> = ({ onCLick }) => {
   return (
     <ButtonStyle>
-      <button onClick={() => openModal()}>
+      <button onClick={onCLick}>
         <FontAwesomeIcon icon={faPencil} />
       </button>
     </ButtonStyle>

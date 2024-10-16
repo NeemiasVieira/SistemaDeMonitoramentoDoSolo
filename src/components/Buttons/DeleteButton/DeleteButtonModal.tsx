@@ -1,10 +1,10 @@
-import { faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useIsMobile } from "@services/hooks/useIsMobile";
-import { useCallback } from "react";
-import Modal from "react-modal";
-import styled from "styled-components";
-Modal.setAppElement("#root");
+import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useIsMobile } from '@services/hooks/useIsMobile';
+import { useCallback } from 'react';
+import Modal from 'react-modal';
+import styled from 'styled-components';
+Modal.setAppElement('#root');
 
 const ModalStyle = styled.div`
   display: flex;
@@ -116,11 +116,7 @@ interface DeleteButtonModalProps {
   closeModal: () => void;
 }
 
-export const DeleteButtonModal: React.FC<DeleteButtonModalProps> = ({
-  onDelete,
-  isModalOpen,
-  closeModal,
-}) => {
+export const DeleteButtonModal: React.FC<DeleteButtonModalProps> = ({ onDelete, isModalOpen, closeModal }) => {
   const isMobile = useIsMobile();
 
   const onClickDelete = useCallback(() => {
@@ -130,30 +126,25 @@ export const DeleteButtonModal: React.FC<DeleteButtonModalProps> = ({
 
   const customStyles = {
     content: {
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      border: "none",
-      borderRadius: "8px",
-      width: isMobile ? "250px" : "300px",
-      height: "270px",
-      backgroundColor: "var(--contrast)",
-      opacity: "1",
-      boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      border: 'none',
+      borderRadius: '8px',
+      width: isMobile ? '250px' : '300px',
+      height: isMobile ? '270px' : '240px',
+      backgroundColor: 'var(--contrast)',
+      opacity: '1',
+      boxShadow: '0px 16px 16px 0px rgba(0, 0, 0, 0.2)',
       padding: 0,
     },
     overlay: {
-      backgroundColor: "var(--bg-modal)",
+      backgroundColor: 'var(--bg-modal)',
     },
   };
 
   return (
-    <Modal
-      isOpen={isModalOpen}
-      onRequestClose={closeModal}
-      contentLabel="Are you sure"
-      style={customStyles}
-    >
+    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Are you sure" style={customStyles}>
       <ModalStyle>
         <div className="header">
           <h2>
@@ -166,12 +157,8 @@ export const DeleteButtonModal: React.FC<DeleteButtonModalProps> = ({
         </div>
 
         <div className="texts">
-          <span className="confirmText">
-            Tem certeza que deseja excluir o item selecionado?
-          </span>
-          <span className="warningText">
-            Essa ação não poderá ser desfeita.
-          </span>
+          <span className="confirmText">Tem certeza que deseja excluir o item selecionado?</span>
+          <span className="warningText">Essa ação não poderá ser desfeita.</span>
         </div>
 
         <div className="actions">
