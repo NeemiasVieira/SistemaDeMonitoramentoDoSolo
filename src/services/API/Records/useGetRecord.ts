@@ -1,24 +1,21 @@
-import { RecordQuery } from "@components/GraficoLinhas/Types";
-import { useQuery } from "react-query";
-import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import SMS_API, { GraphQLResponse } from "../sms-api";
+import { useQuery } from 'react-query';
+import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
+import SMS_API, { GraphQLResponse } from '../sms-api';
+import { QueryKeys } from '../types';
+import { Record } from './useGetAllRecordsPaginated';
 
-interface Record {
-  getRecord: RecordQuery;
+interface GetRecordResponse {
+  getRecord: Record;
 }
 
 const request = async (idRegistro: string) => {
-  const token = `Bearer ${localStorage.getItem("token")}`;
+  const token = `Bearer ${localStorage.getItem('token')}`;
   const options = { headers: { Authorization: token } };
   const variables = { idRecord: idRegistro };
   const query = `query GetRecord($idRecord: String!) {
       getRecord(idRecord: $idRecord) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux imagem diagnostico idPlanta nomeEspecie nuRegistro }}`;
 
-  return await SMS_API.post<GraphQLResponse<Record>>(
-    "",
-    { query, variables },
-    options
-  );
+  return await SMS_API.post<GraphQLResponse<GetRecordResponse>>('', { query, variables }, options);
 };
 
 export const useGetRecord = (idRegistro: string) => {
@@ -31,12 +28,11 @@ export const useGetRecord = (idRegistro: string) => {
     error,
   } = useQuery({
     queryFn: () => request(idRegistro),
-    queryKey: ["getRecord", idRegistro],
+    queryKey: [QueryKeys.RECORD, idRegistro],
     cacheTime: 10 * 60 * 1000,
     refetchInterval: 10 * 60 * 1000,
     staleTime: 10 * 60 * 1000,
-    onError: (e) =>
-      notificar({ mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
   });
 
   const record = data?.data?.data?.getRecord;

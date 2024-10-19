@@ -65,6 +65,20 @@ export const DropdownMenu = styled.div`
   max-height: 200px;
   overflow-y: auto;
   z-index: 1;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #222;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--dark-green);
+    border: solid #53af30 1.5px;
+    border-radius: 5px;
+  }
 `;
 
 // Estilização de cada opção do dropdown

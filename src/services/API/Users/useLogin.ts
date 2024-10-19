@@ -1,9 +1,10 @@
-import SMS_API, { GraphQLResponse } from "../sms-api";
-import { useMutation } from "react-query";
-import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import { AxiosResponse } from "axios";
-import { useNavigate } from "react-router-dom";
-import { useApplication } from "../../../contexts/ApplicationContext";
+import SMS_API, { GraphQLResponse } from '../sms-api';
+import { useMutation } from 'react-query';
+import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
+import { AxiosResponse } from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useApplication } from '../../../contexts/ApplicationContext';
+import { MutationKeys } from '../types';
 
 interface userLogin {
   loginUser: {
@@ -22,11 +23,10 @@ const request = async (email: string, senha: string) => {
 
   const variables = { email, senha };
 
-  return await SMS_API.post<GraphQLResponse<userLogin>>("", { query, variables });
+  return await SMS_API.post<GraphQLResponse<userLogin>>('', { query, variables });
 };
 
 export const useLogin = (email: string, senha: string) => {
-
   const navigate = useNavigate();
   const { notificar } = useNotificacoes();
   const { setAuth, setIsAdmin } = useApplication();
@@ -34,29 +34,34 @@ export const useLogin = (email: string, senha: string) => {
   const onSucesso = (data: AxiosResponse<GraphQLResponse<userLogin>>) => {
     const response = data?.data?.data?.loginUser;
 
-    if(response){
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("nome", response.usuario.nome);
-      localStorage.setItem("profile", response.usuario.profile);
+    if (response) {
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('nome', response.usuario.nome);
+      localStorage.setItem('profile', response.usuario.profile);
 
-      setIsAdmin(response.usuario.profile === "admin" ? true : false);
+      setIsAdmin(response.usuario.profile === 'admin' ? true : false);
       setAuth(true);
 
-      const redirectToUrl = sessionStorage.getItem("redirectUrl");
-      sessionStorage.removeItem("redirectUrl");
-      
-      notificar({ tipo: "SUCESSO", mensagem: `Bem vindo ${response.usuario.nome}`, tempoEmSeg: 4 });
-      navigate(redirectToUrl ?? "/painel");
-    }
-  }
+      const redirectToUrl = sessionStorage.getItem('redirectUrl');
+      sessionStorage.removeItem('redirectUrl');
 
-  const { isLoading, data, mutate: confirmLogin, error} = useMutation({
-    mutationKey: ["login", email, senha],
+      notificar({ tipo: 'SUCESSO', mensagem: `Bem vindo ${response.usuario.nome}`, tempoEmSeg: 4 });
+      navigate(redirectToUrl ?? '/painel');
+    }
+  };
+
+  const {
+    isLoading,
+    data,
+    mutate: confirmLogin,
+    error,
+  } = useMutation({
+    mutationKey: [MutationKeys.LOGIN, email, senha],
     mutationFn: () => request(email, senha),
     onSuccess: (data) => onSucesso(data),
     retry: false,
-    onError: (e) => notificar({mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4}),
-  })
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+  });
 
   const loginResponse = data?.data?.data?.loginUser;
 
@@ -64,6 +69,6 @@ export const useLogin = (email: string, senha: string) => {
     loginResponse,
     error: error as string,
     confirmLogin,
-    isLoading
-  }
+    isLoading,
+  };
 };

@@ -1,8 +1,9 @@
-import { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "react-query";
-import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import SMS_API, { GraphQLResponse } from "../sms-api";
+import { AxiosResponse } from 'axios';
+import { useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from 'react-query';
+import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
+import SMS_API, { GraphQLResponse } from '../sms-api';
+import { QueryKeys } from '../types';
 
 interface Planta {
   getPlant: {
@@ -11,31 +12,25 @@ interface Planta {
     nome: string;
     especie: string;
     dataDaPlantacao: string;
-    solicitacaoNovoRegistro: "nenhuma" | "aguardando" | "confirmado";
+    solicitacaoNovoRegistro: 'nenhuma' | 'aguardando' | 'confirmado';
     ultimaAtualizacao?: string;
+    simulado: boolean;
   };
 }
 
 const request = async (idPlanta: string) => {
-  const token = `Bearer ${localStorage.getItem("token")}`;
+  const token = `Bearer ${localStorage.getItem('token')}`;
   const variables = { idPlanta };
   const query = `query GetPlant($idPlanta: String!) {        
-    getPlant(idPlanta: $idPlanta) { id idDono nome especie dataDaPlantacao solicitacaoNovoRegistro ultimaAtualizacao }
+    getPlant(idPlanta: $idPlanta) { id idDono nome especie dataDaPlantacao solicitacaoNovoRegistro ultimaAtualizacao simulado }
     }`;
 
   const options = { headers: { Authorization: token } };
 
-  return await SMS_API.post<GraphQLResponse<Planta>>(
-    "",
-    { query, variables },
-    options
-  );
+  return await SMS_API.post<GraphQLResponse<Planta>>('', { query, variables }, options);
 };
 
-export const useGetPlant = (
-  idPlanta: string,
-  refetchIntervalOn: boolean = false
-) => {
+export const useGetPlant = (idPlanta: string, refetchIntervalOn: boolean = false) => {
   const { notificar } = useNotificacoes();
   const [isLoadingNoCache, setIsLoadingNoCache] = useState<boolean>(false);
 
@@ -50,18 +45,17 @@ export const useGetPlant = (
     return response;
   };
 
-  const onErro = (e: string) =>
-    notificar({ mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4 });
+  const onErro = (e: string) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 });
 
   const onSucesso = (data: AxiosResponse<GraphQLResponse<Planta>>) => {
     const status = data?.data?.data?.getPlant?.solicitacaoNovoRegistro;
-    if (status === "confirmado") {
+    if (status === 'confirmado') {
       notificar({
-        tipo: "SUCESSO",
-        mensagem: "Sua solicitação de novo registro foi finalizada",
+        tipo: 'SUCESSO',
+        mensagem: 'Sua solicitação de novo registro foi finalizada',
         tempoEmSeg: 10,
       });
-      setTimeout(() => queryClient.invalidateQueries("planta"), 5000);
+      setTimeout(() => queryClient.invalidateQueries(QueryKeys.PLANT), 5000);
     }
   };
 
@@ -72,7 +66,7 @@ export const useGetPlant = (
     error,
   } = useQuery({
     queryFn: QueryFunction,
-    queryKey: ["planta", idPlanta],
+    queryKey: [QueryKeys.PLANT, idPlanta],
     retry: false,
     refetchInterval: refetchIntervalOn ? 20 * 1000 : null,
     enabled: true,

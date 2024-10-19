@@ -1,27 +1,29 @@
-import Unauthorized from "@pages/401Unauthorized/Unauthorized";
-import NotFound from "@pages/404NotFound/NotFound";
-import Aplicacao from "@pages/Aplicacao/Aplicacao";
-import Cadastro from "@pages/Cadastro/Cadastro";
-import Faq from "@pages/FAQ/Faq";
-import Home from "@pages/Home/Home";
-import Login from "@pages/Login/Login";
-import Especies from "@pages/PainelAdm/Especies/Especies";
-import PainelAdm from "@pages/PainelAdm/PainelAdm";
-import PagGraficoHistorico from "@pages/PainelDeControle/HistoricoEmGrafico/GraficoHistorico";
-import PainelMenu from "@pages/PainelDeControle/Menu/Menu";
-import PainelDeControle from "@pages/PainelDeControle/PainelDeControle";
-import PagRelatorioSaude from "@pages/PainelDeControle/RelatorioDeSaude/RelatorioSaude";
-import Resumo from "@pages/PainelDeControle/Resumo/Resumo";
-import PagRegistro from "@pages/PainelDeControle/TodosOsRegistros/Registro/PagRegistro";
-import PagRelatorioSaudePorRegistro from "@pages/PainelDeControle/TodosOsRegistros/Registro/RelatorioSaudeDoRegistro";
-import TodosOsRegistros from "@pages/PainelDeControle/TodosOsRegistros/TodosOsRegistros";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ApplicationProvider } from "../../contexts/ApplicationContext";
-import { NotificacoesProvider } from "../../contexts/NotificacoesProvider";
-import { RegistrosProvider } from "../../contexts/RegistrosContext";
-import { Redirect } from "./utils/redirecionamento";
-import { RotaC } from "./utils/rotaCondicionada";
-import { RotaPrivada } from "./utils/rotaPrivada";
+import Unauthorized from '@pages/401Unauthorized/Unauthorized';
+import NotFound from '@pages/404NotFound/NotFound';
+import Aplicacao from '@pages/Aplicacao/Aplicacao';
+import Cadastro from '@pages/Cadastro/Cadastro';
+import Faq from '@pages/FAQ/Faq';
+import Home from '@pages/Home/Home';
+import Login from '@pages/Login/Login';
+import Especies from '@pages/PainelAdm/Especies/Especies';
+import PainelAdm from '@pages/PainelAdm/PainelAdm';
+import PagGraficoHistorico from '@pages/PainelDeControle/HistoricoEmGrafico/GraficoHistorico';
+import PainelMenu from '@pages/PainelDeControle/Menu/Menu';
+import PainelDeControle from '@pages/PainelDeControle/PainelDeControle';
+import PagRelatorioSaude from '@pages/PainelDeControle/RelatorioDeSaude/RelatorioSaude';
+import Resumo from '@pages/PainelDeControle/Resumo/Resumo';
+import PagRegistro from '@pages/PainelDeControle/TodosOsRegistros/Registro/PagRegistro';
+import PagRelatorioSaudePorRegistro from '@pages/PainelDeControle/TodosOsRegistros/Registro/RelatorioSaudeDoRegistro';
+import TodosOsRegistros from '@pages/PainelDeControle/TodosOsRegistros/TodosOsRegistros';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { ApplicationProvider } from '../../contexts/ApplicationContext';
+import { NotificacoesProvider } from '../../contexts/NotificacoesProvider';
+import { Redirect } from './utils/redirecionamento';
+import { RotaC } from './utils/rotaCondicionada';
+import { RotaPrivada } from './utils/rotaPrivada';
+import { MutateRecordProvider } from '@contexts/MutateRecordContext';
+import SelecionarImagemRegistro from '@pages/PainelDeControle/TodosOsRegistros/ModificarRegistros/SelecionarImagem/SelecionarImagem';
+import SelecionarDadosRegistro from '@pages/PainelDeControle/TodosOsRegistros/ModificarRegistros/SelecionarDados/SelecionarDados';
 
 const Router = () => {
   return (
@@ -96,33 +98,25 @@ const Router = () => {
             <Route
               element={
                 <RotaPrivada>
-                  <RegistrosProvider>
-                    <TodosOsRegistros />
-                  </RegistrosProvider>
+                  <MutateRecordProvider>
+                    <Outlet />
+                  </MutateRecordProvider>
                 </RotaPrivada>
               }
-              path="/painel/plantas/:idPlanta/registros"
-            />
-            <Route
-              element={
-                <RotaPrivada>
-                  <RegistrosProvider>
-                    <PagRegistro />
-                  </RegistrosProvider>
-                </RotaPrivada>
-              }
-              path="/painel/registros/:idRegistro"
-            />
-            <Route
-              element={
-                <RotaPrivada>
-                  <RegistrosProvider>
-                    <PagRelatorioSaudePorRegistro />
-                  </RegistrosProvider>
-                </RotaPrivada>
-              }
-              path="/painel/registros/:idRegistro/saude"
-            />
+            >
+              <Route path="/painel/plantas/:idPlanta/registros" element={<TodosOsRegistros />} />
+              <Route path="/painel/plantas/:idPlanta/registros/:idRegistro" element={<PagRegistro />} />
+              <Route
+                path="/painel/plantas/:idPlanta/registros/:idRegistro/saude"
+                element={<PagRelatorioSaudePorRegistro />}
+              />
+
+              <Route path="/painel/plantas/:idPlanta/registros/novo" element={<Outlet />}>
+                <Route path="imagem" element={<SelecionarImagemRegistro />} />
+                <Route path="dados" element={<SelecionarDadosRegistro />} />
+                <Route path="menu" element={<SelecionarDadosRegistro />} />
+              </Route>
+            </Route>
 
             <Route
               element={
@@ -130,7 +124,7 @@ const Router = () => {
                   <PainelAdm />
                 </RotaC>
               }
-              path="/adm/painel"
+              path="/painel/administrativo"
             />
             <Route
               element={
@@ -138,7 +132,7 @@ const Router = () => {
                   <Especies />
                 </RotaC>
               }
-              path="/adm/especies"
+              path="/painel/administrativo/especies"
             />
           </Routes>
         </ApplicationProvider>

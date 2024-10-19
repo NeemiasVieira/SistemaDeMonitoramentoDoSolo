@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const EspecieStyle = styled.div`
   display: flex;
@@ -9,7 +9,15 @@ export const EspecieStyle = styled.div`
   border: solid var(--border-primary) 1px;
   border-radius: 10px;
   padding: 10px 20px 0 20px;
-  overflow-x: hidden;
+  position: relative;
+
+  .tagSimulado {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
 
   .descricao {
     color: var(--text-secondary);

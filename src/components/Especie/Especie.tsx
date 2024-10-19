@@ -1,36 +1,41 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { EspecieStyle } from './EspecieStyle';
 import { EspecieProps } from './Types';
 import { DeleteButton } from '../Buttons/DeleteButton/DeleteButton';
 import { UpdateButton } from '../Buttons/UpdateButton';
 import { useNotificacoes } from '../../contexts/NotificacoesProvider';
 import { formatarNumeroComPontos } from '../PopUps/SaudeParamsModal/SaudeParamsModal';
+import { useApplication } from '@contexts/ApplicationContext';
+import { TagSimulado } from '@components/TagSimulado/TagSimulado';
 
-export const Especie: React.FC<EspecieProps> = ({
-  especie,
-  openModalUpdate,
-  setEspecieEscolhidaParaAtualizacao,
-  confirmDeleteSpecie,
-}) => {
+export const Especie: React.FC<EspecieProps> = ({ especie, handleUpdate, confirmDeleteSpecie }) => {
   const { notificar } = useNotificacoes();
-
-  const handleUpdate = () => {
-    setEspecieEscolhidaParaAtualizacao(especie);
-    openModalUpdate();
-  };
+  const { isAdmin } = useApplication();
+  const { simulationMode } = useApplication();
 
   const handleDelete = () => {
     notificar({ tipo: 'NOTIFICACAO', mensagem: 'Solicitação de exclusão enviada', tempoEmSeg: 4 });
     confirmDeleteSpecie(especie.id);
   };
 
+  const disableMutation = useMemo(() => {
+    return !isAdmin && !especie.simulado;
+  }, [isAdmin, especie.simulado]);
+
   return (
     <EspecieStyle>
+      {simulationMode && (
+        <div className="tagSimulado">
+          <TagSimulado simulado={especie.simulado} />
+        </div>
+      )}
+
       <div className="titleAndButtons">
         <h3>{especie.nome}</h3>
+
         <div className="buttonActions">
-          <UpdateButton onCLick={handleUpdate} />
-          <DeleteButton onDelete={handleDelete} />
+          <UpdateButton onCLick={() => handleUpdate(especie)} disabled={disableMutation} />
+          <DeleteButton onDelete={handleDelete} disabled={disableMutation} />
         </div>
       </div>
       <p className="descricao">{especie.descricao}</p>

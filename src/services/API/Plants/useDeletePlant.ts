@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
 import SMS_API from '../sms-api';
+import { MutationKeys, QueryKeys } from '../types';
 
 const request = async (deletePlantId: string) => {
   const token = `Bearer ${localStorage.getItem('token')}`;
@@ -19,8 +20,8 @@ export const useDeletePlant = () => {
   const { notificar } = useNotificacoes();
 
   const onSucesso = () => {
-    queryClient.invalidateQueries('plantsByOwner');
-    queryClient.invalidateQueries('planta');
+    queryClient.invalidateQueries(QueryKeys.ALL_PLANTS);
+    queryClient.invalidateQueries(QueryKeys.PLANT);
     notificar({ tipo: 'SUCESSO', mensagem: 'Planta excluída com sucesso', tempoEmSeg: 4 });
   };
 
@@ -30,7 +31,7 @@ export const useDeletePlant = () => {
     mutate: confirmDeletePlant,
   } = useMutation({
     mutationFn: (deletePlantId: string) => request(deletePlantId),
-    mutationKey: ['deletePlant'],
+    mutationKey: MutationKeys.DELETE_PLANT,
     onSuccess: onSucesso,
     retry: false,
     onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),

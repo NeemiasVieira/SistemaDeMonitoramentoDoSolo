@@ -2,6 +2,7 @@ import SMS_API, { GraphQLResponse } from '../sms-api';
 import { useQuery } from 'react-query';
 import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
 import { useApplication } from '@contexts/ApplicationContext';
+import { QueryKeys } from '../types';
 
 interface Plantas {
   getPlantasByDonoId: {
@@ -28,7 +29,7 @@ export const useGetAllPlants = () => {
 
   const { isLoading, data, refetch, error } = useQuery({
     queryFn: () => request(simulationMode),
-    queryKey: ['plantsByOwner', simulationMode],
+    queryKey: [QueryKeys.ALL_PLANTS, simulationMode],
     cacheTime: 30 * 60 * 1000,
     refetchInterval: false,
     staleTime: 30 * 60 * 1000,

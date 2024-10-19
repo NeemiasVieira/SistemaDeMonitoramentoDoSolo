@@ -1,16 +1,16 @@
-import { PainelAdmStyle } from "./PainelAdmStyle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolder, faSpa, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
+import { PainelAdmStyle } from './PainelAdmStyle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFolder, faSpa, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { useNotificacoes } from '../../contexts/NotificacoesProvider';
+import { BotaoVoltar } from '@components/Buttons/BotaoVoltar';
 
 const PainelAdm = () => {
   const navigate = useNavigate();
   const { notificar } = useNotificacoes();
 
   const notificarIndisponibilidade = () => {
-    notificar({ tipo: "NOTIFICACAO", mensagem: "Funcionalidade indisponível no momento", tempoEmSeg: 4 });
+    notificar({ tipo: 'NOTIFICACAO', mensagem: 'Funcionalidade indisponível no momento', tempoEmSeg: 4 });
   };
 
   return (
@@ -18,7 +18,7 @@ const PainelAdm = () => {
       <BotaoVoltar path="/painel" />
       <h2>Painel Administrativo</h2>
       <section className="menu">
-        <button className="botaoMenu especies" onClick={() => navigate("/adm/especies")}>
+        <button className="botaoMenu especies" onClick={() => navigate('/painel/administrativo/especies')}>
           <FontAwesomeIcon icon={faSpa} />
           <h3>Espécies</h3>
           <p>Gerenciamento de espécies ativas</p>

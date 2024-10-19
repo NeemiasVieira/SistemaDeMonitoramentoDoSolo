@@ -50,7 +50,7 @@ export const ProfileDropDown = () => {
 
             {(isAdmin || simulationMode) && (
               <li>
-                <Link to="/adm/painel" onClick={toggleOpcoesMovimentacoes}>
+                <Link to="/painel/administrativo" onClick={toggleOpcoesMovimentacoes}>
                   <FontAwesomeIcon icon={faUserTie} />
                   Painel Administrativo
                 </Link>

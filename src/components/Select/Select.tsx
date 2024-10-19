@@ -63,6 +63,10 @@ export const Select: React.FC<SelectProps> = ({
     setSelected(null);
   }, []);
 
+  const optionsToSelect = useMemo(() => {
+    return [firstValue, ...options];
+  }, [options]);
+
   return (
     <SelectContainer disabled={disabled} {...props}>
       <Placeholder onClick={toggleDropdown} disabled={disabled}>
@@ -86,7 +90,7 @@ export const Select: React.FC<SelectProps> = ({
 
       {isOpen && !disabled && (
         <DropdownMenu>
-          {[firstValue, ...options].map((option) => (
+          {optionsToSelect.map((option) => (
             <OptionStyled
               key={option.id}
               onClick={() => handleOptionClick(option)}

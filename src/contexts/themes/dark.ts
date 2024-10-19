@@ -12,15 +12,15 @@ export const DarkTheme = createGlobalStyle`
         color: var(--white);
     }
 
-    body::-webkit-scrollbar {
+    html::-webkit-scrollbar {
         width: 10px;
     }
 
-    body::-webkit-scrollbar-track {
+    html::-webkit-scrollbar-track {
         background: #222;
     }
 
-    body::-webkit-scrollbar-thumb {
+    html::-webkit-scrollbar-thumb {
         background-color: #53BF30;
         border: solid #53AF30 1.5px;
         border-radius: 5px;
@@ -52,5 +52,7 @@ export const DarkTheme = createGlobalStyle`
     --light-gray: #222;
     --super-light-gray: #2f2f2f;
     --white: #fff;
+    --disabled-button-bg: #555;
+    --disabled-button-color: #ddd;
     }
 `;

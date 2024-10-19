@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useState } from "react";
-import { Notificacoes } from "@components/Notificacao/Notificacao";
-import { v4 as uuidv4 } from "uuid";
+import React, { createContext, useContext, useState } from 'react';
+import { Notificacoes } from '@components/Notificacao/Notificacao';
+import { v4 as uuidv4 } from 'uuid';
 
 interface NotificacaoConstructor {
-  tipo: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO" | null;
+  tipo: 'ALERTA' | 'SUCESSO' | 'ERRO' | 'NOTIFICACAO' | null;
   mensagem?: string;
   tempoEmSeg?: number;
 }
@@ -17,9 +17,11 @@ interface INotificacoesContext {
   notificar: (notificacao: NotificacaoConstructor) => void;
 }
 
+export type Notificar = (args: NotificacaoConstructor) => void;
+
 export class INotificacao {
   public mensagem: string;
-  public tipo: "ALERTA" | "SUCESSO" | "ERRO" | "NOTIFICACAO";
+  public tipo: 'ALERTA' | 'SUCESSO' | 'ERRO' | 'NOTIFICACAO';
   public visivel: boolean;
   public tempoEmSeg: number;
   public id: string;
@@ -43,8 +45,8 @@ export class INotificacao {
 
 const mapearNotificacao = (mensagem: string): string => {
   switch (mensagem) {
-  case "jwt expired":
-    return "Sessão expirada, por favor faça login novamente";
+    case 'jwt expired':
+      return 'Sessão expirada, por favor faça login novamente';
   }
 };
 
@@ -89,7 +91,7 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
 export const useNotificacoes = () => {
   const context = useContext(NotificacoesContext);
   if (!context) {
-    throw new Error("useNotificacoes deve ser usado dentro de um NotificacoesProvider");
+    throw new Error('useNotificacoes deve ser usado dentro de um NotificacoesProvider');
   }
   return context;
 };

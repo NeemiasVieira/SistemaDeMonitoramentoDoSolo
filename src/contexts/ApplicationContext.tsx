@@ -1,6 +1,7 @@
 import { limparLocalStorage } from '@assets/utils/limparLocalStorage';
 import { Footer } from '@components/Footer/Footer';
 import { Navigation } from '@components/Navigation/Navigation';
+import { MutationKeys } from '@services/API/types';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -64,8 +65,8 @@ export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }
   const Logout = () => {
     setAuth(false);
     setIsAdmin(false);
-    queryClient.removeQueries('login');
-    queryClient.invalidateQueries('login');
+    queryClient.removeQueries(MutationKeys.LOGIN);
+    queryClient.invalidateQueries(MutationKeys.LOGIN);
     queryClient.clear();
     limparLocalStorage();
     navigate('/');

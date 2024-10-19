@@ -1,19 +1,4 @@
-export interface RecordQuery {
-  nitrogenio: string;
-  fosforo: string;
-  potassio: string;
-  umidade: string;
-  temperatura: string;
-  pH: string;
-  dataDeRegistro: string;
-  luz: string;
-  lux: string;
-  idPlanta: string;
-  nomeEspecie: string;
-  nuRegistro: number;
-  imagem?: string;
-  diagnostico?: string;
-}
+import { Record } from '@services/API/Records/useGetAllRecordsPaginated';
 
 export interface StatesParams {
   setIntervaloDeBusca: React.Dispatch<number | string>;
@@ -22,7 +7,7 @@ export interface StatesParams {
 }
 
 export interface GraficoLinhasProps {
-  records: RecordQuery[];
+  records: Record[];
   params: StatesParams;
 
   className?: string;

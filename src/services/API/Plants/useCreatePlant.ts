@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
 import SMS_API, { GraphQLResponse } from '../sms-api';
 import { Planta } from '@pages/PainelDeControle/Resumo/Resumo.types';
+import { MutationKeys, QueryKeys } from '../types';
 
 interface CreatePlant {
   createPlant: {
@@ -30,8 +31,8 @@ export const useCreatePlant = (args: Planta) => {
   const { notificar } = useNotificacoes();
 
   const onSucesso = () => {
-    queryClient.invalidateQueries('plantsByOwner');
-    queryClient.invalidateQueries('planta');
+    queryClient.invalidateQueries(QueryKeys.ALL_PLANTS);
+    queryClient.invalidateQueries(QueryKeys.PLANT);
     notificar({ tipo: 'SUCESSO', mensagem: 'Planta criada com sucesso', tempoEmSeg: 4 });
   };
 
@@ -42,7 +43,7 @@ export const useCreatePlant = (args: Planta) => {
     mutate: confirmCreatePlant,
   } = useMutation({
     mutationFn: () => request(args),
-    mutationKey: ['createPlanta'],
+    mutationKey: MutationKeys.CREATE_PLANT,
     onSuccess: onSucesso,
     retry: false,
     onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),

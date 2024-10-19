@@ -7,9 +7,10 @@ Modal.setAppElement('#root');
 
 interface UpdateButtonProps {
   onCLick?: () => void;
+  disabled?: boolean;
 }
 
-const ButtonStyle = styled.div`
+const ButtonStyle = styled.div<{ $disabled: boolean }>`
   button {
     display: flex;
     justify-content: center;
@@ -18,19 +19,18 @@ const ButtonStyle = styled.div`
     border: none;
     width: 35px;
     height: 35px;
-    background-color: #ffa520;
-    cursor: pointer;
+    background-color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-bg)' : '#ffa520')};
+    cursor: ${({ $disabled }) => ($disabled ? 'default' : 'pointer')};
     padding: 20px;
     transition: all 300ms;
-  }
-
-  button:hover {
-    transform: scale(1.1);
+    &:hover {
+      ${({ $disabled }) => ($disabled ? '' : 'transform: scale(1.1);')}
+    }
   }
 
   svg {
     font-size: 1.2rem;
-    color: var(--white);
+    color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-color)' : 'var(--white)')};
   }
 
   @media screen and (max-width: 480px) {
@@ -46,10 +46,10 @@ const ButtonStyle = styled.div`
   }
 `;
 
-export const UpdateButton: React.FC<UpdateButtonProps> = ({ onCLick }) => {
+export const UpdateButton: React.FC<UpdateButtonProps> = ({ onCLick, disabled }) => {
   return (
-    <ButtonStyle>
-      <button onClick={onCLick}>
+    <ButtonStyle $disabled={disabled}>
+      <button onClick={disabled ? () => {} : onCLick}>
         <FontAwesomeIcon icon={faPencil} />
       </button>
     </ButtonStyle>

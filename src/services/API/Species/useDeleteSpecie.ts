@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
 import SMS_API, { GraphQLResponse } from '../sms-api';
+import { MutationKeys, QueryKeys } from '../types';
 
 interface DeleteSpecieResponse {
   deleteSpecie: string;
@@ -22,8 +23,8 @@ export const useDeleteSpecie = (id: string) => {
   const { notificar } = useNotificacoes();
 
   const onSucesso = () => {
-    queryClient.invalidateQueries('getAllSpecies');
-    queryClient.invalidateQueries('getSpecie');
+    queryClient.invalidateQueries(QueryKeys.ALL_SPECIES);
+    queryClient.invalidateQueries(QueryKeys.SPECIE);
     notificar({ tipo: 'SUCESSO', mensagem: 'Espécie excluída com sucesso!', tempoEmSeg: 4 });
   };
 
@@ -34,6 +35,7 @@ export const useDeleteSpecie = (id: string) => {
     error,
   } = useMutation({
     mutationFn: () => request(id),
+    mutationKey: [MutationKeys.DELETE_SPECIE],
     onSuccess: onSucesso,
     onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
     retry: false,

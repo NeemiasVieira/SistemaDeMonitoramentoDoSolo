@@ -11,15 +11,15 @@ export const LightTheme = createGlobalStyle`
         background-color: var(--bg-primary);
     }
 
-    body::-webkit-scrollbar {
+    html::-webkit-scrollbar {
         width: 10px;
     }
 
-    body::-webkit-scrollbar-track {
+    html::-webkit-scrollbar-track {
         background: #222;
     }
 
-    body::-webkit-scrollbar-thumb {
+    html::-webkit-scrollbar-thumb {
         background-color: var(--dark-green);
         border: solid #53AF30 1.5px;
         border-radius: 5px;
@@ -51,5 +51,7 @@ export const LightTheme = createGlobalStyle`
         --light-gray: #ddd;
         --super-light-gray: #f5f5f5;
         --white: #fff;
+        --disabled-button-bg: #ccc;
+        --disabled-button-color: #fff;
     }
 `;
