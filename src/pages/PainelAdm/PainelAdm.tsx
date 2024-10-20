@@ -10,7 +10,7 @@ const PainelAdm = () => {
   const { notificar } = useNotificacoes();
 
   const notificarIndisponibilidade = () => {
-    notificar({ tipo: 'NOTIFICACAO', mensagem: 'Funcionalidade indisponível no momento', tempoEmSeg: 4 });
+    notificar({ tipo: 'NOTIFICACAO', mensagem: 'Funcionalidade indisponível no momento', tempoEmSeg: 40 });
   };
 
   return (

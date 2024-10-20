@@ -8,10 +8,10 @@ import { useGetAllRecordsPaginated } from '@services/API/Records/useGetAllRecord
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { TodosOsRegistrosStyle } from './TodosOsRegistrosStyle';
-import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetPlant } from '@services/API/Plants/useGetPlant';
 import { useApplication } from '@contexts/ApplicationContext';
+import { useMutateRecordContext } from '@contexts/MutateRecordContext';
+import { CreateButton } from '@components/Buttons/CreateButton';
 
 const TodosOsRegistros = () => {
   //Params
@@ -40,6 +40,7 @@ const TodosOsRegistros = () => {
   });
   const navigate = useNavigate();
   const { simulationMode } = useApplication();
+  const { setRecord } = useMutateRecordContext();
 
   useEffect(() => {
     getAllRecordsPaginated(); // eslint-disable-next-line
@@ -51,15 +52,16 @@ const TodosOsRegistros = () => {
     navigate(`${location.pathname}?rpp=${registrosPorPag}&pag=${pagina}`); // eslint-disable-next-line
   }, [pagina, registrosPorPag]);
 
+  const handleNewRecord = () => {
+    setRecord(null);
+    navigate('novo/imagem');
+  };
+
   return (
     <TodosOsRegistrosStyle>
       <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
       <h1>Todos os Registros</h1>
-      {planta?.simulado && simulationMode && (
-        <button className="newRecordButton" onClick={() => navigate('novo/imagem')}>
-          <FontAwesomeIcon icon={faSquarePlus} /> Adicionar Novo Registro
-        </button>
-      )}
+      {planta?.simulado && <CreateButton onCreate={handleNewRecord} title="Novo Registro" disabled={!simulationMode} />}
 
       <IntervaloDatasInput
         params={{

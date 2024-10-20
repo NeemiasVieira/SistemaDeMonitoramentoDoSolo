@@ -18,6 +18,7 @@ interface getAllRecords {
     idPlanta: string;
     nomeEspecie: string;
     nuRegistro: number;
+    simulado: boolean;
   }[];
 }
 
@@ -31,12 +32,11 @@ const request = async (params?: allRecordsQueryParams) => {
   let { intervaloDeBusca } = params;
 
   const token = `Bearer ${localStorage.getItem('token')}`;
-
   intervaloDeBusca = intervaloDeBusca === 'Selecione' ? null : Number(intervaloDeBusca);
 
   const query = `query GetAllRecordsByPlant($idPlanta: String!, $intervaloDeBusca: Float ) {
         getAllRecordsByPlant( idPlanta: $idPlanta, intervaloDeBusca: $intervaloDeBusca )   
-        { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux idPlanta nomeEspecie nuRegistro } }`;
+        { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux idPlanta nomeEspecie nuRegistro simulado } }`;
 
   const options = { headers: { Authorization: token } };
   const variables = { idPlanta, intervaloDeBusca };

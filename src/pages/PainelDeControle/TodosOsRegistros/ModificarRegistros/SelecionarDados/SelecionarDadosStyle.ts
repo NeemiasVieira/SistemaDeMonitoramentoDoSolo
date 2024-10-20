@@ -4,20 +4,57 @@ export const SelecionarDadosRegistroStyle = styled.main`
   display: flex;
   align-items: center;
   flex-flow: column wrap;
-  margin-top: 50px;
+  margin-top: 40px;
   min-height: 65vh;
   padding: 0 10%;
 
-  .data {
+  section {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    width: 50%;
+    border: solid var(--border-primary) 1px;
+    border-radius: 20px;
+    padding: 30px 50px;
+    gap: 15px;
+    background-color: var(--contrast);
+    max-width: 680px;
+    margin-bottom: 45px;
+  }
+
+  h2 {
+    margin: 10px 0;
   }
 
   .dataAndParams {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .data {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    width: 45%;
+    gap: 5px;
+  }
+
+  .params {
+    width: 55%;
+    background-color: var(--contrast);
+    padding: 0 20px 20px 20px;
+    border-radius: 10px;
+  }
+
+  .content {
+    display: flex;
+    flex-flow: column wrap;
+
+    p {
+      margin: 3px;
+    }
   }
 
   label {
@@ -25,7 +62,7 @@ export const SelecionarDadosRegistroStyle = styled.main`
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 5px;
+    gap: 15px;
     margin-top: 5px;
 
     span {
@@ -36,30 +73,12 @@ export const SelecionarDadosRegistroStyle = styled.main`
       border-radius: 5px;
       background-color: var(--button-primary);
       color: var(--text-primary);
-      width: 30%;
+      width: 35%;
       max-width: 400px;
-      font-size: 1.3rem;
-      padding: 2px;
+      font-size: 1.1rem;
+      padding: 5px;
       text-align: center;
     }
-  }
-
-  h1 {
-    margin-bottom: 50px;
-  }
-
-  section {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    border: solid var(--border-primary) 1px;
-    border-radius: 20px;
-    padding: 30px;
-    gap: 30px;
-    -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
-    max-width: 680px;
   }
 
   .actions {

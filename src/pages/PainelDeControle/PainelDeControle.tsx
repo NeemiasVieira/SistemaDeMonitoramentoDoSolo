@@ -1,11 +1,12 @@
 import { Loading } from '@components/Loading/Loading';
 import { Planta } from '@components/Planta/Planta';
-import { faCircleExclamation, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetAllPlants } from '@services/API/Plants/useGetAllPlants';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { MutatePlant } from './MutatePlanta/MutatePlanta';
 import { PainelDeControleStyle } from './PainelDeControleStyle';
+import { CreateButton } from '@components/Buttons/CreateButton';
 
 const PainelDeControle = () => {
   const { plantas, refetch, isLoading } = useGetAllPlants();
@@ -55,9 +56,7 @@ const PainelDeControle = () => {
       <h2 className="subTitulo">
         Por aqui você pode cuidar da sua plantinha, reportar problemas e aproveitar o uso da nossa aplicação
       </h2>
-      <button className="createPlantButton" onClick={handleCriate}>
-        <FontAwesomeIcon icon={faSquarePlus} /> Adicionar Planta
-      </button>
+      <CreateButton onCreate={handleCriate} title="Adicionar Planta" />
       <section className="Plantas">
         {plantas?.length > 0 && <h2 className="suasPlantas">Suas plantas</h2>}
         {plantas.length === 0 && (

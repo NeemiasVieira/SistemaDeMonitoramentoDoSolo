@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { NotificacaoStyle } from "./NotificacaoStyle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from 'react';
+import { NotificacaoStyle } from './NotificacaoStyle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBell,
   faCircleExclamation,
   faCircleXmark,
   faSquareCheck,
   faTriangleExclamation,
-} from "@fortawesome/free-solid-svg-icons";
-import { INotificacao, useNotificacoes } from "../../contexts/NotificacoesProvider";
+} from '@fortawesome/free-solid-svg-icons';
+import { INotificacao, useNotificacoes } from '../../contexts/NotificacoesProvider';
 
 interface NotificacaoProps {
   notificacao: INotificacao;
@@ -49,10 +49,10 @@ const Notificacao: React.FC<NotificacaoProps> = ({ notificacao }) => {
     <>
       {visivel && (
         <div className={`${notificacao.tipo} mensagemNotificacaoDiv`}>
-          {notificacao.tipo === "ERRO" && <FontAwesomeIcon icon={faTriangleExclamation} className="icone" />}
-          {notificacao.tipo === "SUCESSO" && <FontAwesomeIcon icon={faSquareCheck} className="icone" />}
-          {notificacao.tipo === "ALERTA" && <FontAwesomeIcon icon={faCircleExclamation} className="icone" />}
-          {notificacao.tipo === "NOTIFICACAO" && <FontAwesomeIcon icon={faBell} className="icone" />}
+          {notificacao.tipo === 'ERRO' && <FontAwesomeIcon icon={faCircleExclamation} className="icone" />}
+          {notificacao.tipo === 'SUCESSO' && <FontAwesomeIcon icon={faSquareCheck} className="icone" />}
+          {notificacao.tipo === 'ALERTA' && <FontAwesomeIcon icon={faTriangleExclamation} className="icone" />}
+          {notificacao.tipo === 'NOTIFICACAO' && <FontAwesomeIcon icon={faBell} className="icone" />}
           <p>{notificacao.mensagem}</p>
           <button onClick={destruirNotificacao}>
             <FontAwesomeIcon icon={faCircleXmark} />

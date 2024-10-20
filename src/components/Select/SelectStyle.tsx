@@ -1,33 +1,30 @@
 import styled from 'styled-components';
 
-// Contêiner principal que envolve o Select
-export const SelectContainer = styled.div<{ disabled: boolean; height?: string; width?: string }>`
+export const SelectContainer = styled.div<{ $disabled: boolean; $height?: string; $width?: string }>`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  height: ${({ height }) => (height ? height : '35px')};
-  width: ${({ width }) => (width ? width : '100%')};
+  height: ${({ $height }) => ($height ? $height : '35px')};
+  width: ${({ $width }) => ($width ? $width : '100%')};
   position: relative;
   user-select: none;
-  background-color: ${({ disabled }) => (disabled ? '#e0e0e0' : 'var(--button-primary)')};
+  background-color: ${({ $disabled }) => ($disabled ? '#e0e0e0' : 'var(--button-primary)')};
   border: 1px solid var(--border-primary);
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+  opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
+  pointer-events: ${({ $disabled }) => ($disabled ? 'none' : 'auto')};
 `;
 
-// Estilização para o placeholder ou valor selecionado
-export const Placeholder = styled.div<{ disabled: boolean }>`
+export const Placeholder = styled.div<{ $disabled: boolean }>`
   padding: 10px;
   display: flex;
   width: 80%;
   justify-content: space-between;
   align-items: center;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
   background-color: transparent;
 `;
 
-// Estilização da seção direita (X, |, e a seta)
 export const RightSection = styled.div`
   padding: 0 10px;
   display: flex;
@@ -43,7 +40,6 @@ export const RightSection = styled.div`
   }
 `;
 
-// Estilização para o botão de reset (X)
 export const ResetButton = styled.span`
   position: relative;
   right: 10px;
@@ -54,7 +50,6 @@ export const ResetButton = styled.span`
   }
 `;
 
-// Estilização do dropdown onde as opções serão exibidas
 export const DropdownMenu = styled.div`
   position: absolute;
   top: 100%;
@@ -81,11 +76,10 @@ export const DropdownMenu = styled.div`
   }
 `;
 
-// Estilização de cada opção do dropdown
-export const OptionStyled = styled.div<{ isSelected: boolean }>`
+export const OptionStyled = styled.div<{ $isSelected: boolean }>`
   color: var(--text-primary);
   padding: 10px;
-  background-color: ${({ isSelected }) => (isSelected ? 'var(--light-gray)' : 'var(--button-primary)')};
+  background-color: ${({ $isSelected }) => ($isSelected ? 'var(--light-gray)' : 'var(--button-primary)')};
   cursor: pointer;
 
   &:hover {

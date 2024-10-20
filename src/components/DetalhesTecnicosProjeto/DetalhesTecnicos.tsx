@@ -1,16 +1,16 @@
-import { DetalhesTecnicosStyle } from "./DetalhesTecnicosStyle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faReact } from "@fortawesome/free-brands-svg-icons";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
-import { useThemes } from "@contexts/ThemeProvider";
-import azurelogo from "@assets/img/azurelogo.png";
-import mongodblogo from "@assets/img/mongodblogo.svg";
-import nodejslogo from "@assets/img/nodejslogo.png";
-import typescriptlogo from "@assets/img/typescript.png";
-import pythonlogo from "@assets/img/pythonlogo.png";
-import raspberrylogo from "@assets/img/raspberrylogo.png";
-import mongodblogodark from "@assets/img/mongodblogodark.svg";
-import diagramaarq from "@assets/img/diagramaarq.png";
+import { DetalhesTecnicosStyle } from './DetalhesTecnicosStyle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faReact } from '@fortawesome/free-brands-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { useThemes } from '@contexts/ThemeProvider';
+import azurelogo from '@assets/img/azurelogo.png';
+import mongodblogo from '@assets/img/mongodblogo.svg';
+import nodejslogo from '@assets/img/nodejslogo.png';
+import typescriptlogo from '@assets/img/typescript.png';
+import pythonlogo from '@assets/img/pythonlogo.png';
+import raspberrylogo from '@assets/img/raspberrylogo.png';
+import mongodblogodark from '@assets/img/mongodblogodark.svg';
+import diagramaarq from '@assets/img/diagramaarq.png';
 
 export const DetalhesTecnicosProjeto = () => {
   const { isLightTheme } = useThemes();
@@ -46,7 +46,7 @@ export const DetalhesTecnicosProjeto = () => {
             <li>NestJs</li>
             <li>Prisma</li>
             <li>class-validator</li>
-            <li>html-pdf</li>
+            <li>puppeteer</li>
             <li>rxjs</li>
           </ul>
         </div>
@@ -120,7 +120,7 @@ export const DetalhesTecnicosProjeto = () => {
 
           <ul>
             <li>
-              {" "}
+              {' '}
               <a href="https://github.com/NeemiasVieira/SistemaDeMonitoramentoDoSolo" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faLink} className="link" />
                 Sistema - Front

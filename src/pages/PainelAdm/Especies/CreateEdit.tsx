@@ -8,6 +8,7 @@ import { useUpdateSpecie } from '@services/API/Species/useUpdateSpecie';
 import { useEffect, useState } from 'react';
 import { CreateEditStyle } from './CreateEditStyle';
 import { ToggleButton } from '@components/Buttons/ToggleButton/ToggleButton';
+import { isSpecieValid } from './Contract';
 
 interface Parametro {
   min: string;
@@ -23,23 +24,6 @@ interface Parametros {
   temperatura: Parametro;
   pH: Parametro;
 }
-
-const verificarCamposPreenchidos = (especie: Specie): boolean => {
-  if (!especie.nome || especie.nome.trim() === '') {
-    return false;
-  }
-
-  if (!especie.descricao || especie.descricao.trim() === '') {
-    return false;
-  }
-
-  for (const parametro of Object.values(especie.parametros)) {
-    if (!parametro.min || parametro.min.trim() === '' || !parametro.max || parametro.max.trim() === '') {
-      return false;
-    }
-  }
-  return true;
-};
 
 interface CreateEditEspecieProps {
   action: 'Create' | 'Update' | null;
@@ -138,27 +122,11 @@ export const CreateEditEspecie: React.FC<CreateEditEspecieProps> = ({ action, se
   };
 
   const handleCriarEspecie = () => {
-    if (!verificarCamposPreenchidos(especieI)) {
-      notificar({
-        tipo: 'ERRO',
-        mensagem: 'Toodos os campos precisam ser preenchidos',
-        tempoEmSeg: 4,
-      });
-      return;
-    }
-    confirmCreateSpecie();
+    if (isSpecieValid(especieI, notificar)) confirmCreateSpecie();
   };
 
   const handleAtualizarEspecie = () => {
-    if (!verificarCamposPreenchidos(especieI)) {
-      notificar({
-        tipo: 'ERRO',
-        mensagem: 'Toodos os campos precisam ser preenchidos',
-        tempoEmSeg: 4,
-      });
-      return;
-    }
-    confirmUpdateSpecie();
+    if (isSpecieValid(especieI, notificar)) confirmUpdateSpecie();
   };
 
   return (

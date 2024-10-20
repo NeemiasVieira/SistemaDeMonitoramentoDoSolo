@@ -6,7 +6,8 @@ export const ParametrosDaEspecieStyle = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: var(--light-gray);
+    background-color: var(--contrast);
+    border-radius: 10px 10px 0 0;
 
     h3 {
       display: flex;

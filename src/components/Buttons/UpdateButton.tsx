@@ -23,6 +23,7 @@ const ButtonStyle = styled.div<{ $disabled: boolean }>`
     cursor: ${({ $disabled }) => ($disabled ? 'default' : 'pointer')};
     padding: 20px;
     transition: all 300ms;
+    color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-color)' : 'var(--white)')};
     &:hover {
       ${({ $disabled }) => ($disabled ? '' : 'transform: scale(1.1);')}
     }

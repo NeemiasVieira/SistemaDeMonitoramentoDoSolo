@@ -81,7 +81,7 @@ export const ParametrosDaEspecie: React.FC<ParametrosDaEspecieProps> = ({ especi
         <div className="header">
           <h3>
             <FontAwesomeIcon icon={faCircleQuestion} />
-            Parâmetros da espécie: {especie.nome}
+            Parâmetros da espécie {especie.nome}
           </h3>
         </div>
       )}
@@ -89,9 +89,9 @@ export const ParametrosDaEspecie: React.FC<ParametrosDaEspecieProps> = ({ especi
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+            <tr {...headerGroup.getHeaderGroupProps()} key={Math.random()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} key={column.id}>
+                <th {...column.getHeaderProps()} key={Math.random()}>
                   {column.render('Header')}
                 </th>
               ))}
@@ -102,9 +102,9 @@ export const ParametrosDaEspecie: React.FC<ParametrosDaEspecieProps> = ({ especi
           {rows.map((row) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()} key={row.id}>
+              <tr {...row.getRowProps()} key={Math.random()}>
                 {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()} key={cell.value}>
+                  <td {...cell.getCellProps()} key={Math.random()}>
                     {cell.render('Cell')}
                   </td>
                 ))}

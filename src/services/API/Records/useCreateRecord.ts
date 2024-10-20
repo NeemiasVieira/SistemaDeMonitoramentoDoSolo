@@ -4,6 +4,8 @@ import SMS_API, { GraphQLResponse } from '../sms-api';
 import { MutationKeys, QueryKeys } from '../types';
 import { Record } from './useGetAllRecordsPaginated';
 import { useNavigate, useParams } from 'react-router-dom';
+import { AxiosResponse } from 'axios';
+import { useMutateRecordContext } from '@contexts/MutateRecordContext';
 
 interface CreateRecord {
   createRecord: {
@@ -32,13 +34,15 @@ export const useCreateRecord = () => {
   const { notificar } = useNotificacoes();
   const navigate = useNavigate();
   const { idPlanta } = useParams();
+  const { setId } = useMutateRecordContext();
 
-  const onSucesso = () => {
+  const onSucesso = (data: AxiosResponse<GraphQLResponse<CreateRecord>, any>) => {
     queryClient.invalidateQueries(QueryKeys.RECORD);
     queryClient.invalidateQueries(QueryKeys.ALL_RECORDS);
     queryClient.invalidateQueries(QueryKeys.ALL_RECORDS_PAGINATED);
     notificar({ tipo: 'SUCESSO', mensagem: 'Registro criado com sucesso', tempoEmSeg: 4 });
     navigate(`/painel/plantas/${idPlanta}/registros/novo/menu`);
+    setId(data?.data?.data?.createRecord?.id);
   };
 
   const {

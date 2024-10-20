@@ -1,8 +1,8 @@
-import { AplicacaoMain } from "./AplicacaoStyle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSeedling } from "@fortawesome/free-solid-svg-icons";
-import { DetalhesTecnicosProjeto } from "@components/DetalhesTecnicosProjeto/DetalhesTecnicos";
-import { Squad } from "@components/Squad/Squad";
+import { AplicacaoMain } from './AplicacaoStyle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSeedling } from '@fortawesome/free-solid-svg-icons';
+import { DetalhesTecnicosProjeto } from '@components/DetalhesTecnicosProjeto/DetalhesTecnicos';
+import { Squad } from '@components/Squad/Squad';
 
 const Aplicacao = () => {
   return (
@@ -26,9 +26,6 @@ const Aplicacao = () => {
           </p>
         </div>
       </section>
-      {/* <section className="funcionalidades">
-
-      </section> */}
       <DetalhesTecnicosProjeto />
       <Squad />
     </AplicacaoMain>

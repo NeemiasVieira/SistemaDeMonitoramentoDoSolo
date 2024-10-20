@@ -21,37 +21,6 @@ export const PainelDeControleStyle = styled.main`
     width: 90%;
   }
 
-  .createPlantButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row nowrap;
-    gap: 10px;
-    color: var(--text-primary);
-    border: solid var(--border-primary) 1px;
-    width: 200px;
-    height: 40px;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 7px;
-    background-color: var(--light-green);
-    font-weight: 700;
-    box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    transition: all 200ms;
-
-    svg {
-      font-size: 1.2rem;
-      color: var(--text-primary);
-    }
-  }
-
-  .createPlantButton:hover {
-    transform: scale(1.05);
-  }
-
   .subTitulo {
     color: var(--text-secondary);
   }

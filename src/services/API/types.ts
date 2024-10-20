@@ -26,4 +26,6 @@ export enum MutationKeys {
   LOGIN = 'useLogin',
   SIGNUP = 'useSignup',
   CREATE_RECORD = 'useCreateRecord',
+  DELETE_RECORD = 'useDeleteRecord',
+  UPDATE_RECORD = 'useUpdateRecord',
 }

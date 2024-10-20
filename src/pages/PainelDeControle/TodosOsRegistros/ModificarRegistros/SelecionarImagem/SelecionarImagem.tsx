@@ -9,14 +9,24 @@ import { fileNotValid } from './Contract';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetSpecieByPlantId } from '@services/API/Species/useGetSpecieByPlantId';
 
-const SelecionarImagemRegistro = () => {
+interface SelecionarImagemRegistroProps {
+  update?: boolean;
+}
+
+const SelecionarImagemRegistro: React.FC<SelecionarImagemRegistroProps> = ({ update }) => {
   const [imageFile, setImageFile] = useState<File>();
   const { record, setImagem, setDiagnostico, setIdPlanta, setEspecie } = useMutateRecordContext();
   const { processImage, processedImage } = useProcessImage();
   const { notificar } = useNotificacoes();
-  const { idPlanta } = useParams();
+  const { idPlanta, idRegistro } = useParams();
   const navigate = useNavigate();
   const { specie } = useGetSpecieByPlantId(idPlanta);
+
+  useEffect(() => {
+    if (update && !record) {
+      navigate(`/painel/plantas/${idPlanta}/registros`);
+    }
+  }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -28,7 +38,7 @@ const SelecionarImagemRegistro = () => {
   };
 
   useEffect(() => {
-    setEspecie(specie);
+    if (specie) setEspecie(specie);
   }, [specie]);
 
   useEffect(() => {
@@ -44,11 +54,10 @@ const SelecionarImagemRegistro = () => {
 
   return (
     <SelecionarImagemRegistroStyle>
-      <h1>Imagem do Registro</h1>
       <section>
         <div className="content">
           <div className="envio">
-            <h2>Enviar sua imagem</h2>
+            <h2>{update ? 'Atualize a imagem' : 'Enviar sua imagem'}</h2>
             <p>
               Enviar uma imagem para o registro é opcional, essa imagem será processada pelo nosso modelo de
               Inteligência Artificial e irá dizer se sua planta está ou não saudável
@@ -86,7 +95,17 @@ const SelecionarImagemRegistro = () => {
             <FontAwesomeIcon icon={faCircleLeft} />
             Cancelar
           </button>
-          <button onClick={() => navigate(`/painel/plantas/${idPlanta}/registros/novo/dados`)}>Avançar</button>
+          <button
+            onClick={() =>
+              navigate(
+                update
+                  ? `/painel/plantas/${idPlanta}/registros/${idRegistro}/atualizar/dados`
+                  : `/painel/plantas/${idPlanta}/registros/novo/dados`
+              )
+            }
+          >
+            Avançar
+          </button>
         </div>
       </section>
     </SelecionarImagemRegistroStyle>

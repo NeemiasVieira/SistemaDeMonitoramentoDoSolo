@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RegistroStyle = styled.div`
   display: flex;
@@ -19,17 +19,17 @@ export const RegistroStyle = styled.div`
     font-style: italic;
     letter-spacing: 0.5px;
   }
-  svg {
+  .imageIcon {
     font-size: 1.5rem;
     color: var(--text-secondary);
   }
 
-  svg,
-  span {
+  .imageIcon,
+  .imageSpan {
     width: 40px;
   }
 
-  button {
+  .details {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,8 +44,13 @@ export const RegistroStyle = styled.div`
     color: var(--text-primary);
     font-weight: 700;
   }
-  button:hover {
+  .details:hover {
     transform: scale(1.1);
+  }
+
+  .actions {
+    display: flex;
+    gap: 15px;
   }
 
   @media screen and (max-width: 480px) {
@@ -62,7 +67,7 @@ export const RegistroStyle = styled.div`
       width: 20px;
     }
 
-    button {
+    .details {
       width: 125px;
       height: 40px;
       padding: 0 10px;

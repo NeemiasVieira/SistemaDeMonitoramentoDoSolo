@@ -16,6 +16,7 @@ export interface Record {
   dataDeRegistro: string;
   luz?: string;
   lux: string;
+  simulado: boolean;
   nomeEspecie?: string;
   nuRegistro?: number;
   idEspecie?: string;
@@ -56,7 +57,7 @@ const getAllRecords = async (
 
   const query = `query GetAllRecordsPaginated($idPlanta: String!, $registrosPorPag: Float!, $pagina: Float!, $dataDeInicioBusca: DateTime, $dataDeFimBusca: DateTime) { 
       getAllRecordsPaginated(idPlanta: $idPlanta, registrosPorPag: $registrosPorPag, pagina: $pagina, dataDeInicioBusca: $dataDeInicioBusca, dataDeFimBusca: $dataDeFimBusca) 
-      { registros { id idPlanta nitrogenio fosforo potassio umidade temperatura pH luz lux dataDeRegistro imagem diagnostico nuRegistro idPlanta nomeEspecie } pagina totalPaginas totalResultados } }
+      { registros { id idPlanta nitrogenio fosforo potassio umidade temperatura pH luz lux dataDeRegistro imagem diagnostico nuRegistro idPlanta nomeEspecie simulado } pagina totalPaginas totalResultados } }
     `;
 
   const options = { headers: { Authorization: token } };

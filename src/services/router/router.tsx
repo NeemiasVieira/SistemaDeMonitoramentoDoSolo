@@ -24,6 +24,7 @@ import { RotaPrivada } from './utils/rotaPrivada';
 import { MutateRecordProvider } from '@contexts/MutateRecordContext';
 import SelecionarImagemRegistro from '@pages/PainelDeControle/TodosOsRegistros/ModificarRegistros/SelecionarImagem/SelecionarImagem';
 import SelecionarDadosRegistro from '@pages/PainelDeControle/TodosOsRegistros/ModificarRegistros/SelecionarDados/SelecionarDados';
+import PaginaSucessoRegistro from '@pages/PainelDeControle/TodosOsRegistros/ModificarRegistros/Sucesso/Sucesso';
 
 const Router = () => {
   return (
@@ -114,7 +115,12 @@ const Router = () => {
               <Route path="/painel/plantas/:idPlanta/registros/novo" element={<Outlet />}>
                 <Route path="imagem" element={<SelecionarImagemRegistro />} />
                 <Route path="dados" element={<SelecionarDadosRegistro />} />
-                <Route path="menu" element={<SelecionarDadosRegistro />} />
+                <Route path="menu" element={<PaginaSucessoRegistro />} />
+              </Route>
+              <Route path="/painel/plantas/:idPlanta/registros/:idRegistro/atualizar" element={<Outlet />}>
+                <Route path="imagem" element={<SelecionarImagemRegistro update />} />
+                <Route path="dados" element={<SelecionarDadosRegistro update />} />
+                <Route path="menu" element={<PaginaSucessoRegistro update />} />
               </Route>
             </Route>
 

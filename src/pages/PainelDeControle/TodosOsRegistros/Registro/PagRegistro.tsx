@@ -18,7 +18,7 @@ const PagRegistro = () => {
 
   const record = useMemo(() => {
     return recordMemo?.id ? recordMemo : recordRequest;
-  }, []);
+  }, [recordMemo, recordRequest]);
 
   return (
     <PagRegistroStyle>

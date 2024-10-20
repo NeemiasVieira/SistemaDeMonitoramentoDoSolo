@@ -9,6 +9,7 @@ interface MutateRecordProps {
 interface IMutateRecordContext {
   record: Record;
   especie: Specie;
+  setId: (id: string) => void;
   setIdPlanta: (idPlanta: string) => void;
   setIdEspecie: (idEspecie: string) => void;
   setNitrogenio: (nitrogenio: string) => void;
@@ -42,6 +43,7 @@ const defaultValue: IMutateRecordContext = {
   setRecord: () => {},
   setImagem: () => {},
   setDiagnostico: () => {},
+  setId: () => {},
 };
 
 const MutateRecordContext = createContext<IMutateRecordContext>(defaultValue);
@@ -49,6 +51,10 @@ const MutateRecordContext = createContext<IMutateRecordContext>(defaultValue);
 export const MutateRecordProvider: React.FC<MutateRecordProps> = ({ children }) => {
   const [record, setRecord] = useState<Record>(defaultValue.record);
   const [especie, setEspecie] = useState<Specie>();
+
+  const setId = useCallback((id: string) => {
+    setRecord((prevState) => ({ ...prevState, id }));
+  }, []);
 
   const setIdPlanta = useCallback((idPlanta: string) => {
     setRecord((prevState) => ({ ...prevState, idPlanta }));
@@ -103,6 +109,7 @@ export const MutateRecordProvider: React.FC<MutateRecordProps> = ({ children }) 
       value={{
         record,
         especie,
+        setId,
         setEspecie,
         setIdPlanta,
         setIdEspecie,

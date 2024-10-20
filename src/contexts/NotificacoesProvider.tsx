@@ -3,8 +3,8 @@ import { Notificacoes } from '@components/Notificacao/Notificacao';
 import { v4 as uuidv4 } from 'uuid';
 
 interface NotificacaoConstructor {
-  tipo: 'ALERTA' | 'SUCESSO' | 'ERRO' | 'NOTIFICACAO' | null;
-  mensagem?: string;
+  tipo: 'ALERTA' | 'SUCESSO' | 'ERRO' | 'NOTIFICACAO';
+  mensagem: string;
   tempoEmSeg?: number;
 }
 
@@ -17,7 +17,7 @@ interface INotificacoesContext {
   notificar: (notificacao: NotificacaoConstructor) => void;
 }
 
-export type Notificar = (args: NotificacaoConstructor) => void;
+export type Notificar = (notificacao: NotificacaoConstructor) => void;
 
 export class INotificacao {
   public mensagem: string;
@@ -29,7 +29,7 @@ export class INotificacao {
   constructor(params: NotificacaoConstructor) {
     this.mensagem = params.mensagem;
     this.tipo = params.tipo;
-    this.tempoEmSeg = params.tempoEmSeg;
+    this.tempoEmSeg = params.tempoEmSeg ?? 4;
     this.visivel = true;
     this.id = uuidv4();
 
@@ -70,18 +70,17 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
     });
   };
 
-  //  const notificar2 = () => notificar({tipo: "NOTIFICACAO", tempoEmSeg: 5, mensagem: "Mensagem de notificacao"});
-  //  const alertar = () => notificar({tipo: "ALERTA", tempoEmSeg: 5, mensagem: "Mensagem de alerta"});
-  //  const criarErro = () => notificar({tipo: "ERRO", tempoEmSeg: 5, mensagem: "Mensagem de erro"});
-  //  const sucesso = () => notificar({tipo: "SUCESSO", tempoEmSeg: 5, mensagem: "Mensagem de sucesso"});
+  // const notificar2 = () => notificar({ tipo: 'NOTIFICACAO', tempoEmSeg: 500, mensagem: 'Mensagem de notificacao' });
+  // const alertar = () => notificar({ tipo: 'ALERTA', tempoEmSeg: 500, mensagem: 'Mensagem de alerta' });
+  // const criarErro = () => notificar({ tipo: 'ERRO', tempoEmSeg: 500, mensagem: 'Mensagem de erro' });
+  // const sucesso = () => notificar({ tipo: 'SUCESSO', tempoEmSeg: 500, mensagem: 'Mensagem de sucesso' });
 
   return (
     <NotificacoesContext.Provider value={{ notificacoes, notificar }}>
-      {/* <h1>Teste do sistema de notificacoes</h1>
-      <button onClick={notificar2}>NOTIFICACAO</button>
+      {/* <button onClick={notificar2}>NOTIFICACAO</button>
       <button onClick={alertar}>ALERTA</button>
       <button onClick={criarErro}>ERRO</button>
-      <button onClick={sucesso}>SUCESSO</button>  */}
+      <button onClick={sucesso}>SUCESSO</button> */}
       {notificacoes.length > 0 && <Notificacoes />}
       {children}
     </NotificacoesContext.Provider>

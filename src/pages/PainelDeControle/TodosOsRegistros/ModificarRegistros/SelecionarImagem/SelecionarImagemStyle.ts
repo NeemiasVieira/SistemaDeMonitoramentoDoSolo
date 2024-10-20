@@ -4,26 +4,21 @@ export const SelecionarImagemRegistroStyle = styled.main`
   display: flex;
   align-items: center;
   flex-flow: column wrap;
-  margin-top: 50px;
+  margin-top: 70px;
   min-height: 65vh;
   padding: 0 10%;
-
-  h1 {
-    margin-bottom: 50px;
-  }
 
   section {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    border: solid var(--border-primary) 1px;
     border-radius: 20px;
     padding: 30px;
     gap: 30px;
-    -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
+    border: solid var(--border-primary) 3px;
+    background-color: var(--contrast);
     max-width: 680px;
+    margin-bottom: 45px;
   }
 
   .content {
@@ -40,14 +35,14 @@ export const SelecionarImagemRegistroStyle = styled.main`
   img {
     max-width: 200px;
     max-height: 200px;
-    border: solid var(--border-primary) 2px;
+    border: solid var(--border-secondary) 1px;
     border-radius: 10px;
   }
 
   .placeHolderLogo {
-    width: 150px;
-    height: 150px;
-    padding: 25px;
+    width: 120px;
+    height: 120px;
+    padding: 55px;
     color: var(--text-secondary);
     border: solid var(--border-primary) 2px;
     border-radius: 10px;

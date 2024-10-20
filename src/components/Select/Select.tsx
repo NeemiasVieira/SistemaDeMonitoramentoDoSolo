@@ -68,8 +68,8 @@ export const Select: React.FC<SelectProps> = ({
   }, [options]);
 
   return (
-    <SelectContainer disabled={disabled} {...props}>
-      <Placeholder onClick={toggleDropdown} disabled={disabled}>
+    <SelectContainer $disabled={disabled} {...props}>
+      <Placeholder onClick={toggleDropdown} $disabled={disabled}>
         {selectedOption ? selectedOption.label : firstValue.label}
       </Placeholder>
       <ActionsContainer>
@@ -94,7 +94,7 @@ export const Select: React.FC<SelectProps> = ({
             <OptionStyled
               key={option.id}
               onClick={() => handleOptionClick(option)}
-              isSelected={selectedOption?.id === option.id}
+              $isSelected={selectedOption?.id === option.id}
             >
               {option.label}
             </OptionStyled>
