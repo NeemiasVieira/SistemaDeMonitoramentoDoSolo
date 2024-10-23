@@ -37,7 +37,7 @@ interface IApplicationProvider {
 
 const ApplicationContext = createContext<ICreateContext>({
   isAdmin: localStorage.getItem('profile') === 'admin' ? true : false,
-  simulationMode: localStorage.getItem('simulationMode') === 'true' ? true : false,
+  simulationMode: localStorage.getItem('simulationMode') === 'false' ? false : true,
   auth: localStorage.getItem('token') ? true : false,
   Logout: () => {},
   setIsAdmin: () => {},
@@ -48,7 +48,7 @@ const ApplicationContext = createContext<ICreateContext>({
 export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }) => {
   const [auth, setAuth] = useState<boolean>(localStorage.getItem('token') ? true : false);
   const [simulationMode, setSimulationMode] = useState<boolean>(
-    localStorage.getItem('simulationMode') === 'true' ? true : false
+    localStorage.getItem('simulationMode') === 'false' ? false : true
   );
   const [isAdmin, setIsAdmin] = useState<boolean>(localStorage.getItem('profile') === 'admin' ? true : false);
 

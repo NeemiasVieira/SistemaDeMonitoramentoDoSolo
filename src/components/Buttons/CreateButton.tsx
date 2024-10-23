@@ -8,14 +8,14 @@ const CreateButtonStyle = styled.button<{ $disabled?: boolean }>`
   align-items: center;
   flex-flow: row nowrap;
   gap: 10px;
-  color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-color)' : 'var(--text-primary)')};
+  color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-color)' : 'var(--white)')};
   border: solid var(--border-primary) 1px;
   width: 200px;
   height: 40px;
   padding: 10px;
   margin: 15px 0;
   border-radius: 7px;
-  background-color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-bg)' : 'var(--light-green)')};
+  background-color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-bg)' : 'var(--force-dark-green)')};
   font-weight: 700;
   box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.1);
   cursor: ${({ $disabled }) => ($disabled ? 'default' : 'pointer')};
@@ -28,7 +28,7 @@ const CreateButtonStyle = styled.button<{ $disabled?: boolean }>`
 
   svg {
     font-size: 1.2rem;
-    color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-color)' : 'var(--text-primary)')};
+    color: ${({ $disabled }) => ($disabled ? 'var(--disabled-button-color)' : 'var(--white)')};
   }
 `;
 

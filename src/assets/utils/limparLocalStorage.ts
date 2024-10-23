@@ -1,5 +1,6 @@
 export const limparLocalStorage = () => {
-  localStorage.removeItem("nome");
-  localStorage.removeItem("token");
-  localStorage.removeItem("profile");
+  localStorage.removeItem('nome');
+  localStorage.removeItem('token');
+  localStorage.removeItem('profile');
+  localStorage.removeItem('simulationMode');
 };

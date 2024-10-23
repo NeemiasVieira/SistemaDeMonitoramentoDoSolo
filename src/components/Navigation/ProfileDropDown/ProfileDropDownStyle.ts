@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const ProfileDropDownStyle = styled.div`
+export const ProfileDropDownStyle = styled.div<{ $simulationMode: boolean }>`
   margin-right: 40px;
   display: flex;
   width: 30px;
@@ -9,10 +9,18 @@ export const ProfileDropDownStyle = styled.div`
   border-radius: 50px;
   justify-content: center;
   align-items: center;
-  color: var(--contrast);
   font-weight: 700;
   cursor: pointer;
-  background-color: var(--bg-dark-blue);
+  transition: background-color 300ms ease-in-out, border 300ms ease-in-out;
+  background-color: ${({ $simulationMode }) => ($simulationMode ? 'var(--bg-dark-blue)' : 'var(--border-contrast)')};
+  border: ${({ $simulationMode }) =>
+    $simulationMode ? 'solid var(--contrast) 2px' : 'solid var(--border-secondary) 2px'};
+
+  .Iniciais {
+    color: ${({ $simulationMode }) => ($simulationMode ? 'var(--white)' : 'var(--text-primary)')};
+    transition: color ease-in-out 300ms;
+    letter-spacing: 0.4px;
+  }
 
   .switchThemeOnDropDown {
     display: flex;

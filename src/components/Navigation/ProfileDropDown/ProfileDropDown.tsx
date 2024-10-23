@@ -19,7 +19,7 @@ export const ProfileDropDown = () => {
   const nome = localStorage.getItem('nome');
 
   return (
-    <ProfileDropDownStyle onClick={toggleOpcoesMovimentacoes}>
+    <ProfileDropDownStyle onClick={toggleOpcoesMovimentacoes} $simulationMode={simulationMode}>
       <span className="Iniciais">{formarIniciais(nome)}</span>
       {mostrarOpcoesMovimentacoes && (
         <div

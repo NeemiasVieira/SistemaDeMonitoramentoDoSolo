@@ -36,7 +36,7 @@ export const PainelDeControleStyle = styled.main`
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-    gap: 50px;
+    gap: 20px;
     margin-bottom: 20px;
   }
 
@@ -50,29 +50,6 @@ export const PainelDeControleStyle = styled.main`
 
   .suasPlantas {
     font-size: 1.6rem;
-  }
-
-  .avisoSemPlantas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row nowrap;
-    gap: 20px;
-    margin-top: 80px;
-    background-color: var(--contrast);
-    border: solid var(--border-primary) 1px;
-    border-radius: 10px;
-    padding: 15px;
-
-    p {
-      color: var(--text-secondary);
-      width: 250px;
-    }
-
-    svg {
-      font-size: 2rem;
-      color: #faa520;
-    }
   }
 
   @media screen and (max-width: 480px) {

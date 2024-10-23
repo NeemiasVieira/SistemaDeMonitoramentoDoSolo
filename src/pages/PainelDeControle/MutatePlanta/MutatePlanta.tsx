@@ -1,7 +1,7 @@
 import { ToggleButton } from '@components/Buttons/ToggleButton/ToggleButton';
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Planta } from '../Resumo/Resumo.types';
 import { MutatePlantStyle } from './MutatePlantaStyle';
 import { useSelectSpecies } from '@services/API/Species/useSelectSpecie';
@@ -10,6 +10,7 @@ import { useNotificacoes } from '@contexts/NotificacoesProvider';
 import { useCreatePlant } from '@services/API/Plants/useCreatePlant';
 import { Loading } from '@components/Loading/Loading';
 import { useUpdatePlant } from '@services/API/Plants/useUpdatePlant';
+import { useApplication } from '@contexts/ApplicationContext';
 
 interface MutatePlantProps {
   handleBack: () => void;
@@ -17,17 +18,21 @@ interface MutatePlantProps {
   plantToUpdate?: Planta;
 }
 
-const camposVazios: Planta = {
-  nome: '',
-  simulado: false,
-  especie: '',
-  id: '',
-  idEspecie: '',
-  dataDaPlantacao: '',
-};
-
 export const MutatePlant: React.FC<MutatePlantProps> = ({ action, handleBack, plantToUpdate }) => {
-  const [planta, setPlanta] = useState<Planta>(plantToUpdate?.id ? plantToUpdate : camposVazios);
+  const { simulationMode } = useApplication();
+
+  const defaultValue = useMemo(() => {
+    return {
+      nome: '',
+      especie: '',
+      id: '',
+      idEspecie: '',
+      dataDaPlantacao: '',
+      simulado: simulationMode,
+    };
+  }, [simulationMode]);
+
+  const [planta, setPlanta] = useState<Planta>(plantToUpdate?.id ? plantToUpdate : defaultValue);
   const { options, selectSpeciesIsLoading } = useSelectSpecies();
   const { notificar } = useNotificacoes();
   const { confirmCreatePlant, createPlantIsLoading, newPlant } = useCreatePlant(planta);

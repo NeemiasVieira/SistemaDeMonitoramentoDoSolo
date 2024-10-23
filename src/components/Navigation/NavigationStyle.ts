@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const NavStyleMobile = styled.nav`
   position: fixed;
@@ -45,7 +45,7 @@ export const ListaNavegacaoStyle = styled.nav`
   border-bottom: solid var(--border-primary) 2px;
 
   * {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .logoutMobileButton,
@@ -75,10 +75,6 @@ export const ListaNavegacaoStyle = styled.nav`
     align-items: center;
     height: 66px;
     padding: 0 10px;
-  }
-
-  .Iniciais {
-    color: #ddd;
   }
 
   li {
@@ -143,7 +139,7 @@ export const ListaNavegacaoStyle = styled.nav`
 
   .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: calc(26px * 0.75);
     width: calc(26px * 0.75);
     left: calc(4px * 0.75);

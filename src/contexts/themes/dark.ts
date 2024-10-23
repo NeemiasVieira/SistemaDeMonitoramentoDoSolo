@@ -47,7 +47,7 @@ export const DarkTheme = createGlobalStyle`
     --button-primary: #333;
     --footer: #000;
     --border-hover: #777;
-    --bg-modal: rgba(50, 50, 50, 0.6);
+    --bg-modal: rgba(50, 50, 50, 0.8);
     --red: #ff2200;
     --light-gray: #222;
     --super-light-gray: #2f2f2f;
