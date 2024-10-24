@@ -7,11 +7,13 @@ import { useNotificacoes } from '../../contexts/NotificacoesProvider';
 import { formatarNumeroComPontos } from '../PopUps/SaudeParamsModal/SaudeParamsModal';
 import { useApplication } from '@contexts/ApplicationContext';
 import { TagSimulado } from '@components/TagSimulado/TagSimulado';
+import { useIsMobile } from '@services/hooks/useIsMobile';
 
 export const Especie: React.FC<EspecieProps> = ({ especie, handleUpdate, confirmDeleteSpecie }) => {
   const { notificar } = useNotificacoes();
   const { isAdmin } = useApplication();
   const { simulationMode } = useApplication();
+  const isMobile = useIsMobile();
 
   const handleDelete = () => {
     notificar({ tipo: 'NOTIFICACAO', mensagem: 'Solicitação de exclusão enviada', tempoEmSeg: 4 });
@@ -24,12 +26,11 @@ export const Especie: React.FC<EspecieProps> = ({ especie, handleUpdate, confirm
 
   return (
     <EspecieStyle>
-      {simulationMode && (
+      {simulationMode && !isMobile && (
         <div className="tagSimulado">
           <TagSimulado simulado={especie.simulado} />
         </div>
       )}
-
       <div className="titleAndButtons">
         <h3>{especie.nome}</h3>
 
@@ -38,6 +39,11 @@ export const Especie: React.FC<EspecieProps> = ({ especie, handleUpdate, confirm
           <DeleteButton onDelete={handleDelete} disabled={disableMutation} />
         </div>
       </div>
+      {simulationMode && isMobile && (
+        <span className="tagSimuladoMobile">
+          <TagSimulado simulado={especie.simulado} />
+        </span>
+      )}
       <p className="descricao">{especie.descricao}</p>
       <table>
         <thead>

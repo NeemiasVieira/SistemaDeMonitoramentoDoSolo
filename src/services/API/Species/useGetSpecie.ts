@@ -24,20 +24,17 @@ interface SpecieQuery {
 }
 
 interface getSpecieParams {
-  id?: string;
-  nome?: string;
+  id: string;
   enabled?: boolean;
 }
 
 const request = async (args: getSpecieParams) => {
-  const { id, nome } = args;
-  if (!id && !nome) return;
-
+  const { id } = args;
   const token = `Bearer ${localStorage.getItem('token')}`;
   const options = { headers: { Authorization: token } };
-  const variables = { id, nome };
-  const query = `query GetSpecie($nome: String, $id: String) {
-    getSpecie(nome: $nome, id: $id) { 
+  const variables = { id };
+  const query = `query GetSpecie($id: String!) {
+    getSpecie(id: $id) { 
         id 
         nome 
         descricao 

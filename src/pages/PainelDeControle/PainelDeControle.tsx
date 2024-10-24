@@ -18,6 +18,7 @@ const PainelDeControle = () => {
 
   const handleUpdate = useCallback(
     (idPlanta?: string) => {
+      window.scrollTo(0, 0);
       setPlantIdToUpdate(idPlanta);
       setAction('Update');
     },

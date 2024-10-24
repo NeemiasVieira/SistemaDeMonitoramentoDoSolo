@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalNavigationStyle = styled.div`
   display: flex;
@@ -51,6 +51,24 @@ export const ModalNavigationStyle = styled.div`
     }
   }
 
+  .switchSimulationMode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    background-color: var(--bg-primary);
+    padding: 12px 20px;
+    border-radius: 8px;
+    gap: 10px;
+
+    .texto {
+      width: 47%;
+      margin-left: 23px;
+      text-align: initial;
+    }
+  }
+
   .switch {
     position: relative;
     display: inline-block;
@@ -78,7 +96,7 @@ export const ModalNavigationStyle = styled.div`
 
   .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: calc(26px * 0.75);
     width: calc(26px * 0.75);
     left: calc(4px * 0.75);

@@ -109,4 +109,30 @@ export const SelecionarImagemRegistroStyle = styled.main`
       }
     }
   }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    background-color: var(--contrast);
+    margin-top: 10px;
+
+    section,
+    .content {
+      max-width: 85vw;
+      flex-flow: column wrap;
+      align-items: center;
+      border: none;
+    }
+
+    section {
+      padding: 15px;
+    }
+
+    .visualizacao {
+      width: 100%;
+    }
+
+    .actions {
+      width: 100%;
+    }
+  }
 `;

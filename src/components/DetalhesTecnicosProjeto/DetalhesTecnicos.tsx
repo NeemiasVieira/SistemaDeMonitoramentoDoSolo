@@ -120,7 +120,6 @@ export const DetalhesTecnicosProjeto = () => {
 
           <ul>
             <li>
-              {' '}
               <a href="https://github.com/NeemiasVieira/SistemaDeMonitoramentoDoSolo" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faLink} className="link" />
                 Sistema - Front

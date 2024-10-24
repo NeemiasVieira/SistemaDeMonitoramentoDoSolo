@@ -98,4 +98,21 @@ export const PaginaRegistroSucessoStyle = styled.main`
       }
     }
   }
+
+  @media screen and (max-width: 480px) {
+    background-color: var(--contrast);
+    margin-top: 0;
+    padding: 0;
+
+    section {
+      border: none;
+      padding: 0;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+    }
+    p {
+    }
+  }
 `;

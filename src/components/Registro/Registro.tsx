@@ -28,23 +28,26 @@ export const Registro: React.FC<RegistroProps> = ({ registro }) => {
 
   return (
     <RegistroStyle>
-      <h2>{registro.nuRegistro}</h2>
-      <p>{FormatarDatas.dataHoraMinuto(registro.dataDeRegistro)}</p>
-      {registro?.imagem ? (
-        <FontAwesomeIcon icon={faImage} className="imageIcon" />
-      ) : (
-        <span className="imageSpan"></span>
-      )}
-      <button
-        className="details"
-        onClick={() => {
-          setRecord(registro);
-          navigate(`/painel/plantas/${idPlanta}/registros/${registro.id}`);
-        }}
-      >
-        Ver detalhes
-      </button>
+      <div className="content">
+        <h2>{registro.nuRegistro}</h2>
+        <p>{FormatarDatas.dataHoraMinuto(registro.dataDeRegistro)}</p>
+        {registro?.imagem ? (
+          <FontAwesomeIcon icon={faImage} className="imageIcon" />
+        ) : (
+          <span className="imageSpan"></span>
+        )}
+      </div>
+
       <div className="actions">
+        <button
+          className="details"
+          onClick={() => {
+            setRecord(registro);
+            navigate(`/painel/plantas/${idPlanta}/registros/${registro.id}`);
+          }}
+        >
+          Detalhes
+        </button>
         {registro.simulado && <UpdateButton disabled={!simulationMode} onCLick={handleUpdate} />}
         {registro.simulado && <DeleteButton disabled={!simulationMode} onDelete={() => deleteRecord(registro.id)} />}
       </div>

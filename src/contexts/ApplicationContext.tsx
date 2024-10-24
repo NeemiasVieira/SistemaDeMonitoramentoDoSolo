@@ -17,7 +17,7 @@ const ApplicationBackgroundStyle = styled.div`
   overflow-x: hidden;
 
   @media screen and (max-width: 480px) {
-    min-height: 1600px;
+    min-height: 1500px;
   }
 `;
 

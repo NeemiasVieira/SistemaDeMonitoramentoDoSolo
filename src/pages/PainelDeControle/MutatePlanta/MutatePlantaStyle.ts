@@ -81,4 +81,15 @@ export const MutatePlantStyle = styled.main`
   .criarAtualizarButton:hover {
     transform: scale(1.1);
   }
+
+  @media screen and (max-width: 480px) {
+    min-height: 55vh;
+
+    h2 {
+      margin: 30px 0;
+    }
+    .actions {
+      max-width: 80%;
+    }
+  }
 `;

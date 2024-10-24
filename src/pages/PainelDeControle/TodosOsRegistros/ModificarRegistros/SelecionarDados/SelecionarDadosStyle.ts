@@ -111,4 +111,61 @@ export const SelecionarDadosRegistroStyle = styled.main`
       }
     }
   }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    background-color: var(--contrast);
+    margin-top: 10px;
+
+    h2 {
+      margin-top: 30px;
+    }
+
+    section,
+    .dataAndParams {
+      max-width: 85vw;
+      align-items: center;
+      border: none;
+    }
+
+    .content {
+      width: 100%;
+      align-items: center;
+    }
+
+    section {
+      padding: 0;
+    }
+
+    .content {
+      flex-flow: column wrap;
+      gap: 15px;
+    }
+
+    .dataAndParams {
+      flex-flow: column-reverse wrap;
+      padding: 5px 0;
+      max-width: 100%;
+    }
+
+    .data {
+      width: fit-content;
+      align-self: flex-start;
+      justify-self: flex-start;
+    }
+
+    .params {
+      width: 100%;
+      padding: 0;
+
+      h3 {
+        font-size: 1.1rem;
+        text-align: start;
+      }
+    }
+
+    .actions {
+      width: 100%;
+    }
+  }
 `;

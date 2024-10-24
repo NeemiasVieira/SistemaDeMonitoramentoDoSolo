@@ -15,6 +15,7 @@ interface Planta {
     solicitacaoNovoRegistro: 'nenhuma' | 'aguardando' | 'confirmado';
     ultimaAtualizacao?: string;
     simulado: boolean;
+    idEspecie: string;
   };
 }
 
@@ -22,7 +23,7 @@ const request = async (idPlanta: string) => {
   const token = `Bearer ${localStorage.getItem('token')}`;
   const variables = { idPlanta };
   const query = `query GetPlant($idPlanta: String!) {        
-    getPlant(idPlanta: $idPlanta) { id idDono nome especie dataDaPlantacao solicitacaoNovoRegistro ultimaAtualizacao simulado }
+    getPlant(idPlanta: $idPlanta) { id idDono nome especie dataDaPlantacao solicitacaoNovoRegistro ultimaAtualizacao simulado idEspecie }
     }`;
 
   const options = { headers: { Authorization: token } };

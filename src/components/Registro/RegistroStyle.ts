@@ -14,6 +14,14 @@ export const RegistroStyle = styled.div`
   border-radius: 10px;
   border: solid var(--border-primary) 1px;
 
+  .content {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
   p {
     color: var(--text-secondary);
     font-style: italic;
@@ -54,13 +62,26 @@ export const RegistroStyle = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-    width: 80vw;
+    width: 75vw;
     padding: 0 20px;
     min-width: 10px;
+    gap: 10px;
+    flex-flow: column wrap;
+    padding: 10px 20px;
+
+    .content {
+      padding: 5px;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+
+    h2 {
+      margin: 0;
+    }
 
     p {
-      font-size: 0.7rem;
-      width: 220px;
+      font-size: 1rem;
+      margin: 0;
     }
 
     span {
@@ -68,10 +89,14 @@ export const RegistroStyle = styled.div`
     }
 
     .details {
-      width: 125px;
+      width: 100px;
       height: 40px;
       padding: 0 10px;
       font-size: 0.8rem;
+    }
+    .actions {
+      padding: 5px;
+      gap: 8px;
     }
   }
 `;

@@ -17,7 +17,7 @@ const PagRelatorioSaudePorRegistro = () => {
     return recordMemo?.id ? recordMemo : recordRequest;
   }, [recordMemo, recordRequest]);
   const { getSpecie, specieData } = useGetSpecie({
-    nome: record?.nomeEspecie,
+    id: record?.idEspecie,
   });
   const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } = useGetRelatorioSaudePorRegistro(idRegistro);
 

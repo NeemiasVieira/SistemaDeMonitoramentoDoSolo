@@ -1,4 +1,4 @@
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faLaptop, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useIsMobile } from '@services/hooks/useIsMobile';
 import React from 'react';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useApplication } from '../../contexts/ApplicationContext';
 import { useThemes } from '../../contexts/ThemeProvider';
 import { IconeLogoSms } from '../Icones/sms-logo';
+import { ToggleButton } from '@components/Buttons/ToggleButton/ToggleButton';
 
 interface ListaNavegacaoProps {
   closeModal?: () => void;
@@ -15,7 +16,7 @@ export const ListaNavegacao: React.FC<ListaNavegacaoProps> = ({ closeModal }) =>
   const urlCompleta = window.location.href;
   const caminhoAtual = String(new URL(urlCompleta).pathname);
   const { theme, toggleTheme } = useThemes();
-  const { Logout, isAdmin, auth } = useApplication();
+  const { Logout, isAdmin, auth, simulationMode, toggleSimulationMode } = useApplication();
   const isMobile = useIsMobile();
 
   const handleLogout = () => {
@@ -59,11 +60,19 @@ export const ListaNavegacao: React.FC<ListaNavegacaoProps> = ({ closeModal }) =>
 
       {(isMobile || (!isMobile && !auth)) && (
         <li className="switchTheme">
-          {theme === 'light' ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
+          <FontAwesomeIcon icon={theme === 'light' ? faSun : faMoon} />
+          Tema {theme === 'light' ? 'claro' : 'escuro'}
           <label className="switch">
             <input type="checkbox" onChange={toggleTheme} checked={theme === 'light' ? false : true} />
             <span className="slider round"></span>
           </label>
+        </li>
+      )}
+
+      {isMobile && (
+        <li className="switchSimulationMode">
+          <FontAwesomeIcon icon={faLaptop} /> Modo simulação{' '}
+          <ToggleButton checked={simulationMode} onChange={toggleSimulationMode} />
         </li>
       )}
 

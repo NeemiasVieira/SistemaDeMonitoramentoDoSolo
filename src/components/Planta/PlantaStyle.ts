@@ -94,9 +94,34 @@ export const PlantaStyle = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-    width: 80vw;
+    width: 85vw;
     padding: 15px 0;
     border-radius: 10px;
+
+    .infoPlanta {
+      gap: 7px;
+      width: 100%;
+    }
+
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row nowrap;
+      gap: 5px;
+      font-size: 0.9rem;
+    }
+
+    .copyId {
+      margin-left: 0;
+      padding: 1px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+    }
 
     h2 {
       padding-bottom: 10px;
@@ -118,13 +143,13 @@ export const PlantaStyle = styled.div`
 
     .manageButton {
       margin-top: 5px;
-      width: 150px;
+      width: 100px;
       font-size: 1rem;
       height: 35px;
     }
 
     .imagemPlanta {
-      width: 90px;
+      width: 100px;
       height: 90px;
     }
   }

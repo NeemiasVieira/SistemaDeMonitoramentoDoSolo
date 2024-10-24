@@ -13,4 +13,12 @@ export const TagSimuladoStyle = styled.span<{ $simulado: boolean }>`
   -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
+
+  @media screen and (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 3px 5px;
+    svg {
+      width: 15px;
+    }
+  }
 `;

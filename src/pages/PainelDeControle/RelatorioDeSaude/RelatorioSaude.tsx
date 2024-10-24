@@ -12,7 +12,7 @@ const PagRelatorioSaude = () => {
   const { idPlanta } = useParams();
   const { planta } = useGetPlant(idPlanta);
   const { getSpecie, specieData } = useGetSpecie({
-    nome: planta?.especie,
+    id: planta?.idEspecie,
   });
   const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } = useGetRelatorioSaude(idPlanta);
 

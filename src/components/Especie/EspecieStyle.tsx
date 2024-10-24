@@ -72,6 +72,11 @@ export const EspecieStyle = styled.div`
       margin: 15px 0 0 10px;
     }
 
+    .tagSimuladoMobile {
+      padding: 5px 0 0 7px;
+      align-self: flex-start;
+    }
+
     .descricao {
       font-size: 0.8rem;
       margin: 15px 0 15px 10px;

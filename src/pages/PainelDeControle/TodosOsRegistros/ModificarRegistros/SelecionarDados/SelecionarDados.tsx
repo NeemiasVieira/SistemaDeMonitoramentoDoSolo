@@ -10,6 +10,7 @@ import { ParametrosDaEspecie } from '@components/ParametrosDaEspecie/ParametrosD
 import { Loading } from '@components/Loading/Loading';
 import { useEffect, useMemo } from 'react';
 import { useUpdateRecord } from '@services/API/Records/useUpdateRecord';
+import { useIsMobile } from '@services/hooks/useIsMobile';
 
 interface SelecionarDadosRegistroProps {
   update?: boolean;
@@ -23,6 +24,7 @@ const SelecionarDadosRegistro: React.FC<SelecionarDadosRegistroProps> = ({ updat
   const { notificar } = useNotificacoes();
   const { createRecord, createErrorIsLoading } = useCreateRecord();
   const { updateRecord, updateRecordIsLoading } = useUpdateRecord();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (update && !record) {
@@ -72,8 +74,8 @@ const SelecionarDadosRegistro: React.FC<SelecionarDadosRegistroProps> = ({ updat
             luminosidade, umidade, temperatura e pH, simulando um registro real
           </p>
           <p>
-            Você também pode consultar os parâmetros da espécie ao lado direito para ajudar no preenchimento do seu
-            registro.
+            Você também pode consultar os parâmetros da espécie {isMobile ? 'abaixo' : 'ao lado direito'} para ajudar no
+            preenchimento do seu registro.
           </p>
           <div className="dataAndParams">
             <div className="data">
