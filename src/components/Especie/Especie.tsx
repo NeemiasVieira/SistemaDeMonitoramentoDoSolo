@@ -16,7 +16,7 @@ export const Especie: React.FC<EspecieProps> = ({ especie, handleUpdate, confirm
   const isMobile = useIsMobile();
 
   const handleDelete = () => {
-    notificar({ tipo: 'NOTIFICACAO', mensagem: 'Solicitação de exclusão enviada', tempoEmSeg: 4 });
+    notificar({ tipo: 'NOTIFICACAO', mensagem: 'Solicitação de exclusão enviada' });
     confirmDeleteSpecie(especie.id);
   };
 

@@ -10,7 +10,6 @@ export const isSpecieValid = (especie: Specie, notificar: Notificar): boolean =>
     notificar({
       tipo: 'ALERTA',
       mensagem,
-      tempoEmSeg: 4,
     });
   };
 

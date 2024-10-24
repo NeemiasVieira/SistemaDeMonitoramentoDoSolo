@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ResumoStyle = styled.main`
   margin: 50px 0 0 0;
@@ -7,6 +7,7 @@ export const ResumoStyle = styled.main`
   align-items: center;
   gap: 20px;
   background-color: var(--bg-primary);
+  min-height: 400px;
 
   .identificacaoDaPlanta {
     display: flex;

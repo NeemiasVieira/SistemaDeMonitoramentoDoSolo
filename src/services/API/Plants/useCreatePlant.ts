@@ -33,7 +33,7 @@ export const useCreatePlant = (args: Planta) => {
   const onSucesso = () => {
     queryClient.invalidateQueries(QueryKeys.ALL_PLANTS);
     queryClient.invalidateQueries(QueryKeys.PLANT);
-    notificar({ tipo: 'SUCESSO', mensagem: 'Planta criada com sucesso', tempoEmSeg: 4 });
+    notificar({ tipo: 'SUCESSO', mensagem: 'Planta criada com sucesso' });
   };
 
   const {
@@ -46,7 +46,7 @@ export const useCreatePlant = (args: Planta) => {
     mutationKey: MutationKeys.CREATE_PLANT,
     onSuccess: onSucesso,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const newPlant = data?.data?.data?.createPlant;

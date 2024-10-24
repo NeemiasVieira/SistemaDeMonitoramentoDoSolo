@@ -22,7 +22,7 @@ export const useDeletePlant = () => {
   const onSucesso = () => {
     queryClient.invalidateQueries(QueryKeys.ALL_PLANTS);
     queryClient.invalidateQueries(QueryKeys.PLANT);
-    notificar({ tipo: 'SUCESSO', mensagem: 'Planta excluída com sucesso', tempoEmSeg: 4 });
+    notificar({ tipo: 'SUCESSO', mensagem: 'Planta excluída com sucesso' });
   };
 
   const {
@@ -34,7 +34,7 @@ export const useDeletePlant = () => {
     mutationKey: MutationKeys.DELETE_PLANT,
     onSuccess: onSucesso,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   return {

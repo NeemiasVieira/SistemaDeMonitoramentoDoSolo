@@ -48,7 +48,7 @@ export const MutatePlant: React.FC<MutatePlantProps> = ({ action, handleBack, pl
     const tudoPrenchido = planta.nome && planta.idEspecie;
 
     if (!tudoPrenchido) {
-      notificar({ tipo: 'ERRO', mensagem: 'Todos os campos são obrigatórios', tempoEmSeg: 3 });
+      notificar({ tipo: 'ALERTA', mensagem: 'Todos os campos são obrigatórios', tempoEmSeg: 3 });
       return;
     }
 
@@ -58,7 +58,7 @@ export const MutatePlant: React.FC<MutatePlantProps> = ({ action, handleBack, pl
 
   const handleUpdate = useCallback(() => {
     if (!planta.nome || !planta.id) {
-      notificar({ tipo: 'ERRO', mensagem: 'Todos os campos são obrigatórios', tempoEmSeg: 3 });
+      notificar({ tipo: 'ALERTA', mensagem: 'Todos os campos são obrigatórios', tempoEmSeg: 3 });
       return;
     }
     notificar({ tipo: 'NOTIFICACAO', mensagem: 'Solicitação de atualizar planta enviada', tempoEmSeg: 2 });

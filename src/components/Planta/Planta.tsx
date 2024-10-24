@@ -31,6 +31,7 @@ export const Planta: React.FC<PlantaProps> = ({ planta, handleUpdate }) => {
   };
 
   const navegarParaControle = (idPlanta: string) => {
+    window.scrollTo(0, 0);
     navigate(`/painel/plantas/${idPlanta}`);
   };
 
@@ -45,7 +46,11 @@ export const Planta: React.FC<PlantaProps> = ({ planta, handleUpdate }) => {
         });
       })
       .catch(() => {
-        notificar({ tipo: 'ERRO', mensagem: 'Falha ao copiar ID da plana para área de transferência', tempoEmSeg: 3 });
+        notificar({
+          tipo: 'ALERTA',
+          mensagem: 'Falha ao copiar ID da plana para área de transferência',
+          tempoEmSeg: 3,
+        });
       });
   }, [planta.id, notificar]);
 

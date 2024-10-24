@@ -12,6 +12,7 @@ import { useGetPlant } from '@services/API/Plants/useGetPlant';
 import { useApplication } from '@contexts/ApplicationContext';
 import { useMutateRecordContext } from '@contexts/MutateRecordContext';
 import { CreateButton } from '@components/Buttons/CreateButton';
+import { NoResults } from '@components/NoResults/NoResults';
 
 const TodosOsRegistros = () => {
   //Params
@@ -72,6 +73,7 @@ const TodosOsRegistros = () => {
         }}
       />
       {allRecordsPaginatedIsLoading && <Loading minHeight={'70vh'} />}
+      {!allRecordsPaginatedIsLoading && allRecordsPaginated?.registros?.length === 0 && <NoResults />}
       {allRecordsPaginated &&
         allRecordsPaginated.registros.map((registro) => <Registro registro={registro} key={registro.id} />)}
       {allRecordsPaginated && (

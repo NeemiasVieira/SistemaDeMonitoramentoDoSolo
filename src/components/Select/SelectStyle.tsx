@@ -50,15 +50,16 @@ export const ResetButton = styled.span`
   }
 `;
 
-export const DropdownMenu = styled.div`
+export const DropdownMenu = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   top: 100%;
   left: -1px;
   width: 100%;
   background-color: var(--bg-primary);
   border: 1px solid var(--border-primary);
-  max-height: 200px;
-  overflow-y: auto;
+  max-height: ${({ $isOpen }) => ($isOpen ? '200px' : '0')};
+  overflow-y: ${({ $isOpen }) => ($isOpen ? 'auto' : 'hidden')};
+  transition: max-height 0.2s ease-in-out;
   z-index: 1;
 
   &::-webkit-scrollbar {
@@ -81,6 +82,13 @@ export const OptionStyled = styled.div<{ $isSelected: boolean }>`
   padding: 10px;
   background-color: ${({ $isSelected }) => ($isSelected ? 'var(--light-gray)' : 'var(--button-primary)')};
   cursor: pointer;
+  display: flex;
+  flex-flow: column wrap;
+  span {
+    color: var(--text-secondary);
+    font-weight: 200;
+    font-size: 0.9rem;
+  }
 
   &:hover {
     background-color: var(--super-light-gray);

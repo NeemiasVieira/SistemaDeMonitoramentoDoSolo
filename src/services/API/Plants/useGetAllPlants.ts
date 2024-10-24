@@ -33,7 +33,7 @@ export const useGetAllPlants = () => {
     cacheTime: 30 * 60 * 1000,
     refetchInterval: false,
     staleTime: 30 * 60 * 1000,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
     retry: false,
   });
 

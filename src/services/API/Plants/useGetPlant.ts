@@ -46,7 +46,7 @@ export const useGetPlant = (idPlanta: string, refetchIntervalOn: boolean = false
     return response;
   };
 
-  const onErro = (e: string) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 });
+  const onErro = (e: string) => notificar({ mensagem: String(e), tipo: 'ERRO' });
 
   const onSucesso = (data: AxiosResponse<GraphQLResponse<Planta>>) => {
     const status = data?.data?.data?.getPlant?.solicitacaoNovoRegistro;
@@ -54,7 +54,7 @@ export const useGetPlant = (idPlanta: string, refetchIntervalOn: boolean = false
       notificar({
         tipo: 'SUCESSO',
         mensagem: 'Sua solicitação de novo registro foi finalizada',
-        tempoEmSeg: 10,
+        tempoEmSeg: 8,
       });
       setTimeout(() => queryClient.invalidateQueries(QueryKeys.PLANT), 5000);
     }

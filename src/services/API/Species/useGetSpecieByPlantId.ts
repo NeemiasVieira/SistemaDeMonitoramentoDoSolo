@@ -63,7 +63,7 @@ export const useGetSpecieByPlantId = (idPlanta: string) => {
     staleTime: 10 * 60 * 1000,
     retry: false,
     enabled: true,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const errors = data?.data?.errors;

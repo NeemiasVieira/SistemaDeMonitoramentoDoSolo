@@ -12,7 +12,7 @@ import {
   SelectContainer,
 } from './SelectStyle';
 
-interface Option {
+export interface Option {
   label: string;
   id: string;
   description?: string;
@@ -43,6 +43,7 @@ export const Select: React.FC<SelectProps> = ({
     return {
       id: '',
       label: defaultValue || 'Selecione',
+      description: '',
     };
   }, [defaultValue]);
 
@@ -88,8 +89,8 @@ export const Select: React.FC<SelectProps> = ({
         {loading && <Loading fullWidth={false} logoWidth="20px" logoHeight="20px" />}
       </ActionsContainer>
 
-      {isOpen && !disabled && (
-        <DropdownMenu>
+      {!disabled && (
+        <DropdownMenu $isOpen={isOpen}>
           {optionsToSelect.map((option) => (
             <OptionStyled
               key={option.id}
@@ -97,6 +98,7 @@ export const Select: React.FC<SelectProps> = ({
               $isSelected={selectedOption?.id === option.id}
             >
               {option.label}
+              <span>{option.description}</span>
             </OptionStyled>
           ))}
         </DropdownMenu>

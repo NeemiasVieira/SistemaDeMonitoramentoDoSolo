@@ -22,6 +22,7 @@ export const ToggleButtonStyle = styled.label`
     background-color: #ccc;
     -webkit-transition: 0.4s;
     transition: 0.4s;
+    z-index: 0;
   }
 
   .slider:before {

@@ -40,7 +40,7 @@ export const useCreateRecord = () => {
     queryClient.invalidateQueries(QueryKeys.RECORD);
     queryClient.invalidateQueries(QueryKeys.ALL_RECORDS);
     queryClient.invalidateQueries(QueryKeys.ALL_RECORDS_PAGINATED);
-    notificar({ tipo: 'SUCESSO', mensagem: 'Registro criado com sucesso', tempoEmSeg: 4 });
+    notificar({ tipo: 'SUCESSO', mensagem: 'Registro criado com sucesso' });
     navigate(`/painel/plantas/${idPlanta}/registros/novo/menu`);
     setId(data?.data?.data?.createRecord?.id);
   };
@@ -55,7 +55,7 @@ export const useCreateRecord = () => {
     mutationKey: MutationKeys.CREATE_RECORD,
     onSuccess: onSucesso,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const newRecord = data?.data?.data?.createRecord;

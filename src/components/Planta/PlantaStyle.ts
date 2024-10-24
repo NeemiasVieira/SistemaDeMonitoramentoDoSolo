@@ -121,6 +121,7 @@ export const PlantaStyle = styled.div`
       display: flex;
       justify-content: space-evenly;
       width: 100%;
+      gap: 0px;
     }
 
     h2 {
@@ -142,10 +143,8 @@ export const PlantaStyle = styled.div`
     }
 
     .manageButton {
-      margin-top: 5px;
       width: 100px;
       font-size: 1rem;
-      height: 35px;
     }
 
     .imagemPlanta {

@@ -87,7 +87,7 @@ export const useGetAllRecordsPaginated = (params: allRecordsPaginatedQueryParams
     refetchInterval: false,
     staleTime: 10 * 60 * 1000,
     enabled: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const allRecordsPaginated = data?.data?.data?.getAllRecordsPaginated;

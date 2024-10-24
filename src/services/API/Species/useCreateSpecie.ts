@@ -44,7 +44,7 @@ export const useCreateSpecie = (args: Specie) => {
   const onSucesso = () => {
     queryClient.invalidateQueries(QueryKeys.ALL_SPECIES);
     queryClient.invalidateQueries(QueryKeys.SPECIE);
-    notificar({ tipo: 'SUCESSO', mensagem: 'Espécie criada com sucesso', tempoEmSeg: 4 });
+    notificar({ tipo: 'SUCESSO', mensagem: 'Espécie criada com sucesso' });
   };
 
   const {
@@ -57,7 +57,7 @@ export const useCreateSpecie = (args: Specie) => {
     mutationKey: [MutationKeys.CREATE_SPECIE],
     onSuccess: onSucesso,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const newSpecie = data?.data?.data?.createSpecie;

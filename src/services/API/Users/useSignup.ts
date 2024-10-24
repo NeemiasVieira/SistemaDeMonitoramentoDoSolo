@@ -36,7 +36,7 @@ export const useSignUp = (params: useSignUpProps) => {
     mutationKey: [MutationKeys.SIGNUP],
     mutationFn: () => cadastrarNovoUsuario(nome, email, senha),
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const signupResponse = data?.data?.data?.createUser;

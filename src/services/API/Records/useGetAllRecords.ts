@@ -60,7 +60,7 @@ export const useGetAllRecords = (params: allRecordsQueryParams) => {
     refetchInterval: false,
     staleTime: 10 * 60 * 1000,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const allRecords = data?.data?.data?.getAllRecordsByPlant;

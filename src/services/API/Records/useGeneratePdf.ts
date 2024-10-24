@@ -39,10 +39,10 @@ export const useGeneratePdf = (recordId: string) => {
     (data: AxiosResponse<GraphQLResponse<generatePdf>, unknown>) => {
       const base64 = data?.data?.data?.generatePdf;
       if (base64) {
-        notificar({ tipo: 'SUCESSO', mensagem: 'PDF gerado com sucesso', tempoEmSeg: 4 });
+        notificar({ tipo: 'SUCESSO', mensagem: 'PDF gerado com sucesso' });
         downloadPdf(base64);
       } else {
-        notificar({ tipo: 'ERRO', mensagem: 'Erro ao gerar PDF', tempoEmSeg: 4 });
+        notificar({ tipo: 'ERRO', mensagem: 'Erro ao gerar PDF' });
       } // eslint-disable-next-line
     },
     [notificar, downloadPdf]
@@ -55,8 +55,8 @@ export const useGeneratePdf = (recordId: string) => {
   } = useMutation({
     mutationKey: MutationKeys.GENERATE_PDF,
     mutationFn: () => request(recordId),
-    onError: (error) => notificar({ tipo: 'ERRO', mensagem: String(error), tempoEmSeg: 4 }),
-    onMutate: () => notificar({ tipo: 'NOTIFICACAO', mensagem: 'Gerando PDF...', tempoEmSeg: 4 }),
+    onError: (error) => notificar({ tipo: 'ERRO', mensagem: String(error) }),
+    onMutate: () => notificar({ tipo: 'NOTIFICACAO', mensagem: 'Gerando PDF...' }),
     onSuccess: (data) => onSuccesso(data),
     retry: false,
   });

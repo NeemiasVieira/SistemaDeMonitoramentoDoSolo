@@ -27,45 +27,38 @@ export const ModalNavigationStyle = styled.div`
 
   ul li a {
     display: flex;
-    justify-content: center;
-    color: var(--text-primary);
-    text-decoration: none;
-    background-color: var(--bg-primary);
-    padding: 12px 20px;
-    border-radius: 8px;
-  }
-
-  .switchTheme {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     color: var(--text-primary);
     text-decoration: none;
     background-color: var(--bg-primary);
     padding: 12px 20px;
     border-radius: 8px;
     gap: 10px;
+    border: solid var(--border-primary) 1px;
+  }
 
-    svg {
-      color: var(--text-secondary);
+  .switchSimulationMode,
+  .switchTheme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    background-color: var(--bg-primary);
+    padding: 12px 20px;
+    border-radius: 8px;
+    gap: 10px;
+    border: solid var(--border-primary) 1px;
+
+    .texto {
+      width: 60%;
     }
   }
 
-  .switchSimulationMode {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-primary);
-    text-decoration: none;
-    background-color: var(--bg-primary);
-    padding: 12px 20px;
-    border-radius: 8px;
-    gap: 10px;
-
-    .texto {
-      width: 47%;
-      margin-left: 23px;
-      text-align: initial;
+  .switchTheme {
+    svg {
+      color: var(--text-secondary);
     }
   }
 

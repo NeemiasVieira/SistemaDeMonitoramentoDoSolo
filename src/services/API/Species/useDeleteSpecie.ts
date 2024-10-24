@@ -25,7 +25,7 @@ export const useDeleteSpecie = (id: string) => {
   const onSucesso = () => {
     queryClient.invalidateQueries(QueryKeys.ALL_SPECIES);
     queryClient.invalidateQueries(QueryKeys.SPECIE);
-    notificar({ tipo: 'SUCESSO', mensagem: 'Espécie excluída com sucesso!', tempoEmSeg: 4 });
+    notificar({ tipo: 'SUCESSO', mensagem: 'Espécie excluída com sucesso!' });
   };
 
   const {
@@ -37,7 +37,7 @@ export const useDeleteSpecie = (id: string) => {
     mutationFn: () => request(id),
     mutationKey: [MutationKeys.DELETE_SPECIE],
     onSuccess: onSucesso,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
     retry: false,
   });
 

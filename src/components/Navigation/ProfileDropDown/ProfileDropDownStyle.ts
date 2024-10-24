@@ -56,7 +56,7 @@ export const ProfileDropDownStyle = styled.div<{ $simulationMode: boolean }>`
     position: absolute;
     background-color: var(--button-primary);
     min-width: 260px;
-    z-index: 1;
+    z-index: 2;
     box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
     color: var(--text-primary);
     border-radius: 15px 0 15px 15px;

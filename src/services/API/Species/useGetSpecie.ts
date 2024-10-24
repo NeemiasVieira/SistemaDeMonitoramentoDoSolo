@@ -30,6 +30,7 @@ interface getSpecieParams {
 
 const request = async (args: getSpecieParams) => {
   const { id } = args;
+  if (!id) return;
   const token = `Bearer ${localStorage.getItem('token')}`;
   const options = { headers: { Authorization: token } };
   const variables = { id };
@@ -70,7 +71,7 @@ export const useGetSpecie = (args: getSpecieParams) => {
     staleTime: 10 * 60 * 1000,
     retry: false,
     enabled,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   return {

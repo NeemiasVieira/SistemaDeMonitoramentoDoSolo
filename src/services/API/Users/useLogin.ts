@@ -45,7 +45,7 @@ export const useLogin = (email: string, senha: string) => {
       const redirectToUrl = sessionStorage.getItem('redirectUrl');
       sessionStorage.removeItem('redirectUrl');
 
-      notificar({ tipo: 'SUCESSO', mensagem: `Bem vindo ${response.usuario.nome}`, tempoEmSeg: 4 });
+      notificar({ tipo: 'SUCESSO', mensagem: `Bem vindo ${response.usuario.nome}` });
       navigate(redirectToUrl ?? '/painel');
     }
   };
@@ -60,7 +60,7 @@ export const useLogin = (email: string, senha: string) => {
     mutationFn: () => request(email, senha),
     onSuccess: (data) => onSucesso(data),
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const loginResponse = data?.data?.data?.loginUser;

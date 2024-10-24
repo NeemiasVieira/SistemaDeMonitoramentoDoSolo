@@ -3,10 +3,13 @@ import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
 import SMS_API, { GraphQLResponse } from '../sms-api';
 import { useApplication } from '@contexts/ApplicationContext';
 import { QueryKeys } from '../types';
+import { Option } from '@components/Select/Select';
+import { useMemo } from 'react';
 
 interface Specie {
   id: string;
   nome: string;
+  simulado: boolean;
 }
 
 interface SpecieQuery {
@@ -20,6 +23,7 @@ const getAllSpecies = async (variables: { comSimulados: boolean }) => {
     getAllSpecies(comSimulados: $comSimulados) {
       id
       nome
+      simulado
     }
   }`;
 
@@ -43,15 +47,19 @@ export const useSelectSpecies = () => {
     staleTime: 10 * 60 * 1000,
     retry: false,
     enabled: true,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
-  const options = data?.data?.data?.getAllSpecies.map((option) => {
-    return {
-      label: option.nome,
-      id: option.id,
-    };
-  });
+  const options = useMemo(() => {
+    return data?.data?.data?.getAllSpecies.map((option) => {
+      const description = option.simulado ? 'Espécie simulada' : 'Espécie oficial';
+      return {
+        label: option.nome,
+        id: option.id,
+        description: simulationMode ? description : '',
+      } as Option;
+    });
+  }, [data, simulationMode]);
 
   return {
     options,

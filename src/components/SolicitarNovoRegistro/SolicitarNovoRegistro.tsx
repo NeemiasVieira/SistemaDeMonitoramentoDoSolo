@@ -44,14 +44,12 @@ export const SolicitarNovoRegistro = () => {
       notificar({
         tipo: 'NOTIFICACAO',
         mensagem: 'Enviando solicitação de cancelamento de novo registro',
-        tempoEmSeg: 4,
       });
     } else if (nenhuma) {
       enviarSolicitacao();
       notificar({
         tipo: 'NOTIFICACAO',
         mensagem: 'Enviando solicitação de novo registro',
-        tempoEmSeg: 4,
       });
     }
   };

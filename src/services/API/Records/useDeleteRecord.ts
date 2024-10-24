@@ -23,7 +23,7 @@ export const useDeleteRecord = () => {
     queryClient.invalidateQueries(QueryKeys.ALL_RECORDS);
     queryClient.invalidateQueries(QueryKeys.RECORD);
     queryClient.invalidateQueries(QueryKeys.ALL_RECORDS_PAGINATED);
-    notificar({ tipo: 'SUCESSO', mensagem: 'Registro excluído com sucesso', tempoEmSeg: 4 });
+    notificar({ tipo: 'SUCESSO', mensagem: 'Registro excluído com sucesso' });
   };
 
   const {
@@ -35,7 +35,7 @@ export const useDeleteRecord = () => {
     mutationKey: MutationKeys.DELETE_PLANT,
     onSuccess,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   return {

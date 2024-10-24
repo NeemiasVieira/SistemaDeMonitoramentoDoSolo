@@ -6,7 +6,7 @@ const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 export const fileNotValid = (file: File, notificar: Notificar): boolean => {
   if (file.size > SIZE_15Mb) {
     notificar({
-      tipo: 'ERRO',
+      tipo: 'ALERTA',
       mensagem: 'Tamanho máximo do arquivo ultrapassado, escolha um arquivo com 15Mb ou menos.',
       tempoEmSeg: 5,
     });
@@ -17,7 +17,7 @@ export const fileNotValid = (file: File, notificar: Notificar): boolean => {
 
   if (typeNotAllowed) {
     notificar({
-      tipo: 'ERRO',
+      tipo: 'ALERTA',
       mensagem: 'Formato do arquivo inválido, selecione um arquivo .png ou .jpeg',
       tempoEmSeg: 5,
     });

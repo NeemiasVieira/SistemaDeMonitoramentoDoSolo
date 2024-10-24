@@ -29,7 +29,7 @@ const TooltipText = styled.span<{ $visible: boolean }>`
   font-weight: 500;
   border-radius: 6px;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   font-size: 0.9rem;
   bottom: 125%;
   left: 50%;

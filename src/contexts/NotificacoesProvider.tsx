@@ -1,87 +1,77 @@
-import React, { createContext, useContext, useState } from 'react';
-import { Notificacoes } from '@components/Notificacao/Notificacao';
-import { v4 as uuidv4 } from 'uuid';
+import React, { createContext, useContext, useReducer } from 'react';
+import { Notificacoes } from '@components/Notificacao/Notificacoes';
 
-interface NotificacaoConstructor {
+export interface Notificacao {
+  id: number;
   tipo: 'ALERTA' | 'SUCESSO' | 'ERRO' | 'NOTIFICACAO';
   mensagem: string;
+  tempoEmSeg: number;
+  fechar: () => void;
+}
+
+export type NotificarProps = Omit<Notificacao, 'id' | 'fechar' | 'tipo' | 'tempoEmSeg'> & {
+  tipo?: Notificacao['tipo'];
   tempoEmSeg?: number;
+};
+
+export type Notificar = (notificacao: NotificarProps) => void;
+
+interface AddAction {
+  type: 'ADD';
+  payload: Notificacao;
+}
+
+interface RemoveAction {
+  type: 'REMOVE';
+  id: number;
+}
+
+type NotificacoesAction = AddAction | RemoveAction;
+
+interface INotificacoesContext {
+  notificar: Notificar;
 }
 
 interface NotificacoesProviderProps {
   children: React.ReactNode;
 }
 
-interface INotificacoesContext {
-  notificacoes: INotificacao[];
-  notificar: (notificacao: NotificacaoConstructor) => void;
-}
+const NotificacoesContext = createContext<INotificacoesContext>(null);
 
-export type Notificar = (notificacao: NotificacaoConstructor) => void;
-
-export class INotificacao {
-  public mensagem: string;
-  public tipo: 'ALERTA' | 'SUCESSO' | 'ERRO' | 'NOTIFICACAO';
-  public visivel: boolean;
-  public tempoEmSeg: number;
-  public id: string;
-
-  constructor(params: NotificacaoConstructor) {
-    this.mensagem = params.mensagem;
-    this.tipo = params.tipo;
-    this.tempoEmSeg = params.tempoEmSeg ?? 4;
-    this.visivel = true;
-    this.id = uuidv4();
-
-    setTimeout(() => {
-      this.matarNotificacao();
-    }, this.tempoEmSeg * 1000);
-  }
-
-  matarNotificacao() {
-    this.visivel = false;
-  }
-}
-
-const mapearNotificacao = (mensagem: string): string => {
-  switch (mensagem) {
-    case 'jwt expired':
-      return 'Sessão expirada, por favor faça login novamente';
+const notificacoesReducer = (state: Notificacao[], action: NotificacoesAction) => {
+  switch (action.type) {
+    case 'ADD':
+      return [...state, { ...action.payload }];
+    case 'REMOVE':
+      return state.filter((n) => n.id !== action.id);
+    default:
+      return state;
   }
 };
 
-const NotificacoesContext = createContext<INotificacoesContext>({
-  notificacoes: [],
-  notificar: () => {},
-});
-
 export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ children }) => {
-  const [notificacoes, setNotificacoes] = useState<INotificacao[]>([]);
+  const [notificacoes, dispatch] = useReducer(notificacoesReducer, []);
 
-  const notificar = async (params: NotificacaoConstructor) => {
-    const notificacao = new INotificacao(params);
-    setNotificacoes((valoresAnteriores) => {
-      const mensagemMapeada = mapearNotificacao(notificacao.mensagem);
-
-      if (!notificacao.mensagem || notificacao.mensagem?.length === 0) notificacao.tempoEmSeg = 0;
-
-      if (mensagemMapeada && mensagemMapeada.length > 0) notificacao.mensagem = mensagemMapeada;
-      return [...valoresAnteriores, notificacao];
+  const notificar: Notificar = (notificacao) => {
+    const tempoEmSeg = notificacao.tempoEmSeg || 4;
+    const id = Date.now();
+    const tipo = notificacao.tipo || 'NOTIFICACAO';
+    const timeOut = setTimeout(() => {
+      dispatch({ type: 'REMOVE', id });
+    }, tempoEmSeg * 1000);
+    const fechar = () => {
+      clearTimeout(timeOut);
+      dispatch({ type: 'REMOVE', id });
+    };
+    dispatch({
+      type: 'ADD',
+      payload: { ...notificacao, tipo, tempoEmSeg, id, fechar },
     });
   };
 
-  // const notificar2 = () => notificar({ tipo: 'NOTIFICACAO', tempoEmSeg: 500, mensagem: 'Mensagem de notificacao' });
-  // const alertar = () => notificar({ tipo: 'ALERTA', tempoEmSeg: 500, mensagem: 'Mensagem de alerta' });
-  // const criarErro = () => notificar({ tipo: 'ERRO', tempoEmSeg: 500, mensagem: 'Mensagem de erro' });
-  // const sucesso = () => notificar({ tipo: 'SUCESSO', tempoEmSeg: 500, mensagem: 'Mensagem de sucesso' });
-
   return (
-    <NotificacoesContext.Provider value={{ notificacoes, notificar }}>
-      {/* <button onClick={notificar2}>NOTIFICACAO</button>
-      <button onClick={alertar}>ALERTA</button>
-      <button onClick={criarErro}>ERRO</button>
-      <button onClick={sucesso}>SUCESSO</button> */}
-      {notificacoes.length > 0 && <Notificacoes />}
+    <NotificacoesContext.Provider value={{ notificar }}>
+      {notificacoes.length > 0 && <Notificacoes notificacoes={notificacoes} />}
       {children}
     </NotificacoesContext.Provider>
   );
@@ -89,8 +79,6 @@ export const NotificacoesProvider: React.FC<NotificacoesProviderProps> = ({ chil
 
 export const useNotificacoes = () => {
   const context = useContext(NotificacoesContext);
-  if (!context) {
-    throw new Error('useNotificacoes deve ser usado dentro de um NotificacoesProvider');
-  }
+  if (!context) throw new Error('useNotificacoes deve ser usado dentro de um NotificacoesProvider');
   return context;
 };

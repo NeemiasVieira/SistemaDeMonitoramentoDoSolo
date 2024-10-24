@@ -1,6 +1,5 @@
 import { Specie } from '@components/Especie/Types';
 import { ParametrosDaEspecieStyle } from './ParametrosDaEspecieStyle';
-import { Column, useTable } from 'react-table';
 import { useMemo } from 'react';
 import { formatarNumeroComPontos } from '@components/PopUps/SaudeParamsModal/SaudeParamsModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,6 +12,7 @@ interface ParametrosDaEspecieProps {
 
 export const ParametrosDaEspecie: React.FC<ParametrosDaEspecieProps> = ({ especie, showHeader = false }) => {
   const { nitrogenio, fosforo, potassio, luz, umidade, temperatura, pH } = especie.parametros;
+
   const data = useMemo(
     () => [
       {
@@ -60,21 +60,7 @@ export const ParametrosDaEspecie: React.FC<ParametrosDaEspecieProps> = ({ especi
     ], // eslint-disable-next-line
     [especie]
   );
-  const columns: Column<{
-    propriedade: string;
-    valorMinimo: string;
-    valorMaximo: string;
-    unidade: string;
-  }>[] = useMemo(
-    () => [
-      { Header: 'Propriedade', accessor: 'propriedade' },
-      { Header: 'Valor Mínimo', accessor: 'valorMinimo' },
-      { Header: 'Valor Máximo', accessor: 'valorMaximo' },
-      { Header: 'Unidade', accessor: 'unidade' },
-    ],
-    []
-  );
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
+
   return (
     <ParametrosDaEspecieStyle>
       {showHeader && (
@@ -86,31 +72,24 @@ export const ParametrosDaEspecie: React.FC<ParametrosDaEspecieProps> = ({ especi
         </div>
       )}
 
-      <table {...getTableProps()}>
+      <table>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={Math.random()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} key={Math.random()}>
-                  {column.render('Header')}
-                </th>
-              ))}
+          <tr>
+            <th>Propriedade</th>
+            <th>Valor Mínimo</th>
+            <th>Valor Máximo</th>
+            <th>Unidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td>{item.propriedade}</td>
+              <td>{item.valorMinimo}</td>
+              <td>{item.valorMaximo}</td>
+              <td>{item.unidade}</td>
             </tr>
           ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()} key={Math.random()}>
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()} key={Math.random()}>
-                    {cell.render('Cell')}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
         </tbody>
       </table>
     </ParametrosDaEspecieStyle>

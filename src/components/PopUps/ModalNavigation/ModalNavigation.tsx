@@ -1,30 +1,31 @@
-import { useEffect, useState } from "react";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ModalNavigationStyle } from "./ModalNavigationStyle";
-import { ListaNavegacao } from "../../Navigation/ListaNavegacao";
-import { useIsMobile } from "@services/hooks/useIsMobile";
-import Modal from "react-modal";
-Modal.setAppElement("#root");
+import { useEffect, useState } from 'react';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ModalNavigationStyle } from './ModalNavigationStyle';
+import { ListaNavegacao } from '../../Navigation/ListaNavegacao';
+import { useIsMobile } from '@services/hooks/useIsMobile';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
-const customStyles = {
+const customStyles: Modal.Styles = {
   content: {
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "15px",
-    display: "flex",
-    alignItems: "center",
-    flexFlow: "column wrap",
-    border: "solid #000 1px",
-    width: "100vw",
-    height: "100%",
-    backgroundColor: "var(--contrast)",
-    opacity: "1",
-    zIndex: "1",
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    borderRadius: '15px',
+    display: 'flex',
+    alignItems: 'center',
+    flexFlow: 'column wrap',
+    border: 'solid #000 1px',
+    width: '100vw',
+    height: '100%',
+    backgroundColor: 'var(--contrast)',
+    opacity: '1',
+    zIndex: 3,
   },
   overlay: {
-    backgroundColor: "var(--bg-modal)",
+    backgroundColor: 'var(--bg-modal)',
+    zIndex: 2,
   },
 };
 

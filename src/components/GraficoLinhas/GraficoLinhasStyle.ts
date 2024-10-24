@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SecaoGraficoLinhas = styled.section`
   width: 70vw;
@@ -84,15 +84,24 @@ export const SecaoGraficoLinhas = styled.section`
     width: 100vw;
     max-width: 470px;
 
+    h3 {
+      display: none;
+    }
+
     .titulo {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
+      padding: 0 25px;
+    }
+
+    .tituloSelect {
+      margin: 8px 0;
     }
 
     .selects {
-      margin-top: 20px;
+      margin-top: 10px;
       flex-flow: column wrap;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       padding: 0 15px;
       background-color: transparent;
       gap: 5px;
@@ -106,6 +115,11 @@ export const SecaoGraficoLinhas = styled.section`
 
     .selectFiltro {
       width: 80vw;
+    }
+
+    .Aviso {
+      padding: 30px;
+      color: var(--text-secondary);
     }
   }
 `;

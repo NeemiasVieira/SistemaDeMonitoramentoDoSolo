@@ -1,18 +1,18 @@
-import { CadastroConcluido } from "@components/CadastroConcluido/CadastroConcluido";
-import { Loading } from "@components/Loading/Loading";
-import { faA, faAt, faKey } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSignUp } from "@services/API/Users/useSignup";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNotificacoes } from "../../contexts/NotificacoesProvider";
-import { CadastroMain } from "./CadastroStyle";
+import { CadastroConcluido } from '@components/CadastroConcluido/CadastroConcluido';
+import { Loading } from '@components/Loading/Loading';
+import { faA, faAt, faKey } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSignUp } from '@services/API/Users/useSignup';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNotificacoes } from '../../contexts/NotificacoesProvider';
+import { CadastroMain } from './CadastroStyle';
 
 const Cadastro = () => {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha1, setSenha1] = useState("");
-  const [senha2, setSenha2] = useState("");
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha1, setSenha1] = useState('');
+  const [senha2, setSenha2] = useState('');
 
   const { notificar } = useNotificacoes();
   const { signupResponse, isLoading, confirmCreateUser } = useSignUp({
@@ -27,27 +27,21 @@ const Cadastro = () => {
     return senha1 === senha2 ? true : false;
   };
 
-  const Cadastrar = async (
-    e:
-      | React.FormEvent<HTMLFormElement>
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const Cadastrar = async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     if (!nome || !email || !senha1 || !senha2) {
       notificar({
-        mensagem: "Todos os campos são obrigatórios",
-        tempoEmSeg: 3,
-        tipo: "ERRO",
+        mensagem: 'Todos os campos são obrigatórios',
+        tipo: 'ALERTA',
       });
       return;
     }
 
     if (!VerificaSenha()) {
       notificar({
-        mensagem: "As senhas não correspondem",
-        tempoEmSeg: 3,
-        tipo: "ERRO",
+        mensagem: 'As senhas não correspondem',
+        tipo: 'ALERTA',
       });
       return;
     }
@@ -58,7 +52,7 @@ const Cadastro = () => {
     <CadastroMain>
       <h2>Cadastro</h2>
 
-      {isLoading && <Loading minHeight={"60vh"} />}
+      {isLoading && <Loading minHeight={'60vh'} />}
 
       {!isLoading && (
         <form onSubmit={(e) => Cadastrar(e)}>

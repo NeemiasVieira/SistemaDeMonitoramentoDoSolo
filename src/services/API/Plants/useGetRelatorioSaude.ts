@@ -46,7 +46,7 @@ export const useGetRelatorioSaude = (idPlanta: string) => {
     refetchInterval: false,
     staleTime: 10 * 60 * 1000,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const relatorioSaude = data?.data?.data?.getSaudeByPlantId;

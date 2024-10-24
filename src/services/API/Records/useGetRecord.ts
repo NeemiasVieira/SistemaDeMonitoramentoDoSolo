@@ -32,7 +32,7 @@ export const useGetRecord = (idRegistro: string) => {
     cacheTime: 10 * 60 * 1000,
     refetchInterval: 10 * 60 * 1000,
     staleTime: 10 * 60 * 1000,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const record = data?.data?.data?.getRecord;

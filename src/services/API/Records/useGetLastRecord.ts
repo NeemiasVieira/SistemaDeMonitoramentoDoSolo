@@ -33,7 +33,7 @@ export const useGetLastRecord = (idPlanta: string) => {
     refetchInterval: 10 * 60 * 1000,
     staleTime: 10 * 60 * 1000,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const lastRecord = data?.data?.data?.getLastRecordByPlant;

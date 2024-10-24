@@ -48,7 +48,6 @@ export const useUpdateRecord = () => {
     notificar({
       tipo: 'SUCESSO',
       mensagem: 'Registro atualizado com sucesso',
-      tempoEmSeg: 4,
     });
     navigate(`/painel/plantas/${idPlanta}/registros/${idRegistro}/atualizar/menu`);
   };
@@ -63,7 +62,7 @@ export const useUpdateRecord = () => {
     onSuccess,
     mutationKey: [MutationKeys.UPDATE_RECORD],
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const record = data?.data?.data?.updateRecord;

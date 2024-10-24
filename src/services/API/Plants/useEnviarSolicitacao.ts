@@ -28,10 +28,10 @@ export const useEnviarSolicitacao = (idPlanta: string) => {
 
   const onSucesso = () => {
     queryClient.invalidateQueries(QueryKeys.PLANT);
-    notificar({ tipo: 'SUCESSO', mensagem: 'Solicitação enviada com sucesso!', tempoEmSeg: 4 });
+    notificar({ tipo: 'SUCESSO', mensagem: 'Solicitação enviada com sucesso!' });
   };
 
-  const onErro = (e: string) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 });
+  const onErro = (e: string) => notificar({ mensagem: String(e), tipo: 'ERRO' });
 
   const {
     mutate: enviarSolicitacao,

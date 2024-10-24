@@ -19,8 +19,6 @@
 ![Emblema React-Google-Charts](https://img.shields.io/badge/React--Google--Charts-34A853?logo=google&logoColor=white)
 ![Emblema React-Query](https://img.shields.io/badge/React--Query-FF4154?logo=react-query&logoColor=white)
 ![Emblema React-Router](https://img.shields.io/badge/React--Router-CA4245?logo=react-router&logoColor=white)
-![Emblema React-Table](https://img.shields.io/badge/React--Table-FF4154?logo=react-table&logoColor=white)
-![Emblema UUID](https://img.shields.io/badge/UUID-0077FF?logo=uuid&logoColor=white)
 
 <h2>Agradecimento</h2>
 
@@ -58,8 +56,6 @@
 ![Emblema React-Google-Charts](https://img.shields.io/badge/React--Google--Charts-34A853?logo=google&logoColor=white)
 ![Emblema React-Query](https://img.shields.io/badge/React--Query-FF4154?logo=react-query&logoColor=white)
 ![Emblema React-Router](https://img.shields.io/badge/React--Router-CA4245?logo=react-router&logoColor=white)
-![Emblema React-Table](https://img.shields.io/badge/React--Table-FF4154?logo=react-table&logoColor=white)
-![Emblema UUID](https://img.shields.io/badge/UUID-0077FF?logo=uuid&logoColor=white)
 
 <h2>Acknowledgment</h2>
 

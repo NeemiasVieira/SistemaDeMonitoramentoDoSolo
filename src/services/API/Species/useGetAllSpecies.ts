@@ -66,7 +66,7 @@ export const useGetAllSpecies = () => {
     staleTime: 10 * 60 * 1000,
     retry: false,
     enabled: true,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const allSpeciesData = data?.data?.data?.getAllSpecies;

@@ -22,7 +22,7 @@ const request = async (file: File): Promise<AxiosResponse<UploadResponse>> => {
 export const useProcessImage = () => {
   const { notificar } = useNotificacoes();
   const onError = (e: unknown) => {
-    notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 });
+    notificar({ mensagem: String(e), tipo: 'ERRO' });
   };
 
   const {

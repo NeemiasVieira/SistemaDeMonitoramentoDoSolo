@@ -36,7 +36,7 @@ export const useUpdatePlant = () => {
   const onSucesso = () => {
     queryClient.invalidateQueries(QueryKeys.ALL_PLANTS);
     queryClient.invalidateQueries(QueryKeys.PLANT);
-    notificar({ tipo: 'SUCESSO', mensagem: 'Planta atualizada com sucesso', tempoEmSeg: 4 });
+    notificar({ tipo: 'SUCESSO', mensagem: 'Planta atualizada com sucesso' });
   };
 
   const {
@@ -49,7 +49,7 @@ export const useUpdatePlant = () => {
     mutationKey: [MutationKeys.UPDATE_PLANT],
     onSuccess: onSucesso,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const updatedPlant = data?.data?.data?.updatePlant;

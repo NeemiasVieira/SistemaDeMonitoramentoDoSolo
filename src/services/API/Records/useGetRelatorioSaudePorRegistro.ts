@@ -47,7 +47,7 @@ export const useGetRelatorioSaudePorRegistro = (idPlanta: string) => {
     staleTime: 10 * 60 * 1000,
     enabled: false,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const relatorioSaude = data?.data?.data?.getSaudeByRecordId;

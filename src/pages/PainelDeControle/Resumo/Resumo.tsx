@@ -11,6 +11,7 @@ import { useGetSpecie } from '@services/API/Species/useGetSpecie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ResumoStyle } from './ResumoStyle';
+import { NoResults } from '@components/NoResults/NoResults';
 
 const Resumo = () => {
   const { idPlanta } = useParams();
@@ -71,9 +72,7 @@ const Resumo = () => {
         <GraficoLinhas className="GraficoLinhas" records={allRecords} params={params} />
       )}
 
-      {!lastRecord && !lastRecordIsLoading && !errorLastRecord && planta?.id && (
-        <p>A Planta não possui nenhum registro</p>
-      )}
+      {!lastRecord && !lastRecordIsLoading && !errorLastRecord && planta?.id && <NoResults />}
     </ResumoStyle>
   );
 };

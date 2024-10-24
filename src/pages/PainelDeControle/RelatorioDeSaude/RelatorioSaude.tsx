@@ -7,6 +7,7 @@ import { useGetSpecie } from '@services/API/Species/useGetSpecie';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { PagRelatorioDeSaudeStyle } from './RelatorioSaudeStyle';
+import { NoResults } from '@components/NoResults/NoResults';
 
 const PagRelatorioSaude = () => {
   const { idPlanta } = useParams();
@@ -14,7 +15,7 @@ const PagRelatorioSaude = () => {
   const { getSpecie, specieData } = useGetSpecie({
     id: planta?.idEspecie,
   });
-  const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } = useGetRelatorioSaude(idPlanta);
+  const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude, isLoadingSaude } = useGetRelatorioSaude(idPlanta);
 
   useEffect(() => {
     if (planta) {
@@ -31,7 +32,9 @@ const PagRelatorioSaude = () => {
         {relatorioSaude && !erroRelatorioSaude && <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />}
       </div>
 
-      {!relatorioSaude && <Loading minHeight={'70vh'} />}
+      {!isLoadingSaude && !relatorioSaude && <NoResults />}
+
+      {isLoadingSaude && <Loading minHeight={'70vh'} />}
     </PagRelatorioDeSaudeStyle>
   );
 };

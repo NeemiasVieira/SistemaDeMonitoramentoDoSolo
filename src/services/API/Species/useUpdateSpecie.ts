@@ -46,7 +46,6 @@ export const useUpdateSpecie = (args: Specie) => {
     notificar({
       tipo: 'SUCESSO',
       mensagem: 'Espécie atualizada com sucesso',
-      tempoEmSeg: 4,
     });
   };
 
@@ -60,7 +59,7 @@ export const useUpdateSpecie = (args: Specie) => {
     onSuccess: onSucesso,
     mutationKey: [MutationKeys.UPDATE_SPECIE],
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO', tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const specie = data?.data?.data?.updateSpecie;

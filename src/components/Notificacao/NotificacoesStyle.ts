@@ -1,28 +1,37 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-export const NotificacaoStyle = styled.section`
+const slideIn = keyframes`
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0); 
+    opacity: 1;
+  }
+`;
+
+export const NotificacoesStyle = styled.div`
   position: absolute;
   max-width: 375px;
   width: 325px;
   display: flex;
   flex-flow: column-reverse wrap;
-  gap: 15px;
   color: whitesmoke;
   font-weight: 700;
   position: fixed;
   top: 10.5%;
   right: -1%;
   z-index: 2;
-  transition: all 200ms;
   background-color: transparent;
   border-radius: 20px;
 
   .ERRO {
-    background-color: #f11;
+    background-color: #a22;
   }
 
   .SUCESSO {
-    background-color: #23bf30;
+    background-color: #11bb11;
   }
 
   .ALERTA {
@@ -33,24 +42,27 @@ export const NotificacaoStyle = styled.section`
     background-color: #111;
   }
 
-  .mensagemNotificacaoDiv {
+  .notificacao:last-child {
+    margin-top: 0;
+  }
+
+  .notificacao {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-flow: row nowrap;
     width: 275px;
+    margin-top: 15px;
     max-width: 400px;
-    gap: 10px;
     padding: 8px;
-    border-radius: 12px 0 12px 12px;
-    -webkit-box-shadow: 2px -1px 25px -4px rgba(0, 0, 0, 1.5);
-    -moz-box-shadow: 2px -1px 25px -4px rgba(0, 0, 0, 1.5);
-    box-shadow: 2px -1px 25px -4px rgba(0, 0, 0, 1.5);
-
+    border-radius: 9px 0 9px 9px;
+    box-shadow: 2px -1px 30px -4px #000;
+    animation: ${slideIn} 0.3s ease-out;
+    transition: margin 0.5s ease-out;
     .icone {
       width: 17px;
       color: var(--white);
       padding: 0;
-      position: relative;
       font-size: 1.5rem;
       margin-left: 10px;
     }
@@ -59,34 +71,32 @@ export const NotificacaoStyle = styled.section`
       color: var(--white);
       font-size: 0.8rem;
       font-weight: 500;
-      width: 210px;
+      width: 78%;
     }
 
     button {
-      width: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 0;
-      text-decoration: none;
-      color: whitesmoke;
+      margin: 0;
+      color: #fff;
       font-size: 1rem;
       font-weight: 900;
-      transition: transform 300ms;
+      transition: all 300ms;
       background-color: transparent;
       border: none;
       cursor: pointer;
       align-self: flex-start;
 
-      svg {
-        color: #fff;
-        font-size: 1.1rem;
+      &:hover {
+        transform: scale(1.05);
       }
     }
   }
 
   @media screen and (max-width: 480px) {
-    .mensagemNotificacaoDiv {
-      button {
-        right: -10px;
-      }
-    }
+    top: 13.5%;
+    right: -7%;
   }
 `;
