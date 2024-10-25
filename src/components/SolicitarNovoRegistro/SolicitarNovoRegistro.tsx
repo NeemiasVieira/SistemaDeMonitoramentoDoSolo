@@ -54,69 +54,66 @@ export const SolicitarNovoRegistro = () => {
     }
   };
 
+  const renderActions = () => {
+    if (nenhuma || aguardando) {
+      return (
+        <div className="Acoes">
+          <RefreshQueryButton
+            queryKeys={['planta']}
+            className="refreshButton"
+            observeVariable={planta?.ultimaAtualizacao}
+          />
+          <h3>
+            {titulo}
+            {aguardando && <Tooltip texts={[tip1, tip2]} />}
+          </h3>
+          <button onClick={handleClick} className="action">
+            {tituloBotao}
+          </button>
+        </div>
+      );
+    }
+    if (confirmado) {
+      return (
+        <>
+          <h3>{titulo}</h3>
+          <FontAwesomeIcon icon={faCircleCheck} className="svg" />
+        </>
+      );
+    }
+  };
+
   return (
     <SolicitarNovoRegistroStyle>
       {isLoading && <Loading minHeight="100%" logoHeight="60px" logoWidth="60px" />}
 
-      <div className="plantaInfo">
-        {planta && (
-          <>
-            <h3>Informações da Planta</h3>
-            <p>
-              <b>Nome: </b>
-              {planta.nome}
-            </p>
+      {planta && (
+        <div className="plantaInfo">
+          <h3>Informações da Planta</h3>
+          <p>
+            <b>Nome: </b>
+            {planta.nome}
+          </p>
 
-            <p>
-              <b>Espécie: </b>
-              {planta.especie}
-            </p>
+          <p>
+            <b>Espécie: </b>
+            {planta.especie}
+          </p>
 
-            {lastRecord && (
-              <p>
-                <b>Último Registro: </b>
-                {FormatarDatas.dataHoraMinuto(lastRecord.dataDeRegistro)}
-              </p>
-            )}
+          {lastRecord && (
             <p>
-              <b>Última Atualização: </b>
-              {FormatarDatas.horaMinutoSegundo(planta?.ultimaAtualizacao)}
+              <b>Último Registro: </b>
+              {FormatarDatas.dataHoraMinuto(lastRecord.dataDeRegistro)}
             </p>
-          </>
-        )}
-      </div>
-
-      {isActionLoading ? (
-        <div className="Acoes">
-          <Loading minHeight="100px" logoHeight="50px" logoWidth="100%" />
-        </div>
-      ) : (
-        <div className="Acoes">
-          {(nenhuma || aguardando) && (
-            <>
-              <RefreshQueryButton
-                queryKeys={['planta']}
-                className="refreshButton"
-                observeVariable={planta?.ultimaAtualizacao}
-              />
-              <h3>
-                {titulo}
-                {aguardando && <Tooltip texts={[tip1, tip2]} />}
-              </h3>
-              <button onClick={handleClick} className="action">
-                {tituloBotao}
-              </button>
-            </>
           )}
-
-          {confirmado && (
-            <>
-              <h3>{titulo}</h3>
-              <FontAwesomeIcon icon={faCircleCheck} className="svg" />
-            </>
-          )}
+          <p>
+            <b>Última Atualização: </b>
+            {FormatarDatas.horaMinutoSegundo(planta?.ultimaAtualizacao)}
+          </p>
         </div>
       )}
+
+      {isActionLoading ? <Loading minHeight="100px" logoHeight="50px" logoWidth="100%" /> : renderActions()}
     </SolicitarNovoRegistroStyle>
   );
 };

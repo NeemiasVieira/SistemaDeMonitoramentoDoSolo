@@ -9,6 +9,7 @@ import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
 import { CreateEditEspecie } from './CreateEdit';
 import { EspeciesStyle } from './EspeciesStyle';
 import { CreateButton } from '@components/Buttons/CreateButton';
+import { useApplication } from '@contexts/ApplicationContext';
 
 const Especies = () => {
   const [action, setAction] = useState<'Create' | 'Update' | null>();
@@ -50,6 +51,7 @@ const Especies = () => {
   }, [deleteSpecieID]);
 
   const { allSpeciesData, allSpeciesIsLoading } = useGetAllSpecies();
+  const { simulationMode, isAdmin } = useApplication();
 
   return (
     <>
@@ -57,7 +59,7 @@ const Especies = () => {
         <EspeciesStyle>
           <BotaoVoltar path="/painel/administrativo" />
           <h2 className="tituloDaPagina">Todas as Espécies ativas</h2>
-          <CreateButton onCreate={handleCreate} title="Nova Espécie" />
+          <CreateButton onCreate={handleCreate} title="Nova Espécie" disabled={!isAdmin && !simulationMode} />
 
           <div className="especies">
             {allSpeciesData &&

@@ -63,20 +63,22 @@ const TodosOsRegistros = () => {
       <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
       <h1>Todos os Registros</h1>
       {planta?.simulado && <CreateButton onCreate={handleNewRecord} title="Novo Registro" disabled={!simulationMode} />}
+      {allRecordsPaginated?.registros?.length > 0 && (
+        <IntervaloDatasInput
+          params={{
+            dataDeInicioBusca,
+            dataDeFimBusca,
+            setDataDeInicioBusca,
+            setDataDeFimBusca,
+          }}
+        />
+      )}
 
-      <IntervaloDatasInput
-        params={{
-          dataDeInicioBusca,
-          dataDeFimBusca,
-          setDataDeInicioBusca,
-          setDataDeFimBusca,
-        }}
-      />
       {allRecordsPaginatedIsLoading && <Loading minHeight={'70vh'} />}
       {!allRecordsPaginatedIsLoading && allRecordsPaginated?.registros?.length === 0 && <NoResults />}
       {allRecordsPaginated &&
         allRecordsPaginated.registros.map((registro) => <Registro registro={registro} key={registro.id} />)}
-      {allRecordsPaginated && (
+      {allRecordsPaginated?.registros?.length > 0 && (
         <Paginacao
           setPagina={setPagina}
           pagina={pagina}

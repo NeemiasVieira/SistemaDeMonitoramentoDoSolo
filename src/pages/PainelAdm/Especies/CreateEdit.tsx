@@ -194,7 +194,7 @@ export const CreateEditEspecie: React.FC<CreateEditEspecieProps> = ({ action, se
           </button>
         )}
         {updateSpecieIsLoading && <Loading minHeight={'50px'} logoHeight="40px" logoWidth="200px" fullWidth={false} />}
-        {createSpecieIsLoading && <Loading minHeight={'50px'} logoHeight="40px" logoWidth="50px" fullWidth={false} />}
+        {createSpecieIsLoading && <Loading minHeight={'50px'} logoHeight="40px" logoWidth="200px" fullWidth={false} />}
       </div>
     </CreateEditStyle>
   );

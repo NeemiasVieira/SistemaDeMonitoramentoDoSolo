@@ -56,6 +56,11 @@ export const PainelDeControleStyle = styled.main`
     margin-top: 40px;
     min-height: 200px;
 
+    h1,
+    h2 {
+      max-width: 85vw;
+    }
+
     .Plantas {
       margin-top: 20px;
       gap: 25px;

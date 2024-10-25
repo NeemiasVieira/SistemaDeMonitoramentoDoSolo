@@ -39,8 +39,15 @@ interface CreateButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
 }
 
 export const CreateButton: React.FC<CreateButtonProps> = ({ onCreate, title, disabled = false, ...props }) => {
+  const onClickButton = () => {
+    if (!disabled) {
+      window.scrollTo(0, 0);
+      onCreate();
+    }
+  };
+
   return (
-    <CreateButtonStyle $disabled={disabled} onClick={!disabled ? onCreate : () => {}} {...props}>
+    <CreateButtonStyle $disabled={disabled} onClick={onClickButton} {...props}>
       <FontAwesomeIcon icon={faSquarePlus} /> {title}
     </CreateButtonStyle>
   );

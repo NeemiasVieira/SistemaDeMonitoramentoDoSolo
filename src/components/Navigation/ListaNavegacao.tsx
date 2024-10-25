@@ -50,7 +50,7 @@ export const ListaNavegacao: React.FC<ListaNavegacaoProps> = ({ closeModal }) =>
         </li>
       )}
 
-      {isAdmin && isMobile && (
+      {(isAdmin || simulationMode) && isMobile && (
         <li>
           <Link to="/painel/administrativo" onClick={closeModal}>
             Painel Administrativo

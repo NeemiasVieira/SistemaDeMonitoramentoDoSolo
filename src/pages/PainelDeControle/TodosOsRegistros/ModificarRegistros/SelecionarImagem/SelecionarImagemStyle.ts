@@ -116,10 +116,10 @@ export const SelecionarImagemRegistroStyle = styled.main`
     margin-top: 10px;
 
     section,
-    .content {
+    .content,
+    .envio {
       max-width: 85vw;
       flex-flow: column wrap;
-      align-items: center;
       border: none;
     }
 

@@ -8,7 +8,7 @@ import { useGetRelatorioSaude } from '@services/API/Plants/useGetRelatorioSaude'
 import { useGetAllRecords } from '@services/API/Records/useGetAllRecords';
 import { useGetLastRecord } from '@services/API/Records/useGetLastRecord';
 import { useGetSpecie } from '@services/API/Species/useGetSpecie';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ResumoStyle } from './ResumoStyle';
 import { NoResults } from '@components/NoResults/NoResults';
@@ -21,9 +21,9 @@ const Resumo = () => {
 
   //Hooks
   const { planta } = useGetPlant(idPlanta);
-  const { lastRecord, lastRecordIsLoading, errorLastRecord } = useGetLastRecord(idPlanta);
-  const { relatorioSaude, erroRelatorioSaude, isLoadingSaude } = useGetRelatorioSaude(idPlanta);
-  const { allRecords, errorAllRecords, getAllRecords, allRecordsIsLoading } = useGetAllRecords({
+  const { lastRecord, lastRecordIsLoading } = useGetLastRecord(idPlanta);
+  const { relatorioSaude, isLoadingSaude } = useGetRelatorioSaude(idPlanta);
+  const { allRecords, getAllRecords, allRecordsIsLoading } = useGetAllRecords({
     idPlanta,
     intervaloDeBusca,
   });
@@ -50,29 +50,32 @@ const Resumo = () => {
 
   useEffect(() => {}, [allRecords]);
 
+  const isAnyRequestLoading = useMemo(
+    () => lastRecordIsLoading || isLoadingSaude || allRecordsIsLoading,
+    [lastRecordIsLoading, isLoadingSaude, allRecordsIsLoading]
+  );
+
   return (
     <ResumoStyle>
       <BotaoVoltar path={`/painel/plantas/${idPlanta}`} />
-      {(lastRecordIsLoading || isLoadingSaude) && <Loading minHeight={'70vh'} />}
+      {isAnyRequestLoading && <Loading minHeight={'70vh'} />}
 
-      {planta && lastRecord && !isLoadingSaude && !lastRecordIsLoading && !errorLastRecord && (
+      {!isAnyRequestLoading && lastRecord && (
         <div className="identificacaoDaPlanta">
           <h2 className="nomeDaPlanta">{planta?.nome}</h2>
           <h3 className="especieDaPlanta">{planta?.especie}</h3>
         </div>
       )}
 
-      {relatorioSaude && lastRecord && !errorLastRecord && <DadosRegistro registro={lastRecord} ultimaAtualizacao />}
+      {relatorioSaude && !isAnyRequestLoading && <DadosRegistro registro={lastRecord} ultimaAtualizacao />}
 
-      {lastRecord && relatorioSaude && planta?.especie && !erroRelatorioSaude && (
-        <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />
-      )}
+      {lastRecord && !isAnyRequestLoading && <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />}
 
-      {!errorAllRecords && relatorioSaude && lastRecord && (
+      {relatorioSaude && !isAnyRequestLoading && (
         <GraficoLinhas className="GraficoLinhas" records={allRecords} params={params} />
       )}
 
-      {!lastRecord && !lastRecordIsLoading && !errorLastRecord && planta?.id && <NoResults />}
+      {!isAnyRequestLoading && !relatorioSaude && planta?.id && <NoResults />}
     </ResumoStyle>
   );
 };

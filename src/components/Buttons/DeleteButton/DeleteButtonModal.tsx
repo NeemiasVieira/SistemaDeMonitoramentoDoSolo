@@ -124,7 +124,7 @@ export const DeleteButtonModal: React.FC<DeleteButtonModalProps> = ({ onDelete, 
     closeModal();
   }, [onDelete, closeModal]);
 
-  const customStyles = {
+  const customStyles: Modal.Styles = {
     content: {
       top: '50%',
       left: '50%',
@@ -132,11 +132,12 @@ export const DeleteButtonModal: React.FC<DeleteButtonModalProps> = ({ onDelete, 
       border: 'none',
       borderRadius: '8px',
       width: isMobile ? '250px' : '300px',
-      height: isMobile ? '270px' : '240px',
+      height: isMobile ? '230px' : '240px',
       backgroundColor: 'var(--contrast)',
       opacity: '1',
       boxShadow: '0px 16px 16px 0px rgba(0, 0, 0, 0.2)',
       padding: 0,
+      overflowX: 'hidden',
     },
     overlay: {
       backgroundColor: 'var(--bg-modal)',

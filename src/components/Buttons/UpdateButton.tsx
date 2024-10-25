@@ -48,9 +48,16 @@ const ButtonStyle = styled.div<{ $disabled: boolean }>`
 `;
 
 export const UpdateButton: React.FC<UpdateButtonProps> = ({ onCLick, disabled }) => {
+  const onClickButton = () => {
+    if (!disabled) {
+      window.scrollTo(0, 0);
+      onCLick();
+    }
+  };
+
   return (
     <ButtonStyle $disabled={disabled}>
-      <button onClick={disabled ? () => {} : onCLick}>
+      <button onClick={onClickButton}>
         <FontAwesomeIcon icon={faPencil} />
       </button>
     </ButtonStyle>
