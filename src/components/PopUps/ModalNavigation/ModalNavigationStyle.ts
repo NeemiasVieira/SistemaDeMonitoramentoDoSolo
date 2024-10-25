@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalNavigationStyle = styled.div`
   display: flex;
@@ -27,25 +27,36 @@ export const ModalNavigationStyle = styled.div`
 
   ul li a {
     display: flex;
-    justify-content: center;
-    color: var(--text-primary);
-    text-decoration: none;
-    background-color: var(--bg-primary);
-    padding: 12px 20px;
-    border-radius: 8px;
-  }
-
-  .switchTheme {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     color: var(--text-primary);
     text-decoration: none;
     background-color: var(--bg-primary);
     padding: 12px 20px;
     border-radius: 8px;
     gap: 10px;
+    border: solid var(--border-primary) 1px;
+  }
 
+  .switchSimulationMode,
+  .switchTheme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    background-color: var(--bg-primary);
+    padding: 12px 20px;
+    border-radius: 8px;
+    gap: 10px;
+    border: solid var(--border-primary) 1px;
+
+    .texto {
+      width: 60%;
+    }
+  }
+
+  .switchTheme {
     svg {
       color: var(--text-secondary);
     }
@@ -78,7 +89,7 @@ export const ModalNavigationStyle = styled.div`
 
   .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: calc(26px * 0.75);
     width: calc(26px * 0.75);
     left: calc(4px * 0.75);

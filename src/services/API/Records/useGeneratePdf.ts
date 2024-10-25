@@ -1,16 +1,17 @@
-import { useMutation } from "react-query";
-import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import { GraphQLResponse } from "../sms-api";
-import { useCallback } from "react";
-import { AxiosResponse } from "axios";
-import SMS_API from "../sms-api";
+import { useMutation } from 'react-query';
+import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
+import { GraphQLResponse } from '../sms-api';
+import { useCallback } from 'react';
+import { AxiosResponse } from 'axios';
+import SMS_API from '../sms-api';
+import { MutationKeys } from '../types';
 
 interface generatePdf {
   generatePdf: string;
 }
 
 const request = async (recordId: string) => {
-  const token = `Bearer ${localStorage.getItem("token")}`;
+  const token = `Bearer ${localStorage.getItem('token')}`;
 
   const query = `query GeneratePDF($recordId: String!){
     generatePdf(recordId: $recordId)
@@ -19,14 +20,14 @@ const request = async (recordId: string) => {
   const variables = { recordId };
   const options = { headers: { Authorization: token } };
 
-  return await SMS_API.post<GraphQLResponse<generatePdf>>("", { query, variables }, options);
+  return await SMS_API.post<GraphQLResponse<generatePdf>>('', { query, variables }, options);
 };
 
 export const useGeneratePdf = (recordId: string) => {
   const { notificar } = useNotificacoes();
 
   const downloadPdf = useCallback((base64: string) => {
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = `data:application/pdf;base64,${base64}`;
     link.download = `registro_${recordId.slice(-7)}`;
     document.body.appendChild(link);
@@ -38,10 +39,10 @@ export const useGeneratePdf = (recordId: string) => {
     (data: AxiosResponse<GraphQLResponse<generatePdf>, unknown>) => {
       const base64 = data?.data?.data?.generatePdf;
       if (base64) {
-        notificar({ tipo: "SUCESSO", mensagem: "PDF gerado com sucesso", tempoEmSeg: 4 });
+        notificar({ tipo: 'SUCESSO', mensagem: 'PDF gerado com sucesso' });
         downloadPdf(base64);
       } else {
-        notificar({ tipo: "ERRO", mensagem: "Erro ao gerar PDF", tempoEmSeg: 4 });
+        notificar({ tipo: 'ERRO', mensagem: 'Erro ao gerar PDF' });
       } // eslint-disable-next-line
     },
     [notificar, downloadPdf]
@@ -52,10 +53,10 @@ export const useGeneratePdf = (recordId: string) => {
     error,
     mutate: generatePdf,
   } = useMutation({
-    mutationKey: "generatePdf",
+    mutationKey: MutationKeys.GENERATE_PDF,
     mutationFn: () => request(recordId),
-    onError: (error) => notificar({ tipo: "ERRO", mensagem: String(error), tempoEmSeg: 4 }),
-    onMutate: () => notificar({ tipo: "NOTIFICACAO", mensagem: "Gerando PDF...", tempoEmSeg: 4 }),
+    onError: (error) => notificar({ tipo: 'ERRO', mensagem: String(error) }),
+    onMutate: () => notificar({ tipo: 'NOTIFICACAO', mensagem: 'Gerando PDF...' }),
     onSuccess: (data) => onSuccesso(data),
     retry: false,
   });

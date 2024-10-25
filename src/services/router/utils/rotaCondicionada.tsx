@@ -8,8 +8,17 @@ interface RotaCondicionadaProps {
   isAdm?: boolean;
 }
 
-export const RotaC: React.FC<RotaCondicionadaProps> = ({ children, condicao, isAdm }) => {
-  const { isAdmin } = useApplication();
+export const RotaC: React.FC<RotaCondicionadaProps> = ({
+  children,
+  condicao,
+  isAdm,
+}) => {
+  const { isAdmin, simulationMode } = useApplication();
   if (condicao) return condicao ? children : <Navigate to="/" />;
-  if (isAdm) return isAdmin ? children : <Navigate to="/" />;
+  if (isAdm)
+    return isAdmin || simulationMode ? (
+      children
+    ) : (
+      <Navigate to="/unauthorized" />
+    );
 };

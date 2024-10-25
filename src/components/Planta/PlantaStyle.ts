@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PlantaStyle = styled.div`
   display: flex;
@@ -13,6 +13,7 @@ export const PlantaStyle = styled.div`
   -webkit-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 2px -1px 25px -6px rgba(0, 0, 0, 0.75);
+  position: relative;
 
   .Planta {
     display: flex;
@@ -48,10 +49,17 @@ export const PlantaStyle = styled.div`
     gap: 5px;
   }
 
-  .buttonDetalhes {
+  .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
+    gap: 10px;
+  }
+
+  .manageButton {
     cursor: pointer;
-    width: 150px;
+    width: 100px;
     height: 40px;
     border-radius: 10px;
     border: none;
@@ -62,7 +70,7 @@ export const PlantaStyle = styled.div`
     background-color: var(--button-primary);
   }
 
-  .buttonDetalhes:hover {
+  .manageButton:hover {
     transform: scale(1.1);
   }
 
@@ -86,9 +94,35 @@ export const PlantaStyle = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-    width: 80vw;
+    width: 85vw;
     padding: 15px 0;
     border-radius: 10px;
+
+    .infoPlanta {
+      gap: 7px;
+      width: 100%;
+    }
+
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row nowrap;
+      gap: 5px;
+      font-size: 0.9rem;
+    }
+
+    .copyId {
+      margin-left: 0;
+      padding: 1px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      gap: 0px;
+    }
 
     h2 {
       padding-bottom: 10px;
@@ -108,15 +142,13 @@ export const PlantaStyle = styled.div`
       }
     }
 
-    .buttonDetalhes {
-      margin-top: 5px;
-      width: 150px;
+    .manageButton {
+      width: 100px;
       font-size: 1rem;
-      height: 35px;
     }
 
     .imagemPlanta {
-      width: 90px;
+      width: 100px;
       height: 90px;
     }
   }

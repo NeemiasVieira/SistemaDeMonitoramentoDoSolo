@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 interface GraphQLError {
   message: string;
@@ -10,8 +10,8 @@ export interface GraphQLResponse<T> {
 }
 
 const SMS_API = axios.create({
-  baseURL: "https://sms.devneemiasvieira.com/api/",
-  // baseURL: "http://localhost:3333/graphql",
+  baseURL: 'https://sms.devneemiasvieira.com/api/',
+  // baseURL: 'http://localhost:3333/graphql',
   timeout: 90000,
 });
 
@@ -21,9 +21,9 @@ SMS_API.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.error("Erro na requisição:", error);
+    console.error('Erro na requisição:', error);
     const messages = error?.response?.data?.errors;
-    const erro = messages?.length > 0 ? messages[0].message : "Erro inesperado, contate o suporte do site";
+    const erro = messages?.length > 0 ? messages[0].message : 'Erro inesperado, contate o suporte do site';
     return Promise.reject(erro);
   }
 );

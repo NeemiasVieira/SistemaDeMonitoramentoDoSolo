@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CreateEditStyle = styled.div`
   display: flex;
@@ -45,7 +45,8 @@ export const CreateEditStyle = styled.div`
 
   .DivInputNome,
   .DivInputDescricao,
-  .DivInputParametro {
+  .DivInputParametro,
+  .DivInputSimulado {
     padding: 5px 20px;
     flex-flow: row nowrap;
     border-radius: 7px;
@@ -94,7 +95,8 @@ export const CreateEditStyle = styled.div`
   }
 
   .DivInputNome p,
-  .DivInputDescricao p {
+  .DivInputDescricao p,
+  .DivInputSimulado p {
     font-weight: 600;
   }
 

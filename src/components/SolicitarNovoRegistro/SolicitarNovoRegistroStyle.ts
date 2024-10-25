@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SolicitarNovoRegistroStyle = styled.div`
   background-color: var(--contrast);
@@ -9,7 +9,7 @@ export const SolicitarNovoRegistroStyle = styled.div`
   display: flex;
   align-items: center;
   flex-flow: row nowrap;
-  height: 135px;
+  height: 155px;
   border: solid var(--border-primary) 1px;
 
   .refreshButton {
@@ -75,7 +75,7 @@ export const SolicitarNovoRegistroStyle = styled.div`
   }
 
   @media screen and (width <= 480px) {
-    width: 80vw;
+    width: 313px;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;

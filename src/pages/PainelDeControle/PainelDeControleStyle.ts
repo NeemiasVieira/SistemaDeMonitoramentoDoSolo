@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PainelDeControleStyle = styled.main`
   overflow-x: hidden;
@@ -31,12 +31,12 @@ export const PainelDeControleStyle = styled.main`
   }
 
   .Plantas {
-    margin-top: 50px;
+    margin-top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-    gap: 50px;
+    gap: 20px;
     margin-bottom: 20px;
   }
 
@@ -52,32 +52,14 @@ export const PainelDeControleStyle = styled.main`
     font-size: 1.6rem;
   }
 
-  .avisoSemPlantas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row nowrap;
-    gap: 20px;
-    margin-top: 80px;
-    background-color: var(--contrast);
-    border: solid var(--border-primary) 1px;
-    border-radius: 10px;
-    padding: 15px;
-
-    p {
-      color: var(--text-secondary);
-      width: 250px;
-    }
-
-    svg {
-      font-size: 2rem;
-      color: #faa520;
-    }
-  }
-
   @media screen and (max-width: 480px) {
     margin-top: 40px;
     min-height: 200px;
+
+    h1,
+    h2 {
+      max-width: 85vw;
+    }
 
     .Plantas {
       margin-top: 20px;

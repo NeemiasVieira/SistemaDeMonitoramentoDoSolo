@@ -1,9 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBorderAll, faChartLine, faFileWaveform, faListUl } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate, useParams } from "react-router-dom";
-import { PainelMenuStyle } from "./MenuStyle";
-import { BotaoVoltar } from "@components/Buttons/BotaoVoltar";
-import { SolicitarNovoRegistro } from "@components/SolicitarNovoRegistro/SolicitarNovoRegistro";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBorderAll, faChartLine, faFileWaveform, faListUl } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate, useParams } from 'react-router-dom';
+import { PainelMenuStyle } from './MenuStyle';
+import { BotaoVoltar } from '@components/Buttons/BotaoVoltar';
+import { SolicitarNovoRegistro } from '@components/SolicitarNovoRegistro/SolicitarNovoRegistro';
 
 const PainelMenu = () => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const PainelMenu = () => {
     <PainelMenuStyle>
       <BotaoVoltar path="/painel" />
       <h2>Gerencie sua planta</h2>
-      <section className="gerenciarRegistro">
+      <section>
         <SolicitarNovoRegistro />
       </section>
       <section className="menu">

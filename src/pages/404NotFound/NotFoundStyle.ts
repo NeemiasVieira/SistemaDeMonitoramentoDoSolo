@@ -8,7 +8,7 @@ export const NotFoundStyle = styled.main`
   height: 80vh;
 
   h1 {
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     font-size: 5rem;
     margin: 0;
     color: var(--text-primary);

@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { DadosRegistroStyle } from "./DadosRegistroStyle";
-import { FormatarDatas } from "@assets/utils/FormatDate";
-import { RecordQuery } from "../GraficoLinhas/Types";
-import { Tooltip } from "../Buttons/ToolTip";
+import { FormatarDatas } from '@assets/utils/FormatDate';
+import React from 'react';
+import styled from 'styled-components';
+import { Tooltip } from '../Buttons/ToolTip';
+import { DadosRegistroStyle } from './DadosRegistroStyle';
+import { Record } from '@services/API/Records/useGetAllRecordsPaginated';
 
 interface DadosRegistroProps {
-  registro: RecordQuery;
+  registro: Record;
   ultimaAtualizacao: boolean;
 }
 
@@ -20,7 +20,6 @@ const InfoStyle = styled.div`
   .nomeInfo {
     font-size: 18px;
     font-weight: 600;
-    letter-spacing: 10%;
     margin: 2px;
   }
 
@@ -90,7 +89,7 @@ const Info: React.FC<InfoProps> = ({ nomeInfo, valorInfo, unidadeMedida }) => {
         {unidadeMedida && <p className="valorInfo">{valorInfo}</p>}
         {!unidadeMedida && <p className="valorInfo2">{valorInfo}</p>}
 
-        <span className="unidadeMedida">{unidadeMedida ? unidadeMedida : ""}</span>
+        <span className="unidadeMedida">{unidadeMedida ? unidadeMedida : ''}</span>
       </div>
     </InfoStyle>
   );

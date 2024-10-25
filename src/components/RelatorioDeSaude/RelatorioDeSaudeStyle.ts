@@ -8,7 +8,6 @@ export const RelatorioDeSaudeStyle = styled.section`
   gap: 20px;
 
   .titulo {
-    letter-spacing: 3px;
     font-weight: 700;
     margin: 10px 0;
     font-size: 30px;
@@ -70,7 +69,6 @@ export const RelatorioDeSaudeStyle = styled.section`
     padding: 10px;
 
     h3 {
-      letter-spacing: 2px;
       margin: 5px 0;
       font-weight: 500;
     }
@@ -116,7 +114,6 @@ export const RelatorioDeSaudeStyle = styled.section`
 
     h3 {
       font-weight: 500;
-      letter-spacing: 2px;
       margin: 0;
     }
 
@@ -136,7 +133,6 @@ export const RelatorioDeSaudeStyle = styled.section`
     h3 {
       text-align: center;
       font-weight: 500;
-      letter-spacing: 2px;
       margin: 0;
     }
   }

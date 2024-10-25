@@ -36,7 +36,6 @@ export const HomeStyle = styled.main`
     font-weight: 700;
     font-size: 1.3rem;
     color: var(--text-secondary);
-    letter-spacing: 1px;
   }
 
   .IntroducaoLadoDireito {

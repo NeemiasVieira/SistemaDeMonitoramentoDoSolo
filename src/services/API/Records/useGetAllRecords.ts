@@ -1,9 +1,11 @@
-import { useQuery } from "react-query";
-import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import SMS_API, { GraphQLResponse } from "../sms-api";
+import { useQuery } from 'react-query';
+import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
+import SMS_API, { GraphQLResponse } from '../sms-api';
+import { QueryKeys } from '../types';
 
 interface getAllRecords {
   getAllRecordsByPlant: {
+    id: string;
     nitrogenio: string;
     fosforo: string;
     potassio: string;
@@ -15,37 +17,36 @@ interface getAllRecords {
     lux: string;
     idPlanta: string;
     nomeEspecie: string;
+    nuRegistro: number;
+    simulado: boolean;
   }[];
 }
 
 interface allRecordsQueryParams {
   idPlanta: string;
-  intervaloDeDias?: number | string;
   intervaloDeBusca?: number | string;
 }
 
 const request = async (params?: allRecordsQueryParams) => {
   const { idPlanta } = params;
-  let { intervaloDeBusca, intervaloDeDias } = params;
+  let { intervaloDeBusca } = params;
 
-  const token = `Bearer ${localStorage.getItem("token")}`;
+  const token = `Bearer ${localStorage.getItem('token')}`;
+  intervaloDeBusca = intervaloDeBusca === 'Selecione' ? null : Number(intervaloDeBusca);
 
-  intervaloDeBusca = intervaloDeBusca === "Selecione" ? null : Number(intervaloDeBusca);
-  intervaloDeDias = intervaloDeDias === "Selecione" ? null : Number(intervaloDeDias);
-
-  const query = `query GetAllRecordsByPlant($idPlanta: String!, $intervaloDeDias: Float, $intervaloDeBusca: Float ) {
-        getAllRecordsByPlant( idPlanta: $idPlanta, intervaloDeDias: $intervaloDeDias, intervaloDeBusca: $intervaloDeBusca )   
-        { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux idPlanta nomeEspecie } }`;
+  const query = `query GetAllRecordsByPlant($idPlanta: String!, $intervaloDeBusca: Float ) {
+        getAllRecordsByPlant( idPlanta: $idPlanta, intervaloDeBusca: $intervaloDeBusca )   
+        { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux idPlanta nomeEspecie nuRegistro simulado } }`;
 
   const options = { headers: { Authorization: token } };
-  const variables = { idPlanta, intervaloDeDias, intervaloDeBusca };
+  const variables = { idPlanta, intervaloDeBusca };
 
-  return await SMS_API.post<GraphQLResponse<getAllRecords>>("", { query, variables }, options);
+  return await SMS_API.post<GraphQLResponse<getAllRecords>>('', { query, variables }, options);
 };
 
 export const useGetAllRecords = (params: allRecordsQueryParams) => {
   const { notificar } = useNotificacoes();
-  const { idPlanta, intervaloDeBusca, intervaloDeDias } = params;
+  const { idPlanta, intervaloDeBusca } = params;
 
   const {
     data,
@@ -53,13 +54,13 @@ export const useGetAllRecords = (params: allRecordsQueryParams) => {
     isLoading: allRecordsIsLoading,
     error,
   } = useQuery({
-    queryFn: () => request({ idPlanta, intervaloDeBusca, intervaloDeDias }),
-    queryKey: ["allRecords", idPlanta, intervaloDeBusca, intervaloDeDias],
+    queryFn: () => request({ idPlanta, intervaloDeBusca }),
+    queryKey: [QueryKeys.ALL_RECORDS, idPlanta, intervaloDeBusca],
     cacheTime: 10 * 60 * 1000,
     refetchInterval: false,
     staleTime: 10 * 60 * 1000,
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const allRecords = data?.data?.data?.getAllRecordsByPlant;

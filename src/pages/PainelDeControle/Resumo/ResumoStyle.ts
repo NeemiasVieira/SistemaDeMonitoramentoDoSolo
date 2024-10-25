@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ResumoStyle = styled.main`
   margin: 50px 0 0 0;
@@ -7,6 +7,7 @@ export const ResumoStyle = styled.main`
   align-items: center;
   gap: 20px;
   background-color: var(--bg-primary);
+  min-height: 400px;
 
   .identificacaoDaPlanta {
     display: flex;
@@ -17,14 +18,12 @@ export const ResumoStyle = styled.main`
 
   .nomeDaPlanta {
     font-size: 40px;
-    letter-spacing: 1.5px;
     font-weight: 700;
     margin: 0;
   }
 
   .especieDaPlanta {
     font-size: 25px;
-    letter-spacing: 1.5px;
     font-weight: 600;
     color: var(--text-secondary);
     margin: 0;

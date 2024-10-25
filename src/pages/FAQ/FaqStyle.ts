@@ -12,7 +12,6 @@ export const FaqMain = styled.main`
   h1 {
     margin: 50px 0 10px 0;
     text-align: center;
-    letter-spacing: 3px;
   }
 
   h2 {

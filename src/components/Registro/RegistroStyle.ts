@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RegistroStyle = styled.div`
   display: flex;
@@ -14,22 +14,30 @@ export const RegistroStyle = styled.div`
   border-radius: 10px;
   border: solid var(--border-primary) 1px;
 
+  .content {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
   p {
     color: var(--text-secondary);
     font-style: italic;
     letter-spacing: 0.5px;
   }
-  svg {
+  .imageIcon {
     font-size: 1.5rem;
     color: var(--text-secondary);
   }
 
-  svg,
-  span {
+  .imageIcon,
+  .imageSpan {
     width: 40px;
   }
 
-  button {
+  .details {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,29 +52,51 @@ export const RegistroStyle = styled.div`
     color: var(--text-primary);
     font-weight: 700;
   }
-  button:hover {
+  .details:hover {
     transform: scale(1.1);
   }
 
+  .actions {
+    display: flex;
+    gap: 15px;
+  }
+
   @media screen and (max-width: 480px) {
-    width: 80vw;
+    width: 75vw;
     padding: 0 20px;
     min-width: 10px;
+    gap: 10px;
+    flex-flow: column wrap;
+    padding: 10px 20px;
+
+    .content {
+      padding: 5px;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+
+    h2 {
+      margin: 0;
+    }
 
     p {
-      font-size: 0.7rem;
-      width: 220px;
+      font-size: 1rem;
+      margin: 0;
     }
 
     span {
       width: 20px;
     }
 
-    button {
-      width: 125px;
+    .details {
+      width: 100px;
       height: 40px;
       padding: 0 10px;
       font-size: 0.8rem;
+    }
+    .actions {
+      padding: 5px;
+      gap: 8px;
     }
   }
 `;

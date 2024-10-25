@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const DarkTheme = createGlobalStyle`
     body {
@@ -12,15 +12,15 @@ export const DarkTheme = createGlobalStyle`
         color: var(--white);
     }
 
-    body::-webkit-scrollbar {
+    html::-webkit-scrollbar {
         width: 10px;
     }
 
-    body::-webkit-scrollbar-track {
+    html::-webkit-scrollbar-track {
         background: #222;
     }
 
-    body::-webkit-scrollbar-thumb {
+    html::-webkit-scrollbar-thumb {
         background-color: #53BF30;
         border: solid #53AF30 1.5px;
         border-radius: 5px;
@@ -37,6 +37,7 @@ export const DarkTheme = createGlobalStyle`
     --contrast: #111;         
     --light-green: #5FA81D;   
     --dark-green: #8CDF27;    
+    --force-dark-green: #53BF30;
     --bg-primary: #222; 
     --text-secondary: #ccc;
     --text-primary: #fff;
@@ -46,9 +47,12 @@ export const DarkTheme = createGlobalStyle`
     --button-primary: #333;
     --footer: #000;
     --border-hover: #777;
-    --bg-modal: rgba(50, 50, 50, 0.6);
+    --bg-modal: rgba(50, 50, 50, 0.8);
     --red: #ff2200;
     --light-gray: #222;
+    --super-light-gray: #2f2f2f;
     --white: #fff;
+    --disabled-button-bg: #555;
+    --disabled-button-color: #ddd;
     }
 `;

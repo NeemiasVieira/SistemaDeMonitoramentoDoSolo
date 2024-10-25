@@ -1,10 +1,10 @@
-import { faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useIsMobile } from "@services/hooks/useIsMobile";
-import { useCallback } from "react";
-import Modal from "react-modal";
-import styled from "styled-components";
-Modal.setAppElement("#root");
+import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useIsMobile } from '@services/hooks/useIsMobile';
+import { useCallback } from 'react';
+import Modal from 'react-modal';
+import styled from 'styled-components';
+Modal.setAppElement('#root');
 
 const ModalStyle = styled.div`
   display: flex;
@@ -124,22 +124,23 @@ export const DeleteButtonModal: React.FC<DeleteButtonModalProps> = ({ onDelete, 
     closeModal();
   }, [onDelete, closeModal]);
 
-  const customStyles = {
+  const customStyles: Modal.Styles = {
     content: {
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      border: "none",
-      borderRadius: "8px",
-      width: isMobile ? "250px" : "300px",
-      height: isMobile ? "270px" : "230px",
-      backgroundColor: "var(--contrast)",
-      opacity: "1",
-      boxShadow: "0px 16px 16px 0px rgba(0, 0, 0, 0.2)",
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      border: 'none',
+      borderRadius: '8px',
+      width: isMobile ? '250px' : '300px',
+      height: isMobile ? '230px' : '240px',
+      backgroundColor: 'var(--contrast)',
+      opacity: '1',
+      boxShadow: '0px 16px 16px 0px rgba(0, 0, 0, 0.2)',
       padding: 0,
+      overflowX: 'hidden',
     },
     overlay: {
-      backgroundColor: "var(--bg-modal)",
+      backgroundColor: 'var(--bg-modal)',
     },
   };
 
@@ -158,7 +159,7 @@ export const DeleteButtonModal: React.FC<DeleteButtonModalProps> = ({ onDelete, 
 
         <div className="texts">
           <span className="confirmText">Tem certeza que deseja excluir o item selecionado?</span>
-          <span className="warningText">Essa ação não poderá ser desfeita</span>
+          <span className="warningText">Essa ação não poderá ser desfeita.</span>
         </div>
 
         <div className="actions">

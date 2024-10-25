@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const ProfileDropDownStyle = styled.div`
+export const ProfileDropDownStyle = styled.div<{ $simulationMode: boolean }>`
   margin-right: 40px;
   display: flex;
   width: 30px;
@@ -9,20 +9,27 @@ export const ProfileDropDownStyle = styled.div`
   border-radius: 50px;
   justify-content: center;
   align-items: center;
-  color: var(--contrast);
   font-weight: 700;
   cursor: pointer;
-  background-color: var(--bg-dark-blue);
+  transition: background-color 300ms ease-in-out, border 300ms ease-in-out;
+  background-color: ${({ $simulationMode }) => ($simulationMode ? 'var(--bg-dark-blue)' : 'var(--border-contrast)')};
+  border: ${({ $simulationMode }) =>
+    $simulationMode ? 'solid var(--contrast) 2px' : 'solid var(--border-secondary) 2px'};
+
+  .Iniciais {
+    color: ${({ $simulationMode }) => ($simulationMode ? 'var(--white)' : 'var(--text-primary)')};
+    transition: color ease-in-out 300ms;
+    letter-spacing: 0.4px;
+  }
 
   .switchThemeOnDropDown {
     display: flex;
     flex-flow: row nowrap;
-    gap: 25px;
     padding: 8px 0;
 
     .texto {
-      width: 47%;
-      margin-left: 23px;
+      width: 160px;
+      margin-left: 40px;
       text-align: initial;
     }
     svg {
@@ -48,8 +55,8 @@ export const ProfileDropDownStyle = styled.div`
     display: none;
     position: absolute;
     background-color: var(--button-primary);
-    min-width: 240px;
-    z-index: 1;
+    min-width: 260px;
+    z-index: 2;
     box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.2);
     color: var(--text-primary);
     border-radius: 15px 0 15px 15px;

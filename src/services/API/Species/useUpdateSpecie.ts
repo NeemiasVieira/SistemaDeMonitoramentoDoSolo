@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient } from "react-query";
-import { useNotificacoes } from "../../../contexts/NotificacoesProvider";
-import SMS_API, { GraphQLResponse } from "../sms-api";
+import { useMutation, useQueryClient } from 'react-query';
+import { useNotificacoes } from '../../../contexts/NotificacoesProvider';
+import SMS_API, { GraphQLResponse } from '../sms-api';
+import { MutationKeys, QueryKeys } from '../types';
 
-interface Specie{
+interface Specie {
   id: string;
   nome: string;
   descricao: string;
@@ -18,12 +19,12 @@ interface Specie{
 }
 
 interface SpecieQuery {
-  updateSpecie: Specie
+  updateSpecie: Specie;
 }
 
 const request = async (args: Specie) => {
   const { id, nome, descricao, parametros } = args;
-  const token = `Bearer ${localStorage.getItem("token")}`;
+  const token = `Bearer ${localStorage.getItem('token')}`;
   const options = { headers: { Authorization: token } };
   const variables = { id, nome, descricao, parametros };
   const query = `mutation UpdateSpecie($id: String!, $nome: String, $descricao: String, $parametros: UParametros) {
@@ -32,7 +33,7 @@ const request = async (args: Specie) => {
     }
   }`;
 
-  return await SMS_API.post<GraphQLResponse<SpecieQuery>>("", { query, variables }, options);
+  return await SMS_API.post<GraphQLResponse<SpecieQuery>>('', { query, variables }, options);
 };
 
 export const useUpdateSpecie = (args: Specie) => {
@@ -40,29 +41,33 @@ export const useUpdateSpecie = (args: Specie) => {
   const { notificar } = useNotificacoes();
 
   const onSucesso = () => {
-    queryClient.invalidateQueries("getAllSpecies");
-    queryClient.invalidateQueries("getSpecie");
+    queryClient.invalidateQueries(QueryKeys.ALL_SPECIES);
+    queryClient.invalidateQueries(QueryKeys.SPECIE);
     notificar({
-      tipo: "SUCESSO",
-      mensagem: "Espécie atualizada com sucesso",
-      tempoEmSeg: 4,
+      tipo: 'SUCESSO',
+      mensagem: 'Espécie atualizada com sucesso',
     });
-  }
+  };
 
-  const { data, isLoading: updateSpecieIsLoading, mutate: confirmUpdateSpecie, error } = useMutation({
+  const {
+    data,
+    isLoading: updateSpecieIsLoading,
+    mutate: confirmUpdateSpecie,
+    error,
+  } = useMutation({
     mutationFn: () => request(args),
     onSuccess: onSucesso,
-    mutationKey: ["updateSpecie"],
+    mutationKey: [MutationKeys.UPDATE_SPECIE],
     retry: false,
-    onError: (e) => notificar({ mensagem: String(e), tipo: "ERRO", tempoEmSeg: 4 }),
+    onError: (e) => notificar({ mensagem: String(e), tipo: 'ERRO' }),
   });
 
   const specie = data?.data?.data?.updateSpecie;
 
-  return{
+  return {
     specie,
     updateSpecieError: error as string,
     updateSpecieIsLoading,
     confirmUpdateSpecie,
-  }
+  };
 };
