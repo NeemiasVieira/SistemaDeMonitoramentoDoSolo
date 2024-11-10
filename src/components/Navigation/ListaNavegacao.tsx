@@ -61,7 +61,7 @@ export const ListaNavegacao: React.FC<ListaNavegacaoProps> = ({ closeModal }) =>
       {(isMobile || (!isMobile && !auth)) && (
         <li className="switchTheme">
           <FontAwesomeIcon icon={theme === 'light' ? faSun : faMoon} />
-          <span className="texto">Tema {theme === 'light' ? 'claro' : 'escuro'}</span>
+          {isMobile && <span className="texto">Tema {theme === 'light' ? 'claro' : 'escuro'}</span>}
           <label className="switch">
             <input type="checkbox" onChange={toggleTheme} checked={theme === 'light' ? false : true} />
             <span className="slider round"></span>

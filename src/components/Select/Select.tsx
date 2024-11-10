@@ -21,11 +21,11 @@ export interface Option {
 interface SelectProps {
   loading?: boolean;
   options?: Option[];
-  defaultValue?: string;
+  defaultValue?: Option;
   disabled?: boolean;
   setSelected: React.Dispatch<React.SetStateAction<string>>;
-  height?: string;
-  width?: string;
+  $height?: string;
+  $width?: string;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -41,9 +41,9 @@ export const Select: React.FC<SelectProps> = ({
 
   const firstValue = useMemo(() => {
     return {
-      id: '',
-      label: defaultValue || 'Selecione',
-      description: '',
+      id: defaultValue?.id || '',
+      label: defaultValue?.label || 'Selecione',
+      description: defaultValue?.description || '',
     };
   }, [defaultValue]);
 
@@ -61,10 +61,11 @@ export const Select: React.FC<SelectProps> = ({
 
   const resetSelection = useCallback(() => {
     setSelectedOption(null);
-    setSelected(null);
+    setSelected(defaultValue.id);
   }, []);
 
   const optionsToSelect = useMemo(() => {
+    if (firstValue.id === options[0].id) return options;
     return [firstValue, ...options];
   }, [options]);
 
@@ -74,7 +75,7 @@ export const Select: React.FC<SelectProps> = ({
         {selectedOption ? selectedOption.label : firstValue.label}
       </Placeholder>
       <ActionsContainer>
-        {!loading && selectedOption && selectedOption.id && (
+        {!loading && selectedOption && selectedOption.id && selectedOption.id !== defaultValue?.id && (
           <>
             <ResetButton onClick={resetSelection}>
               <FontAwesomeIcon icon={faTimes} />

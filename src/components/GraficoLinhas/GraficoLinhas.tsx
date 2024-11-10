@@ -2,14 +2,37 @@ import React, { useEffect, useState } from 'react';
 import Chart from 'react-google-charts';
 import { Loading } from '../Loading/Loading';
 import { SecaoGraficoLinhas } from './GraficoLinhasStyle';
-import { TipoGrafico, selecionaGrafico, unidadeMedida } from './Services';
+import {
+  TipoGrafico,
+  intervalChartOptions,
+  selecionaGrafico,
+  selecionaGraficoAvg,
+  typeChartOptions,
+  unidadeMedida,
+} from './Services';
 import { GraficoLinhasProps } from './Types';
+import { Select } from '@components/Select/Select';
+import { useGetRecordsPerMonthAvg } from '@services/API/Records/useGetRecordsPerMonthAvg';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { ToggleButton } from '@components/Buttons/ToggleButton/ToggleButton';
 
 const GraficoLinhas: React.FC<GraficoLinhasProps> = ({ records, params }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { intervaloDeBusca, setIntervaloDeBusca, allRecordsIsLoading } = params;
 
   const [tipoGrafico, setTipoGrafico] = useState<TipoGrafico>('NPK');
   const [data, setData] = useState([['Dia', 'Nitrogênio', 'Fósforo', 'Potássio']]);
+  const { idPlanta } = useParams();
+  const { recordsPerMonthAvg, avgRecordsIsLoading } = useGetRecordsPerMonthAvg(idPlanta);
+  const [showAvg, setShowAvg] = useState<boolean>(searchParams.get('mostrar-media') === 'sim' ? true : false);
+
+  const toggleShowAvg = () => {
+    setShowAvg((prevValue) => {
+      searchParams.set('mostrar-media', !prevValue ? 'sim' : 'nao');
+      setSearchParams(searchParams);
+      return !prevValue;
+    });
+  };
 
   useEffect(() => {
     if (intervaloDeBusca === 'Selecione') setIntervaloDeBusca(null);
@@ -21,11 +44,11 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({ records, params }) => {
     // Atualize o estado do data sempre que records for alterado
     let newData: any;
     if (records) {
-      newData = selecionaGrafico(tipoGrafico, records);
+      newData = showAvg ? selecionaGraficoAvg(tipoGrafico, recordsPerMonthAvg) : selecionaGrafico(tipoGrafico, records);
     }
 
     setData(newData);
-  }, [records, tipoGrafico]);
+  }, [records, tipoGrafico, showAvg]);
 
   const options: any = {
     chart: {
@@ -41,52 +64,36 @@ const GraficoLinhas: React.FC<GraficoLinhasProps> = ({ records, params }) => {
     <SecaoGraficoLinhas>
       <h2 className="titulo">Gráfico do Histórico da Planta</h2>
 
-      {data?.length > 2 && (
-        <div className="filtros">
-          <h3>Filtros</h3>
-          <div className="selects">
-            <div className="Select">
-              <p className="tituloSelect">Gráfico</p>
-              <select
-                value={tipoGrafico}
-                className="selectFiltro"
-                onChange={(e) => {
-                  setTipoGrafico(e.target.value as TipoGrafico);
-                }}
-              >
-                <option value="NPK">Nutrientes</option>
-                <option value="temperatura">Temperatura</option>
-                <option value="umidade">Umidade</option>
-                <option value="pH">pH</option>
-                <option value="luz">Luz</option>
-              </select>
-            </div>
-            <div className="Select">
-              <p className="tituloSelect">Intervalo de busca</p>
-              <select
-                className="selectFiltro"
-                name=""
-                id=""
-                value={intervaloDeBusca}
-                onChange={(e) => setIntervaloDeBusca(e.target.value)}
-              >
-                <option value={null}>Selecione</option>
-                <option value={1}>1 Dia</option>
-                <option value={3}>3 Dias</option>
-                <option value={5}>5 Dias</option>
-                <option value={7}>1 Semana</option>
-                <option value={14}>2 Semanas</option>
-                <option value={30}>1 Mês</option>
-                <option value={90}>3 Meses</option>
-                <option value={180}>6 Meses</option>
-                <option value={365}>Último Ano</option>
-              </select>
-            </div>
+      <div className="filtros">
+        <h3>Filtros</h3>
+        <div className="selects">
+          <div className="Select">
+            <p className="tituloSelect">Gráfico</p>
+            <Select
+              options={typeChartOptions}
+              setSelected={setTipoGrafico}
+              defaultValue={typeChartOptions[0]}
+              $width="180px"
+            />
+          </div>
+          <div className="Select">
+            <p className="tituloSelect">Intervalo de busca</p>
+            <Select
+              options={intervalChartOptions}
+              setSelected={setIntervaloDeBusca}
+              defaultValue={intervalChartOptions[0]}
+              $width="180px"
+              disabled={showAvg}
+            />
+          </div>
+          <div className="Select">
+            <p className="tituloSelect">Mostrar média mensal</p>
+            <ToggleButton checked={showAvg} onChange={toggleShowAvg} />
           </div>
         </div>
-      )}
+      </div>
 
-      {allRecordsIsLoading && <Loading minHeight={'55vh'} />}
+      {(allRecordsIsLoading || avgRecordsIsLoading) && <Loading minHeight={'55vh'} />}
 
       {data?.length <= 2 && !allRecordsIsLoading && (
         <p className="Aviso">Não há registros suficientes para formar um histórico, tente adicionar novos registros.</p>

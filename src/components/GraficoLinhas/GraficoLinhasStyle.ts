@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SecaoGraficoLinhas = styled.section`
-  width: 70vw;
+  width: 80vw;
   max-width: 900px;
 
   .titulo {
@@ -41,19 +41,6 @@ export const SecaoGraficoLinhas = styled.section`
     gap: 10px;
   }
 
-  select {
-    cursor: pointer;
-  }
-
-  .selectFiltro {
-    margin: 0;
-    height: 35px;
-    padding: 5px;
-    background-color: var(--contrast);
-    color: var(--text-primary);
-    border: solid var(--border-primary) 1px;
-  }
-
   h2 {
     text-align: center;
   }
@@ -81,8 +68,19 @@ export const SecaoGraficoLinhas = styled.section`
   }
 
   @media screen and (max-width: 480px) {
-    width: 100vw;
+    width: calc(100% - 40px);
+    padding: 0 20px;
     max-width: 470px;
+
+    .selects {
+      flex-flow: column wrap;
+      justify-content: start;
+      align-items: flex-end;
+      padding: 20px 20px;
+      margin-bottom: 30px;
+      gap: 20px;
+      font-size: 14px;
+    }
 
     h3 {
       display: none;
@@ -90,31 +88,11 @@ export const SecaoGraficoLinhas = styled.section`
 
     .titulo {
       font-size: 1.5rem;
-      padding: 0 25px;
+      padding: 20px 25px;
     }
 
     .tituloSelect {
       margin: 8px 0;
-    }
-
-    .selects {
-      margin-top: 10px;
-      flex-flow: column wrap;
-      align-items: center;
-      margin-bottom: 10px;
-      padding: 0 15px;
-      background-color: transparent;
-      gap: 5px;
-    }
-
-    .Select {
-      flex-flow: column wrap;
-      align-items: flex-start;
-      gap: 0px;
-    }
-
-    .selectFiltro {
-      width: 80vw;
     }
 
     .Aviso {

@@ -13,12 +13,14 @@ import { Tooltip } from '../Buttons/ToolTip';
 import { Loading } from '../Loading/Loading';
 import { ESolicitacaoNovoRegistro, mapearTitulo, mapearTituloBotao, tip1, tip2 } from './Contrato';
 import { SolicitarNovoRegistroStyle } from './SolicitarNovoRegistroStyle';
+import { useIsMobile } from '@services/hooks/useIsMobile';
 
 export const SolicitarNovoRegistro = () => {
   const { idPlanta } = useParams();
   const { planta, isLoading, isLoadingNoCache } = useGetPlant(idPlanta, true);
   const { lastRecord } = useGetLastRecord(idPlanta);
   const { notificar } = useNotificacoes();
+  const isMobile = useIsMobile();
 
   const { cancelarSolicitacao, isLoading: cancelLoading } = useCancelarSolicitacao(idPlanta);
   const { enviarSolicitacao, isLoading: sendLoading } = useEnviarSolicitacao(idPlanta);
@@ -113,7 +115,11 @@ export const SolicitarNovoRegistro = () => {
         </div>
       )}
 
-      {isActionLoading ? <Loading minHeight="100px" logoHeight="50px" logoWidth="100%" /> : renderActions()}
+      {isActionLoading ? (
+        <Loading minHeight="100px" logoHeight="50px" logoWidth={isMobile ? '100%' : '50%'} fullWidth={isMobile} />
+      ) : (
+        renderActions()
+      )}
     </SolicitarNovoRegistroStyle>
   );
 };

@@ -1,7 +1,7 @@
 import { Record } from '@services/API/Records/useGetAllRecordsPaginated';
 
 export interface StatesParams {
-  setIntervaloDeBusca: React.Dispatch<number | string>;
+  setIntervaloDeBusca: React.Dispatch<string>;
   intervaloDeBusca: number | string;
   allRecordsIsLoading: boolean;
 }

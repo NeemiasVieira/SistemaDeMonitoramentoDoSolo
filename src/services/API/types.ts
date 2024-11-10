@@ -11,6 +11,7 @@ export enum QueryKeys {
   SPECIE = 'useGetSpecie',
   SELECT_SPECIE = 'useSelectSpecie',
   SPECIE_BY_PLANT_ID = 'useGetSpecieByPlantId',
+  RECORDS_PER_MONTH_AVG = 'useGetRecordsPerMonthAvg',
 }
 
 export enum MutationKeys {

@@ -9,7 +9,7 @@ export const SelectContainer = styled.div<{ $disabled: boolean; $height?: string
   width: ${({ $width }) => ($width ? $width : '100%')};
   position: relative;
   user-select: none;
-  background-color: ${({ $disabled }) => ($disabled ? '#e0e0e0' : 'var(--button-primary)')};
+  background-color: ${({ $disabled }) => ($disabled ? '--disabled-button-bg' : 'var(--button-primary)')};
   border: 1px solid var(--border-primary);
   opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
   pointer-events: ${({ $disabled }) => ($disabled ? 'none' : 'auto')};
@@ -56,7 +56,7 @@ export const DropdownMenu = styled.div<{ $isOpen: boolean }>`
   left: -1px;
   width: 100%;
   background-color: var(--bg-primary);
-  border: 1px solid var(--border-primary);
+  border: ${({ $isOpen }) => ($isOpen ? '1px solid var(--border-primary)' : 'none')};
   max-height: ${({ $isOpen }) => ($isOpen ? '200px' : '0')};
   overflow-y: ${({ $isOpen }) => ($isOpen ? 'auto' : 'hidden')};
   transition: max-height 0.2s ease-in-out;

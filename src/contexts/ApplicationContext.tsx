@@ -4,7 +4,7 @@ import { Navigation } from '@components/Navigation/Navigation';
 import { MutationKeys } from '@services/API/types';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ApplicationBackgroundStyle = styled.div`
@@ -51,6 +51,7 @@ export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }
     localStorage.getItem('simulationMode') === 'false' ? false : true
   );
   const [isAdmin, setIsAdmin] = useState<boolean>(localStorage.getItem('profile') === 'admin' ? true : false);
+  const { pathname } = useLocation();
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -73,6 +74,10 @@ export const ApplicationProvider: React.FC<IApplicationProvider> = ({ children }
   };
 
   useEffect(() => {}, [auth, simulationMode]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <ApplicationContext.Provider
