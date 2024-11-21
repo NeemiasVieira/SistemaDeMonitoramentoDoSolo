@@ -41,6 +41,19 @@ export const SolicitarNovoRegistroStyle = styled.div`
     }
   }
 
+  .success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 10px;
+    width: 50%;
+    svg {
+      font-size: 2.2rem;
+      color: var(--dark-green);
+    }
+  }
+
   .Acoes {
     display: flex;
     justify-content: center;
@@ -93,6 +106,13 @@ export const SolicitarNovoRegistroStyle = styled.div`
     .plantaInfo,
     .Acoes {
       width: 100%;
+    }
+
+    .success {
+      width: 100%;
+      svg {
+        font-size: 2rem;
+      }
     }
 
     .plantaInfo {

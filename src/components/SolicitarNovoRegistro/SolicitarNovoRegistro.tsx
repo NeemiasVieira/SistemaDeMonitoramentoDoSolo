@@ -77,10 +77,10 @@ export const SolicitarNovoRegistro = () => {
     }
     if (confirmado) {
       return (
-        <>
+        <div className="success">
           <h3>{titulo}</h3>
           <FontAwesomeIcon icon={faCircleCheck} className="svg" />
-        </>
+        </div>
       );
     }
   };
