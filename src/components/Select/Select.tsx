@@ -56,16 +56,16 @@ export const Select: React.FC<SelectProps> = ({
   const handleOptionClick = useCallback((option: Option) => {
     setSelectedOption(option);
     setIsOpen(false);
-    setSelected(option.id);
+    setSelected(option?.id);
   }, []);
 
   const resetSelection = useCallback(() => {
     setSelectedOption(null);
-    setSelected(defaultValue.id);
+    setSelected(defaultValue?.id);
   }, []);
 
   const optionsToSelect = useMemo(() => {
-    if (firstValue.id === options[0].id) return options;
+    if (firstValue?.id === options[0]?.id) return options;
     return [firstValue, ...options];
   }, [options]);
 
