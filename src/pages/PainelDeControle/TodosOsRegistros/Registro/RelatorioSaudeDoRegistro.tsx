@@ -11,15 +11,21 @@ import { useMutateRecordContext } from '@contexts/MutateRecordContext';
 
 const PagRelatorioSaudePorRegistro = () => {
   const { idRegistro, idPlanta } = useParams();
-  const { record: recordMemo } = useMutateRecordContext();
+  const { record: recordMemo, especie: especieMemo } = useMutateRecordContext();
   const { record: recordRequest } = useGetRecord(idRegistro);
+
   const record = useMemo(() => {
     return recordMemo?.id ? recordMemo : recordRequest;
   }, [recordMemo, recordRequest]);
+
   const { getSpecie, specieData } = useGetSpecie({
     id: record?.idEspecie,
   });
   const { relatorioSaude, erroRelatorioSaude, getRelatorioSaude } = useGetRelatorioSaudePorRegistro(idRegistro);
+
+  const especie = useMemo(() => {
+    return especieMemo ? especieMemo : specieData;
+  }, [especieMemo, specieData]);
 
   useEffect(() => {
     if (record) {
@@ -33,8 +39,8 @@ const PagRelatorioSaudePorRegistro = () => {
     <PagRelatorioDeSaudeStyle>
       <BotaoVoltar path={`/painel/plantas/${idPlanta}/registros/${idRegistro}`} />
       <div className="relatorioSaudeDiv">
-        {relatorioSaude && specieData && !erroRelatorioSaude && (
-          <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />
+        {relatorioSaude && especie && !erroRelatorioSaude && (
+          <RelatorioDeSaude relatorio={relatorioSaude} especie={especie} />
         )}
       </div>
 

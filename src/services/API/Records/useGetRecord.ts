@@ -13,7 +13,7 @@ const request = async (idRegistro: string) => {
   const options = { headers: { Authorization: token } };
   const variables = { idRecord: idRegistro };
   const query = `query GetRecord($idRecord: String!) {
-      getRecord(idRecord: $idRecord) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux imagem diagnostico idPlanta nomeEspecie nuRegistro }}`;
+      getRecord(idRecord: $idRecord) { nitrogenio fosforo potassio umidade temperatura pH dataDeRegistro luz lux imagem diagnostico idPlanta nomeEspecie nuRegistro idEspecie }}`;
 
   return await SMS_API.post<GraphQLResponse<GetRecordResponse>>('', { query, variables }, options);
 };

@@ -6,7 +6,7 @@
 <h2>Objetivo</h2>
 
 <p>O principal objetivo deste projeto integrar um software a um protótipo que cuidará das necessidades da planta, garantindo uma experiencia do usuário diferenciada</p>
-<p>Nesse projeto o protótipo monitora os níveis de Nitrogenio, Fósforo, Potássio, Luminosidade, Umidade, Temperatura e pH da plantinha, além de capturar imagens que serao processadas pelo nosso microserviço de python que dará um diagnóstico</p>
+<p>Nesse projeto o protótipo monitora os níveis de Nitrogênio, Fósforo, Potássio, Luminosidade, Umidade, Temperatura e pH da plantinha, além de capturar imagens que serao processadas pelo nosso microserviço de python que dará um diagnóstico</p>
 
 <h2>Tecnologias Utilizadas</h2>
 

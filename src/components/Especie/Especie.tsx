@@ -56,18 +56,18 @@ export const Especie: React.FC<EspecieProps> = ({ especie, handleUpdate, confirm
         <tbody>
           <tr>
             <td>Nitrogênio</td>
-            <td>{especie.parametros.nitrogenio.min} mg/Kg</td>
-            <td>{especie.parametros.nitrogenio.max} mg/Kg</td>
+            <td>{especie.parametros.nitrogenio.min} mg/kg</td>
+            <td>{especie.parametros.nitrogenio.max} mg/kg</td>
           </tr>
           <tr>
             <td>Fósforo</td>
-            <td>{especie.parametros.fosforo.min} mg/Kg</td>
-            <td>{especie.parametros.fosforo.max} mg/Kg</td>
+            <td>{especie.parametros.fosforo.min} mg/kg</td>
+            <td>{especie.parametros.fosforo.max} mg/kg</td>
           </tr>
           <tr>
             <td>Potássio</td>
-            <td>{especie.parametros.potassio.min} mg/Kg</td>
-            <td>{especie.parametros.potassio.max} mg/Kg</td>
+            <td>{especie.parametros.potassio.min} mg/kg</td>
+            <td>{especie.parametros.potassio.max} mg/kg</td>
           </tr>
           <tr>
             <td>Luz</td>

@@ -17,19 +17,19 @@ export const ParametrosDaEspecie: React.FC<ParametrosDaEspecieProps> = ({ especi
     () => [
       {
         propriedade: 'Nitrogênio',
-        unidade: 'mg/Kg',
+        unidade: 'mg/kg',
         valorMinimo: nitrogenio?.min,
         valorMaximo: nitrogenio?.max,
       },
       {
         propriedade: 'Fósforo',
-        unidade: 'mg/Kg',
+        unidade: 'mg/kg',
         valorMinimo: fosforo?.min,
         valorMaximo: fosforo?.max,
       },
       {
         propriedade: 'Potássio',
-        unidade: 'mg/Kg',
+        unidade: 'mg/kg',
         valorMinimo: potassio?.min,
         valorMaximo: potassio?.max,
       },

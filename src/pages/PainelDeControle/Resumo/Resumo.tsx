@@ -67,7 +67,9 @@ const Resumo = () => {
         </div>
       )}
 
-      {relatorioSaude && !isAnyRequestLoading && <DadosRegistro registro={lastRecord} ultimaAtualizacao />}
+      {relatorioSaude && !isAnyRequestLoading && (
+        <DadosRegistro registro={lastRecord} especie={specieData} ultimaAtualizacao />
+      )}
 
       {lastRecord && !isAnyRequestLoading && <RelatorioDeSaude relatorio={relatorioSaude} especie={specieData} />}
 

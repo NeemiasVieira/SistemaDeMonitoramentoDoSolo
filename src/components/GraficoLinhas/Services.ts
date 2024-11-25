@@ -4,11 +4,11 @@ import { Record } from '@services/API/Records/useGetAllRecordsPaginated';
 import { RecordsPerMonthAvg } from '@services/API/Records/useGetRecordsPerMonthAvg';
 
 const unidades = {
-  NPK: 'Unidade de medida: mg/Kg',
+  NPK: 'Unidade de medida: mg/kg',
   temperatura: 'Unidade de medida: ºC',
   pH: '',
   umidade: 'Unidade de medida: %',
-  luz: 'Unidade de medida: %',
+  luz: 'Unidade de medida: lux',
 } as const;
 
 export type TipoGrafico = keyof typeof unidades;
@@ -19,7 +19,7 @@ export const selecionaGrafico = (tipoGrafico: TipoGrafico, records: Record[]) =>
         NPK: [
           ['Dia', 'Nitrogênio', 'Fósforo', 'Potássio'],
           ...records.map((record) => [
-            FormatarDatas.diaMes(record.dataDeRegistro),
+            FormatarDatas.diaMesAno(record.dataDeRegistro),
             Number(record.nitrogenio),
             Number(record.fosforo),
             Number(record.potassio),
@@ -27,19 +27,19 @@ export const selecionaGrafico = (tipoGrafico: TipoGrafico, records: Record[]) =>
         ],
         temperatura: [
           ['Dia', 'Temperatura'],
-          ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.temperatura)]),
+          ...records.map((record) => [FormatarDatas.diaMesAno(record.dataDeRegistro), Number(record.temperatura)]),
         ],
         umidade: [
           ['Dia', 'Umidade'],
-          ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.umidade)]),
+          ...records.map((record) => [FormatarDatas.diaMesAno(record.dataDeRegistro), Number(record.umidade)]),
         ],
         pH: [
           ['Dia', 'pH'],
-          ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.pH)]),
+          ...records.map((record) => [FormatarDatas.diaMesAno(record.dataDeRegistro), Number(record.pH)]),
         ],
         luz: [
           ['Dia', 'Luz'],
-          ...records.map((record) => [FormatarDatas.diaMes(record.dataDeRegistro), Number(record.luz)]),
+          ...records.map((record) => [FormatarDatas.diaMesAno(record.dataDeRegistro), Number(record.lux)]),
         ],
       } as const)
     : undefined;
@@ -65,7 +65,7 @@ export const selecionaGraficoAvg = (tipoGrafico: TipoGrafico, recordsPerMonthAvg
         ],
         umidade: [['Mês/Ano', 'Umidade'], ...recordsPerMonthAvg.map((month) => [month.mesAno, month.medias.umidade])],
         pH: [['Mês/Ano', 'pH'], ...recordsPerMonthAvg.map((month) => [month.mesAno, month.medias.pH])],
-        luz: [['Mês/Ano', 'Luz'], ...recordsPerMonthAvg.map((month) => [month.mesAno, month.medias.luz])],
+        luz: [['Mês/Ano', 'Luz'], ...recordsPerMonthAvg.map((month) => [month.mesAno, month.medias.lux])],
       } as const)
     : undefined;
 
@@ -80,7 +80,7 @@ export const typeChartOptions: Option[] = [
   {
     label: 'Nutrientes',
     id: 'NPK',
-    description: 'mg/Kg',
+    description: 'mg/kg',
   },
   {
     label: 'Temperatura',

@@ -8,10 +8,11 @@ import { useGetRecord } from '@services/API/Records/useGetRecord';
 import { Link, useParams } from 'react-router-dom';
 import { PagRegistroStyle } from './PagRegistroStyle';
 import { useMutateRecordContext } from '@contexts/MutateRecordContext';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import { useGetSpecie } from '@services/API/Species/useGetSpecie';
 
 const PagRegistro = () => {
-  const { record: recordMemo } = useMutateRecordContext();
+  const { record: recordMemo, especie: especieMemo } = useMutateRecordContext();
   const { idRegistro, idPlanta } = useParams();
   const { record: recordRequest, recordIsLoading } = useGetRecord(idRegistro);
   const { generatePdf } = useGeneratePdf(idRegistro);
@@ -19,6 +20,16 @@ const PagRegistro = () => {
   const record = useMemo(() => {
     return recordMemo?.id ? recordMemo : recordRequest;
   }, [recordMemo, recordRequest]);
+
+  const { specieData, getSpecie } = useGetSpecie({ id: record?.idEspecie });
+
+  const especie = useMemo(() => {
+    return especieMemo ? especieMemo : specieData;
+  }, [especieMemo, specieData]);
+
+  useEffect(() => {
+    if (record?.idEspecie && !especieMemo) getSpecie();
+  }, [record?.idEspecie]);
 
   return (
     <PagRegistroStyle>
@@ -44,7 +55,7 @@ const PagRegistro = () => {
           </section>
 
           <section className="DadosSensores">
-            <DadosRegistro registro={record} ultimaAtualizacao={false} />
+            <DadosRegistro registro={record} especie={especie} ultimaAtualizacao={false} />
           </section>
 
           {record?.imagem && (

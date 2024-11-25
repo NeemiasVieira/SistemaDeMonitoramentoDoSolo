@@ -41,7 +41,7 @@ export const useGetRelatorioSaude = (idPlanta: string) => {
     error,
   } = useQuery({
     queryFn: () => request(idPlanta),
-    queryKey: [QueryKeys.RELATORIO_SAUDE],
+    queryKey: [QueryKeys.RELATORIO_SAUDE, idPlanta],
     cacheTime: 10 * 60 * 1000,
     refetchInterval: false,
     staleTime: 10 * 60 * 1000,

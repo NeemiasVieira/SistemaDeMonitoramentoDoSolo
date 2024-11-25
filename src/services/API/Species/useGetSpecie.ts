@@ -57,15 +57,15 @@ const request = async (args: getSpecieParams) => {
 
 export const useGetSpecie = (args: getSpecieParams) => {
   const { notificar } = useNotificacoes();
-  const { enabled, ...rest } = args;
+  const { enabled, id } = args;
 
   const {
     data: specieData,
     isLoading: specieIsLoading,
     refetch: getSpecie,
   } = useQuery({
-    queryFn: () => request(rest),
-    queryKey: [QueryKeys.SPECIE],
+    queryFn: () => request({ id }),
+    queryKey: [QueryKeys.SPECIE, id],
     cacheTime: 10 * 60 * 1000,
     refetchInterval: 10 * 60 * 1000,
     staleTime: 10 * 60 * 1000,
