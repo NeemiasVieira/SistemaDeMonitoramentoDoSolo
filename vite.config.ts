@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    allowedHosts: ['sms.devneemiasvieira.com']
   },
   build: {
     chunkSizeWarningLimit: 1000,
